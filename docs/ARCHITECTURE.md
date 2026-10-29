@@ -41,7 +41,8 @@ Nunca se confirma producción sin pago verificado. No se almacenan datos de tarj
 | **Carga del 3D** | `next/dynamic` sin SSR: el motor 3D (~240 KB gzip) se descarga después del contenido y solo en páginas que lo usan. |
 | **Microinteracciones** | Scroll inercial (Lenis), titulares palabra a palabra (solo CSS), imágenes que se descubren con scroll-driven animations (CSS, mejora progresiva) e inclinación 3D en tarjetas de producto (solo ratón). Todo se desactiva con `prefers-reduced-motion`. |
 | **Filtros de tienda por URL (GET)** | Funcionan sin JS, se pueden compartir y son indexables. |
-| **YouTube «lite»** | No carga iframe ni cookies de terceros hasta pulsar play. |
+| **Vídeos de YouTube automáticos** | Feeds públicos del canal (UULF = largos, UUSH = Shorts), ISR cada hora, sin clave de API. Visualizaciones y fechas reales. Respaldo si el feed falla. `YOUTUBE_MOCK_FEED` para maquetar en local. |
+| **Reproductor ligero** | Miniatura hasta que el usuario pulsa: la reproducción la inicia él, así que cuenta como visualización (YouTube no cuenta las autoreproducidas). Con cookies de marketing aceptadas usa youtube.com (anuncios personalizados); si no, youtube-nocookie.com (anuncios no personalizados). JSON-LD VideoObject para resultados de vídeo en Google. |
 | **Productos demo con `noindex`** | No contaminar Google con productos ficticios. |
 | **Idempotencia en memoria (demo)** | Misma interfaz que la versión con `UNIQUE(idempotency_key)` en Postgres. |
 | **Rate limit en memoria** | Freno básico. En producción multi-instancia → Upstash o Vercel Firewall. |

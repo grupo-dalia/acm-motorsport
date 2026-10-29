@@ -16,7 +16,7 @@ export const site = {
   social: [
     { label: "Instagram", href: "https://www.instagram.com/andrescuberomoreno/" },
     { label: "TikTok", href: "https://www.tiktok.com/@andrescuberomoreno" },
-    { label: "YouTube", href: "https://www.youtube.com/@andrescuberomoreno" }, // TODO: confirmar handle exacto del canal
+    { label: "YouTube", href: "https://www.youtube.com/@andrescuberomoreno" }
   ],
 } as const;
 

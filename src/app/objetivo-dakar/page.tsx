@@ -9,8 +9,12 @@ import { Seasons } from "@/components/sections/seasons";
 import { VideoCard } from "@/components/sections/video-card";
 import { SponsorsList } from "@/components/sections/sponsors-list";
 import { ButtonLink } from "@/components/ui/button";
-import { videos } from "@/content/media";
+import { getSeriesVideos, isPlaceholder } from "@/lib/youtube";
+import { youtube } from "@/content/youtube";
+import { JsonLd, videoListLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: "Objetivo Dakar, la serie",
@@ -18,8 +22,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/objetivo-dakar",
 });
 
-export default function DakarPage() {
-  const episodes = videos.filter((v) => v.series === "objetivo-dakar");
+export default async function DakarPage() {
+  const { videos: episodes } = await getSeriesVideos("objetivo-dakar");
+  const real = episodes.filter((v) => !isPlaceholder(v));
   return (
     <>
       <DunesHero className="flex min-h-[100svh] flex-col">
@@ -34,10 +39,19 @@ export default function DakarPage() {
 
       <section id="episodios" className="scroll-mt-20 bg-midnight-deep py-24 lg:py-36" aria-labelledby="ep">
         <Container>
-          <SectionHeading id="ep" title="Temporada 1" lead="Los vídeos solo se cargan al pulsar reproducir: sin cookies de YouTube hasta entonces." />
-          <div className="mt-16 grid gap-14 md:grid-cols-2 md:gap-8">
-            {episodes.map((v) => <VideoCard key={v.id} video={v} />)}
-          </div>
+          {real.length > 0 && <JsonLd data={videoListLd(real)} />}
+          <SectionHeading
+            id="ep"
+            title="Episodios"
+            lead="Se reproducen aquí mismo y cuentan en el canal. El más reciente, primero."
+            action={<a href={youtube.subscribeUrl} target="_blank" rel="noopener noreferrer" className="link-u">Suscribirme en YouTube</a>}
+          />
+          {episodes[0] && <div className="mt-16"><VideoCard video={episodes[0]} featured /></div>}
+          {episodes.length > 1 && (
+            <div className="mt-16 grid gap-14 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+              {episodes.slice(1).map((v) => <VideoCard key={v.id} video={v} />)}
+            </div>
+          )}
         </Container>
       </section>
 

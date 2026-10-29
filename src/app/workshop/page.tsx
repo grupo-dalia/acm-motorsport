@@ -4,9 +4,12 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { VideoCard } from "@/components/sections/video-card";
-import { videos, workshopProjects } from "@/content/media";
+import { workshopProjects } from "@/content/media";
+import { getSeriesVideos } from "@/lib/youtube";
 import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: "ACM Workshop: mecánica, fabricación y proyectos",
@@ -14,8 +17,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/workshop",
 });
 
-export default function WorkshopPage() {
+export default async function WorkshopPage() {
   const [lead, ...rest] = workshopProjects;
+  const { videos } = await getSeriesVideos("workshop");
   return (
     <>
       <PageHero
@@ -54,7 +58,7 @@ export default function WorkshopPage() {
         <Container>
           <SectionHeading id="videos" title="Del taller a la pantalla" />
           <div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-8">
-            {videos.filter((v) => v.series === "workshop").map((v) => <VideoCard key={v.id} video={v} />)}
+            {videos.slice(0, 6).map((v) => <VideoCard key={v.id} video={v} />)}
           </div>
         </Container>
       </section>

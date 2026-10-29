@@ -52,7 +52,8 @@ docs/                   Arquitectura, API, despliegue, roadmap
 | Quiero cambiar… | Archivo |
 |---|---|
 | Ficha técnica del Pajero, calendario, resultados, tripulación, patrocinadores | `src/content/motorsport.ts` |
-| Vídeos (pegar el ID de YouTube) y proyectos del taller | `src/content/media.ts` |
+| Vídeos | Automáticos desde el canal (feed público, se refresca cada hora). Listas por sección y palabras clave en `src/content/youtube.ts`. Respaldo sin red en `src/content/media.ts` |
+| Proyectos del taller | `src/content/media.ts` |
 | Redes, email, navegación | `src/content/site.ts` |
 | Textos legales | `src/content/legal.ts` |
 | Vídeo del hero | `NEXT_PUBLIC_HERO_VIDEO_URL` en `.env.local` |

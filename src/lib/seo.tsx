@@ -82,3 +82,24 @@ export function productLd(p: Product) {
     },
   };
 }
+
+/** VideoObject para resultados enriquecidos de Google (solo vídeos reales). */
+export function videoListLd(videos: { id: string; title: string; description: string; publishedAt: string; thumbnail: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: videos.map((v, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "VideoObject",
+        name: v.title,
+        description: v.description || v.title,
+        thumbnailUrl: [v.thumbnail],
+        uploadDate: v.publishedAt,
+        embedUrl: `https://www.youtube.com/embed/${v.id}`,
+        url: `https://www.youtube.com/watch?v=${v.id}`,
+      },
+    })),
+  };
+}

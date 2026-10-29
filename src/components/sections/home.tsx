@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ButtonLink } from "@/components/ui/button";
+import { ButtonLink, buttonVariants } from "@/components/ui/button";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { RouteMap } from "@/components/media/route-map";
 import { GlobeStory } from "@/components/three/globe-story";
@@ -9,9 +9,11 @@ import { DunesHero } from "@/components/three/dunes-hero";
 import { WordReveal } from "@/components/ui/word-reveal";
 import { ProductCard } from "@/components/shop/product-card";
 import { Seasons } from "./seasons";
-import { VideoCard } from "./video-card";
+import { ShortCard, VideoCard } from "./video-card";
+import type { ChannelVideos, YtVideo } from "@/lib/youtube";
+import { youtube } from "@/content/youtube";
 import { SponsorsList } from "./sponsors-list";
-import { videos, workshopProjects } from "@/content/media";
+import { workshopProjects } from "@/content/media";
 import { vehicleSpecs } from "@/content/motorsport";
 import type { Product } from "@/domain/catalog";
 
@@ -101,8 +103,8 @@ export function TheCar() {
   );
 }
 
-export function DakarSection() {
-  const episodes = videos.filter((v) => v.series === "objetivo-dakar").slice(0, 2);
+export function DakarSection({ episodes: all }: { episodes: YtVideo[] }) {
+  const episodes = all.slice(0, 2);
   return (
     <section className="bg-midnight-deep pb-24 lg:pb-36" aria-labelledby="dakar-title">
       <DunesHero className="flex min-h-[92svh] items-end">
@@ -115,9 +117,52 @@ export function DakarSection() {
       <Container>
         {heroVideo && <RouteMap className="mt-16 aspect-[16/9] w-full" align="xMidYMid" />}
         <Seasons className="mt-8" />
-        <div className="mt-20 grid gap-12 md:grid-cols-2 md:gap-8">
-          {episodes.map((v) => <VideoCard key={v.id} video={v} />)}
+        {episodes.length > 0 && (
+          <div className="mt-20 grid gap-12 md:grid-cols-2 md:gap-8">
+            {episodes.map((v) => <VideoCard key={v.id} video={v} />)}
+          </div>
+        )}
+      </Container>
+    </section>
+  );
+}
+
+export function LatestVideos({ data }: { data: ChannelVideos }) {
+  const [featured, ...rest] = data.videos;
+  if (!featured) return null;
+  return (
+    <section className="bg-ink py-24 lg:py-36" aria-labelledby="videos-title">
+      <Container>
+        <SectionHeading
+          id="videos-title"
+          title="Lo último del canal"
+          lead="Del tramo al taller, cada semana. Los vídeos se reproducen aquí mismo y cuentan en el canal."
+          action={
+            <div className="flex flex-wrap items-center gap-6">
+              <a href={youtube.subscribeUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: "md" })}>Suscribirme en YouTube</a>
+              <a href={youtube.channelUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "text" })}>Ver el canal</a>
+            </div>
+          }
+        />
+        <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-8"><VideoCard video={featured} featured /></div>
+          <div className="grid content-start gap-10 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
+            {rest.slice(0, 2).map((v) => <VideoCard key={v.id} video={v} />)}
+          </div>
         </div>
+        {rest.length > 2 && (
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            {rest.slice(2, 6).map((v) => <VideoCard key={v.id} video={v} />)}
+          </div>
+        )}
+        {data.shorts.length > 0 && (
+          <div className="mt-24">
+            <h3 className="t-title">Shorts</h3>
+            <div className="-mx-5 mt-8 flex snap-x gap-4 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0" data-lenis-prevent>
+              {data.shorts.slice(0, 10).map((v) => <ShortCard key={v.id} video={v} />)}
+            </div>
+          </div>
+        )}
       </Container>
     </section>
   );
