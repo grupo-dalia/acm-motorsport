@@ -70,7 +70,7 @@ export default function MotorsportPage() {
                   {vehicleSpecs.filter((s) => s.group === g).map((s) => (
                     <div key={s.label} className="grid grid-cols-5 gap-4 border-b border-line py-4">
                       <dt className="col-span-2 text-steel">{s.label}</dt>
-                      <dd className={s.value ? "col-span-3" : "col-span-3 text-steel/70"}>{s.value ?? "Por confirmar"}</dd>
+                      <dd className={s.value ? "col-span-3" : "col-span-3 text-steel"}>{s.value ?? "Por confirmar"}</dd>
                     </div>
                   ))}
                 </dl>

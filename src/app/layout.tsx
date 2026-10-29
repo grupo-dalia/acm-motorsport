@@ -31,7 +31,11 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const products = await catalog.listProducts();
   return (
-    <html lang="es" className={`${hubot.variable} ${mona.variable}`}>
+    <html lang="es" className={`${hubot.variable} ${mona.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Antes de pintar: si ya hay decisión de cookies, el banner (que viene en el HTML) no se muestra. */}
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("acm.consent.v1"))document.documentElement.dataset.consent="1"}catch(e){}` }} />
+      </head>
       <body className="min-h-dvh overflow-x-clip">
         <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">
           Saltar al contenido

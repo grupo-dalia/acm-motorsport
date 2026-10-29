@@ -36,9 +36,9 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
             <p className="mt-16 t-title">Todavía no hay artículos en esta categoría.</p>
           ) : (
             <>
-              <ArticleCard a={lead} large className="mt-12" />
+              <ArticleCard a={lead} large headingLevel={2} className="mt-12" />
               <div className="mt-10 grid gap-x-8 gap-y-2 md:grid-cols-2 lg:grid-cols-3">
-                {rest.map((a) => <ArticleCard key={a.slug} a={a} className="py-6" />)}
+                {rest.map((a) => <ArticleCard key={a.slug} a={a} headingLevel={2} className="py-6" />)}
               </div>
             </>
           )}

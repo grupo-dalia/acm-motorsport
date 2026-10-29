@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import type { Season } from "@/lib/series";
 import { usePlayer } from "./player-modal";
 import { formatViews, timeAgo } from "@/lib/format";
@@ -9,15 +10,14 @@ import { cn } from "@/lib/utils";
 function Thumb({ id, alt }: { id: string; alt: string }) {
   const [src, setSrc] = useState(`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`);
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- miniatura de YouTube con fallback
-    <img
+    <Image
       src={src}
       alt={alt}
-      loading="lazy"
-      decoding="async"
+      fill
+      sizes="(min-width: 640px) 240px, 136px"
       onError={(e) => (src.includes("hqdefault") ? (e.currentTarget.style.visibility = "hidden") : setSrc(`https://i.ytimg.com/vi/${id}/hqdefault.jpg`))}
       onLoad={(e) => e.currentTarget.naturalWidth <= 120 && setSrc(`https://i.ytimg.com/vi/${id}/hqdefault.jpg`)}
-      className="absolute inset-0 h-full w-full object-cover"
+      className="object-cover"
     />
   );
 }
@@ -107,10 +107,10 @@ export function EpisodeBrowser({ seasons }: { seasons: Season[] }) {
                   className={cn(
                     "group grid w-full grid-cols-[2rem_8.5rem_1fr] items-center gap-4 py-5 text-left sm:grid-cols-[3rem_15rem_1fr] sm:gap-6 sm:py-6",
                     available ? "cursor-pointer" : "cursor-default",
-                    ep.status === "proximamente" && "opacity-55",
+                    ep.status === "proximamente" && "opacity-70",
                   )}
-                  aria-label={available ? `Reproducir ${ep.number === 0 ? "capítulo piloto" : `capítulo ${ep.number}`}: ${ep.title}` : undefined}
                 >
+                  {available && <span className="sr-only">Reproducir: </span>}
                   <span className={cn("tnum text-center text-steel", ep.number === 0 ? "t-small font-medium uppercase tracking-wide [writing-mode:vertical-rl] rotate-180 mx-auto" : "t-title")}>{ep.number === 0 ? "Piloto" : ep.number}</span>
                   <span className="relative block aspect-video overflow-hidden rounded-[4px] bg-[linear-gradient(160deg,#1a2c4d,#0c1729)]">
                     {ep.youtubeId && <Thumb id={ep.youtubeId} alt="" />}

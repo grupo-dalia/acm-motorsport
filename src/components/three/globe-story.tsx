@@ -17,10 +17,16 @@ const chapters: Chapter[] = [
   { from: 0.66, to: 0.84, year: "2028", title: "Dakar", body: "Arabia Saudí. La carrera que da nombre a todo el proyecto." },
 ];
 
-function hasWebGL() {
+/** WebGL con GPU de verdad. Con renderizado por software (SwiftShader, llvmpipe) el globo iría a tirones: mejor el mapa estático. */
+function hasFastWebGL() {
   try {
     const c = document.createElement("canvas");
-    return Boolean(c.getContext("webgl2") || c.getContext("webgl"));
+    const gl = (c.getContext("webgl2") || c.getContext("webgl")) as WebGLRenderingContext | null;
+    if (!gl) return false;
+    const info = gl.getExtension("WEBGL_debug_renderer_info");
+    const renderer = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : "";
+    gl.getExtension("WEBGL_lose_context")?.loseContext();
+    return !/swiftshader|llvmpipe|software|basic render/i.test(renderer);
   } catch {
     return false;
   }
@@ -72,8 +78,25 @@ export function GlobeStory({ fallback, hero }: { fallback: ReactNode; hero: Reac
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- decisión única según capacidades del dispositivo
-    setMode(reduce || !hasWebGL() ? "static" : "3d");
+    if (reduce) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- decisión única según preferencias del usuario
+      setMode("static");
+      return;
+    }
+    // Sin GPU: se queda la historia por scroll sobre el mapa SVG, sin cambiar la maquetación.
+    if (!hasFastWebGL()) return;
+    // El globo se monta cuando la página ya ha cargado y el navegador está libre: primero se ve el mapa SVG.
+    let idle = 0;
+    const start = () => {
+      idle = window.requestIdleCallback ? window.requestIdleCallback(() => setMode("3d"), { timeout: 2500 }) : window.setTimeout(() => setMode("3d"), 600);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
+      window.clearTimeout(idle);
+    };
   }, []);
 
   const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);

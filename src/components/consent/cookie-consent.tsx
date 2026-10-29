@@ -25,7 +25,9 @@ function readConsent(): Consent | null {
  */
 export function CookieConsent({ gaId }: { gaId?: string }) {
   const [consent, setConsent] = useState<Consent | null>(null);
-  const [visible, setVisible] = useState(false);
+  // El banner va en el HTML desde el servidor (se pinta a la vez que la página, sin esperar a JS);
+  // si ya hay consentimiento, un script en <head> lo oculta antes de pintar y aquí se retira.
+  const [visible, setVisible] = useState(true);
   const [custom, setCustom] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
@@ -67,7 +69,7 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
         </>
       )}
       {visible && (
-        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" className="fixed inset-x-3 bottom-3 z-[70] max-w-md rounded-[8px] bg-paper p-5 text-ink shadow-[0_20px_60px_rgb(0_0_0/0.35)] sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
+        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" data-cookie-banner={custom ? "open" : ""} className="fixed inset-x-3 bottom-3 z-[70] max-w-md rounded-[8px] bg-paper p-5 text-ink shadow-[0_20px_60px_rgb(0_0_0/0.35)] sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
           <p id="cookie-title" className="t-sub">Cookies</p>
           <p className="mt-2 text-sm leading-relaxed text-slate">
             Usamos cookies técnicas para que la web funcione (carrito, preferencias). Con tu permiso, también analíticas para saber qué contenido funciona. Nada se activa hasta que decidas.{" "}

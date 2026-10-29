@@ -35,14 +35,36 @@ export type Article = z.infer<typeof schema> & { slug: string; readingMinutes: n
 
 const SHORTCODE = /\{\{\s*(video|affiliate|product):([\w-]+)\s*\}\}/g;
 
-const lazyImages = (html: string) => html.replaceAll("<img ", '<img loading="lazy" decoding="async" ');
+/**
+ * Fotos dentro del texto: tamaño real (evita saltos de maquetación), carga diferida y
+ * versiones WebP/AVIF a varios anchos a través del optimizador de imágenes de Next.
+ */
+async function enhanceImages(html: string): Promise<string> {
+  const re = /<img ([^>]*?)src="(\/[^"]+)"([^>]*)>/g;
+  const matches = [...html.matchAll(re)];
+  if (!matches.length) return html;
+  const sharp = (await import("sharp")).default;
+  let out = html;
+  for (const m of matches) {
+    const [tag, pre, src, post] = m as unknown as [string, string, string, string];
+    let size = "";
+    try {
+      const meta = await sharp(join(process.cwd(), "public", src)).metadata();
+      if (meta.width && meta.height) size = ` width="${meta.width}" height="${meta.height}"`;
+    } catch {}
+    const opt = (w: number) => `/_next/image?url=${encodeURIComponent(src)}&w=${w}&q=75`;
+    const srcset = [640, 828, 1200].map((w) => `${opt(w)} ${w}w`).join(", ");
+    out = out.replace(tag, `<img ${pre}src="${opt(1200)}" srcset="${srcset}" sizes="(min-width: 768px) 680px, 100vw"${size} loading="lazy" decoding="async"${post}>`);
+  }
+  return out;
+}
 
 function toBlocks(md: string): Block[] {
   const blocks: Block[] = [];
   let last = 0;
   for (const m of md.matchAll(SHORTCODE)) {
     const before = md.slice(last, m.index);
-    if (before.trim()) blocks.push({ type: "html", html: lazyImages(marked.parse(before, { async: false })) });
+    if (before.trim()) blocks.push({ type: "html", html: marked.parse(before, { async: false }) });
     blocks.push({ type: m[1] as "video" | "affiliate" | "product", id: m[2]! });
     last = m.index! + m[0].length;
   }
@@ -65,7 +87,8 @@ async function load(): Promise<Article[]> {
         return null;
       }
       const words = content.split(/\s+/).length;
-      return { ...parsed.data, slug: f.replace(/\.md$/, ""), readingMinutes: Math.max(1, Math.round(words / 220)), blocks: toBlocks(content) };
+      const blocks = await Promise.all(toBlocks(content).map(async (b) => (b.type === "html" ? { ...b, html: await enhanceImages(b.html) } : b)));
+      return { ...parsed.data, slug: f.replace(/\.md$/, ""), readingMinutes: Math.max(1, Math.round(words / 220)), blocks };
     }),
   );
   const showDrafts = process.env.NODE_ENV !== "production";

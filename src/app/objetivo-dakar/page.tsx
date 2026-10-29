@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { DunesHero } from "@/components/three/dunes-hero";
 import { PlayerProvider, PlayButton } from "@/components/series/player-modal";
@@ -72,8 +73,7 @@ export default async function DakarPage() {
       <div className="bg-ink">
         {latest?.youtubeId ? (
           <section className="relative isolate flex min-h-[88svh] items-end overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element -- portada del último capítulo */}
-            <img src={`https://i.ytimg.com/vi/${latest.youtubeId}/maxresdefault.jpg`} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+            <Image src={`https://i.ytimg.com/vi/${latest.youtubeId}/maxresdefault.jpg`} alt="" fill priority sizes="100vw" className="-z-10 object-cover" />
             <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#080a0f_0%,rgb(8_10_15/0.75)_35%,transparent_70%)]" aria-hidden />
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-transparent to-ink/40" aria-hidden />
             {heroContent}

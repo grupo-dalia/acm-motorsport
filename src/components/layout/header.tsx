@@ -69,9 +69,10 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <button type="button" onClick={() => setOpen(true)} className="flex h-10 items-center gap-2 px-2 text-[0.95rem] font-medium" aria-label={`Abrir cesta${hydrated && count ? `, ${count} artículos` : ""}`}>
+          <button type="button" onClick={() => setOpen(true)} className="flex h-10 items-center gap-2 px-2 text-[0.95rem] font-medium">
             Cesta
             <span className={cn("grid size-6 place-items-center rounded-full text-[0.75rem] tnum", hydrated && count > 0 ? "bg-racing text-paper" : "bg-current/12")}>{hydrated ? count : 0}</span>
+            <span className="sr-only">artículos</span>
           </button>
           <button
             type="button"

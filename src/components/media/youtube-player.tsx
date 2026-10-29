@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { MediaPlaceholder } from "./media-placeholder";
 import { cn } from "@/lib/utils";
 
@@ -52,9 +53,10 @@ export function YouTubePlayer({ id, title, vertical = false, className, placehol
       className={cn("group relative block w-full overflow-hidden bg-ink", aspect, className)}
       aria-label={`Reproducir en la web: ${title}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element -- miniatura de YouTube con fallback de resolución */}
-      <img
+      <Image
         src={thumb}
+        fill
+        sizes={vertical ? "(min-width: 1024px) 20vw, 50vw" : size === "lg" ? "(min-width: 1400px) 1320px, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
         onError={(e) => {
           if (thumb.includes("hqdefault")) e.currentTarget.style.visibility = "hidden";
           else setThumb(`https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
@@ -64,9 +66,7 @@ export function YouTubePlayer({ id, title, vertical = false, className, placehol
           if (e.currentTarget.naturalWidth <= 120) setThumb(`https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
         }}
         alt=""
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
+        className="object-cover transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
       />
       <span className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" aria-hidden />
       <span className={cn("absolute bottom-4 left-4 flex items-center gap-3 rounded-full bg-paper font-medium text-ink transition-transform duration-300 group-hover:scale-105", size === "lg" ? "px-6 py-3 text-base" : "px-4 py-2 t-small")}>

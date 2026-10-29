@@ -15,8 +15,9 @@
   --color-land: #1a2c4d;
   --color-paper: #f5f7fa;
   --color-mist: #e7ebf1;
-  --color-racing: #e52435;
-  --color-racing-dark: #c41b2b;
+  --color-racing: #d91f30; /* AA con texto blanco (4,67:1) */
+  --color-racing-bright: #ff4555; /* texto rojo sobre fondos oscuros */
+  --color-racing-dark: #b81a29;
   --color-steel: #9299a7;
   --color-slate: #565e6e;      /* texto secundario sobre papel (AA) */
   --color-line: rgb(245 247 250 / 0.12);
@@ -200,3 +201,7 @@ html.lenis, html.lenis body { height: auto; }
   .article p:has(> img) + p > em:only-child { display: block; font-size: 0.9rem; color: var(--color-slate); font-style: normal; }
   .article blockquote { border-left: 2px solid var(--color-racing); padding-left: 1.2rem; margin: 1.6rem 0; color: var(--color-slate); }
 }
+
+/* Fuera de capas para que gane a las utilidades. */
+html[data-consent="1"] [data-cookie-banner=""] { display: none; }
+:is(.bg-midnight, .bg-midnight-deep, .bg-ink, .bg-land) .text-racing:not(.on-paper *) { color: var(--color-racing-bright); }
