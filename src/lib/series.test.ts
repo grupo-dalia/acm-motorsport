@@ -33,3 +33,24 @@ describe("series", () => {
     expect(eps.slice(6).every((e) => e.status === "proximamente")).toBe(true);
   });
 });
+
+describe("series con lista real", () => {
+  const cfgS1: SeasonConfig = {
+    number: 1, year: 2026, title: "t", synopsis: "s", status: "emision", totalEpisodes: 10, releasedThrough: 6,
+    episodes: { 1: { match: ["copiloto"] }, 3: { match: ["calendario"] }, 5: { match: ["garrotxa"] }, 6: { match: ["salou"] } },
+  };
+  it("rellena 2 y 4 por fecha y deja fuera el vídeo previo a la serie", () => {
+    const list = [
+      v("aaaaaaaaaa0", "Me prometieron 6000€ de patrocinio", "2025-10-01"),
+      v("aaaaaaaaaa1", "¿Tienes lo que hace falta para ser copiloto?", "2025-11-20"),
+      v("aaaaaaaaaa2", "Arreglando el Pajero", "2025-12-15"),
+      v("aaaaaaaaaa3", "Tengo el calendario 2026", "2026-01-15"),
+      v("aaaaaaaaaa4", "Preparando la primera carrera", "2026-02-20"),
+      v("aaaaaaaaaa5", "La Garrotxa onboard", "2026-03-15"),
+      v("aaaaaaaaaa6", "Rally Salou", "2026-04-20"),
+    ];
+    const eps = assignEpisodes(cfgS1, list, true);
+    expect(eps.slice(0, 6).map((e) => e.youtubeId)).toEqual(["aaaaaaaaaa1", "aaaaaaaaaa2", "aaaaaaaaaa3", "aaaaaaaaaa4", "aaaaaaaaaa5", "aaaaaaaaaa6"]);
+    expect(eps.slice(6).every((e) => e.status === "proximamente")).toBe(true);
+  });
+});

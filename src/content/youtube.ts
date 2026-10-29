@@ -14,7 +14,7 @@ export const youtube = {
    * En Objetivo Dakar, el orden de la lista = número de capítulo (1, 2, 3…).
    */
   playlists: {
-    "objetivo-dakar": null as string | null,
+    "objetivo-dakar": "PLVTnUQy82V0ptk7LDe_viY8095pm3VkS6" as string | null, // OBJETIVO DAKAR TEMPORADA 1
     workshop: null as string | null,
     "sim-racing": null as string | null,
   },

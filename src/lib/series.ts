@@ -41,14 +41,24 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
   }
   const real = videos.filter((v) => !isPlaceholder(v) && !used.has(v.id));
   if (!keepOrder) real.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
-  const unnumbered: YtVideo[] = [];
+  // 2) Número explícito en el título ("Capítulo 2", "T1E2")
+  const rest: YtVideo[] = [];
   for (const v of real) {
     const n = episodeNumber(v.title);
-    if (n && n <= cfg.releasedThrough && !slots.has(n)) slots.set(n, v);
-    else unnumbered.push(v);
+    if (n && n <= cfg.releasedThrough && !slots.has(n)) { slots.set(n, v); used.add(v.id); }
+    else rest.push(v);
   }
-  // 2) Huecos sin identificar: solo se rellenan por orden si no tienen palabras clave propias
-  for (let n = 1; n <= cfg.releasedThrough && unnumbered.length; n++) if (!slots.has(n) && !cfg.episodes[n]?.match) slots.set(n, unnumbered.shift()!);
+  // 3) Huecos restantes: el vídeo publicado entre el capítulo anterior y el siguiente ya conocidos.
+  //    Así un vídeo previo a la serie (o uno posterior) no se cuela como capítulo.
+  const dateOf = (n: number) => slots.get(n)?.publishedAt ?? null;
+  for (let n = 1; n <= cfg.releasedThrough; n++) {
+    if (slots.has(n)) continue;
+    let lo: string | null = null, hi: string | null = null;
+    for (let k = n - 1; k >= 1 && !lo; k--) lo = dateOf(k);
+    for (let k = n + 1; k <= cfg.releasedThrough && !hi; k++) hi = dateOf(k);
+    const pick = rest.find((v) => !used.has(v.id) && (!lo || v.publishedAt > lo) && (!hi || v.publishedAt < hi));
+    if (pick) { slots.set(n, pick); used.add(pick.id); }
+  }
 
   return Array.from({ length: cfg.totalEpisodes }, (_, i) => {
     const n = i + 1;
