@@ -31,9 +31,19 @@ export const affiliates: Affiliate[] = [
     partner: "Euro4x4parts",
     pitch: "Recambios y equipamiento 4x4 del patrocinador principal del equipo. Usa el código al pagar.",
     reward: "Patrocinio y código de descuento.",
-    url: null, // TODO: URL de la tienda (con parámetro de afiliado si existe)
+    url: "https://www.euro4x4parts.com",
     code: "CUBERO",
     cta: "Ir a Euro4x4parts",
+  },
+  {
+    id: "fullcarx",
+    name: "Full Carx",
+    partner: "Full Carx",
+    pitch: "Los productos de limpieza y detailing que usamos con el Pajero en el capítulo 2. 10 % de descuento con nuestro código.",
+    reward: "Código de descuento del canal.",
+    url: "https://fullcarx.com",
+    code: "CUBERO",
+    cta: "Ir a Full Carx",
   },
 ];
 

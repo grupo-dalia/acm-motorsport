@@ -104,7 +104,22 @@ export default function MotorsportPage() {
           </div>
           <div id="resultados" className="mt-20">
             <h3 className="t-sub">Resultados</h3>
-            {results.length === 0 && <p className="mt-3 max-w-[60ch] text-paper/70">Todavía no hay clasificaciones oficiales. Aparecerán aquí con enlace a la fuente de cada prueba.</p>}
+            {results.length === 0 ? (
+              <p className="mt-3 max-w-[60ch] text-paper/70">Todavía no hay clasificaciones oficiales. Aparecerán aquí con enlace a la fuente de cada prueba.</p>
+            ) : (
+              <ul className="mt-6 border-t border-line">
+                {results.map((r) => (
+                  <li key={r.event} className="grid gap-2 border-b border-line py-5 md:grid-cols-12 md:items-baseline">
+                    <p className="t-display tnum md:col-span-2">{r.position}</p>
+                    <div className="md:col-span-7">
+                      <p className="t-sub">{r.event}</p>
+                      <p className="t-small text-steel">{r.category} · {r.date}</p>
+                    </div>
+                    <a href={r.source} target="_blank" rel="noopener noreferrer" className="link-u t-small md:col-span-3 md:text-right">Ver el capítulo</a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Container>
       </section>

@@ -76,14 +76,18 @@ export type CalendarEvent = {
 };
 
 export const calendar: CalendarEvent[] = [
-  { id: "occ-2026", name: "Offroad Classic Cup", season: 2026, date: null, location: null, status: "por-confirmar" },
+  { id: "occ-2026-garrotxa", name: "Off-Road Classic Cup · Rally de La Garrotxa", season: 2026, date: null, location: "Besalú (Girona)", status: "disputado" },
+  { id: "occ-2026-salou", name: "Off-Road Classic Cup · Salou", season: 2026, date: null, location: "Salou (Tarragona)", status: "disputado" },
   { id: "certt-2027", name: "CERTT", season: 2027, date: null, location: null, status: "por-confirmar" },
   { id: "maroc-2027", name: "Rallye du Maroc", season: 2027, date: null, location: "Marruecos", status: "por-confirmar" },
   { id: "dakar-2028", name: "Dakar Rally", season: 2028, date: null, location: "Arabia Saudí", status: "por-confirmar" },
 ];
 
 /** Resultados: vacío hasta que haya clasificaciones oficiales. No inventar. */
-export const results: { event: string; date: string; category: string; position: string; source: string }[] = [];
+export const results: { event: string; date: string; category: string; position: string; source: string }[] = [
+  // Fuente provisional: el propio capítulo. Sustituir por la clasificación oficial cuando se tenga el enlace.
+  { event: "Rally de La Garrotxa · Off-Road Classic Cup", date: "2026", category: "Regularidad", position: "22.º", source: "https://www.youtube.com/watch?v=_vlXff3ALLc" },
+];
 
 export type Sponsor = {
   id: string;

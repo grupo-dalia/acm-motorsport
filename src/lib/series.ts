@@ -26,6 +26,11 @@ export function episodeNumber(title: string) {
 }
 
 /** Asigna vídeos a capítulos: primero los numerados en el título, luego el resto por fecha. */
+/** "Título | OBJETIVO DAKAR T1E5" → "Título". Quita el sufijo de serie y hashtags de episodio. */
+export function cleanTitle(t: string) {
+  return t.replace(/\s*\|\s*(OBJETIVO DAKAR\s*)?#?T\d+E\d+\s*$/i, "").replace(/\s*\|\s*OBJETIVO DAKAR.*$/i, "").trim();
+}
+
 const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
 export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder = false, allVideos: YtVideo[] = videos): Episode[] {
@@ -33,6 +38,16 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
   const slots = new Map<number, YtVideo>();
   const used = new Set<string>();
   // 1) Capítulos identificados a mano por palabras clave (buscan en todo el canal)
+  const pool = [...videos, ...allVideos];
+  // 0) Capítulos y piloto fijados por ID: mandan sobre todo lo demás
+  for (const [n, o] of Object.entries(cfg.episodes)) {
+    const num = Number(n);
+    if (num > cfg.releasedThrough || !o.youtubeId) continue;
+    const hit = pool.find((v) => v.id === o.youtubeId);
+    if (hit) slots.set(num, hit);
+    used.add(o.youtubeId);
+  }
+  if (cfg.pilot?.youtubeId) used.add(cfg.pilot.youtubeId);
   for (const [n, o] of Object.entries(cfg.episodes)) {
     const num = Number(n);
     if (num > cfg.releasedThrough || o.youtubeId || !o.match?.length) continue;
@@ -75,7 +90,7 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
     return {
       season: cfg.number,
       number: n,
-      title: o.title ?? v?.title ?? (upcoming ? `Capítulo ${n}` : `Capítulo ${n}`),
+      title: o.title ?? (v ? cleanTitle(v.title) : `Capítulo ${n}`),
       synopsis: o.synopsis ?? v?.description?.split("\n")[0]?.slice(0, 220) ?? (upcoming ? "En producción." : "Enlace al vídeo pendiente."),
       youtubeId: id,
       thumbnail: id ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : null,
@@ -90,7 +105,8 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
   if (cfg.pilot !== null && cfg.totalEpisodes > 0) {
     const p = cfg.pilot ?? {};
     const first = slots.get(1)?.publishedAt ?? null;
-    const byMatch = pilotVideo;
+    const byId = p.youtubeId ? pool.find((x) => x.id === p.youtubeId) : undefined;
+    const byMatch = byId ?? pilotVideo;
     const byDate = first ? videos.filter((v) => !isPlaceholder(v) && !used.has(v.id) && v.publishedAt < first).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0] : undefined;
     const v = byMatch ?? byDate;
     const id = p.youtubeId ?? v?.id ?? null;
@@ -98,7 +114,7 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
       episodes.unshift({
         season: cfg.number,
         number: 0,
-        title: p.title ?? v?.title ?? "Capítulo piloto",
+        title: p.title ?? (v ? cleanTitle(v.title) : "Capítulo piloto"),
         synopsis: p.synopsis ?? v?.description?.split("\n")[0]?.slice(0, 220) ?? "Donde empieza todo.",
         youtubeId: id,
         thumbnail: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,

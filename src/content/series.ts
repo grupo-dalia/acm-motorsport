@@ -37,25 +37,19 @@ export const seasons: SeasonConfig[] = [
     status: "emision",
     totalEpisodes: 10,
     releasedThrough: 6,
-    pilot: { match: ["6000", "patrocinio"] },
-    // Datos de los guiones de Drive. 2 y 4: pendientes de confirmar título/enlace.
+    // Vídeos exactos de la lista "OBJETIVO DAKAR TEMPORADA 1"
+    pilot: {
+      youtubeId: "m_1x98bgchI",
+      title: "Me ghostearon después de prometerme 6.000 €",
+      synopsis: "Me prometieron 6.000 € para correr el CERTT 2025 y desaparecieron. La historia completa de por qué perdí la temporada y cómo empieza todo.",
+    },
     episodes: {
-      1: {
-        match: ["copiloto"],
-        title: "¿Tienes lo que hace falta para ser copiloto?",
-        synopsis: "Tres copilotos con experiencia real en Dakar, CERTT y regularidad explican qué hace falta para sentarse a la derecha. Y sí, seguimos buscando copiloto.",
-      },
-      3: {
-        match: ["calendario", "no puedo correr"],
-        title: "Tengo el calendario 2026… pero ahora mismo no puedo correr",
-        synopsis: "Cinco raids cerrados para la Off-Road Classic Cup y un Pajero que todavía no puede correr ninguno. Lo que hay que arreglar antes de la primera salida.",
-      },
-      5: { match: ["garrotxa"] },
-      6: {
-        match: ["salou"],
-        title: "Rally Salou",
-        synopsis: "Segunda prueba de la Off-Road Classic Cup. Onboard, errores, sustos y lo aprendido desde la primera carrera.",
-      },
+      1: { youtubeId: "QQJvq4OI-Iw", synopsis: "Busco copiloto para 2026. Tres copilotos profesionales explican las seis claves para sentarse a la derecha." },
+      2: { youtubeId: "Et2GY7dN76c", synopsis: "Seis meses de abandono, barro de la DANA y una ventanilla rota: limpiar el Pajero a fondo para ver en qué estado está de verdad." },
+      3: { youtubeId: "an6FVcES6_o", synopsis: "El calendario oficial de la Off-Road Classic 2026 y la realidad: ahora mismo el Pajero no es legal para competir." },
+      4: { youtubeId: "Ac1pLobeE4w", synopsis: "A diez días del Rally de La Garrotxa: la ITV me echa, las ratas se han comido los cables y toca soldar contrarreloj." },
+      5: { youtubeId: "_vlXff3ALLc", synopsis: "Debut en el Rally de La Garrotxa, primera prueba de la Off-Road Classic Cup. 1.000 km sin dormir y puesto 22." },
+      6: { youtubeId: "xJ8g1Qms29E", synopsis: "770 km hasta Salou para entrenar regularidad y roadbook con Luis Graciet de copiloto. El fin de semana se complica y el Pajero vuelve roto." },
     },
   },
   {
