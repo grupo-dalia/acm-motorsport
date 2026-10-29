@@ -40,6 +40,7 @@ export const legalDocs: LegalDoc[] = [
       { h: "Qué son", p: ["Pequeños archivos o tecnologías similares (como el almacenamiento local) que guardan información en tu navegador."] },
       { h: "Técnicas (necesarias)", p: ["Carrito de compra (acm.cart.v1) y preferencias de consentimiento (acm.consent.v1). No requieren consentimiento."] },
       { h: "Analíticas (opcionales)", p: ["Google Analytics 4, solo si las aceptas. [Completar nombres de cookies, duración y proveedor.]"] },
+      { h: "Medición sin cookies", p: ["Usamos Vercel Web Analytics y Speed Insights para contar visitas y medir la velocidad de la web de forma agregada. No usan cookies ni almacenan nada en tu navegador, y no permiten identificarte."] },
       { h: "Marketing (opcionales)", p: ["Píxeles publicitarios (p. ej. Meta, Google Ads) solo con consentimiento. Actualmente no activos."] },
       { h: "Vídeos incrustados", p: ["Los vídeos de YouTube se cargan desde youtube-nocookie.com solo cuando pulsas reproducir."] },
       { h: "Gestión", p: ["Puedes cambiar tu elección en cualquier momento desde «Preferencias de cookies» en el pie de página."] },

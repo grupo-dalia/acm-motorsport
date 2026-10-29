@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/layout/providers";
 import { CartDrawer } from "@/components/shop/cart-drawer";
 import { CookieConsent } from "@/components/consent/cookie-consent";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 import { catalog } from "@/integrations/commerce";
@@ -48,6 +50,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <CartDrawer />
         </Providers>
         <CookieConsent gaId={process.env.NEXT_PUBLIC_GA_ID || undefined} />
+        {/* Medición agregada y sin cookies (Vercel). No identifica a nadie ni guarda nada en el navegador. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
