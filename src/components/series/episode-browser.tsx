@@ -42,7 +42,7 @@ export function EpisodeBrowser({ seasons }: { seasons: Season[] }) {
     };
   }, [open]);
 
-  const released = season.episodes.filter((e) => e.status === "disponible").length;
+  const released = season.episodes.filter((e) => e.status === "disponible" && e.number > 0).length;
 
   return (
     <div>
@@ -103,15 +103,15 @@ export function EpisodeBrowser({ seasons }: { seasons: Season[] }) {
             return (
               <li key={ep.number}>
                 <Row
-                  {...(available ? { type: "button" as const, onClick: () => play(ep.youtubeId!, `T${ep.season}:E${ep.number} · ${ep.title}`) } : {})}
+                  {...(available ? { type: "button" as const, onClick: () => play(ep.youtubeId!, ep.number === 0 ? `Piloto · ${ep.title}` : `T${ep.season}:E${ep.number} · ${ep.title}`) } : {})}
                   className={cn(
                     "group grid w-full grid-cols-[2rem_8.5rem_1fr] items-center gap-4 py-5 text-left sm:grid-cols-[3rem_15rem_1fr] sm:gap-6 sm:py-6",
                     available ? "cursor-pointer" : "cursor-default",
                     ep.status === "proximamente" && "opacity-55",
                   )}
-                  aria-label={available ? `Reproducir capítulo ${ep.number}: ${ep.title}` : undefined}
+                  aria-label={available ? `Reproducir ${ep.number === 0 ? "capítulo piloto" : `capítulo ${ep.number}`}: ${ep.title}` : undefined}
                 >
-                  <span className="t-title tnum text-center text-steel">{ep.number}</span>
+                  <span className={cn("tnum text-center text-steel", ep.number === 0 ? "t-small font-medium uppercase tracking-wide [writing-mode:vertical-rl] rotate-180 mx-auto" : "t-title")}>{ep.number === 0 ? "Piloto" : ep.number}</span>
                   <span className="relative block aspect-video overflow-hidden rounded-[4px] bg-[linear-gradient(160deg,#1a2c4d,#0c1729)]">
                     {ep.youtubeId && <Thumb id={ep.youtubeId} alt="" />}
                     {available ? (
@@ -129,7 +129,7 @@ export function EpisodeBrowser({ seasons }: { seasons: Season[] }) {
                       <span className="t-sub">{ep.title}</span>
                       {ep.status === "proximamente" && <span className="rounded-full bg-paper/10 px-2.5 py-0.5 t-small">Próximamente</span>}
                     </span>
-                    {meta && <span className="mt-1 block t-small text-steel">{meta}</span>}
+                    {(meta || ep.number === 0) && <span className="mt-1 block t-small text-steel">{[ep.number === 0 ? "Capítulo piloto" : null, meta].filter(Boolean).join(" · ")}</span>}
                     <span className="mt-2 line-clamp-2 hidden text-paper/65 sm:block">{ep.synopsis}</span>
                   </span>
                 </Row>

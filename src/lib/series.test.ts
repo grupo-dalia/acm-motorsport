@@ -16,7 +16,7 @@ describe("series", () => {
   });
   it("coloca numerados en su sitio, rellena por fecha y deja 8-10 próximamente", () => {
     const eps = assignEpisodes(cfg, [v("aaaaaaaaaaa", "T1E3 Garrotxa", "2026-05-01"), v("bbbbbbbbbbb", "Primer vídeo", "2026-01-01"), v("ccccccccccc", "Segundo", "2026-02-01")]);
-    expect(eps).toHaveLength(10);
+    expect(eps.filter((e) => e.number > 0)).toHaveLength(10);
     expect(eps[2]!.youtubeId).toBe("aaaaaaaaaaa");
     expect(eps[0]!.youtubeId).toBe("bbbbbbbbbbb");
     expect(eps[1]!.youtubeId).toBe("ccccccccccc");
@@ -50,7 +50,19 @@ describe("series con lista real", () => {
       v("aaaaaaaaaa6", "Rally Salou", "2026-04-20"),
     ];
     const eps = assignEpisodes(cfgS1, list, true);
-    expect(eps.slice(0, 6).map((e) => e.youtubeId)).toEqual(["aaaaaaaaaa1", "aaaaaaaaaa2", "aaaaaaaaaa3", "aaaaaaaaaa4", "aaaaaaaaaa5", "aaaaaaaaaa6"]);
-    expect(eps.slice(6).every((e) => e.status === "proximamente")).toBe(true);
+    expect(eps[0]).toMatchObject({ number: 0, youtubeId: "aaaaaaaaaa0" });
+    const main = eps.filter((e) => e.number > 0);
+    expect(main.slice(0, 6).map((e) => e.youtubeId)).toEqual(["aaaaaaaaaa1", "aaaaaaaaaa2", "aaaaaaaaaa3", "aaaaaaaaaa4", "aaaaaaaaaa5", "aaaaaaaaaa6"]);
+    expect(main.slice(6).every((e) => e.status === "proximamente")).toBe(true);
+  });
+});
+
+describe("piloto", () => {
+  it("el piloto identificado no se cuela como capítulo 1 aunque falten títulos", () => {
+    const c: SeasonConfig = { number: 1, year: 2026, title: "t", synopsis: "s", status: "emision", totalEpisodes: 10, releasedThrough: 6, pilot: { match: ["6000"] }, episodes: { 1: { match: ["copiloto"] } } };
+    const list = [v("ppppppppppp", "Me prometieron 6000€", "2025-10-01"), v("qqqqqqqqqqq", "Otro título", "2025-11-20")];
+    const eps = assignEpisodes(c, list, true);
+    expect(eps[0]).toMatchObject({ number: 0, youtubeId: "ppppppppppp" });
+    expect(eps.find((e) => e.number === 1)!.youtubeId).not.toBe("ppppppppppp");
   });
 });

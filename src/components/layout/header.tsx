@@ -43,6 +43,7 @@ export function Header() {
   const light = lightTop && !menuOpen;
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,color,box-shadow] duration-300",
@@ -84,9 +85,10 @@ export function Header() {
         </div>
       </div>
 
+    </header>
       <AnimatePresence>
         {menuOpen && (
-          <motion.div id="mobile-menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-midnight lg:hidden">
+          <motion.div id="mobile-menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="fixed inset-x-0 bottom-0 top-16 z-[49] overflow-y-auto bg-midnight text-paper lg:hidden">
             <nav aria-label="Menú móvil" className="flex min-h-full flex-col justify-between px-5 pb-10 pt-6 sm:px-8">
               <ul>
                 {mainNav.map((item, i) => (
@@ -103,6 +105,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

@@ -21,6 +21,8 @@ export type SeasonConfig = {
   synopsis: string;
   status: "emision" | "proximamente";
   totalEpisodes: number;
+  /** Capítulo piloto (número 0): por defecto, el vídeo de la lista publicado antes del capítulo 1. */
+  pilot?: EpisodeOverride | null;
   /** Capítulos ya publicados (los siguientes salen como "Próximamente"). */
   releasedThrough: number;
   episodes: Record<number, EpisodeOverride>;
@@ -35,6 +37,7 @@ export const seasons: SeasonConfig[] = [
     status: "emision",
     totalEpisodes: 10,
     releasedThrough: 6,
+    pilot: { match: ["6000", "patrocinio"] },
     // Datos de los guiones de Drive. 2 y 4: pendientes de confirmar título/enlace.
     episodes: {
       1: {

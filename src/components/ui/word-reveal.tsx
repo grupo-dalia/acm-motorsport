@@ -9,8 +9,10 @@ export function WordReveal({ text, delay = 0, step = 0.055 }: { text: string; de
       <span className="sr-only">{text}</span>
       <span aria-hidden>
         {words.map((w, i) => (
-          <span key={i} className="word-mask">
-            <span className="word-rise" style={{ animationDelay: `${delay + i * step}s` }}>{w}</span>
+          <span key={i}>
+            <span className="word-mask">
+              <span className="word-rise" style={{ animationDelay: `${delay + i * step}s` }}>{w}</span>
+            </span>
             {i < words.length - 1 && " "}
           </span>
         ))}

@@ -39,6 +39,12 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
     const hit = allVideos.find((v) => !isPlaceholder(v) && !used.has(v.id) && o.match!.some((m) => norm(v.title).includes(norm(m))));
     if (hit) { slots.set(num, hit); used.add(hit.id); }
   }
+  // 1b) Reservar el piloto si se identifica por palabras clave, para que no ocupe un capítulo
+  let pilotVideo: YtVideo | undefined;
+  if (cfg.pilot?.match?.length) {
+    pilotVideo = [...videos, ...allVideos].find((v) => !isPlaceholder(v) && !used.has(v.id) && cfg.pilot!.match!.some((m) => norm(v.title).includes(norm(m))));
+    if (pilotVideo) used.add(pilotVideo.id);
+  }
   const real = videos.filter((v) => !isPlaceholder(v) && !used.has(v.id));
   if (!keepOrder) real.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
   // 2) Número explícito en el título ("Capítulo 2", "T1E2")
@@ -60,7 +66,7 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
     if (pick) { slots.set(n, pick); used.add(pick.id); }
   }
 
-  return Array.from({ length: cfg.totalEpisodes }, (_, i) => {
+  const episodes: Episode[] = Array.from({ length: cfg.totalEpisodes }, (_, i) => {
     const n = i + 1;
     const o = cfg.episodes[n] ?? {};
     const upcoming = n > cfg.releasedThrough;
@@ -79,6 +85,31 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
       status: upcoming ? "proximamente" : "disponible",
     } satisfies Episode;
   });
+
+  // Capítulo piloto: el indicado por palabras clave o, si no, el vídeo de la lista anterior al capítulo 1
+  if (cfg.pilot !== null && cfg.totalEpisodes > 0) {
+    const p = cfg.pilot ?? {};
+    const first = slots.get(1)?.publishedAt ?? null;
+    const byMatch = pilotVideo;
+    const byDate = first ? videos.filter((v) => !isPlaceholder(v) && !used.has(v.id) && v.publishedAt < first).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))[0] : undefined;
+    const v = byMatch ?? byDate;
+    const id = p.youtubeId ?? v?.id ?? null;
+    if (id) {
+      episodes.unshift({
+        season: cfg.number,
+        number: 0,
+        title: p.title ?? v?.title ?? "Capítulo piloto",
+        synopsis: p.synopsis ?? v?.description?.split("\n")[0]?.slice(0, 220) ?? "Donde empieza todo.",
+        youtubeId: id,
+        thumbnail: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+        publishedAt: v?.publishedAt ?? null,
+        views: v?.views ?? null,
+        duration: p.duration ?? null,
+        status: "disponible",
+      });
+    }
+  }
+  return episodes;
 }
 
 export async function getSeasons(): Promise<Season[]> {

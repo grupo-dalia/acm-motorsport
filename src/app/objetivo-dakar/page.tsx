@@ -21,8 +21,9 @@ export default async function DakarPage() {
   const seasons = await getSeasons();
   const s1 = seasons[0]!;
   const available = s1.episodes.filter((e) => e.status === "disponible");
-  const latest = [...available].reverse().find((e) => e.youtubeId) ?? null;
+  const latest = [...available].reverse().find((e) => e.youtubeId && e.number > 0) ?? null;
   const first = available.find((e) => e.youtubeId) ?? null;
+  const chapters = available.filter((e) => e.number > 0).length;
 
   const ld = {
     "@context": "https://schema.org",
@@ -46,7 +47,7 @@ export default async function DakarPage() {
       <p className="mt-6 flex flex-wrap gap-x-4 text-paper/80">
         <span className="font-medium text-paper">Temporada {s1.number}</span>
         <span>{s1.year}</span>
-        <span>{available.length} capítulos</span>
+        <span>{chapters} capítulos{available.some((e) => e.number === 0) ? " + piloto" : ""}</span>
       </p>
       <p className="t-lead mt-4 max-w-[46ch] text-paper/80">{latest ? latest.synopsis : s1.synopsis}</p>
       <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -57,7 +58,7 @@ export default async function DakarPage() {
           className="inline-flex h-14 items-center gap-3 rounded-[var(--radius-btn)] bg-paper px-7 font-medium text-ink hover:bg-white aria-disabled:opacity-60"
         />
         {first && first !== latest && (
-          <PlayButton id={first.youtubeId} title={`T1:E${first.number} · ${first.title}`} label="Empezar desde el capítulo 1" className="inline-flex h-14 items-center gap-3 rounded-[var(--radius-btn)] bg-paper/15 px-6 font-medium text-paper backdrop-blur hover:bg-paper/25" />
+          <PlayButton id={first.youtubeId} title={first.number === 0 ? `Piloto · ${first.title}` : `T1:E${first.number} · ${first.title}`} label={first.number === 0 ? "Empezar desde el piloto" : "Empezar desde el capítulo 1"} className="inline-flex h-14 items-center gap-3 rounded-[var(--radius-btn)] bg-paper/15 px-6 font-medium text-paper backdrop-blur hover:bg-paper/25" />
         )}
         <a href={youtube.subscribeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-14 items-center px-4 font-medium text-paper/85 underline decoration-paper/40 underline-offset-[0.35em] hover:decoration-paper">Suscribirme</a>
       </div>
