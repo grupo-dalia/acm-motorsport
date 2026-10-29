@@ -5,7 +5,14 @@
  * —"T1E3", "Ep. 3", "Capítulo 3"— o por orden de publicación). Para fijar uno a mano, rellena
  * `episodes[n]` con su `youtubeId` y, si quieres, título y sinopsis propios.
  */
-export type EpisodeOverride = { youtubeId?: string; title?: string; synopsis?: string; duration?: string };
+export type EpisodeOverride = {
+  youtubeId?: string;
+  /** Palabras que identifican el vídeo en el título de YouTube (sin acentos, minúsculas). */
+  match?: string[];
+  title?: string;
+  synopsis?: string;
+  duration?: string;
+};
 
 export type SeasonConfig = {
   number: number;
@@ -27,8 +34,26 @@ export const seasons: SeasonConfig[] = [
     synopsis: "Primera temporada completa con el Pajero de 1989: regularidad, un tripmaster hecho en el taller, Starlink en el techo y la Offroad Classic Cup.",
     status: "emision",
     totalEpisodes: 10,
-    releasedThrough: 7,
-    episodes: {},
+    releasedThrough: 6,
+    // Datos de los guiones de Drive. 2 y 4: pendientes de confirmar título/enlace.
+    episodes: {
+      1: {
+        match: ["copiloto"],
+        title: "¿Tienes lo que hace falta para ser copiloto?",
+        synopsis: "Tres copilotos con experiencia real en Dakar, CERTT y regularidad explican qué hace falta para sentarse a la derecha. Y sí, seguimos buscando copiloto.",
+      },
+      3: {
+        match: ["calendario", "no puedo correr"],
+        title: "Tengo el calendario 2026… pero ahora mismo no puedo correr",
+        synopsis: "Cinco raids cerrados para la Off-Road Classic Cup y un Pajero que todavía no puede correr ninguno. Lo que hay que arreglar antes de la primera salida.",
+      },
+      5: { match: ["garrotxa"] },
+      6: {
+        match: ["salou"],
+        title: "Rally Salou",
+        synopsis: "Segunda prueba de la Off-Road Classic Cup. Onboard, errores, sustos y lo aprendido desde la primera carrera.",
+      },
+    },
   },
   {
     number: 2,

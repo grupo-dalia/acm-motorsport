@@ -24,5 +24,7 @@ export const youtube = {
     workshop: ["taller", "starlink", "reparar", "arreglar", "instalar", "pajero", "fabric", "restaur", "soldar", "homocinetica", "salpicadero", "gotera", "tractor"],
     "sim-racing": ["sim racing", "simulador", "simracing", "cockpit", "farming simulator", "project motor racing", "volante"],
   },
+  /** Otros canales cuyos vídeos también se leen (p. ej. "Manitas a tiempo completo"). IDs que empiezan por UC. */
+  extraChannelIds: [] as string[],
   revalidateSeconds: 3600,
 } as const;

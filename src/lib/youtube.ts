@@ -78,18 +78,24 @@ async function fetchFeed(query: string, kind: YtVideo["kind"]) {
   }
 }
 
-const uploads = (prefix: "UULF" | "UUSH") => `playlist_id=${prefix}${youtube.channelId.slice(2)}`;
+const uploads = (prefix: "UULF" | "UUSH", channelId: string) => `playlist_id=${prefix}${channelId.slice(2)}`;
+
+async function channelFeeds(channelId: string) {
+  const [long, shorts] = await Promise.all([fetchFeed(uploads("UULF", channelId), "video"), fetchFeed(uploads("UUSH", channelId), "short")]);
+  const videos = long?.length ? long : await fetchFeed(`channel_id=${channelId}`, "video");
+  return { videos: videos ?? [], shorts: shorts ?? [] };
+}
 
 export type ChannelVideos = { videos: YtVideo[]; shorts: YtVideo[]; live: boolean };
 
 /** Vídeos largos y Shorts del canal. `live` indica si vienen del feed real o del respaldo. */
 export async function getChannelVideos(): Promise<ChannelVideos> {
-  const [long, shorts] = await Promise.all([fetchFeed(uploads("UULF"), "video"), fetchFeed(uploads("UUSH"), "short")]);
-  let videos = long;
-  if (!videos?.length) videos = await fetchFeed(`channel_id=${youtube.channelId}`, "video");
-  if (videos?.length) {
-    const shortIds = new Set((shorts ?? []).map((s) => s.id));
-    return { videos: videos.filter((v) => !shortIds.has(v.id)), shorts: shorts ?? [], live: true };
+  const feeds = await Promise.all([youtube.channelId, ...youtube.extraChannelIds].map(channelFeeds));
+  const videos = feeds.flatMap((f) => f.videos).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const shorts = feeds.flatMap((f) => f.shorts).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  if (videos.length) {
+    const shortIds = new Set(shorts.map((s) => s.id));
+    return { videos: videos.filter((v) => !shortIds.has(v.id)), shorts, live: true };
   }
   return {
     videos: fallbackVideos.map((v) => ({

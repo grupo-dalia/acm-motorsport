@@ -1,6 +1,6 @@
 import "server-only";
 import { seasons, type SeasonConfig } from "@/content/series";
-import { getSeriesVideos, isPlaceholder, type YtVideo } from "./youtube";
+import { getChannelVideos, getSeriesVideos, isPlaceholder, type YtVideo } from "./youtube";
 
 export type Episode = {
   season: number;
@@ -26,18 +26,29 @@ export function episodeNumber(title: string) {
 }
 
 /** Asigna vídeos a capítulos: primero los numerados en el título, luego el resto por fecha. */
-export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder = false): Episode[] {
+const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder = false, allVideos: YtVideo[] = videos): Episode[] {
   // Con lista de reproducción, manda el orden de la lista; si no, el orden de publicación.
-  const real = videos.filter((v) => !isPlaceholder(v));
-  if (!keepOrder) real.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
   const slots = new Map<number, YtVideo>();
+  const used = new Set<string>();
+  // 1) Capítulos identificados a mano por palabras clave (buscan en todo el canal)
+  for (const [n, o] of Object.entries(cfg.episodes)) {
+    const num = Number(n);
+    if (num > cfg.releasedThrough || o.youtubeId || !o.match?.length) continue;
+    const hit = allVideos.find((v) => !isPlaceholder(v) && !used.has(v.id) && o.match!.some((m) => norm(v.title).includes(norm(m))));
+    if (hit) { slots.set(num, hit); used.add(hit.id); }
+  }
+  const real = videos.filter((v) => !isPlaceholder(v) && !used.has(v.id));
+  if (!keepOrder) real.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
   const unnumbered: YtVideo[] = [];
   for (const v of real) {
     const n = episodeNumber(v.title);
     if (n && n <= cfg.releasedThrough && !slots.has(n)) slots.set(n, v);
     else unnumbered.push(v);
   }
-  for (let n = 1; n <= cfg.releasedThrough && unnumbered.length; n++) if (!slots.has(n)) slots.set(n, unnumbered.shift()!);
+  // 2) Huecos sin identificar: solo se rellenan por orden si no tienen palabras clave propias
+  for (let n = 1; n <= cfg.releasedThrough && unnumbered.length; n++) if (!slots.has(n) && !cfg.episodes[n]?.match) slots.set(n, unnumbered.shift()!);
 
   return Array.from({ length: cfg.totalEpisodes }, (_, i) => {
     const n = i + 1;
@@ -61,10 +72,10 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder =
 }
 
 export async function getSeasons(): Promise<Season[]> {
-  const { videos, fromPlaylist } = await getSeriesVideos("objetivo-dakar");
+  const [{ videos, fromPlaylist }, channel] = await Promise.all([getSeriesVideos("objetivo-dakar"), getChannelVideos()]);
   return seasons.map(({ episodes: _o, ...cfg }) => {
     void _o;
     const full = seasons.find((s) => s.number === cfg.number)!;
-    return { ...cfg, episodes: cfg.number === 1 ? assignEpisodes(full, videos, fromPlaylist) : assignEpisodes(full, []) };
+    return { ...cfg, episodes: cfg.number === 1 ? assignEpisodes(full, videos, fromPlaylist, [...videos, ...channel.videos]) : assignEpisodes(full, []) };
   });
 }
