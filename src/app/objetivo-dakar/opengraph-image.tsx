@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { getSeasons } from "@/lib/series";
 
-export const alt = "Objetivo Dakar · Serie documental de ACM Motorsport · Temporada 1 ya disponible";
+export const alt = "Objetivo Dakar · Serie documental de ACM Motorsport · Temporada 1";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const revalidate = 3600;
@@ -57,7 +57,7 @@ async function cover(id: string) {
 
 export default async function OG() {
   const [hubot, hubotXb, mona, monaSb, seasons] = await Promise.all([
-    font("hubot-sans", "hubot-sans-latin-700-normal.woff"),
+    font("hubot-sans", "hubot-sans-latin-600-normal.woff"),
     font("hubot-sans", "hubot-sans-latin-800-normal.woff"),
     font("mona-sans", "mona-sans-latin-500-normal.woff"),
     font("mona-sans", "mona-sans-latin-600-normal.woff"),
@@ -69,54 +69,50 @@ export default async function OG() {
   const bg = (latest?.youtubeId && (await cover(latest.youtubeId))) || `data:image/svg+xml;base64,${Buffer.from(dunesSvg()).toString("base64")}`;
   const count = chapters.length;
   const hasPilot = Boolean(s1?.episodes.some((e) => e.number === 0));
-  const meta = ["Temporada 1", count > 0 ? `${count} capítulos${hasPilot ? " + piloto" : ""}` : "Ya disponible", "Un Pajero de 1989 rumbo al Dakar"];
+
+  const raw = latest?.synopsis ?? s1?.synopsis ?? "";
+  const synopsis = raw.length <= 115 ? raw : `${raw.slice(0, 115).replace(/[\s,;:.]+\S*$/, "")}…`;
+  const playLabel = latest ? `Reproducir T${latest.season}:E${latest.number}` : "Ver la serie";
 
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", background: "#000", color: "#F5F7FA", fontFamily: "Mona" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", background: "#080A0F", color: "#F5F7FA", fontFamily: "Mona" }}>
         <img src={bg} width={1200} height={630} style={{ position: "absolute", left: 0, top: 0, objectFit: "cover" }} alt="" />
-        {/* viñeteado y legibilidad */}
-        <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 630, display: "flex", backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 38%, rgba(0,0,0,0) 72%)" }} />
-        <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 630, display: "flex", backgroundImage: "linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 45%)" }} />
-        {/* bandas de cine */}
-        <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 34, background: "#000", display: "flex" }} />
-        <div style={{ position: "absolute", left: 0, bottom: 0, width: 1200, height: 34, background: "#000", display: "flex" }} />
+        {/* Mismo tratamiento que la portada de la web */}
+        <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 630, display: "flex", backgroundImage: "linear-gradient(90deg, rgba(8,10,15,0.94) 0%, rgba(8,10,15,0.72) 36%, rgba(8,10,15,0) 70%)" }} />
+        <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 630, display: "flex", backgroundImage: "linear-gradient(0deg, rgba(8,10,15,0.9) 0%, rgba(8,10,15,0) 42%, rgba(8,10,15,0) 80%, rgba(8,10,15,0.45) 100%)" }} />
 
-        <div style={{ position: "absolute", left: 72, top: 70, display: "flex", alignItems: "center", gap: 14 }}>
-          <span style={{ fontFamily: "HubotXb", fontSize: 26, letterSpacing: -0.5 }}>ACM</span>
-          <span style={{ width: 2, height: 22, background: "rgba(245,247,250,0.5)" }} />
-          <span style={{ fontFamily: "MonaSb", fontSize: 19, letterSpacing: 4, color: "rgba(245,247,250,0.85)" }}>SERIE DOCUMENTAL</span>
+        <div style={{ position: "absolute", left: 64, top: 50, display: "flex", alignItems: "baseline", gap: 12 }}>
+          <span style={{ fontFamily: "HubotXb", fontSize: 30, letterSpacing: -1 }}>ACM</span>
+          <span style={{ fontFamily: "MonaSb", fontSize: 20, color: "rgba(245,247,250,0.75)" }}>Motorsport</span>
         </div>
 
-        <div style={{ position: "absolute", left: 72, bottom: 78, display: "flex", flexDirection: "column", maxWidth: 720 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
-            <span style={{ background: "#E52435", color: "#fff", fontFamily: "MonaSb", fontSize: 17, letterSpacing: 2, padding: "6px 12px", borderRadius: 3 }}>NUEVA TEMPORADA</span>
-            <span style={{ fontFamily: "MonaSb", fontSize: 20, color: "rgba(245,247,250,0.9)" }}>2026</span>
+        <div style={{ position: "absolute", left: 64, bottom: 64, display: "flex", flexDirection: "column", maxWidth: 640 }}>
+          <span style={{ fontFamily: "MonaSb", fontSize: 22, color: "rgba(245,247,250,0.85)" }}>Serie documental · ACM Motorsport</span>
+          <span style={{ fontFamily: "Hubot", fontSize: 92, lineHeight: 1, letterSpacing: -3.5, marginTop: 12 }}>Objetivo Dakar</span>
+          <div style={{ marginTop: 18, display: "flex", gap: 18, fontSize: 24, color: "rgba(245,247,250,0.85)" }}>
+            <span style={{ fontFamily: "MonaSb", color: "#fff" }}>Temporada 1</span>
+            <span>2026</span>
+            <span>{count > 0 ? `${count} capítulos${hasPilot ? " + piloto" : ""}` : "Ya disponible"}</span>
           </div>
-          <div style={{ fontFamily: "HubotXb", fontSize: 118, lineHeight: 0.92, letterSpacing: -5, display: "flex", flexDirection: "column" }}>
-            <span>OBJETIVO</span>
-            <span>DAKAR</span>
+          {synopsis && <span style={{ marginTop: 14, fontSize: 23, lineHeight: 1.35, color: "rgba(245,247,250,0.85)", maxWidth: 560 }}>{synopsis}</span>}
+          <div style={{ marginTop: 26, display: "flex", gap: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, background: "#F5F7FA", color: "#080A0F", fontFamily: "MonaSb", fontSize: 22, padding: "14px 24px", borderRadius: 5 }}>
+              <svg width="15" height="17" viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="#080A0F" /></svg>
+              {playLabel}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, background: "rgba(245,247,250,0.18)", color: "#F5F7FA", fontFamily: "MonaSb", fontSize: 22, padding: "14px 24px", borderRadius: 5 }}>
+              <svg width="15" height="17" viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="#F5F7FA" /></svg>
+              Desde el capítulo 1
+            </div>
           </div>
-          <div style={{ marginTop: 22, display: "flex", alignItems: "center", gap: 16, fontSize: 24, color: "rgba(245,247,250,0.88)" }}>
-            {meta.map((m, i) => (
-              <div key={m} style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                {i > 0 && <div style={{ width: 5, height: 5, borderRadius: 5, background: "rgba(245,247,250,0.6)", display: "flex" }} />}
-                <span style={i === 0 ? { fontFamily: "MonaSb", color: "#fff" } : {}}>{m}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ position: "absolute", right: 72, bottom: 84, display: "flex", alignItems: "center", gap: 12, background: "#F5F7FA", color: "#080A0F", fontFamily: "MonaSb", fontSize: 24, padding: "14px 26px", borderRadius: 6 }}>
-          <svg width="18" height="20" viewBox="0 0 12 14"><path d="M0 0l12 7-12 7z" fill="#080A0F" /></svg>
-          Ver ahora
         </div>
       </div>
     ),
     {
       ...size,
       fonts: [
-        { name: "Hubot", data: hubot, weight: 700, style: "normal" },
+        { name: "Hubot", data: hubot, weight: 600, style: "normal" },
         { name: "HubotXb", data: hubotXb, weight: 800, style: "normal" },
         { name: "Mona", data: mona, weight: 500, style: "normal" },
         { name: "MonaSb", data: monaSb, weight: 600, style: "normal" },
