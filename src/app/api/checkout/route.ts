@@ -1,0 +1,40 @@
+import { NextResponse } from "next/server";
+import { checkoutRequestSchema } from "@/domain/checkout";
+import { CheckoutError, createDraftOrder, paymentsProvider } from "@/integrations/commerce";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
+import { absoluteUrl } from "@/lib/site";
+
+/**
+ * POST /api/checkout
+ * 1. Valida entrada con Zod.  2. Recalcula precios en servidor.  3. Crea pedido idempotente.
+ * 4. Pide a la pasarela la URL de pago (demo: página de éxito simulada).
+ * Nunca envía nada a producción: eso ocurre solo tras webhook de pago verificado (Fase 4).
+ */
+export async function POST(req: Request) {
+  if (!rateLimit(clientKey(req, "checkout"), 8).ok) {
+    return NextResponse.json({ ok: false, message: "Demasiados intentos. Espera un minuto." }, { status: 429 });
+  }
+  let json: unknown;
+  try {
+    json = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, message: "Petición no válida." }, { status: 400 });
+  }
+  const parsed = checkoutRequestSchema.safeParse(json);
+  if (!parsed.success) {
+    return NextResponse.json({ ok: false, message: "Revisa los datos del formulario.", issues: parsed.error.issues.map((i) => ({ path: i.path.join("."), message: i.message })) }, { status: 422 });
+  }
+  const { cart, customer, idempotencyKey } = parsed.data;
+  try {
+    const { order, replayed } = await createDraftOrder(cart, { ...customer, address2: customer.address2 || undefined, phone: customer.phone || undefined }, idempotencyKey);
+    const { redirectUrl } = await paymentsProvider().createCheckout(order, {
+      successUrl: absoluteUrl("/checkout/exito"),
+      cancelUrl: absoluteUrl("/carrito"),
+    });
+    return NextResponse.json({ ok: true, orderId: order.id, mode: order.mode, replayed, redirectUrl, totalCents: order.totals.totalCents });
+  } catch (e) {
+    if (e instanceof CheckoutError) return NextResponse.json({ ok: false, message: e.message }, { status: 409 });
+    console.error("[checkout]", e);
+    return NextResponse.json({ ok: false, message: "No se ha podido iniciar el pago." }, { status: 500 });
+  }
+}
