@@ -3,16 +3,17 @@ import type { Product } from "@/domain/catalog";
 import { fulfillmentLabels } from "@/domain/catalog";
 import { ProductArt } from "./product-art";
 import { formatPrice } from "@/lib/format";
+import { Tilt } from "@/components/ui/tilt";
 
 export function ProductCard({ product }: { product: Product; priority?: boolean }) {
   const first = product.colors[0];
   const soldOut = product.fulfillment !== "affiliate" && !product.variants.some((v) => v.available);
   return (
     <article className="group relative">
-      <Link href={`/tienda/${product.slug}`} className="absolute inset-0 z-10" aria-label={product.name} />
-      <div className="overflow-hidden rounded-[6px]">
-        <ProductArt kind={product.art.kind} print={product.art.print} color={first?.hex ?? "#111"} className="aspect-[4/5] transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.02]" />
-      </div>
+      <Link href={`/tienda/${product.slug}`} className="block" aria-label={product.name}>
+            <Tilt className="overflow-hidden rounded-[6px] shadow-[0_1px_2px_rgb(8_10_15/0.06)] transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-16px_rgb(8_10_15/0.35)]">
+        <ProductArt kind={product.art.kind} print={product.art.print} color={first?.hex ?? "#111"} className="aspect-[4/5]" />
+      </Tilt>
       <div className="mt-4 flex items-baseline justify-between gap-3">
         <h3 className="font-medium">{product.name}</h3>
         <p className="shrink-0 tnum">{product.fulfillment === "affiliate" ? "Tienda externa" : formatPrice(product.priceCents)}</p>
@@ -21,6 +22,7 @@ export function ProductCard({ product }: { product: Product; priority?: boolean 
         {soldOut ? "Agotado" : fulfillmentLabels[product.fulfillment].short}
         {product.colors.length > 1 && ` · ${product.colors.length} colores`}
       </p>
+      </Link>
     </article>
   );
 }

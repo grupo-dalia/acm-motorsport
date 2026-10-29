@@ -24,7 +24,6 @@ export default async function OG() {
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", background: "#101E36", color: "#F5F7FA", fontFamily: "Mona" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={mapSrc} width={960} height={600} style={{ position: "absolute", left: 300, top: 30 }} alt="" />
         <div style={{ position: "absolute", left: 0, top: 0, width: 1200, height: 630, display: "flex", backgroundImage: "linear-gradient(90deg, #101E36 0%, #101E36 38%, rgba(16,30,54,0) 58%)" }} />
         <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "64px 72px", width: "100%" }}>

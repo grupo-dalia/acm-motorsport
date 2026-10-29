@@ -36,7 +36,10 @@ Nunca se confirma producción sin pago verificado. No se almacenan datos de tarj
 | **Hubot Sans + Mona Sans, autoalojadas** | Pareja diseñada para ir junta: Hubot (grotesca técnica y ancha) para titulares en minúscula y peso medio, como la tipografía de marcas de coches; Mona para texto. OFL, servidas desde el propio dominio. `next/font/local` evita CLS. |
 | **Mapa de la ruta como pieza central** | España → Marruecos → Arabia Saudí generado en build con Natural Earth (`world-atlas` + `d3-geo`): SVG estático, 0 KB de JS. Es el único momento animado de la home (la ruta se dibuja al cargar). |
 | **Ritmo oscuro / claro** | Azul medianoche como campo de marca, bloques en papel claro para lo editorial y la tienda. El rojo solo en acciones principales y en la ruta. Sin etiquetas en mayúsculas, numeraciones ni cajas decorativas. |
-| **Motion** | Solo donde responde a una acción (cesta, menú). Respeta `prefers-reduced-motion`. |
+| **Globo 3D guiado por scroll (three.js + React Three Fiber)** | La home es una historia: la cámara viaja España → Marruecos → Arabia Saudí y la ruta se dibuja con el scroll. Puntos de tierra precalculados con Natural Earth (`scripts/build-globe-data.mjs` → `public/globe/dots.bin`, 25 KB). El mapa SVG se ve mientras carga el WebGL y queda como respaldo si no hay WebGL o con "reducir movimiento". |
+| **Dunas nocturnas procedurales** | Shader propio (ruido fractal + perfil de duna) en Objetivo Dakar. Solo renderiza mientras está en pantalla. |
+| **Carga del 3D** | `next/dynamic` sin SSR: el motor 3D (~240 KB gzip) se descarga después del contenido y solo en páginas que lo usan. |
+| **Microinteracciones** | Scroll inercial (Lenis), titulares palabra a palabra (solo CSS), imágenes que se descubren con scroll-driven animations (CSS, mejora progresiva) e inclinación 3D en tarjetas de producto (solo ratón). Todo se desactiva con `prefers-reduced-motion`. |
 | **Filtros de tienda por URL (GET)** | Funcionan sin JS, se pueden compartir y son indexables. |
 | **YouTube «lite»** | No carga iframe ni cookies de terceros hasta pulsar play. |
 | **Productos demo con `noindex`** | No contaminar Google con productos ficticios. |

@@ -24,7 +24,7 @@ npm run dev        # http://localhost:3000
 
 ## Stack
 
-Next.js 16 (App Router) · React 19 · TypeScript 6 estricto · Tailwind CSS 4 · Motion · Lucide · Zod 4 · React Hook Form · d3-geo · Vitest. Tipografías Hubot Sans y Mona Sans (OFL, autoalojadas).
+Next.js 16 (App Router) · React 19 · TypeScript 6 estricto · Tailwind CSS 4 · Motion · Lucide · Zod 4 · React Hook Form · d3-geo · Vitest. three.js + React Three Fiber · Lenis. Tipografías Hubot Sans y Mona Sans (OFL, autoalojadas).
 Componentes de UI propios con la misma convención que shadcn/ui (`cva` + `tailwind-merge`) — ver `docs/ARCHITECTURE.md` para el porqué.
 
 ## Estructura
@@ -57,6 +57,8 @@ docs/                   Arquitectura, API, despliegue, roadmap
 | Textos legales | `src/content/legal.ts` |
 | Vídeo del hero | `NEXT_PUBLIC_HERO_VIDEO_URL` en `.env.local` |
 | Paleta y tipografía | `src/app/globals.css` (`@theme`) |
+| Vistas de cámara del globo y tramos de la ruta | `src/components/three/geo.ts` |
+| Textos de cada capítulo del globo | `src/components/three/globe-story.tsx` |
 
 ## Lo que es placeholder (a propósito)
 

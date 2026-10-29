@@ -4,57 +4,48 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { ButtonLink } from "@/components/ui/button";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { RouteMap } from "@/components/media/route-map";
+import { GlobeStory } from "@/components/three/globe-story";
+import { DunesHero } from "@/components/three/dunes-hero";
+import { WordReveal } from "@/components/ui/word-reveal";
 import { ProductCard } from "@/components/shop/product-card";
 import { Seasons } from "./seasons";
 import { VideoCard } from "./video-card";
 import { SponsorsList } from "./sponsors-list";
 import { videos, workshopProjects } from "@/content/media";
-import { roadmap, vehicleSpecs } from "@/content/motorsport";
+import { vehicleSpecs } from "@/content/motorsport";
 import type { Product } from "@/domain/catalog";
 
 const heroVideo = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
 const heroPoster = process.env.NEXT_PUBLIC_HERO_POSTER_URL;
 
-export function HomeHero() {
+function HeroCopy() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-midnight lg:justify-end">
-      {heroVideo ? (
+    <Container>
+      <h1 className="t-hero max-w-[12ch] lg:max-w-[10ch] lg:text-[clamp(2.6rem,5.3vw,6rem)]"><WordReveal text="No es solo motor. Es una forma de vivir." delay={0.15} /></h1>
+      <p className="t-lead mt-7 max-w-[36ch] text-paper/75">
+        Andrés Cubero Moreno y un Mitsubishi Pajero de 1989, preparado en su propio taller. Tres temporadas para llegar al Dakar, contadas desde dentro.
+      </p>
+      <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <ButtonLink href="/motorsport" size="lg">Descubre ACM Motorsport</ButtonLink>
+        <ButtonLink href="/tienda" variant="text">Explorar tienda</ButtonLink>
+      </div>
+    </Container>
+  );
+}
+
+export function HomeHero() {
+  if (heroVideo) {
+    return (
+      <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-midnight pb-20">
         <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={heroPoster || undefined} aria-hidden>
           <source src={heroVideo} />
         </video>
-      ) : null}
-      <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,#101e36_0%,rgb(16_30_54/0.85)_28%,transparent_55%)] lg:block" aria-hidden />
-
-      <Container className="relative z-10 pt-28 lg:pb-20 lg:pt-0">
-        <h1 className="t-hero max-w-[12ch] lg:max-w-[10ch] lg:text-[clamp(2.6rem,5.3vw,6rem)]">No es solo motor. Es una forma de vivir.</h1>
-        <p className="t-lead mt-7 max-w-[36ch] text-paper/75">
-          Andrés Cubero Moreno y un Mitsubishi Pajero de 1989, preparado en su propio taller. Tres temporadas para llegar al Dakar, contadas desde dentro.
-        </p>
-        <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <ButtonLink href="/motorsport" size="lg">Descubre ACM Motorsport</ButtonLink>
-          <ButtonLink href="/tienda" variant="text">Explorar tienda</ButtonLink>
-        </div>
-      </Container>
-
-      {!heroVideo && (
-        <div className="relative mt-6 aspect-[4/3] w-full sm:aspect-[16/10] lg:absolute lg:inset-0 lg:mt-0 lg:aspect-auto">
-          <RouteMap align="xMaxYMid" className="h-full w-full" />
-        </div>
-      )}
-      {!heroVideo && (
-        <Container className="relative z-10 pb-12 lg:hidden">
-          <ol className="grid grid-cols-3 gap-4 border-t border-line pt-5">
-            {roadmap.map((s) => (
-              <li key={s.year}>
-                <p className="t-sub tnum">{s.year}</p>
-                <p className="t-small mt-1 text-steel">{s.events.join(", ")}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      )}
-    </section>
-  );
+        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/30 to-transparent" aria-hidden />
+        <div className="relative"><HeroCopy /></div>
+      </section>
+    );
+  }
+  return <GlobeStory hero={<HeroCopy />} fallback={<RouteMap align="xMaxYMid" className="h-full w-full" />} />;
 }
 
 export function Intro() {
@@ -113,16 +104,17 @@ export function TheCar() {
 export function DakarSection() {
   const episodes = videos.filter((v) => v.series === "objetivo-dakar").slice(0, 2);
   return (
-    <section className="bg-midnight-deep py-24 lg:py-36" aria-labelledby="dakar-title">
+    <section className="bg-midnight-deep pb-24 lg:pb-36" aria-labelledby="dakar-title">
+      <DunesHero className="flex min-h-[92svh] items-end">
+        <Container className="pb-16 pt-40 lg:pb-24">
+          <h2 id="dakar-title" className="t-hero max-w-[10ch]">Objetivo Dakar</h2>
+          <p className="t-lead mt-6 max-w-[40ch] text-paper/80">La serie documental del proyecto. Una temporada cada vez, sin atajos y con el coche de siempre.</p>
+          <ButtonLink href="/objetivo-dakar" variant="light" className="mt-8">Ver la serie</ButtonLink>
+        </Container>
+      </DunesHero>
       <Container>
-        <SectionHeading
-          id="dakar-title"
-          title="Objetivo Dakar"
-          lead="La serie documental del proyecto. Una temporada cada vez, sin atajos y con el coche de siempre."
-          action={<ButtonLink href="/objetivo-dakar" variant="light">Ver la serie</ButtonLink>}
-        />
         {heroVideo && <RouteMap className="mt-16 aspect-[16/9] w-full" align="xMidYMid" />}
-        <Seasons className="mt-16" />
+        <Seasons className="mt-8" />
         <div className="mt-20 grid gap-12 md:grid-cols-2 md:gap-8">
           {episodes.map((v) => <VideoCard key={v.id} video={v} />)}
         </div>

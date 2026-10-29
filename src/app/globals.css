@@ -143,3 +143,42 @@
   }
   .pulse-ring { transform-origin: center; transform-box: fill-box; animation: pulse-ring 2.2s ease-out infinite; }
 }
+
+/* ───────── Microinteracciones ───────── */
+@layer components {
+  .word-mask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .word-rise { display: inline-block; transform: translateY(105%); animation: word-rise 1s var(--ease-out-expo) forwards; }
+  @keyframes word-rise { to { transform: translateY(0); } }
+
+  .tilt {
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transform-style: preserve-3d;
+    transition: transform 0.5s var(--ease-out-expo);
+    will-change: transform;
+  }
+  .tilt[data-active="true"] { transition-duration: 0.12s; }
+  .tilt-glare {
+    opacity: 0;
+    transition: opacity 0.4s;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.22), transparent 55%);
+    mix-blend-mode: soft-light;
+  }
+  .tilt[data-active="true"] .tilt-glare { opacity: 1; }
+
+  /* Imágenes que se descubren al entrar en pantalla (CSS scroll-driven, mejora progresiva) */
+  @media (prefers-reduced-motion: no-preference) { @supports (animation-timeline: view()) {
+    .reveal-clip {
+      animation: clip-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    @keyframes clip-in {
+      from { clip-path: inset(18% 8% 18% 8%); transform: scale(1.06); }
+      to { clip-path: inset(0 0 0 0); transform: scale(1); }
+    }
+  } }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }

@@ -11,7 +11,7 @@ export function MediaPlaceholder({ label, className, tone = "night", kind = "Fot
     light: "bg-[linear-gradient(160deg,#eef1f5_0%,#dfe4ec_100%)] text-ink",
   }[tone];
   return (
-    <figure className={cn("grain relative isolate overflow-hidden", bg, className)} role="img" aria-label={`${kind} pendiente: ${label}`}>
+    <figure className={cn("grain reveal-clip relative isolate overflow-hidden", bg, className)} role="img" aria-label={`${kind} pendiente: ${label}`}>
       <figcaption className="absolute bottom-4 left-4 right-4 t-small opacity-60">
         {kind} pendiente · {label}
       </figcaption>

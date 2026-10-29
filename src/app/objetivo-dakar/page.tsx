@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/container";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RouteMap } from "@/components/media/route-map";
+import { DunesHero } from "@/components/three/dunes-hero";
+import { WordReveal } from "@/components/ui/word-reveal";
 import { Seasons } from "@/components/sections/seasons";
 import { VideoCard } from "@/components/sections/video-card";
 import { SponsorsList } from "@/components/sections/sponsors-list";
@@ -20,14 +22,15 @@ export default function DakarPage() {
   const episodes = videos.filter((v) => v.series === "objetivo-dakar");
   return (
     <>
-      <section className="relative overflow-hidden bg-midnight">
-        <Container className="relative z-10 pt-28 lg:pt-40">
+      <DunesHero className="flex min-h-[100svh] flex-col">
+        <Container className="pt-28 lg:pt-36">
           <Breadcrumbs items={[{ label: "Objetivo Dakar", href: "/objetivo-dakar" }]} />
-          <h1 className="t-hero mt-10 max-w-[11ch]">Objetivo Dakar</h1>
-          <p className="t-lead mt-6 max-w-[40ch] text-paper/75">Cómo se llega a la carrera más dura del mundo desde un taller, con un coche de 1989 y sin atajos. Una temporada cada vez.</p>
         </Container>
-        <RouteMap align="xMaxYMid" className="mt-6 aspect-[4/3] w-full sm:aspect-[16/9] lg:-mt-24" />
-      </section>
+        <Container className="mt-auto pb-20 lg:pb-28">
+          <h1 className="t-hero max-w-[11ch]"><WordReveal text="Objetivo Dakar" delay={0.2} /></h1>
+          <p className="t-lead mt-6 max-w-[40ch] text-paper/80">Cómo se llega a la carrera más dura del mundo desde un taller, con un coche de 1989 y sin atajos. Una temporada cada vez.</p>
+        </Container>
+      </DunesHero>
 
       <section id="episodios" className="scroll-mt-20 bg-midnight-deep py-24 lg:py-36" aria-labelledby="ep">
         <Container>
@@ -52,7 +55,8 @@ export default function DakarPage() {
       <section className="bg-midnight py-24 lg:py-36" aria-labelledby="ruta">
         <Container>
           <h2 id="ruta" className="t-display">La hoja de ruta</h2>
-          <Seasons className="mt-16" />
+          <RouteMap align="xMaxYMid" className="mt-12 aspect-[4/3] w-full sm:aspect-[16/9]" />
+          <Seasons className="mt-12" />
           <p className="mt-16 max-w-[60ch] text-paper/70">Las crónicas de cada prueba se publicarán aquí en cuanto arranque la temporada.</p>
         </Container>
       </section>
