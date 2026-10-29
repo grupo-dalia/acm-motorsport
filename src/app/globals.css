@@ -193,5 +193,8 @@ html.lenis, html.lenis body { height: auto; }
   .article li + li { margin-top: 0.4rem; }
   .article a { text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
   .article strong { color: var(--color-ink); font-weight: 600; }
+  .article table { display: block; overflow-x: auto; width: 100%; margin: 1.8rem 0; border-collapse: collapse; font-size: 0.95rem; line-height: 1.4; font-variant-numeric: tabular-nums; }
+  .article th { text-align: left; font-weight: 600; color: var(--color-ink); border-bottom: 2px solid var(--color-ink); padding: 0.55rem 1rem 0.55rem 0; white-space: nowrap; }
+  .article td { border-bottom: 1px solid var(--color-mist); padding: 0.55rem 1rem 0.55rem 0; white-space: nowrap; }
   .article blockquote { border-left: 2px solid var(--color-racing); padding-left: 1.2rem; margin: 1.6rem 0; color: var(--color-slate); }
 }
