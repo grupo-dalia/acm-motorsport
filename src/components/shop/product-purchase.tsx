@@ -1,14 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Check, ExternalLink, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import type { Product } from "@/domain/catalog";
 import { findVariant, fulfillmentLabels } from "@/domain/catalog";
 import { MAX_QTY } from "@/domain/cart";
 import { ProductArt } from "./product-art";
 import { useCart } from "./cart-provider";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -19,7 +18,6 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [size, setSize] = useState<string | null>(null);
   const [qty, setQty] = useState(1);
   const [view, setView] = useState(0);
-  const [added, setAdded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const color = product.colors.find((c) => c.id === colorId) ?? product.colors[0];
@@ -28,45 +26,27 @@ export function ProductPurchase({ product }: { product: Product }) {
   const isAffiliate = product.fulfillment === "affiliate";
 
   function add() {
-    if (needsSize && !size) {
-      setError("Elige una talla.");
-      return;
-    }
-    if (!variant || !variant.available) {
-      setError("Esta combinación no está disponible.");
-      return;
-    }
+    if (needsSize && !size) return setError("Elige una talla para continuar.");
+    if (!variant || !variant.available) return setError("Esta combinación no está disponible.");
     setError(null);
     dispatch({ type: "add", line: { productId: product.id, variantId: variant.id, qty } });
-    setAdded(true);
     setOpen(true);
-    setTimeout(() => setAdded(false), 2000);
   }
 
   const views = [
-    <ProductArt key="a" kind={product.art.kind} print={product.art.print} color={color?.hex ?? "#111"} className="h-full w-full" />,
-    <div key="b" className="h-full w-full overflow-hidden">
-      <ProductArt kind={product.art.kind} print={product.art.print} color={color?.hex ?? "#111"} className="h-full w-full origin-[50%_42%] scale-[1.9]" showDemoTag={false} />
-    </div>,
-    <MediaPlaceholder key="c" tone="surface" label={`${product.name} en uso`} caption="Foto de producto real pendiente" className="h-full w-full" />,
+    { label: "Diseño", node: <ProductArt kind={product.art.kind} print={product.art.print} color={color?.hex ?? "#111"} className="h-full w-full" /> },
+    { label: "Foto de producto", node: <MediaPlaceholder tone="light" label={`${product.name}, foto de producto`} className="h-full w-full" /> },
+    { label: "En uso", node: <MediaPlaceholder label={`${product.name} en el taller o en carrera`} className="h-full w-full" /> },
   ];
 
   return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+    <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
       <div className="lg:col-span-7">
-        <div className="aspect-[4/5] w-full overflow-hidden bg-surface">{views[view]}</div>
-        <div className="mt-3 grid grid-cols-3 gap-3" role="tablist" aria-label="Imágenes del producto">
+        <div className="aspect-[4/5] overflow-hidden rounded-[6px]">{views[view]!.node}</div>
+        <div className="mt-4 flex gap-2" role="tablist" aria-label="Imágenes del producto">
           {views.map((v, i) => (
-            <button
-              key={i}
-              type="button"
-              role="tab"
-              aria-selected={view === i}
-              aria-label={`Imagen ${i + 1}`}
-              onClick={() => setView(i)}
-              className={cn("aspect-square overflow-hidden border transition", view === i ? "border-paper" : "border-transparent opacity-60 hover:opacity-100")}
-            >
-              <div className="pointer-events-none h-full w-full [&_span]:hidden [&_figcaption]:hidden">{v}</div>
+            <button key={v.label} type="button" role="tab" aria-selected={view === i} onClick={() => setView(i)} className={cn("rounded-full px-4 py-2 t-small font-medium transition-colors", view === i ? "bg-ink text-paper" : "bg-mist text-slate hover:text-ink")}>
+              {v.label}
             </button>
           ))}
         </div>
@@ -74,28 +54,21 @@ export function ProductPurchase({ product }: { product: Product }) {
 
       <div className="lg:col-span-5">
         <div className="lg:sticky lg:top-28">
-          <div className="flex flex-wrap gap-2">
-            <Badge tone={product.fulfillment === "acm" ? "solid" : product.fulfillment === "pod" ? "blue" : "amber"}>{fulfillmentLabels[product.fulfillment].short}</Badge>
-            {product.demo && <Badge tone="amber">Producto demo</Badge>}
-          </div>
-          <h1 className="display mt-5 text-[length:var(--text-display-sm)] leading-[0.95]">{product.name}</h1>
-          <p className="mt-3 text-lg text-paper/70">{product.tagline}</p>
-          {!isAffiliate && (
-            <p className="mt-6 font-mono text-2xl">
-              {formatPrice(variant?.priceCents ?? product.priceCents)} <span className="text-xs text-steel">IVA incl.</span>
-            </p>
-          )}
+          <p className="t-small text-slate">{fulfillmentLabels[product.fulfillment].short}{product.demo && " · producto de ejemplo"}</p>
+          <h1 className="t-display mt-3 text-[clamp(2rem,3.4vw,3.2rem)]">{product.name}</h1>
+          <p className="t-lead mt-3 text-slate">{product.tagline}</p>
+          {!isAffiliate && <p className="t-title mt-8 tnum">{formatPrice(variant?.priceCents ?? product.priceCents)} <span className="t-small font-normal text-slate">IVA incluido</span></p>}
 
           {!isAffiliate && (
-            <>
-              <fieldset className="mt-8">
-                <legend className="eyebrow">Color · <span className="text-paper">{color?.name}</span></legend>
-                <div className="mt-3 flex flex-wrap gap-2.5">
+            <div className="mt-10 space-y-8 border-t border-line-dark pt-8">
+              <fieldset>
+                <legend className="font-medium">Color <span className="font-normal text-slate">· {color?.name}</span></legend>
+                <div className="mt-3 flex flex-wrap gap-3">
                   {product.colors.map((c) => (
                     <label key={c.id} className="cursor-pointer">
                       <input type="radio" name="color" value={c.id} checked={colorId === c.id} onChange={() => setColorId(c.id)} className="peer sr-only" />
-                      <span className="block size-10 rounded-full border-2 border-transparent p-0.5 ring-offset-2 ring-offset-ink peer-checked:border-paper peer-focus-visible:ring-2 peer-focus-visible:ring-racing">
-                        <span className="block size-full rounded-full border border-paper/20" style={{ backgroundColor: c.hex }} />
+                      <span className="block size-10 rounded-full p-[3px] ring-1 ring-line-dark peer-checked:ring-2 peer-checked:ring-ink peer-focus-visible:outline-2 peer-focus-visible:outline-racing">
+                        <span className="block size-full rounded-full ring-1 ring-black/10" style={{ backgroundColor: c.hex }} />
                       </span>
                       <span className="sr-only">{c.name}</span>
                     </label>
@@ -104,18 +77,15 @@ export function ProductPurchase({ product }: { product: Product }) {
               </fieldset>
 
               {needsSize && (
-                <fieldset className="mt-7">
-                  <legend className="eyebrow">Talla</legend>
+                <fieldset>
+                  <legend className="font-medium">Talla</legend>
                   <div className="mt-3 grid grid-cols-6 gap-2">
                     {product.sizes!.map((s) => {
-                      const v = findVariant(product, colorId, s);
-                      const disabled = !v?.available;
+                      const disabled = !findVariant(product, colorId, s)?.available;
                       return (
-                        <label key={s} className={cn(disabled ? "cursor-not-allowed" : "cursor-pointer")}>
+                        <label key={s} className={disabled ? "cursor-not-allowed" : "cursor-pointer"}>
                           <input type="radio" name="size" value={s} disabled={disabled} checked={size === s} onChange={() => { setSize(s); setError(null); }} className="peer sr-only" />
-                          <span className={cn("grid h-11 place-items-center border font-mono text-sm transition peer-checked:border-paper peer-checked:bg-paper peer-checked:text-ink peer-focus-visible:ring-2 peer-focus-visible:ring-racing", disabled ? "border-line text-paper/25 line-through" : "border-line-strong hover:border-paper")}>
-                            {s}
-                          </span>
+                          <span className={cn("grid h-11 place-items-center rounded-[var(--radius-btn)] tnum transition-colors peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-racing", disabled ? "bg-mist/60 text-slate/50 line-through" : "bg-mist hover:bg-[#d9dfe8]")}>{s}</span>
                         </label>
                       );
                     })}
@@ -123,40 +93,36 @@ export function ProductPurchase({ product }: { product: Product }) {
                 </fieldset>
               )}
 
-              <div className="mt-8 flex gap-3">
-                <div className="flex h-14 items-center border border-line-strong">
-                  <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} className="grid h-full w-11 place-items-center hover:bg-paper/5" aria-label="Menos cantidad"><Minus className="size-4" /></button>
-                  <span className="w-8 text-center font-mono" aria-live="polite" aria-label="Cantidad">{qty}</span>
-                  <button type="button" onClick={() => setQty((q) => Math.min(MAX_QTY, q + 1))} className="grid h-full w-11 place-items-center hover:bg-paper/5" aria-label="Más cantidad"><Plus className="size-4" /></button>
+              <div className="flex gap-3">
+                <div className="flex h-14 items-center rounded-[var(--radius-btn)] bg-mist">
+                  <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} className="grid h-full w-11 place-items-center" aria-label="Quitar una unidad"><Minus className="size-4" /></button>
+                  <span className="w-6 text-center tnum" aria-live="polite">{qty}</span>
+                  <button type="button" onClick={() => setQty((q) => Math.min(MAX_QTY, q + 1))} className="grid h-full w-11 place-items-center" aria-label="Añadir una unidad"><Plus className="size-4" /></button>
                 </div>
                 <Button size="lg" className="flex-1" onClick={add} disabled={variant ? !variant.available : false}>
-                  {added ? <><Check /> Añadido</> : variant && !variant.available ? "No disponible" : "Añadir al carrito"}
+                  {variant && !variant.available ? "No disponible" : "Añadir a la cesta"}
                 </Button>
               </div>
-              {error && <p role="alert" className="mt-3 text-sm text-racing">{error}</p>}
-              <p className="mt-4 text-sm text-steel">{fulfillmentLabels[product.fulfillment].long}</p>
-            </>
+              {error && <p role="alert" className="-mt-4 text-racing">{error}</p>}
+              <p className="t-small text-slate">{fulfillmentLabels[product.fulfillment].long}</p>
+            </div>
           )}
 
           {isAffiliate && product.affiliate && (
-            <div className="mt-8 border border-gold/40 bg-gold/5 p-5">
-              <p className="text-sm leading-relaxed text-paper/80">{fulfillmentLabels.affiliate.long}</p>
+            <div className="mt-10 rounded-[6px] bg-mist p-6">
+              <p>{fulfillmentLabels.affiliate.long}</p>
               {product.affiliate.url ? (
-                <a href={product.affiliate.url} target="_blank" rel="sponsored noopener noreferrer" className="mt-4 inline-flex h-12 items-center gap-2 bg-paper px-6 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-ink">
-                  Ver en {product.affiliate.partner} <ExternalLink className="size-4" />
-                </a>
+                <a href={product.affiliate.url} target="_blank" rel="sponsored noopener noreferrer" className="mt-5 inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-ink px-6 font-medium text-paper">Ver en {product.affiliate.partner}</a>
               ) : (
-                <p className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-gold">{product.affiliate.disclosure}</p>
+                <p className="mt-3 t-small text-slate">{product.affiliate.disclosure}</p>
               )}
             </div>
           )}
 
-          <div className="mt-10 border-t border-line pt-8">
-            <p className="leading-relaxed text-paper/75">{product.description}</p>
-            <ul className="mt-6 space-y-2 text-sm text-paper/70">
-              {product.details.map((d) => (
-                <li key={d} className="flex gap-3"><span className="mt-2 size-1 shrink-0 bg-racing" />{d}</li>
-              ))}
+          <div className="mt-10 border-t border-line-dark pt-8">
+            <p className="leading-relaxed text-slate">{product.description}</p>
+            <ul className="mt-5 space-y-1.5 t-small text-slate">
+              {product.details.map((d) => <li key={d}>{d}</li>)}
             </ul>
           </div>
         </div>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type State = { status: "idle" | "loading" | "ok" | "error"; message?: string };
@@ -27,39 +26,23 @@ export function NewsletterForm({ className }: { className?: string }) {
     }
   }
 
-  if (state.status === "ok")
-    return (
-      <p role="status" className={cn("flex items-center gap-3 text-paper", className)}>
-        <Check className="size-5 text-racing" /> {state.message}
-      </p>
-    );
+  if (state.status === "ok") return <p role="status" className={className}>{state.message}</p>;
 
   return (
-    <form onSubmit={onSubmit} className={cn("w-full", className)} noValidate={false}>
-      <div className="flex flex-col gap-2 sm:flex-row">
+    <form onSubmit={onSubmit} className={cn("w-full", className)}>
+      <div className="flex gap-2 border-b border-current/30 focus-within:border-current">
         <label htmlFor="nl-email" className="sr-only">Correo electrónico</label>
-        <input
-          id="nl-email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          placeholder="tu@correo.com"
-          className="h-14 flex-1 border border-line-strong bg-ink/40 px-5 text-paper placeholder:text-paper/35 focus:border-paper focus:outline-none"
-        />
-        {/* honeypot anti-spam */}
+        <input id="nl-email" name="email" type="email" required autoComplete="email" placeholder="Tu correo" className="h-14 min-w-0 flex-1 bg-transparent text-lg placeholder:text-current/40 focus:outline-none" />
         <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
-        <button type="submit" disabled={state.status === "loading"} className="inline-flex h-14 items-center justify-center gap-3 bg-paper px-7 text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-ink transition hover:bg-white disabled:opacity-50">
-          {state.status === "loading" ? "Enviando…" : "Suscribirme"} <ArrowRight className="size-4" />
+        <button type="submit" disabled={state.status === "loading"} className="shrink-0 font-medium disabled:opacity-50">
+          {state.status === "loading" ? "Enviando…" : "Suscribirme"}
         </button>
       </div>
-      <label className="mt-3 flex items-start gap-2.5 text-xs leading-relaxed text-paper/60">
-        <input type="checkbox" name="consent" required className="mt-0.5 size-4 shrink-0 accent-racing" />
-        <span>
-          Acepto recibir novedades de ACM Motorsport y la <Link href="/legal/privacidad" className="underline underline-offset-2">política de privacidad</Link>. Puedes darte de baja cuando quieras.
-        </span>
+      <label className="mt-4 flex items-start gap-2.5 t-small opacity-70">
+        <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-racing" />
+        <span>Acepto la <Link href="/legal/privacidad" className="link-u">política de privacidad</Link>. Puedes darte de baja cuando quieras.</span>
       </label>
-      {state.status === "error" && <p role="alert" className="mt-2 text-sm text-racing">{state.message}</p>}
+      {state.status === "error" && <p role="alert" className="mt-2 t-small text-racing">{state.message}</p>}
     </form>
   );
 }

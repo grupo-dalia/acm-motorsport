@@ -1,70 +1,48 @@
 @import "tailwindcss";
 
-/* ───────────────────────── Design tokens ─────────────────────────
-   Paleta oficial ACM Motorsport. Cambiar aquí repercute en todo el sitio. */
+/* ─────────────────────────────────────────────────────────────────────
+   ACM Motorsport · sistema visual v2
+   - Azul medianoche como campo de marca (no negro).
+   - Papel claro para los bloques editoriales: ritmo oscuro / claro.
+   - Rojo racing solo funcional: acción principal, ruta, estados en vivo.
+   - Hubot Sans (ancha, técnica) para titulares; Mona Sans para texto.
+   ───────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-ink: #080a0f;          /* fondo negro profundo */
-  --color-surface: #111722;      /* superficies */
-  --color-surface-2: #161e2c;
-  --color-midnight: #101e36;     /* azul medianoche — Pajero */
-  --color-midnight-2: #17294a;
-  --color-paper: #f5f7fa;        /* blanco */
-  --color-racing: #e52435;       /* rojo racing */
-  --color-racing-dark: #b81b2a;
-  --color-gold: #f1bf00;         /* amarillo bandera (solo acentos de franja) */
-  --color-steel: #9299a7;        /* gris secundario */
-  --color-line: rgb(245 247 250 / 0.09);
-  --color-line-strong: rgb(245 247 250 / 0.18);
+  --color-ink: #080a0f;
+  --color-surface: #111722;
+  --color-midnight: #101e36;
+  --color-midnight-deep: #0c1729;
+  --color-land: #1a2c4d;
+  --color-paper: #f5f7fa;
+  --color-mist: #e7ebf1;
+  --color-racing: #e52435;
+  --color-racing-dark: #c41b2b;
+  --color-steel: #9299a7;
+  --color-slate: #565e6e;      /* texto secundario sobre papel (AA) */
+  --color-line: rgb(245 247 250 / 0.12);
+  --color-line-dark: rgb(8 10 15 / 0.12);
 
-  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-
-  --text-display-xl: clamp(2.75rem, 7.4vw, 7.75rem);
-  --text-display-lg: clamp(2.5rem, 6.4vw, 6rem);
-  --text-display-md: clamp(2rem, 4.4vw, 3.9rem);
-  --text-display-sm: clamp(1.5rem, 2.6vw, 2.25rem);
+  --font-sans: var(--font-mona), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-hubot), ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --animate-marquee: marquee 38s linear infinite;
-  --animate-draw: draw 3.2s var(--ease-out-expo) forwards;
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  @keyframes draw {
-    to { stroke-dashoffset: 0; }
-  }
+  --radius-btn: 4px;
 }
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-  html {
-    -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
-  }
+  :root { color-scheme: dark; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    background: var(--color-ink);
+    background: var(--color-midnight);
     color: var(--color-paper);
     font-family: var(--font-sans);
-    font-stretch: 100%;
+    font-size: 1.0625rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
   }
-  ::selection {
-    background: var(--color-racing);
-    color: var(--color-paper);
-  }
-  :focus-visible {
-    outline: 2px solid var(--color-racing);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+  ::selection { background: var(--color-racing); color: var(--color-paper); }
+  :focus-visible { outline: 2px solid var(--color-racing); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
@@ -74,53 +52,94 @@
 }
 
 @layer components {
-  /* Titular editorial: Archivo expandida, negra, mayúsculas */
-  .display {
+  /* Escala tipográfica (≈ cuarta justa, 1.333) */
+  .t-hero {
     font-family: var(--font-display);
-    font-stretch: 118%;
-    font-weight: 850;
-    text-transform: uppercase;
+    font-stretch: 112%;
+    font-weight: 560;
+    font-size: clamp(2.6rem, 7.2vw, 7.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+  }
+  .t-display {
+    font-family: var(--font-display);
+    font-stretch: 110%;
+    font-weight: 560;
+    font-size: clamp(2.2rem, 4.8vw, 4.75rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .t-title {
+    font-family: var(--font-display);
+    font-stretch: 108%;
+    font-weight: 560;
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    line-height: 1.08;
     letter-spacing: -0.025em;
-    line-height: 0.9;
   }
-  .display-italic {
-    font-style: italic;
+  .t-sub {
+    font-family: var(--font-display);
+    font-stretch: 104%;
+    font-weight: 560;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-steel);
+  .t-lead {
+    font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+    line-height: 1.55;
   }
-  .prose-acm {
-    color: rgb(245 247 250 / 0.78);
-    line-height: 1.7;
-    font-size: 1.0625rem;
-  }
+  .t-small { font-size: 0.875rem; line-height: 1.5; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  .prose-acm { max-width: 68ch; line-height: 1.7; }
   .prose-acm h2 {
-    color: var(--color-paper);
-    font-weight: 750;
-    font-size: 1.35rem;
-    margin: 2.25rem 0 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 560;
+    font-stretch: 106%;
+    letter-spacing: -0.02em;
+    font-size: 1.4rem;
+    margin: 2.5rem 0 0.75rem;
   }
   .prose-acm p + p { margin-top: 1rem; }
-  .prose-acm ul { list-style: square; padding-left: 1.25rem; margin-top: 0.75rem; }
-  .prose-acm li + li { margin-top: 0.35rem; }
 
-  /* Rejilla técnica sutil, tipo papel milimetrado de roadbook */
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-    background-size: 72px 72px;
+  /* Bloques claros: invierten el color de texto y líneas */
+  .on-paper { background: var(--color-paper); color: var(--color-ink); color-scheme: light; }
+  .on-paper ::selection { color: var(--color-paper); }
+
+  /* Enlace subrayado sobrio */
+  .link-u {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: text-decoration-color 0.2s;
   }
-  .noise::after {
+  .link-u:hover { text-decoration-color: currentColor; }
+
+  /* Grano fotográfico para marcos de imagen pendientes */
+  .grain::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.06;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+
+  /* Ruta del mapa: se dibuja una vez al cargar */
+  .route-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: route-draw 3.6s 0.5s var(--ease-out-expo) forwards;
+  }
+  .route-stop { opacity: 0; animation: fade-in 0.6s var(--ease-out-expo) forwards; }
+  @keyframes route-draw { to { stroke-dashoffset: 0; } }
+  @keyframes fade-in { to { opacity: 1; } }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(3.2); opacity: 0; }
+  }
+  .pulse-ring { transform-origin: center; transform-box: fill-box; animation: pulse-ring 2.2s ease-out infinite; }
 }

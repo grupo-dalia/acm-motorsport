@@ -4,21 +4,20 @@ import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
 
 export const buttonVariants = cva(
-  "group/btn relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap font-semibold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-300 ease-[cubic-bezier(.16,1,.3,1)] disabled:pointer-events-none disabled:opacity-40 active:translate-y-px [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-btn)] font-medium transition-colors duration-200 disabled:pointer-events-none disabled:opacity-40 [&_svg]:size-[1.1em] [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         primary: "bg-racing text-paper hover:bg-racing-dark",
         light: "bg-paper text-ink hover:bg-white",
-        outline: "border border-line-strong text-paper hover:border-paper hover:bg-paper/5",
-        ghost: "text-paper/80 hover:text-paper",
-        link: "px-0! text-paper underline-offset-8 hover:underline",
+        dark: "bg-ink text-paper hover:bg-midnight",
+        outline: "border border-current/30 hover:border-current",
+        text: "h-auto! px-0! underline decoration-1 underline-offset-[0.35em] decoration-current/40 hover:decoration-current",
       },
       size: {
-        sm: "h-9 px-4 text-[0.7rem]",
-        md: "h-12 px-6 text-[0.75rem]",
-        lg: "h-14 px-8 text-[0.8rem]",
-        icon: "size-11",
+        sm: "h-10 px-4 text-[0.9rem]",
+        md: "h-12 px-6 text-[0.95rem]",
+        lg: "h-14 px-7 text-base",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },

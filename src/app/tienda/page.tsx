@@ -1,10 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Search, X } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
 import { ProductCard } from "@/components/shop/product-card";
-import { Badge } from "@/components/ui/badge";
 import { catalog } from "@/integrations/commerce";
 import { categories, fulfillmentLabels, queryProducts, type CategorySlug, type FulfillmentType, type ShopQuery } from "@/domain/catalog";
 import { pageMetadata } from "@/lib/seo";
@@ -32,109 +30,90 @@ function parseQuery(sp: Record<string, string | string[] | undefined>): ShopQuer
 }
 
 function href(base: ShopQuery, patch: Partial<ShopQuery>) {
-  const merged = { ...base, ...patch };
   const params = new URLSearchParams();
-  Object.entries(merged).forEach(([k, v]) => v && params.set(k, String(v)));
+  Object.entries({ ...base, ...patch }).forEach(([k, v]) => v && params.set(k, String(v)));
   const s = params.toString();
   return s ? `/tienda?${s}` : "/tienda";
 }
 
 export default async function ShopPage({ searchParams }: { searchParams: SP }) {
   const query = parseQuery(await searchParams);
-  const all = await catalog.listProducts();
-  const products = queryProducts(all, query);
-  const activeFilters = Boolean(query.q || query.categoria || query.tipo);
+  const products = queryProducts(await catalog.listProducts(), query);
+  const filtered = Boolean(query.q || query.categoria || query.tipo);
 
   return (
     <>
-      <PageHero
-        eyebrow="Tienda oficial ACM"
-        title={<>Viste el <span className="display-italic text-racing">proyecto</span></>}
-        lead="Merchandising oficial de ACM Motorsport. Productos propios, fabricados bajo demanda y recomendaciones de afiliación, siempre identificados."
-        crumbs={[{ label: "Tienda", href: "/tienda" }]}
-        size="sm"
-      >
-        <p className="mt-6"><Badge tone="amber">Modo demostración · productos y precios ficticios · no se realizan cobros</Badge></p>
+      <PageHero tone="paper" title="Tienda" lead="Ropa y accesorios del equipo. Cada pedido empuja el coche un poco más cerca de la salida." crumbs={[{ label: "Tienda", href: "/tienda" }]}>
+        <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: productos y precios de ejemplo. No se realiza ningún cobro.</p>
       </PageHero>
 
-      <Container className="py-10 lg:py-14">
-        <div className="flex flex-col gap-6 border-b border-line pb-8">
-          <form action="/tienda" method="get" role="search" className="flex flex-col gap-3 md:flex-row md:items-center">
-            {query.categoria && <input type="hidden" name="categoria" value={query.categoria} />}
-            {query.tipo && <input type="hidden" name="tipo" value={query.tipo} />}
-            <label className="relative flex-1">
-              <span className="sr-only">Buscar productos</span>
-              <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-steel" aria-hidden />
-              <input name="q" type="search" defaultValue={query.q} placeholder="Buscar: sudadera, dakar, pegatinas…" className="h-12 w-full border border-line-strong bg-surface pl-11 pr-4 placeholder:text-paper/35 focus:border-paper focus:outline-none" />
-            </label>
-            <label className="flex items-center gap-3">
-              <span className="eyebrow shrink-0">Orden</span>
-              <select name="orden" defaultValue={query.orden ?? "destacados"} className="h-12 border border-line-strong bg-surface px-3 focus:border-paper focus:outline-none">
-                <option value="destacados">Destacados</option>
-                <option value="precio-asc">Precio: menor a mayor</option>
-                <option value="precio-desc">Precio: mayor a menor</option>
-                <option value="nombre">Nombre</option>
-              </select>
-            </label>
-            <button type="submit" className="h-12 bg-paper px-6 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-ink hover:bg-white">Aplicar</button>
-          </form>
-
-          <nav aria-label="Categorías" className="-mx-4 overflow-x-auto px-4">
-            <ul className="flex w-max gap-2">
-              <li><Link href={href(query, { categoria: undefined })} className={chip(!query.categoria)}>Todo</Link></li>
-              {categories.map((c) => (
-                <li key={c.slug}><Link href={href(query, { categoria: c.slug })} className={chip(query.categoria === c.slug)} aria-current={query.categoria === c.slug ? "true" : undefined}>{c.name}</Link></li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Tipo de venta" className="-mx-4 overflow-x-auto px-4">
-            <ul className="flex w-max gap-2">
-              {(Object.keys(fulfillmentLabels) as FulfillmentType[]).map((t) => (
-                <li key={t}>
-                  <Link href={href(query, { tipo: query.tipo === t ? undefined : t })} className={chip(query.tipo === t, true)} title={fulfillmentLabels[t].long}>
-                    {fulfillmentLabels[t].short}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        <div className="flex items-center justify-between py-6">
-          <p className="font-mono text-xs text-steel" aria-live="polite">{products.length} {products.length === 1 ? "producto" : "productos"}</p>
-          {activeFilters && (
-            <Link href="/tienda" className="inline-flex items-center gap-1.5 text-sm text-paper/70 hover:text-paper"><X className="size-4" /> Limpiar filtros</Link>
-          )}
-        </div>
-
-        {products.length === 0 ? (
-          <div className="border border-dashed border-line-strong px-6 py-20 text-center">
-            <p className="text-lg">No hay productos que coincidan.</p>
-            <p className="mt-2 text-steel">Prueba con otra búsqueda o quita algún filtro.</p>
-            <Link href="/tienda" className="mt-6 inline-block underline underline-offset-4">Ver todo el catálogo</Link>
+      <section className="on-paper pb-24 lg:pb-36">
+        <Container>
+          <div className="flex flex-col gap-4 border-y border-line-dark py-5">
+            <nav aria-label="Categorías" className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+              <ul className="flex w-max gap-1">
+                <li><Link href={href(query, { categoria: undefined })} className={chip(!query.categoria)}>Todo</Link></li>
+                {categories.map((c) => (
+                  <li key={c.slug}><Link href={href(query, { categoria: c.slug })} className={chip(query.categoria === c.slug)} aria-current={query.categoria === c.slug ? "true" : undefined}>{c.name}</Link></li>
+                ))}
+              </ul>
+            </nav>
+            <form action="/tienda" method="get" role="search" className="flex flex-wrap items-center gap-2">
+              {query.categoria && <input type="hidden" name="categoria" value={query.categoria} />}
+              <label className="flex-1">
+                <span className="sr-only">Buscar</span>
+                <input name="q" type="search" defaultValue={query.q} placeholder="Buscar" className="h-10 w-full min-w-40 rounded-[var(--radius-btn)] bg-mist px-3 placeholder:text-slate focus:outline-none focus:ring-2 focus:ring-ink/20" />
+              </label>
+              <label>
+                <span className="sr-only">Tipo de venta</span>
+                <select name="tipo" defaultValue={query.tipo ?? ""} className="h-10 rounded-[var(--radius-btn)] bg-mist px-3">
+                  <option value="">Todos los tipos</option>
+                  {(Object.keys(fulfillmentLabels) as FulfillmentType[]).map((t) => <option key={t} value={t}>{fulfillmentLabels[t].short}</option>)}
+                </select>
+              </label>
+              <label>
+                <span className="sr-only">Ordenar</span>
+                <select name="orden" defaultValue={query.orden ?? "destacados"} className="h-10 rounded-[var(--radius-btn)] bg-mist px-3">
+                  <option value="destacados">Destacados</option>
+                  <option value="precio-asc">Precio más bajo</option>
+                  <option value="precio-desc">Precio más alto</option>
+                  <option value="nombre">Nombre</option>
+                </select>
+              </label>
+              <button type="submit" className="h-10 rounded-[var(--radius-btn)] bg-ink px-4 font-medium text-paper">Aplicar</button>
+            </form>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-3 lg:gap-x-6 xl:grid-cols-4">
-            {products.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 4} />)}
-          </div>
-        )}
 
-        <dl className="mt-24 grid gap-px border border-line bg-line md:grid-cols-3">
-          {(Object.keys(fulfillmentLabels) as FulfillmentType[]).map((t) => (
-            <div key={t} className="bg-ink p-6">
-              <dt className="font-semibold">{fulfillmentLabels[t].short}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-paper/60">{fulfillmentLabels[t].long}</dd>
+          <div className="flex items-center justify-between py-6 t-small text-slate">
+            <p aria-live="polite">{products.length} {products.length === 1 ? "producto" : "productos"}</p>
+            {filtered && <Link href="/tienda" className="link-u text-ink">Quitar filtros</Link>}
+          </div>
+
+          {products.length === 0 ? (
+            <div className="py-24">
+              <p className="t-title">Nada por aquí con esos filtros.</p>
+              <p className="mt-3 text-slate">Prueba con otra búsqueda o <Link href="/tienda" className="link-u text-ink">mira todo el catálogo</Link>.</p>
             </div>
-          ))}
-        </dl>
-      </Container>
+          ) : (
+            <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-3 lg:gap-x-6 xl:grid-cols-4">
+              {products.map((p) => <ProductCard key={p.id} product={p} />)}
+            </div>
+          )}
+
+          <dl className="mt-28 grid gap-10 border-t border-line-dark pt-10 md:grid-cols-3">
+            {(Object.keys(fulfillmentLabels) as FulfillmentType[]).map((t) => (
+              <div key={t}>
+                <dt className="t-sub">{fulfillmentLabels[t].short}</dt>
+                <dd className="mt-2 text-slate">{fulfillmentLabels[t].long}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </section>
     </>
   );
 }
 
-function chip(active: boolean, subtle = false) {
-  return cn(
-    "inline-flex h-9 items-center border px-4 text-[0.72rem] font-semibold uppercase tracking-[0.1em] transition-colors",
-    active ? "border-paper bg-paper text-ink" : subtle ? "border-line text-paper/60 hover:border-paper/50 hover:text-paper" : "border-line-strong text-paper/80 hover:border-paper",
-  );
+function chip(active: boolean) {
+  return cn("inline-flex h-10 items-center rounded-full px-4 font-medium transition-colors", active ? "bg-ink text-paper" : "text-slate hover:bg-mist hover:text-ink");
 }

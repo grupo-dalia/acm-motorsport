@@ -24,14 +24,14 @@ export default async function LegalPage({ params }: { params: Params }) {
   if (!doc) notFound();
   return (
     <>
-      <PageHero eyebrow="Legal" title={doc.title} crumbs={[{ label: "Legal", href: `/legal/${doc.slug}` }, { label: doc.title, href: `/legal/${doc.slug}` }]} tone="ink" size="sm" />
-      <Container className="py-16 lg:py-24">
+      <PageHero tone="paper" title={doc.title} crumbs={[{ label: doc.title, href: `/legal/${doc.slug}` }]} />
+      <section className="on-paper pb-24 lg:pb-36"><Container className="border-t border-line-dark pt-12">
         <div className="max-w-3xl">
-          <p role="note" className="flex gap-3 border border-gold/40 bg-gold/5 p-4 text-sm text-paper/85">
-            <AlertTriangle className="size-5 shrink-0 text-gold" aria-hidden />
+          <p role="note" className="flex gap-3 rounded-[6px] bg-mist p-4 t-small text-ink">
+            <AlertTriangle className="size-5 shrink-0 text-racing" aria-hidden />
             Texto provisional pendiente de revisión jurídica. No debe considerarse definitivo ni conforme a la normativa hasta su validación profesional.
           </p>
-          <div className="prose-acm mt-10">
+          <div className="prose-acm mt-10 text-slate [&_h2]:text-ink">
             {doc.sections.map((s) => (
               <section key={s.h}>
                 <h2>{s.h}</h2>
@@ -40,7 +40,7 @@ export default async function LegalPage({ params }: { params: Params }) {
             ))}
           </div>
         </div>
-      </Container>
+      </Container></section>
     </>
   );
 }

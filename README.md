@@ -24,7 +24,7 @@ npm run dev        # http://localhost:3000
 
 ## Stack
 
-Next.js 16 (App Router) · React 19 · TypeScript 6 estricto · Tailwind CSS 4 · Motion · Lucide · Zod 4 · React Hook Form · Vitest.
+Next.js 16 (App Router) · React 19 · TypeScript 6 estricto · Tailwind CSS 4 · Motion · Lucide · Zod 4 · React Hook Form · d3-geo · Vitest. Tipografías Hubot Sans y Mona Sans (OFL, autoalojadas).
 Componentes de UI propios con la misma convención que shadcn/ui (`cva` + `tailwind-merge`) — ver `docs/ARCHITECTURE.md` para el porqué.
 
 ## Estructura
@@ -60,8 +60,8 @@ docs/                   Arquitectura, API, despliegue, roadmap
 
 ## Lo que es placeholder (a propósito)
 
-- **Fotos y vídeos**: bloques etiquetados «Foto/Vídeo pendiente» con el encuadre recomendado.
-- **Productos**: catálogo demo con precios ficticios e ilustraciones vectoriales. No se indexan.
+- **Fotos y vídeos**: marcos con el aspecto final y un pie que dice qué foto va en cada sitio. Son lo que más va a subir el nivel cuando entren las reales.
+- **Productos**: catálogo de ejemplo con precios ficticios; las fichas muestran el diseño sobre el color de la tela. No se indexan.
 - **Patrocinadores**: nombres confirmados, sin logos hasta tener los archivos originales.
 - **Textos legales**: marcados como provisionales pendientes de revisión jurídica.
 - **Ficha técnica**: campos sin dato muestran «Por confirmar».

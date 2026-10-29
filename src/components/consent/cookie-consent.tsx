@@ -67,16 +67,16 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
         </>
       )}
       {visible && (
-        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" className="fixed inset-x-3 bottom-3 z-[70] max-w-lg border border-line-strong bg-surface p-5 shadow-2xl shadow-black/50 sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
-          <p id="cookie-title" className="font-semibold">Cookies</p>
-          <p className="mt-2 text-sm leading-relaxed text-paper/70">
+        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" className="fixed inset-x-3 bottom-3 z-[70] max-w-md rounded-[8px] bg-paper p-5 text-ink shadow-[0_20px_60px_rgb(0_0_0/0.35)] sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
+          <p id="cookie-title" className="t-sub">Cookies</p>
+          <p className="mt-2 text-sm leading-relaxed text-slate">
             Usamos cookies técnicas para que la web funcione (carrito, preferencias). Con tu permiso, también analíticas para saber qué contenido funciona. Nada se activa hasta que decidas.{" "}
-            <Link href="/legal/cookies" className="underline underline-offset-4 hover:text-paper">Política de cookies</Link>.
+            <Link href="/legal/cookies" className="underline underline-offset-4 hover:text-ink">Política de cookies</Link>.
           </p>
           {custom && (
-            <fieldset className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
+            <fieldset className="mt-4 space-y-2 border-t border-line-dark pt-4 text-sm">
               <legend className="sr-only">Preferencias</legend>
-              <label className="flex items-center justify-between gap-4 text-paper/60">
+              <label className="flex items-center justify-between gap-4 text-slate">
                 Técnicas (necesarias) <input type="checkbox" checked disabled className="size-4 accent-racing" />
               </label>
               <label className="flex items-center justify-between gap-4">
@@ -89,12 +89,12 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
           )}
           <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:justify-end">
             {custom ? (
-              <Button size="sm" className="col-span-2" onClick={() => save({ analytics, marketing })}>Guardar preferencias</Button>
+              <Button size="sm" variant="dark" className="col-span-2" onClick={() => save({ analytics, marketing })}>Guardar preferencias</Button>
             ) : (
               <>
-                <Button size="sm" variant="outline" onClick={() => setCustom(true)} className="col-span-2 sm:col-span-1">Configurar</Button>
-                <Button size="sm" variant="outline" onClick={() => save({ analytics: false, marketing: false })}>Rechazar</Button>
-                <Button size="sm" variant="outline" onClick={() => save({ analytics: true, marketing: true })}>Aceptar</Button>
+                <Button size="sm" variant="text" onClick={() => setCustom(true)} className="col-span-2 sm:col-span-1">Configurar</Button>
+                <Button size="sm" variant="dark" onClick={() => save({ analytics: false, marketing: false })}>Rechazar</Button>
+                <Button size="sm" variant="dark" onClick={() => save({ analytics: true, marketing: true })}>Aceptar</Button>
               </>
             )}
           </div>

@@ -10,10 +10,9 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   }, [error]);
   return (
     <Container className="flex min-h-[80vh] flex-col justify-center py-32">
-      <p className="eyebrow">Avería</p>
-      <h1 className="display mt-6 text-[length:var(--text-display-md)]">Algo se ha roto</h1>
-      <p className="mt-4 max-w-lg text-paper/70">Ha ocurrido un error inesperado. Ya estamos con la llave inglesa.</p>
-      <Button className="mt-8 self-start" onClick={reset}>Reintentar</Button>
+      <h1 className="t-display">Algo se ha roto.</h1>
+      <p className="mt-4 max-w-lg text-paper/70">La página no ha cargado por un error inesperado. Vuelve a intentarlo; si se repite, escríbenos desde Contacto.</p>
+      <Button className="mt-8 self-start" onClick={reset}>Volver a intentarlo</Button>
     </Container>
   );
 }

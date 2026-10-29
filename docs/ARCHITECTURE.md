@@ -33,8 +33,10 @@ Nunca se confirma producción sin pago verificado. No se almacenan datos de tarj
 | **TypeScript 6.0** (no 7.0) | TS 7 (compilador nativo) es muy reciente; Next 16 usa la API JS de TypeScript. Se migrará cuando el ecosistema lo soporte oficialmente. |
 | **Tailwind 4 con `@theme`** | Tokens de marca en CSS, sin `tailwind.config`. |
 | **Componentes propios estilo shadcn** en lugar del CLI de shadcn/ui | El diseño necesitaba primitivas muy específicas (botones cuadrados, badges mono, placeholders). Mismo patrón (`cva`, `cn`), sin Radix aún porque no hay componentes complejos. Cuando lleguen (diálogos del admin, selects, tablas) se añaden con `npx shadcn add`. |
-| **Archivo variable (eje de anchura) + JetBrains Mono, autoalojadas** | Una sola familia para titulares expandidos y texto: menos bytes. OFL, servidas desde el propio dominio (sin Google Fonts → mejor privacidad). `next/font/local` evita CLS. |
-| **Motion** | Entradas al hacer scroll, parallax del hero, drawer y menú. Respeta `prefers-reduced-motion` globalmente (`MotionConfig reducedMotion="user"`). |
+| **Hubot Sans + Mona Sans, autoalojadas** | Pareja diseñada para ir junta: Hubot (grotesca técnica y ancha) para titulares en minúscula y peso medio, como la tipografía de marcas de coches; Mona para texto. OFL, servidas desde el propio dominio. `next/font/local` evita CLS. |
+| **Mapa de la ruta como pieza central** | España → Marruecos → Arabia Saudí generado en build con Natural Earth (`world-atlas` + `d3-geo`): SVG estático, 0 KB de JS. Es el único momento animado de la home (la ruta se dibuja al cargar). |
+| **Ritmo oscuro / claro** | Azul medianoche como campo de marca, bloques en papel claro para lo editorial y la tienda. El rojo solo en acciones principales y en la ruta. Sin etiquetas en mayúsculas, numeraciones ni cajas decorativas. |
+| **Motion** | Solo donde responde a una acción (cesta, menú). Respeta `prefers-reduced-motion`. |
 | **Filtros de tienda por URL (GET)** | Funcionan sin JS, se pueden compartir y son indexables. |
 | **YouTube «lite»** | No carga iframe ni cookies de terceros hasta pulsar play. |
 | **Productos demo con `noindex`** | No contaminar Google con productos ficticios. |

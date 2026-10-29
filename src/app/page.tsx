@@ -1,7 +1,4 @@
-import { HomeHero } from "@/components/sections/home/hero";
-import { Marquee } from "@/components/sections/home/marquee";
-import { About } from "@/components/sections/home/about";
-import { DakarBand, FeaturedProducts, LatestVideos, NewsletterBand, SimRacingTeaser, SponsorsBand, WorkshopTeaser } from "@/components/sections/home/rest";
+import { HomeHero, Intro, TheCar, DakarSection, ShopSection, Worlds, PartnersSection } from "@/components/sections/home";
 import { catalog } from "@/integrations/commerce";
 import { JsonLd, personLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -14,15 +11,12 @@ export default async function HomePage() {
     <>
       <JsonLd data={personLd()} />
       <HomeHero />
-      <Marquee />
-      <About />
-      <DakarBand />
-      <FeaturedProducts products={products} />
-      <LatestVideos />
-      <WorkshopTeaser />
-      <SimRacingTeaser />
-      <SponsorsBand />
-      <NewsletterBand />
+      <Intro />
+      <TheCar />
+      <DakarSection />
+      <ShopSection products={products} />
+      <Worlds />
+      <PartnersSection />
     </>
   );
 }

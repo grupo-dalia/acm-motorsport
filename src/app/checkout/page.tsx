@@ -7,10 +7,10 @@ export const metadata: Metadata = { title: "Finalizar compra", robots: { index: 
 
 export default function CheckoutPage() {
   return (
-    <Container className="pb-24 pt-24 lg:pt-32">
-      <Breadcrumbs items={[{ label: "Carrito", href: "/carrito" }, { label: "Finalizar compra", href: "/checkout" }]} />
-      <h1 className="display mt-8 text-[length:var(--text-display-md)]">Finalizar compra</h1>
+    <div className="on-paper min-h-[80vh]"><Container className="pb-24 pt-24 lg:pt-32">
+      <Breadcrumbs items={[{ label: "Cesta", href: "/carrito" }, { label: "Finalizar compra", href: "/checkout" }]} />
+      <h1 className="t-display mt-8">Finalizar compra</h1>
       <div className="mt-10"><CheckoutForm /></div>
-    </Container>
+    </Container></div>
   );
 }

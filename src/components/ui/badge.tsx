@@ -2,18 +2,13 @@ import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
 
 const tones = {
-  neutral: "border-line-strong text-paper/80",
-  red: "border-racing/60 text-racing bg-racing/10",
-  blue: "border-midnight-2 text-[#9db5e0] bg-midnight/60",
-  amber: "border-gold/40 text-gold bg-gold/10",
-  solid: "border-paper bg-paper text-ink",
+  neutral: "bg-current/8 text-current",
+  live: "bg-racing/12 text-racing",
+  note: "bg-[#f1bf00]/14 text-[#8a6d00] dark:text-[#f1bf00]",
+  solid: "bg-ink text-paper",
 } as const;
 
+/** Etiqueta discreta en minúscula: informa (tipo de venta, estado), no decora. */
 export function Badge({ className, tone = "neutral", ...props }: ComponentProps<"span"> & { tone?: keyof typeof tones }) {
-  return (
-    <span
-      className={cn("inline-flex items-center gap-1.5 border px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-[0.14em]", tones[tone], className)}
-      {...props}
-    />
-  );
+  return <span className={cn("inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.78rem] font-medium", tones[tone], className)} {...props} />;
 }

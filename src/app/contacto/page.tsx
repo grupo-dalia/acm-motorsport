@@ -10,19 +10,18 @@ export const metadata: Metadata = pageMetadata({ title: "Contacto", description:
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contacto" title="Hablemos" lead="Patrocinio, colaboraciones de contenido, prensa o dudas con un pedido." crumbs={[{ label: "Contacto", href: "/contacto" }]} size="sm" />
-      <Container className="grid gap-14 py-20 lg:grid-cols-12 lg:py-28">
-        <aside className="space-y-8 lg:col-span-4">
-          <div>
-            <p className="eyebrow">Redes</p>
-            <ul className="mt-3 space-y-2">
-              {site.social.map((s) => <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="text-paper/80 hover:text-paper">{s.label} · {site.handle}</a></li>)}
+      <PageHero tone="paper" title="Hablemos." lead="Patrocinio, colaboraciones de contenido, prensa o dudas con un pedido." crumbs={[{ label: "Contacto", href: "/contacto" }]} />
+      <section className="on-paper pb-24 lg:pb-36">
+        <Container className="grid gap-14 border-t border-line-dark pt-14 lg:grid-cols-12">
+          <aside className="space-y-3 lg:col-span-4">
+            <p className="text-slate">También en redes como {site.handle}</p>
+            <ul className="space-y-2">
+              {site.social.map((s) => <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" className="link-u">{s.label}</a></li>)}
             </ul>
-          </div>
-          <p className="text-sm text-steel">Respondemos normalmente en pocos días laborables.</p>
-        </aside>
-        <div className="lg:col-span-7 lg:col-start-6"><ContactForm defaultTopic="colaboracion" /></div>
-      </Container>
+          </aside>
+          <div className="lg:col-span-7 lg:col-start-6"><ContactForm defaultTopic="colaboracion" /></div>
+        </Container>
+      </section>
     </>
   );
 }

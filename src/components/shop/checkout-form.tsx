@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Lock } from "lucide-react";
 import { customerSchema } from "@/domain/checkout";
 import { useCart } from "./cart-provider";
 import { OrderSummary } from "./order-summary";
@@ -19,13 +18,13 @@ type FormValues = z.input<typeof formSchema>;
 function Field({ label, error, className, children }: { label: string; error?: string; className?: string; children: React.ReactNode }) {
   return (
     <label className={cn("block", className)}>
-      <span className="eyebrow">{label}</span>
+      <span className="t-small font-medium">{label}</span>
       <span className="mt-2 block">{children}</span>
       {error && <span role="alert" className="mt-1.5 block text-xs text-racing">{error}</span>}
     </label>
   );
 }
-const inputCls = "h-12 w-full border border-line-strong bg-surface px-4 text-paper placeholder:text-paper/30 focus:border-paper focus:outline-none aria-[invalid=true]:border-racing";
+const inputCls = "h-12 w-full rounded-[var(--radius-btn)] bg-mist px-4 text-ink placeholder:text-slate focus:outline-none focus:ring-2 focus:ring-ink/25 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-racing/60";
 
 export function CheckoutForm() {
   const { cart, totals, hydrated } = useCart();
@@ -39,12 +38,12 @@ export function CheckoutForm() {
     defaultValues: { country: "ES", acceptTerms: false },
   });
 
-  if (!hydrated) return <div className="h-96 animate-pulse bg-surface" aria-busy="true" />;
+  if (!hydrated) return <div className="h-96 animate-pulse rounded-[6px] bg-mist" aria-busy="true" />;
   if (totals.lines.length === 0)
     return (
-      <div className="border border-dashed border-line-strong px-6 py-20 text-center">
-        <p className="text-lg">No hay nada que pagar todavía.</p>
-        <Link href="/tienda" className={buttonVariants({ className: "mt-6" })}>Ir a la tienda</Link>
+      <div className="py-16">
+        <p className="t-title">Tu cesta está vacía.</p>
+        <Link href="/tienda" className={buttonVariants({ variant: "dark", className: "mt-8" })}>Ir a la tienda</Link>
       </div>
     );
 
@@ -68,7 +67,7 @@ export function CheckoutForm() {
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="grid gap-10 lg:grid-cols-12">
       <div className="space-y-10 lg:col-span-7">
         <fieldset className="space-y-5">
-          <legend className="display mb-2 text-2xl">Contacto</legend>
+          <legend className="t-sub mb-2">Contacto</legend>
           <Field label="Email" error={errors.email?.message}>
             <input type="email" autoComplete="email" className={inputCls} aria-invalid={!!errors.email} {...register("email")} />
           </Field>
@@ -77,7 +76,7 @@ export function CheckoutForm() {
           </Field>
         </fieldset>
         <fieldset className="grid gap-5 sm:grid-cols-2">
-          <legend className="display mb-2 text-2xl">Envío</legend>
+          <legend className="t-sub mb-2">Dirección de envío</legend>
           <Field label="Nombre y apellidos" error={errors.name?.message} className="sm:col-span-2">
             <input autoComplete="name" className={inputCls} aria-invalid={!!errors.name} {...register("name")} />
           </Field>
@@ -100,7 +99,7 @@ export function CheckoutForm() {
             <select className={inputCls} {...register("country")}><option value="ES">España (península y Baleares)</option></select>
           </Field>
         </fieldset>
-        <label className="flex items-start gap-3 text-sm text-paper/75">
+        <label className="flex items-start gap-3 text-slate">
           <input type="checkbox" className="mt-0.5 size-4 accent-racing" {...register("acceptTerms")} />
           <span>He leído y acepto las <Link href="/legal/condiciones" className="underline underline-offset-2">condiciones de contratación</Link> y la <Link href="/legal/privacidad" className="underline underline-offset-2">política de privacidad</Link>.</span>
         </label>
@@ -110,12 +109,10 @@ export function CheckoutForm() {
       <div className="lg:col-span-5">
         <div className="space-y-4 lg:sticky lg:top-28">
           <OrderSummary editableCoupon={false} />
-          <div className="border border-gold/40 bg-gold/5 p-4 text-sm text-paper/80">
-            <strong className="text-gold">Modo demostración.</strong> No se conectará con ninguna pasarela ni se cobrará nada. Se generará un pedido de prueba.
-          </div>
-          {serverError && <p role="alert" className="border border-racing/50 bg-racing/10 p-3 text-sm">{serverError}</p>}
+          <p className="t-small text-slate">Tienda en pruebas: al confirmar se crea un pedido de ejemplo. No se conecta con ninguna pasarela ni se cobra nada.</p>
+          {serverError && <p role="alert" className="text-racing">{serverError}</p>}
           <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-            <Lock /> {isSubmitting ? "Procesando…" : "Confirmar pedido (demo)"}
+            {isSubmitting ? "Creando el pedido…" : "Confirmar pedido de prueba"}
           </Button>
         </div>
       </div>

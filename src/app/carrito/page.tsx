@@ -7,10 +7,10 @@ export const metadata: Metadata = { title: "Carrito", robots: { index: false } }
 
 export default function CartPage() {
   return (
-    <Container className="pb-24 pt-24 lg:pt-32">
-      <Breadcrumbs items={[{ label: "Tienda", href: "/tienda" }, { label: "Carrito", href: "/carrito" }]} />
-      <h1 className="display mt-8 text-[length:var(--text-display-md)]">Carrito</h1>
+    <div className="on-paper min-h-[80vh]"><Container className="pb-24 pt-24 lg:pt-32">
+      <Breadcrumbs items={[{ label: "Tienda", href: "/tienda" }, { label: "Cesta", href: "/carrito" }]} />
+      <h1 className="t-display mt-8">Cesta</h1>
       <div className="mt-10"><CartView /></div>
-    </Container>
+    </Container></div>
   );
 }

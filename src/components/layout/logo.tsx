@@ -1,25 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-/** Marca tipográfica provisional ACM. Sustituir por el logotipo vectorial oficial cuando exista. */
-export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
+/** Logotipo tipográfico provisional. Sustituir por el vectorial oficial cuando exista. */
+export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("group inline-flex items-center gap-3", className)} aria-label="ACM Motorsport — inicio">
-      <span className="relative flex items-center">
-        <span className="display display-italic text-[1.65rem] leading-none tracking-[-0.04em]">ACM</span>
-        <span aria-hidden className="ml-1.5 flex h-[1.1rem] w-1 -skew-x-12 flex-col">
-          <span className="flex-1 bg-racing" />
-          <span className="flex-[2] bg-gold" />
-          <span className="flex-1 bg-racing" />
-        </span>
-      </span>
-      {!compact && (
-        <span className="hidden font-mono text-[0.6rem] uppercase leading-tight tracking-[0.28em] text-paper/60 sm:block">
-          Motor
-          <br />
-          sport
-        </span>
-      )}
+    <Link href="/" className={cn("inline-flex items-baseline gap-2.5", className)} aria-label="ACM Motorsport, inicio">
+      <span className="font-[family-name:var(--font-display)] text-[1.45rem] font-[680] leading-none tracking-[-0.03em] [font-stretch:125%]">ACM</span>
+      <span className="text-[0.95rem] font-medium leading-none opacity-70">Motorsport</span>
     </Link>
   );
 }

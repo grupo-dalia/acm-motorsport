@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { archivo, jetbrains } from "./fonts";
+import { hubot, mona } from "./fonts";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/layout/providers";
@@ -24,16 +24,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#080A0F",
+  themeColor: "#101E36",
   colorScheme: "dark",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const products = await catalog.listProducts();
   return (
-    <html lang="es" className={`${archivo.variable} ${jetbrains.variable}`}>
+    <html lang="es" className={`${hubot.variable} ${mona.variable}`}>
       <body className="min-h-dvh overflow-x-clip">
-        <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">
+        <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">
           Saltar al contenido
         </a>
         <JsonLd data={organizationLd()} />
