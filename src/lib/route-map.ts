@@ -1,6 +1,7 @@
 import "server-only";
 import { geoMercator, geoPath, geoBounds, type GeoProjection } from "d3-geo";
 import { feature } from "topojson-client";
+import { presimplify, simplify, quantile } from "topojson-simplify";
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import type { GeometryCollection, Topology } from "topojson-specification";
 import world from "world-atlas/countries-50m.json";
@@ -22,21 +23,25 @@ export type Stop = { id: string; label: string; year: number; event: string; lon
 
 export const stops: Stop[] = [
   { id: "es", label: "España", year: 2026, event: "Offroad Classic Cup", lon: -3.7, lat: 40.2, anchor: "start", dy: -6 },
-  { id: "ma", label: "Marruecos", year: 2027, event: "CERTT · Rallye du Maroc", lon: -4.6, lat: 30.6, anchor: "start", dy: 52 },
-  { id: "sa", label: "Arabia Saudí", year: 2028, event: "Dakar", lon: 42.5, lat: 23.6, anchor: "end", dy: -40 },
+  { id: "ma", label: "Marruecos", year: 2027, event: "CERTT · Rallye du Maroc", lon: -4.6, lat: 30.6, anchor: "start", dy: 92 },
+  { id: "sa", label: "Arabia Saudí", year: 2028, event: "Dakar", lon: 42.5, lat: 23.6, anchor: "end", dy: 56 },
 ];
 
 let cache: ReturnType<typeof build> | null = null;
 
 function build() {
-  const topo = world as unknown as Topology<{ countries: GeometryCollection }>;
+  // Simplificación topológica (conserva fronteras compartidas) para aligerar el SVG
+  const raw = world as unknown as Topology<{ countries: GeometryCollection }>;
+  const pre = presimplify(raw as never);
+  const topo = simplify(pre, quantile(pre, 0.12)) as unknown as Topology<{ countries: GeometryCollection }>;
   const countries = feature(topo, topo.objects.countries) as FeatureCollection<Geometry, { name: string }>;
 
   const projection: GeoProjection = geoMercator().fitExtent(
     [[0, 0], [MAP_W, MAP_H]],
     { type: "Feature", properties: {}, geometry: { type: "MultiPoint", coordinates: [[WEST, SOUTH], [EAST, NORTH]] } } as Feature,
   );
-  const path = geoPath(projection).digits(1);
+  projection.clipExtent([[-10, -10], [MAP_W + 10, MAP_H + 10]]); // descarta todo lo que queda fuera del encuadre
+  const path = geoPath(projection).digits(0);
 
   const inView = countries.features.filter((f) => {
     const [[w, s], [e, n]] = geoBounds(f);
