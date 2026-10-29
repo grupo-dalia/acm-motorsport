@@ -1,91 +1,91 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { RouteMap } from "@/components/media/route-map";
 import { DunesHero } from "@/components/three/dunes-hero";
-import { WordReveal } from "@/components/ui/word-reveal";
-import { Seasons } from "@/components/sections/seasons";
-import { VideoCard } from "@/components/sections/video-card";
-import { SponsorsList } from "@/components/sections/sponsors-list";
-import { ButtonLink } from "@/components/ui/button";
-import { getSeriesVideos, isPlaceholder } from "@/lib/youtube";
+import { PlayerProvider, PlayButton } from "@/components/series/player-modal";
+import { EpisodeBrowser } from "@/components/series/episode-browser";
+import { getSeasons } from "@/lib/series";
+import { JsonLd, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
+import { site } from "@/content/site";
 import { youtube } from "@/content/youtube";
-import { JsonLd, videoListLd } from "@/lib/seo";
-import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: "Objetivo Dakar, la serie",
-  description: "Objetivo Dakar: la serie documental de Andrés Cubero Moreno. De la regularidad con un Pajero de 1989 al Rally Dakar 2028, episodio a episodio.",
+  description: "Objetivo Dakar: la serie documental de Andrés Cubero Moreno. Temporadas y capítulos del camino de un Pajero de 1989 hasta el Rally Dakar 2028.",
   path: "/objetivo-dakar",
 });
 
 export default async function DakarPage() {
-  const { videos: episodes } = await getSeriesVideos("objetivo-dakar");
-  const real = episodes.filter((v) => !isPlaceholder(v));
+  const seasons = await getSeasons();
+  const s1 = seasons[0]!;
+  const available = s1.episodes.filter((e) => e.status === "disponible");
+  const latest = [...available].reverse().find((e) => e.youtubeId) ?? null;
+  const first = available.find((e) => e.youtubeId) ?? null;
+
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "TVSeries",
+    name: "Objetivo Dakar",
+    url: absoluteUrl("/objetivo-dakar"),
+    creator: { "@type": "Person", name: site.founder },
+    inLanguage: "es",
+    containsSeason: seasons.filter((s) => s.status === "emision").map((s) => ({
+      "@type": "TVSeason",
+      seasonNumber: s.number,
+      numberOfEpisodes: s.totalEpisodes,
+      episode: s.episodes.filter((e) => e.youtubeId).map((e) => ({ "@type": "TVEpisode", episodeNumber: e.number, name: e.title, url: `https://www.youtube.com/watch?v=${e.youtubeId}` })),
+    })),
+  };
+
+  const heroContent = (
+    <Container className="relative pb-16 pt-40 lg:pb-24">
+      <p className="font-medium text-paper/80">Serie documental · ACM Motorsport</p>
+      <h1 className="t-hero mt-4 max-w-[11ch]">Objetivo Dakar</h1>
+      <p className="mt-6 flex flex-wrap gap-x-4 text-paper/80">
+        <span className="font-medium text-paper">Temporada {s1.number}</span>
+        <span>{s1.year}</span>
+        <span>{available.length} capítulos</span>
+      </p>
+      <p className="t-lead mt-4 max-w-[46ch] text-paper/80">{latest ? latest.synopsis : s1.synopsis}</p>
+      <div className="mt-9 flex flex-wrap items-center gap-3">
+        <PlayButton
+          id={latest?.youtubeId ?? null}
+          title={latest ? `T${latest.season}:E${latest.number} · ${latest.title}` : "Objetivo Dakar"}
+          label={latest ? `Reproducir T${latest.season}:E${latest.number}` : "Próximo capítulo en camino"}
+          className="inline-flex h-14 items-center gap-3 rounded-[var(--radius-btn)] bg-paper px-7 font-medium text-ink hover:bg-white aria-disabled:opacity-60"
+        />
+        {first && first !== latest && (
+          <PlayButton id={first.youtubeId} title={`T1:E${first.number} · ${first.title}`} label="Empezar desde el capítulo 1" className="inline-flex h-14 items-center gap-3 rounded-[var(--radius-btn)] bg-paper/15 px-6 font-medium text-paper backdrop-blur hover:bg-paper/25" />
+        )}
+        <a href={youtube.subscribeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-14 items-center px-4 font-medium text-paper/85 underline decoration-paper/40 underline-offset-[0.35em] hover:decoration-paper">Suscribirme</a>
+      </div>
+    </Container>
+  );
+
   return (
-    <>
-      <DunesHero className="flex min-h-[100svh] flex-col">
-        <Container className="pt-28 lg:pt-36">
-          <Breadcrumbs items={[{ label: "Objetivo Dakar", href: "/objetivo-dakar" }]} />
-        </Container>
-        <Container className="mt-auto pb-20 lg:pb-28">
-          <h1 className="t-hero max-w-[11ch]"><WordReveal text="Objetivo Dakar" delay={0.2} /></h1>
-          <p className="t-lead mt-6 max-w-[40ch] text-paper/80">Cómo se llega a la carrera más dura del mundo desde un taller, con un coche de 1989 y sin atajos. Una temporada cada vez.</p>
-        </Container>
-      </DunesHero>
+    <PlayerProvider>
+      <JsonLd data={ld} />
+      <div className="bg-ink">
+        {latest?.youtubeId ? (
+          <section className="relative isolate flex min-h-[88svh] items-end overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element -- portada del último capítulo */}
+            <img src={`https://i.ytimg.com/vi/${latest.youtubeId}/maxresdefault.jpg`} alt="" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#080a0f_0%,rgb(8_10_15/0.75)_35%,transparent_70%)]" aria-hidden />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-transparent to-ink/40" aria-hidden />
+            {heroContent}
+          </section>
+        ) : (
+          <DunesHero className="flex min-h-[88svh] items-end">{heroContent}</DunesHero>
+        )}
 
-      <section id="episodios" className="scroll-mt-20 bg-midnight-deep py-24 lg:py-36" aria-labelledby="ep">
-        <Container>
-          {real.length > 0 && <JsonLd data={videoListLd(real)} />}
-          <SectionHeading
-            id="ep"
-            title="Episodios"
-            lead="Se reproducen aquí mismo y cuentan en el canal. El más reciente, primero."
-            action={<a href={youtube.subscribeUrl} target="_blank" rel="noopener noreferrer" className="link-u">Suscribirme en YouTube</a>}
-          />
-          {episodes[0] && <div className="mt-16"><VideoCard video={episodes[0]} featured /></div>}
-          {episodes.length > 1 && (
-            <div className="mt-16 grid gap-14 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-              {episodes.slice(1).map((v) => <VideoCard key={v.id} video={v} />)}
-            </div>
-          )}
-        </Container>
-      </section>
-
-      <section className="on-paper py-24 lg:py-36" aria-labelledby="historia">
-        <Container className="grid gap-12 lg:grid-cols-12">
-          <h2 id="historia" className="t-display lg:col-span-5">Por qué el Dakar</h2>
-          <div className="prose-acm text-lg text-slate lg:col-span-6 lg:col-start-7">
-            <p>El Dakar no se improvisa. Hacen falta kilómetros, navegación, un coche fiable y alguien capaz de arreglarlo a medianoche en mitad del desierto. Objetivo Dakar es el cuaderno de bitácora de ese aprendizaje.</p>
-            <p>Cada temporada tiene su prueba de fuego: la regularidad de la Offroad Classic Cup, la exigencia del CERTT, la primera arena del Rallye du Maroc. Y entre carrera y carrera, el taller.</p>
-            <p className="t-small">Texto provisional, pendiente de la voz de Andrés.</p>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-midnight py-24 lg:py-36" aria-labelledby="ruta">
-        <Container>
-          <h2 id="ruta" className="t-display">La hoja de ruta</h2>
-          <RouteMap align="xMaxYMid" className="mt-12 aspect-[4/3] w-full sm:aspect-[16/9]" />
-          <Seasons className="mt-12" />
-          <p className="mt-16 max-w-[60ch] text-paper/70">Las crónicas de cada prueba se publicarán aquí en cuanto arranque la temporada.</p>
-        </Container>
-      </section>
-
-      <section className="on-paper py-24 lg:py-36" aria-labelledby="apoya">
-        <Container>
-          <SectionHeading
-            id="apoya"
-            title="Súbete al coche"
-            lead="Comprando en la tienda, usando los códigos de nuestros patrocinadores o patrocinando directamente."
-            action={<div className="flex flex-wrap items-center gap-6"><ButtonLink href="/tienda" variant="dark">Ir a la tienda</ButtonLink><ButtonLink href="/motorsport#patrocinio" variant="text">Patrocinar</ButtonLink></div>}
-          />
-          <SponsorsList className="mt-14" />
-        </Container>
-      </section>
-    </>
+        <section id="episodios" className="scroll-mt-20 pb-24 pt-10 lg:pb-36" aria-labelledby="episodios-title">
+          <Container>
+            <EpisodeBrowser seasons={seasons} />
+          </Container>
+        </section>
+      </div>
+    </PlayerProvider>
   );
 }
