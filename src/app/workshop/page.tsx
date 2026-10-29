@@ -33,21 +33,23 @@ export default async function WorkshopPage() {
           <h2 id="proyectos" className="t-display">En el banco de trabajo</h2>
           {lead && (
             <article className="mt-14 grid gap-8 lg:grid-cols-12 lg:items-end">
-              <MediaPlaceholder label={lead.title} className="aspect-[4/3] lg:col-span-7" />
+              <MediaPlaceholder label={lead.title} src={lead.image ?? undefined} sizes="(min-width:1024px) 58vw, 100vw" className="aspect-[4/3] lg:col-span-7" />
               <div className="lg:col-span-4 lg:col-start-9">
                 <p className={cn("t-small", lead.status === "En curso" ? "text-racing" : "text-slate")}>{lead.status} · {lead.category}</p>
                 <h3 className="t-title mt-3">{lead.title}</h3>
                 <p className="mt-3 text-slate">{lead.summary}</p>
+                {lead.youtubeId && <a href={`https://www.youtube.com/watch?v=${lead.youtubeId}`} target="_blank" rel="noopener noreferrer" className="link-u mt-4 inline-block">Ver el vídeo</a>}
               </div>
             </article>
           )}
           <ul className="mt-20 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((p) => (
               <li key={p.id}>
-                <MediaPlaceholder label={p.title} tone="light" className="aspect-[4/3]" />
+                <MediaPlaceholder label={p.title} src={p.image ?? undefined} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" tone="light" className="aspect-[4/3]" />
                 <p className={cn("t-small mt-5", p.status === "En curso" ? "text-racing" : "text-slate")}>{p.status} · {p.category}</p>
                 <h3 className="t-sub mt-2">{p.title}</h3>
                 <p className="mt-2 text-slate">{p.summary}</p>
+                {p.youtubeId && <a href={`https://www.youtube.com/watch?v=${p.youtubeId}`} target="_blank" rel="noopener noreferrer" className="link-u mt-3 inline-block t-small">Ver el vídeo</a>}
               </li>
             ))}
           </ul>

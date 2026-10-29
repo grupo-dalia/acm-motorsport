@@ -26,7 +26,7 @@ export default function MotorsportPage() {
         title="Un equipo independiente."
         lead="Piloto, mecánico y productor en la misma persona. Un Pajero de 1989 preparado en casa para regularidad y rally raid."
         crumbs={[{ label: "Motorsport", href: "/motorsport" }]}
-        media={<MediaPlaceholder label="El Pajero saliendo de un tramo, plano a sangre" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />}
+        media={<MediaPlaceholder label="Andrés en el taller, con la pared de Euro4x4parts y Metal Lube" src="/media/taller-euro4x4parts.jpg" position="50% 35%" priority className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />}
       />
 
       <section className="on-paper py-24 lg:py-36" aria-labelledby="historia">
@@ -46,7 +46,7 @@ export default function MotorsportPage() {
           <ul className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6">
             {crew.map((m) => (
               <li key={m.role}>
-                <MediaPlaceholder label={m.name ?? m.role} tone={m.name ? "night" : "light"} className="aspect-[4/5]" />
+                <MediaPlaceholder label={m.name ?? m.role} src={m.name ? "/media/andres-retrato-gorra.jpg" : undefined} position="50% 30%" sizes="(min-width:768px) 33vw, 100vw" tone={m.name ? "night" : "light"} className="aspect-[4/5]" />
                 <p className="t-sub mt-5">{m.name ?? "Por confirmar"}</p>
                 <p className="mt-1 text-slate">{m.role}</p>
                 {m.bio && <p className="mt-3 max-w-[40ch] t-small text-slate">{m.bio}</p>}
@@ -128,11 +128,11 @@ export default function MotorsportPage() {
         <Container>
           <h2 id="galeria" className="t-display">En el tramo</h2>
           <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2">
-            <MediaPlaceholder label="Salida de tramo" className="col-span-2 row-span-2 aspect-square md:aspect-auto" />
-            <MediaPlaceholder label="Copiloto con roadbook" tone="dust" className="aspect-square" />
-            <MediaPlaceholder label="Detalle del tripmaster" className="aspect-square" />
-            <MediaPlaceholder label="Parque cerrado" tone="dust" className="aspect-square" />
-            <MediaPlaceholder label="Polvo y pista" className="aspect-square" />
+            <MediaPlaceholder label="El Pajero levantando polvo en La Garrotxa" src="/media/pajero-polvo-garrotxa.jpg" position="62% 60%" sizes="(min-width:768px) 50vw, 100vw" className="col-span-2 row-span-2 aspect-square md:aspect-auto" />
+            <MediaPlaceholder label="Andrés junto al dorsal 21 en Salou" src="/media/andres-dorsal-21-salou.jpg" position="45% 50%" sizes="25vw" className="aspect-square" />
+            <MediaPlaceholder label="Montando los liberadores AVM" src="/media/liberador-avm.jpg" sizes="25vw" className="aspect-square" />
+            <MediaPlaceholder label="Instalando el Starlink en el techo" src="/media/starlink-techo.jpg" position="40% 40%" sizes="25vw" className="aspect-square" />
+            <MediaPlaceholder label="Puesta a punto antes de la ITV" src="/media/taller-lampara-itv.jpg" position="60% 40%" sizes="25vw" className="aspect-square" />
           </div>
         </Container>
       </section>

@@ -56,7 +56,7 @@ export function Intro() {
   return (
     <section className="on-paper py-24 lg:py-36" aria-labelledby="intro-title">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-8">
-        <MediaPlaceholder label="Retrato de Andrés junto al Pajero" className="aspect-[4/5] lg:col-span-5" />
+        <MediaPlaceholder label="Andrés Cubero Moreno junto al Pajero con el dorsal 21 en Salou" src="/media/andres-dorsal-21-retrato.jpg" position="50% 35%" sizes="(min-width:1024px) 40vw, 100vw" className="aspect-[4/5] lg:col-span-5" />
         <div className="lg:col-span-6 lg:col-start-7 lg:self-center">
           <h2 id="intro-title" className="t-display max-w-[14ch]">Piloto, mecánico y el que pone la cámara.</h2>
           <div className="mt-8 max-w-[56ch] space-y-4 text-lg leading-relaxed text-slate">
@@ -85,7 +85,7 @@ export function TheCar() {
   const shown = vehicleSpecs.filter((s) => s.value).slice(0, 6);
   return (
     <section className="bg-midnight pb-24 lg:pb-36" aria-labelledby="car-title">
-      <MediaPlaceholder label="Pajero MK1 en tramo, plano general" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />
+      <MediaPlaceholder label="El Mitsubishi Pajero levantando polvo en el Rally de La Garrotxa" src="/media/pajero-polvo-garrotxa.jpg" position="60% 42%" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />
       <Container className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <h2 id="car-title" className="t-display">Mitsubishi Pajero, 1989</h2>
@@ -195,14 +195,16 @@ export function Worlds() {
       href: "/workshop",
       title: "ACM Workshop",
       text: "Mecánica, metal, madera y electrónica. Lo que se rompe se arregla; lo que no existe se fabrica.",
-      photo: "Taller con el Pajero, capó abierto",
-      extra: `${workshopProjects.filter((p) => p.status === "En curso").length} proyectos en marcha`,
+      photo: "Andrés trabajando en el motor del Pajero antes de la ITV",
+      src: "/media/taller-lampara-itv.jpg" as string | undefined,
+      extra: `${workshopProjects.filter((p) => p.status === "Terminado").length} proyectos terminados · ${workshopProjects.filter((p) => p.status === "En curso").length} en marcha`,
     },
     {
       href: "/sim-racing",
       title: "ACM Sim Racing",
       text: "Cockpit construido en el taller, simuladores y directos. Entrenar cuando no hay tramo.",
       photo: "Cockpit de simulación",
+      src: undefined as string | undefined,
       extra: "Directos y ACM Motor News",
     },
   ];
@@ -213,7 +215,7 @@ export function Worlds() {
           <article key={it.href} className="group relative">
             <Link href={it.href} className="absolute inset-0 z-10" aria-label={it.title} />
             <div className="overflow-hidden">
-              <MediaPlaceholder label={it.photo} tone="dust" className="aspect-[4/3] transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.02]" />
+              <MediaPlaceholder label={it.photo} src={it.src} sizes="(min-width:768px) 50vw, 100vw" tone="dust" className="aspect-[4/3] transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.02]" />
             </div>
             <h2 className="t-title mt-7">{it.title}</h2>
             <p className="mt-3 max-w-[44ch] text-paper/70">{it.text}</p>

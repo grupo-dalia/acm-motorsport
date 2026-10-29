@@ -55,14 +55,20 @@ export type WorkshopProject = {
   category: "Pajero" | "Restauración" | "Electrónica" | "Fabricación";
   status: "En curso" | "Próximamente" | "Terminado";
   summary: string;
+  /** Foto en /public/media (null = marco pendiente). */
+  image: string | null;
+  /** Vídeo de YouTube del proyecto, si lo hay. */
+  youtubeId?: string;
 };
 
 export const workshopProjects: WorkshopProject[] = [
-  { id: "regularidad", title: "Módulo de regularidad RTK", category: "Electrónica", status: "En curso", summary: "Odómetro y navegación propios con GPS RTK, sensor Hall y pantalla táctil." },
-  { id: "starlink", title: "Starlink Mini en el techo", category: "Pajero", status: "En curso", summary: "Instalación en la parte delantera del techo, respetando el techo solar trasero." },
-  { id: "goteras", title: "Adiós a las goteras del techo", category: "Pajero", status: "Próximamente", summary: "Diagnóstico y sellado de las entradas de agua del Pajero." },
-  { id: "salpicadero", title: "Salpicadero", category: "Pajero", status: "Próximamente", summary: "Reorganización del salpicadero para competición." },
-  { id: "homocinetica", title: "Homocinética izquierda", category: "Pajero", status: "Próximamente", summary: "Sustitución de la junta homocinética delantera izquierda." },
-  { id: "tractor", title: "Restauración de un tractor", category: "Restauración", status: "Próximamente", summary: "Recuperar una máquina de campo desde cero." },
-  { id: "cockpit", title: "Cockpit de sim racing", category: "Fabricación", status: "Próximamente", summary: "Diseño y construcción del puesto de simulación de ACM Sim Racing." },
+  { id: "itv", title: "Pasar la ITV contrarreloj", category: "Pajero", status: "Terminado", summary: "Escape partido, rótula con holgura y ratas en el cableado, a diez días de La Garrotxa. Soldadura y madrugadas.", image: "/media/taller-lampara-itv.jpg", youtubeId: "Ac1pLobeE4w" },
+  { id: "starlink", title: "Starlink Mini en el techo", category: "Pajero", status: "Terminado", summary: "Instalación en la parte delantera del techo, respetando el techo solar trasero, y prueba en movimiento.", image: "/media/starlink-techo.jpg", youtubeId: "3aBYyv4A7fs" },
+  { id: "liberadores", title: "Liberadores AVM", category: "Pajero", status: "Terminado", summary: "Por qué reventaron en carrera, por qué no hay que usar grasa y el cambio a unos AVM.", image: "/media/liberador-avm.jpg", youtubeId: "5pOR1MZIdk0" },
+  { id: "regularidad", title: "Módulo de regularidad RTK", category: "Electrónica", status: "En curso", summary: "Odómetro y navegación propios con GPS RTK, sensor Hall y pantalla táctil. En Salou vimos que necesita más precisión.", image: null },
+  { id: "goteras", title: "Adiós a las goteras del techo", category: "Pajero", status: "Próximamente", summary: "Diagnóstico y sellado de las entradas de agua del Pajero.", image: null },
+  { id: "salpicadero", title: "Salpicadero", category: "Pajero", status: "Próximamente", summary: "Reorganización del salpicadero para competición.", image: null },
+  { id: "homocinetica", title: "Homocinética izquierda", category: "Pajero", status: "Próximamente", summary: "Sustitución de la junta homocinética delantera izquierda.", image: null },
+  { id: "tractor", title: "Restauración de un tractor", category: "Restauración", status: "Próximamente", summary: "Recuperar una máquina de campo desde cero.", image: null },
+  { id: "cockpit", title: "Cockpit de sim racing", category: "Fabricación", status: "Próximamente", summary: "Diseño y construcción del puesto de simulación de ACM Sim Racing.", image: null },
 ];
