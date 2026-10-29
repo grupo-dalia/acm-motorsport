@@ -112,10 +112,10 @@ export async function getSeriesVideos(series: Exclude<Video["series"], "general"
   const playlist = youtube.playlists[series];
   if (playlist) {
     const list = await fetchFeed(`playlist_id=${encodeURIComponent(playlist)}`, "video");
-    if (list?.length) return { videos: list.map((v) => ({ ...v, series })), live: true };
+    if (list?.length) return { videos: list.map((v) => ({ ...v, series })), live: true, fromPlaylist: true };
   }
   const all = await getChannelVideos();
-  return { videos: all.videos.filter((v) => v.series === series), live: all.live };
+  return { videos: all.videos.filter((v) => v.series === series), live: all.live, fromPlaylist: false };
 }
 
 export function isPlaceholder(v: YtVideo) {

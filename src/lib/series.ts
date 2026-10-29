@@ -26,8 +26,10 @@ export function episodeNumber(title: string) {
 }
 
 /** Asigna vídeos a capítulos: primero los numerados en el título, luego el resto por fecha. */
-export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[]): Episode[] {
-  const real = videos.filter((v) => !isPlaceholder(v)).sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
+export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[], keepOrder = false): Episode[] {
+  // Con lista de reproducción, manda el orden de la lista; si no, el orden de publicación.
+  const real = videos.filter((v) => !isPlaceholder(v));
+  if (!keepOrder) real.sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
   const slots = new Map<number, YtVideo>();
   const unnumbered: YtVideo[] = [];
   for (const v of real) {
@@ -59,10 +61,10 @@ export function assignEpisodes(cfg: SeasonConfig, videos: YtVideo[]): Episode[] 
 }
 
 export async function getSeasons(): Promise<Season[]> {
-  const { videos } = await getSeriesVideos("objetivo-dakar");
+  const { videos, fromPlaylist } = await getSeriesVideos("objetivo-dakar");
   return seasons.map(({ episodes: _o, ...cfg }) => {
     void _o;
     const full = seasons.find((s) => s.number === cfg.number)!;
-    return { ...cfg, episodes: cfg.number === 1 ? assignEpisodes(full, videos) : assignEpisodes(full, []) };
+    return { ...cfg, episodes: cfg.number === 1 ? assignEpisodes(full, videos, fromPlaylist) : assignEpisodes(full, []) };
   });
 }

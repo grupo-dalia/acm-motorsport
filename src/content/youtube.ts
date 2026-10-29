@@ -9,7 +9,10 @@ export const youtube = {
   handle: "@andrescuberomoreno",
   channelUrl: "https://www.youtube.com/@andrescuberomoreno",
   subscribeUrl: "https://www.youtube.com/@andrescuberomoreno?sub_confirmation=1",
-  /** Listas de reproducción opcionales por sección. Si existen, mandan sobre las palabras clave. */
+  /**
+   * Listas de reproducción por sección. Si existen, mandan sobre las palabras clave.
+   * En Objetivo Dakar, el orden de la lista = número de capítulo (1, 2, 3…).
+   */
   playlists: {
     "objetivo-dakar": null as string | null,
     workshop: null as string | null,
