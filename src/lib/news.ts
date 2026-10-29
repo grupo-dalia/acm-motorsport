@@ -23,6 +23,9 @@ const schema = z.object({
   category: z.enum(Object.keys(newsCategories) as [keyof typeof newsCategories, ...(keyof typeof newsCategories)[]]),
   draft: z.boolean().default(false),
   youtubeId: z.string().regex(/^[\w-]{11}$/).optional(),
+  /** Foto de portada propia (ruta en /public). Nunca fotos de terceros sin licencia. */
+  image: z.string().startsWith("/").optional(),
+  imageAlt: z.string().optional(),
   sources: z.array(z.object({ title: z.string(), url: z.url() })).default([]),
   tags: z.array(z.string()).default([]),
 });
@@ -32,12 +35,14 @@ export type Article = z.infer<typeof schema> & { slug: string; readingMinutes: n
 
 const SHORTCODE = /\{\{\s*(video|affiliate|product):([\w-]+)\s*\}\}/g;
 
+const lazyImages = (html: string) => html.replaceAll("<img ", '<img loading="lazy" decoding="async" ');
+
 function toBlocks(md: string): Block[] {
   const blocks: Block[] = [];
   let last = 0;
   for (const m of md.matchAll(SHORTCODE)) {
     const before = md.slice(last, m.index);
-    if (before.trim()) blocks.push({ type: "html", html: marked.parse(before, { async: false }) });
+    if (before.trim()) blocks.push({ type: "html", html: lazyImages(marked.parse(before, { async: false })) });
     blocks.push({ type: m[1] as "video" | "affiliate" | "product", id: m[2]! });
     last = m.index! + m[0].length;
   }
@@ -77,4 +82,11 @@ export function getArticles() {
 
 export async function getArticle(slug: string) {
   return (await getArticles()).find((a) => a.slug === slug) ?? null;
+}
+
+/** Portada del artículo: foto propia, o la miniatura del vídeo si lo hay. */
+export function coverOf(a: Pick<Article, "image" | "youtubeId">): string | null {
+  if (a.image) return a.image;
+  if (a.youtubeId) return `https://i.ytimg.com/vi/${a.youtubeId}/maxresdefault.jpg`;
+  return null;
 }

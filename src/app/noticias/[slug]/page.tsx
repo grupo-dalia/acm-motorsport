@@ -7,7 +7,8 @@ import { YouTubePlayer } from "@/components/media/youtube-player";
 import { AffiliateBox } from "@/components/news/affiliate-box";
 import { ProductInline } from "@/components/news/product-inline";
 import { ArticleCard } from "@/components/news/article-card";
-import { getArticle, getArticles, newsCategories } from "@/lib/news";
+import { coverOf, getArticle, getArticles, newsCategories } from "@/lib/news";
+import Image from "next/image";
 import { JsonLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { site } from "@/content/site";
@@ -23,7 +24,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const a = await getArticle((await params).slug);
   if (!a) return {};
-  const meta = pageMetadata({ title: a.title, description: a.summary, path: `/noticias/${a.slug}`, image: a.youtubeId ? `https://i.ytimg.com/vi/${a.youtubeId}/maxresdefault.jpg` : undefined });
+  const meta = pageMetadata({ title: a.title, description: a.summary, path: `/noticias/${a.slug}`, image: coverOf(a) ?? undefined });
   return { ...meta, openGraph: { ...meta.openGraph, type: "article", publishedTime: a.date.toISOString(), modifiedTime: (a.updated ?? a.date).toISOString(), authors: [site.founder] }, ...(a.draft ? { robots: { index: false } } : {}) };
 }
 
@@ -42,7 +43,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
     author: { "@type": "Person", name: site.founder, url: absoluteUrl("/motorsport") },
     publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: absoluteUrl("/icon.svg") } },
     mainEntityOfPage: absoluteUrl(`/noticias/${a.slug}`),
-    image: [a.youtubeId ? `https://i.ytimg.com/vi/${a.youtubeId}/maxresdefault.jpg` : absoluteUrl("/opengraph-image")],
+    image: [(() => { const c = coverOf(a); return c ? (c.startsWith("/") ? absoluteUrl(c) : c) : absoluteUrl("/opengraph-image"); })()],
   };
 
   return (
@@ -59,7 +60,13 @@ export default async function ArticlePage({ params }: { params: Params }) {
           <p className="mt-6 t-small">Por {site.founder}</p>
         </header>
 
-        {a.youtubeId && <YouTubePlayer id={a.youtubeId} title={a.title} size="lg" className="mt-12 rounded-[6px]" />}
+        {a.youtubeId ? (
+          <YouTubePlayer id={a.youtubeId} title={a.title} size="lg" className="mt-12 rounded-[6px]" />
+        ) : a.image ? (
+          <figure className="relative mt-12 aspect-[16/9] overflow-hidden rounded-[6px] bg-mist lg:aspect-[21/9]">
+            <Image src={a.image} alt={a.imageAlt ?? ""} fill priority sizes="(min-width: 1400px) 1320px, 100vw" className="object-cover" />
+          </figure>
+        ) : null}
 
         <div className="article mt-12 max-w-[68ch] text-lg leading-[1.75] text-ink/85">
           {a.blocks.map((b, i) => {

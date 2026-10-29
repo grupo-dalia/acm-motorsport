@@ -2,6 +2,8 @@
 title: "Dakar 2027: recorrido, etapas y fechas del rally más largo de la era saudí"
 summary: "Del 1 al 15 de enero de 2027, con salida y llegada en KAEC, 5.320 km cronometrados, más arena y dos maratones. Te contamos etapa a etapa cómo será."
 date: 2026-10-29
+image: "/media/pajero-polvo-garrotxa.jpg"
+imageAlt: "El Mitsubishi Pajero MK1 de ACM Motorsport levantando polvo en el Rally de La Garrotxa"
 category: rally-raid
 tags: [dakar, dakar 2027, recorrido, arabia saudí]
 sources:
@@ -27,6 +29,10 @@ David Castera, director de la carrera, lo resumió en la presentación de París
 
 Después de varias ediciones con críticas por el exceso de piedra, que destroza neumáticos y suspensiones, el trazado de 2027 apuesta por **más arena y dunas** y por cambios de terreno constantes, a veces dentro de la misma especial. Eso premia la navegación y castiga a quien vaya a ciegas detrás de las rodadas. Vuelven lugares clásicos como **Yanbu, AlUla y Hail**.
 
+![Cabina del Pajero con el tripmaster de regularidad](/media/pajero-cabina-navegacion.jpg)
+
+*Navegar bien vale más que correr: en nuestra cabina, el tripmaster que nos hemos fabricado.*
+
 ## Dos maratones, y una de ellas a pelo
 
 Hay dos bloques de maratón, uno en cada semana, en los que los equipos de asistencia no pueden tocar los coches:
@@ -35,6 +41,10 @@ Hay dos bloques de maratón, uno en cada semana, en los que los equipos de asist
 - **Al Bahah (etapas 11 y 12):** algo más de infraestructura, pero igualmente sin asistencia externa.
 
 Para cualquiera que prepare su propio coche, esto es lo que da miedo de verdad: no basta con ir rápido, hay que llegar con el coche entero y saber repararlo.
+
+![Andrés Cubero con el dorsal 21 junto al Pajero](/media/andres-dorsal-21-salou.jpg)
+
+*En carrera, lo que no lleves encima no existe. Salou, Off-Road Classic Cup.*
 
 ## Etapa a etapa
 

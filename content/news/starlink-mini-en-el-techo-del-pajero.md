@@ -2,6 +2,8 @@
 title: "Starlink Mini en el techo de un Pajero: dónde ponerlo y por qué"
 summary: "Por qué montamos la antena en la parte delantera del techo, qué hay que pensar antes de taladrar y para qué la usamos en carrera y en ruta."
 date: 2026-10-08
+image: "/media/starlink-techo.jpg"
+imageAlt: "Instalación del Starlink Mini en el techo del Pajero"
 category: overland
 tags: [starlink, conectividad, instalación]
 ---
@@ -18,6 +20,10 @@ La parte trasera del techo del Pajero tiene **techo solar**, y ahí no se puede 
 - **Estanqueidad**: cada agujero en el techo es una futura gotera si no se sella bien. Y de goteras en el Pajero sabemos algo.
 - **Alimentación**: piensa de dónde sale la corriente y cómo la proteges. Mejor una línea dedicada que colgarlo de cualquier sitio.
 - **Fijación**: en pista todo vibra. Lo que aguanta en carretera puede no aguantar en un tramo roto.
+
+![Andrés en el taller con recambios de Euro4x4parts](/media/taller-euro4x4parts.jpg)
+
+*El taller donde se prepara el Pajero.*
 
 ## Para qué lo usamos
 
