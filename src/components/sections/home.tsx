@@ -16,6 +16,8 @@ import { SponsorsList } from "./sponsors-list";
 import { workshopProjects } from "@/content/media";
 import { vehicleSpecs } from "@/content/motorsport";
 import type { Product } from "@/domain/catalog";
+import type { Article } from "@/lib/news";
+import { ArticleCard } from "@/components/news/article-card";
 
 const heroVideo = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
 const heroPoster = process.env.NEXT_PUBLIC_HERO_POSTER_URL;
@@ -234,6 +236,20 @@ export function PartnersSection() {
           action={<ButtonLink href="/motorsport#patrocinio" variant="dark">Hazte patrocinador</ButtonLink>}
         />
         <SponsorsList className="mt-14" />
+      </Container>
+    </section>
+  );
+}
+
+export function NewsSection({ articles }: { articles: Article[] }) {
+  if (articles.length === 0) return null;
+  return (
+    <section className="on-paper py-24 lg:py-36" aria-labelledby="news-title">
+      <Container>
+        <SectionHeading id="news-title" title="Noticias y guías" lead="Crónicas del proyecto, actualidad del rally raid y lo que aprendemos en el taller." action={<ButtonLink href="/noticias" variant="dark">Todas las noticias</ButtonLink>} />
+        <div className="mt-14 grid gap-x-8 gap-y-4 md:grid-cols-3">
+          {articles.slice(0, 3).map((a) => <ArticleCard key={a.slug} a={a} className="py-6" />)}
+        </div>
       </Container>
     </section>
   );

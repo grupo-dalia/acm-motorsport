@@ -27,6 +27,7 @@ export const mainNav: NavItem[] = [
   { label: "Objetivo Dakar", href: "/objetivo-dakar", description: "La serie documental" },
   { label: "Workshop", href: "/workshop", description: "Mecánica, fabricación y proyectos" },
   { label: "Sim Racing", href: "/sim-racing", description: "Cockpit, equipo y directos" },
+  { label: "Noticias", href: "/noticias", description: "Crónicas y guías" },
   { label: "Tienda", href: "/tienda", description: "Merchandising oficial" },
 ];
 

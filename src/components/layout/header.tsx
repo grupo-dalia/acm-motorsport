@@ -10,7 +10,7 @@ import { useCart } from "@/components/shop/cart-provider";
 import { cn } from "@/lib/utils";
 
 /** Páginas cuya cabecera arranca sobre fondo claro */
-const LIGHT_TOP = ["/tienda", "/carrito", "/checkout", "/legal", "/contacto"];
+const LIGHT_TOP = ["/tienda", "/carrito", "/checkout", "/legal", "/contacto", "/noticias"];
 
 export function Header() {
   const pathname = usePathname();
