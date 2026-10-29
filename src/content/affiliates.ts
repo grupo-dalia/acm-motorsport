@@ -20,10 +20,10 @@ export const affiliates: Affiliate[] = [
     id: "starlink",
     name: "Starlink",
     partner: "Starlink",
-    pitch: "La antena que llevamos en el techo del Pajero. Con nuestro enlace de referido, tú también tienes recompensa al darte de alta.",
+    pitch: "La antena que llevamos en el techo del Pajero. Date de alta desde nuestro enlace de referido y Starlink te da 45 € en efectivo o en saldo de servicio (se aplican sus términos).",
     reward: "Programa de referidos de Starlink (crédito o pago según país y tarifa).",
-    url: null, // TODO: pegar el enlace de referido de la cuenta de Starlink de Andrés
-    cta: "Ver Starlink con nuestro enlace",
+    url: "https://starlink.com/?referral=RC-4006515-37465-61",
+    cta: "Conseguir 45 € con Starlink",
   },
   {
     id: "euro4x4parts",

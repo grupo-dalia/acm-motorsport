@@ -21,7 +21,7 @@ La parte trasera del techo del Pajero tiene **techo solar**, y ahí no se puede 
 
 ## Para qué lo usamos
 
-Conexión para el GPS RTK del tripmaster, para subir contenido desde donde estemos y para emitir en directo. Si quieres probarlo, este es nuestro enlace:
+Conexión para el GPS RTK del tripmaster, para subir contenido desde donde estemos y para emitir en directo. Si quieres probarlo, entra desde nuestro enlace de referido: Starlink te da 45 € en efectivo o en saldo de servicio al darte de alta. Tienes todos los detalles en [nuestra página de Starlink](/starlink).
 
 {{affiliate:starlink}}
 
