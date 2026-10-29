@@ -15,6 +15,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Objetivo Dakar, la serie",
   description: "Objetivo Dakar: la serie documental de Andrés Cubero Moreno. Temporadas y capítulos del camino de un Pajero de 1989 hasta el Rally Dakar 2028.",
   path: "/objetivo-dakar",
+  image: "/objetivo-dakar/opengraph-image",
 });
 
 export default async function DakarPage() {
