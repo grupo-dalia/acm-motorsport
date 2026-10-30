@@ -17,25 +17,95 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const groups = ["Vehículo", "Preparación", "Electrónica"] as const;
-const gallery: { title: string; photos: { src: string; alt: string; pos?: string }[] }[] = [
+type Photo = { src: string; alt: string; pos?: string };
+/** Trayectoria por temporadas, de lo más reciente a lo más antiguo. */
+const trayectoria: { id: string; kicker: string; title: string; text: string; photos: Photo[] }[] = [
   {
-    title: "2026 · Off-Road Classic Cup",
+    id: "selva-2026",
+    kicker: "2026 · Off-Road Classic Cup · 9 de mayo",
+    title: "VII Clàssic Raid La Selva",
+    text: "Arbúcies, pistas de bosque y el dragón rojo en el capó.",
     photos: [
-      { src: "/media/salou-vadeo.jpg", alt: "El Pajero cruzando un vado en el Clàssic Raid Salou", pos: "50% 55%" },
-      { src: "/media/garrotxa-pajero-tramo.jpg", alt: "Andrés y Anaïs Soriano en tramo en La Garrotxa", pos: "50% 50%" },
-      { src: "/media/selva-frontal.jpg", alt: "El Pajero con los faros encendidos en el Clàssic Raid La Selva", pos: "50% 50%" },
-      { src: "/media/salou-205-valle.jpg", alt: "El Pajero con el dorsal 205 bajando hacia el valle en Salou", pos: "50% 55%" },
-      { src: "/media/garrotxa-205-polvo.jpg", alt: "El Pajero entre el polvo en La Garrotxa", pos: "50% 50%" },
+      { src: "/media/selva-frontal.jpg", alt: "El Pajero con los faros encendidos en La Selva" },
+      { src: "/media/selva-salida-euro4x4parts.jpg", alt: "Salida bajo el arco de Euro4x4parts en Arbúcies" },
+      { src: "/media/selva-bandera-salida.jpg", alt: "Bandera de salida en La Selva", pos: "50% 60%" },
+      { src: "/media/selva-frontal-2.jpg", alt: "El Pajero en un tramo de tierra en La Selva" },
+      { src: "/media/selva-lateral-22.jpg", alt: "El Pajero con el dorsal 22 en una curva" },
+      { src: "/media/selva-pista-faros.jpg", alt: "El Pajero entre la vegetación con los faros encendidos" },
+      { src: "/media/selva-pista-faros-2.jpg", alt: "El Pajero bajando por una pista de tierra roja" },
+      { src: "/media/selva-trasera.jpg", alt: "El Pajero visto desde atrás en la pista" },
+      { src: "/media/selva-trasera-curva.jpg", alt: "El Pajero tomando una curva en el bosque" },
     ],
   },
   {
-    title: "2024 · Campeonato de España de Rallyes TT",
+    id: "salou-2026",
+    kicker: "2026 · Off-Road Classic Cup · 11 de abril",
+    title: "I Clàssic Raid Salou",
+    text: "Vados, piedra suelta y vistas al Camp de Tarragona.",
     photos: [
-      { src: "/media/cierzo-2024.jpg", alt: "El Pajero levantando arena en el VI Cierzo Rally Ejército de Tierra", pos: "50% 55%" },
+      { src: "/media/salou-vadeo.jpg", alt: "El Pajero cruzando un vado en Salou" },
+      { src: "/media/salou-205-valle.jpg", alt: "El Pajero con el dorsal 205 bajando hacia el valle" },
+      { src: "/media/salou-dorsal-21.jpg", alt: "El Pajero con el dorsal 21 en una pista de piedra" },
+      { src: "/media/salou-bandera-salida.jpg", alt: "Bandera de salida en Salou" },
+      { src: "/media/andres-dorsal-21-salou.jpg", alt: "Andrés junto al dorsal 21 en Salou" },
+    ],
+  },
+  {
+    id: "garrotxa-2026",
+    kicker: "2026 · Off-Road Classic Cup · 21 de febrero",
+    title: "II Clàssic Raid La Garrotxa",
+    text: "Vuelta a las carreras en Besalú: 22.º y premio a la mejor debutante para Anaïs Soriano.",
+    photos: [
+      { src: "/media/garrotxa-pajero-tramo.jpg", alt: "Andrés y Anaïs Soriano en tramo en La Garrotxa" },
+      { src: "/media/anais-soriano-mejor-debutante.jpg", alt: "Anaïs Soriano con el premio a la mejor debutante", pos: "50% 35%" },
+      { src: "/media/garrotxa-vadeo.jpg", alt: "El Pajero cruzando un vado en La Garrotxa" },
+      { src: "/media/garrotxa-205-polvo.jpg", alt: "El Pajero entre el polvo" },
+      { src: "/media/garrotxa-dorsal-16.jpg", alt: "Andrés pegando el dorsal 16", pos: "55% 40%" },
+      { src: "/media/garrotxa-salida.jpg", alt: "Salida con la bandera catalana en Besalú" },
+      { src: "/media/garrotxa-arco-salida.jpg", alt: "El Pajero bajo el arco de Euro4x4parts", pos: "50% 60%" },
+      { src: "/media/garrotxa-parque.jpg", alt: "El Pajero en la fila antes de la salida", pos: "50% 55%" },
+      { src: "/media/andres-besalu-garrotxa.jpg", alt: "Andrés en Besalú el día de la carrera" },
+    ],
+  },
+  {
+    id: "2025",
+    kicker: "2025",
+    title: "Un año sin carreras",
+    text: "Tocó parar. Por qué, lo cuento en el capítulo piloto de Objetivo Dakar.",
+    photos: [],
+  },
+  {
+    id: "certt-2024",
+    kicker: "2024 · Campeonato de España de Rallyes TT",
+    title: "El debut: CERTT",
+    text: "5.º en el Rallye TT Jaén Mar de Olivos a la primera. Después, Lorca, el Cierzo y Cuenca.",
+    photos: [
+      { src: "/media/cierzo-2024.jpg", alt: "El Pajero levantando arena en el VI Cierzo Rally Ejército de Tierra" },
       { src: "/media/jaen-mar-de-olivos-2024-salida.jpg", alt: "Salida del Rallye TT Jaén Mar de Olivos 2024", pos: "50% 62%" },
-      { src: "/media/pajero-pista-montana.jpg", alt: "El Pajero levantando polvo junto a un cerro", pos: "62% 60%" },
-      { src: "/media/certt-2024-barro.jpg", alt: "El Pajero saliendo del barro bajo un puente", pos: "55% 55%" },
-      { src: "/media/jaen-2024-asistencia.jpg", alt: "El Pajero en la carpa de asistencia de Euro4x4parts en Jaén", pos: "50% 60%" },
+      { src: "/media/jaen-2024-asistencia.jpg", alt: "El Pajero en la carpa de asistencia en Jaén", pos: "50% 60%" },
+      { src: "/media/pajero-pista-montana.jpg", alt: "El Pajero levantando polvo en Lorca", pos: "62% 60%" },
+      { src: "/media/cierzo-2024-barro.jpg", alt: "El Pajero saliendo del barro bajo un puente en el Cierzo" },
+      { src: "/media/certt-2024-derrape.jpg", alt: "El Pajero derrapando en tierra" },
+      { src: "/media/certt-2024-tierra-roja-1.jpg", alt: "El Pajero en un tramo de tierra roja" },
+      { src: "/media/certt-2024-tierra-roja-2.jpg", alt: "El Pajero con el dorsal 205 en tramo" },
+      { src: "/media/certt-2024-tierra-roja-3.jpg", alt: "El Pajero de frente entre pinos" },
+    ],
+  },
+  {
+    id: "fuera",
+    kicker: "Fuera de carrera",
+    title: "El Pajero, el taller y el karting",
+    text: "Lo que no sale en las clasificaciones.",
+    photos: [
+      { src: "/media/pajero-montana.jpg", alt: "El Pajero en un prado de alta montaña" },
+      { src: "/media/pajero-atardecer.jpg", alt: "El Pajero al atardecer sobre un valle de olivos" },
+      { src: "/media/pajero-noche.jpg", alt: "El Pajero de noche, recién lavado", pos: "50% 55%" },
+      { src: "/media/andres-euro4x4parts-hilux.jpg", alt: "Andrés junto a la Hilux de Euro4x4parts con tienda de techo", pos: "30% 50%" },
+      { src: "/media/karting-58.jpg", alt: "Andrés en karting con el número 58", pos: "50% 70%" },
+      { src: "/media/karting-grupo.jpg", alt: "Varios karts en una curva" },
+      { src: "/media/taller-euro4x4parts.jpg", alt: "Andrés en el taller", pos: "50% 35%" },
+      { src: "/media/liberador-avm.jpg", alt: "Liberador AVM montado en el Pajero" },
+      { src: "/media/taller-lampara-itv.jpg", alt: "Puesta a punto del Pajero antes de la ITV" },
     ],
   },
 ];
@@ -148,17 +218,23 @@ export default function MotorsportPage() {
 
       <section className="bg-midnight py-24 lg:py-36" aria-labelledby="galeria">
         <Container>
-          <h2 id="galeria" className="t-display">En el tramo</h2>
-          <div className="mt-14 space-y-16">
-            {gallery.map((g) => (
-              <div key={g.title}>
-                <p className="t-sub">{g.title}</p>
-                <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
-                  {g.photos.map((ph, i) => (
-                    <MediaPlaceholder key={ph.src} label={ph.alt} src={ph.src} position={ph.pos} sizes={i === 0 ? "(min-width:768px) 50vw, 100vw" : "(min-width:768px) 25vw, 50vw"} className={i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square"} />
+          <h2 id="galeria" className="t-display">Trayectoria</h2>
+          <p className="t-lead mt-6 max-w-[48ch] text-paper/70">Del debut en el CERTT a la regularidad en Cataluña. Carrera a carrera, con las fotos de cada una.</p>
+          <nav aria-label="Temporadas" className="mt-10 flex flex-wrap gap-2">
+            {trayectoria.map((t) => <a key={t.id} href={`#${t.id}`} className="rounded-full bg-paper/10 px-4 py-2 t-small hover:bg-paper/20">{t.title}</a>)}
+          </nav>
+          <div className="mt-16 space-y-24">
+            {trayectoria.map((t) => (
+              <article key={t.id} id={t.id} className="scroll-mt-24">
+                <p className="t-small text-steel">{t.kicker}</p>
+                <h3 className="t-title mt-2">{t.title}</h3>
+                <p className="mt-2 max-w-[60ch] text-paper/70">{t.text}</p>
+                {t.photos.length > 0 && <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+                  {t.photos.map((ph, i) => (
+                    <MediaPlaceholder key={ph.src} label={ph.alt} src={ph.src} position={ph.pos ?? "50% 50%"} sizes={i === 0 ? "(min-width:768px) 50vw, 100vw" : "(min-width:768px) 25vw, 50vw"} className={i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square"} />
                   ))}
-                </div>
-              </div>
+                </div>}
+              </article>
             ))}
           </div>
           <p className="mt-10 t-small text-steel">Fotos de carrera: fotógrafos oficiales de cada prueba.</p>

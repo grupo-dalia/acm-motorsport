@@ -123,14 +123,17 @@ export const results: { event: string; date: string; category: string; position:
 export type Sponsor = {
   id: string;
   name: string;
-  tier: "principal" | "oficial" | "colaborador";
+  tier: "principal" | "oficial" | "colaborador" | "referido";
   description: string;
-  logo: string | null; // ruta en /public/sponsors cuando exista el archivo original
+  /** Logo en /public/sponsors. null = se muestra el nombre en tipografía hasta tener el archivo original. */
+  logo: string | null;
   url: string | null;
   code?: string;
+  /** Texto destacado (solo el principal). */
+  story?: string;
 };
 
-/** Patrocinadores confirmados por Andrés. Verificar textos y URLs con cada marca antes de publicar. */
+/** Patrocinadores confirmados por Andrés. */
 export const sponsors: Sponsor[] = [
   {
     id: "euro4x4parts",
@@ -138,17 +141,22 @@ export const sponsors: Sponsor[] = [
     tier: "principal",
     description: "Recambios y equipamiento 4x4.",
     logo: null,
-    url: null,
+    url: "https://www.euro4x4parts.com",
     code: "CUBERO",
+    story: "Nos acompaña desde el minuto uno. Confió en el proyecto cuando era un Pajero de 1989 y un dorsal en Jaén, y sigue a nuestro lado en cada carrera.",
   },
-  { id: "metal-lube", name: "Metal Lube", tier: "oficial", description: "Lubricación y tratamientos.", logo: null, url: null },
+  { id: "metal-lube", name: "Metal Lube", tier: "oficial", description: "Lubricación y tratamientos antifricción.", logo: null, url: null },
+  { id: "fullcarx", name: "Full Carx", tier: "colaborador", description: "Limpieza y detailing.", logo: null, url: "https://fullcarx.com", code: "CUBERO" },
+  { id: "kingbolen", name: "Kingbolen", tier: "colaborador", description: "Herramientas de diagnosis.", logo: null, url: null },
   {
     id: "giants",
-    name: "Giants Software · Farming Simulator 25",
+    name: "GIANTS Software",
     tier: "colaborador",
-    description: "Colaboración en contenido de simulación.",
-    logo: null,
+    description: "Partner program · Farming Simulator.",
+    logo: "/sponsors/giants-partner-long-black.svg",
     url: null,
   },
+  // Starlink no es patrocinador: es nuestro enlace de referido. Por eso va sin logo y enlaza a /starlink.
+  { id: "starlink", name: "Starlink", tier: "referido", description: "Conectividad a bordo · enlace de referido.", logo: null, url: "/starlink" },
   // Todo Racing Store: añadir solo como "colaborador comercial autorizado" cuando exista autorización por escrito.
 ];

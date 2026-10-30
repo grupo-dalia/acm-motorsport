@@ -1,19 +1,61 @@
-import { sponsors } from "@/content/motorsport";
+import Image from "next/image";
+import Link from "next/link";
+import { sponsors, type Sponsor } from "@/content/motorsport";
 import { cn } from "@/lib/utils";
 
-const tierLabel = { principal: "Patrocinador principal", oficial: "Patrocinador oficial", colaborador: "Colaborador" } as const;
+const tierLabel = { principal: "Patrocinador principal", oficial: "Patrocinador oficial", colaborador: "Colaborador", referido: "Lo llevamos en el techo" } as const;
 
-/** Lista sobria de patrocinadores. Los logos entran cuando estén los archivos originales. */
-export function SponsorsList({ className, divider = "border-line-dark" }: { className?: string; divider?: string }) {
+function Mark({ s, big = false }: { s: Sponsor; big?: boolean }) {
+  if (s.logo)
+    return (
+      <span className={cn("relative block w-full", big ? "h-24 max-w-[22rem]" : "h-16 max-w-[11rem]")}>
+        <Image src={s.logo} alt={s.name} fill sizes={big ? "352px" : "176px"} className="object-contain object-left" />
+      </span>
+    );
+  return <span className={cn("font-[family-name:var(--font-display)] font-[720] leading-none tracking-[-0.03em] [font-stretch:110%]", big ? "text-[clamp(2.4rem,6vw,4.5rem)]" : "text-[1.6rem]")}>{s.name}</span>;
+}
+
+/** Patrocinador principal destacado y el resto como muro de marcas. */
+export function SponsorsList({ className }: { className?: string; divider?: string }) {
+  const [main, ...rest] = sponsors;
   return (
-    <ul className={cn("border-t", divider, className)}>
-      {sponsors.map((s) => (
-        <li key={s.id} className={cn("grid gap-2 border-b py-6 md:grid-cols-12 md:items-baseline", divider)}>
-          <p className="t-title md:col-span-6">{s.name}</p>
-          <p className="opacity-60 md:col-span-3">{tierLabel[s.tier]}</p>
-          <p className="md:col-span-3 md:text-right">{s.code ? <>Código de descuento <strong className="font-semibold tracking-wide">{s.code}</strong></> : <span className="opacity-60">{s.description}</span>}</p>
-        </li>
-      ))}
-    </ul>
+    <div className={className}>
+      {main && (
+        <div className="grid gap-8 rounded-[8px] bg-ink p-8 text-paper sm:p-12 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="t-small text-paper/60">{tierLabel[main.tier]} · desde 2024</p>
+            <div className="mt-6"><Mark s={main} big /></div>
+          </div>
+          <div className="lg:col-span-5">
+            {main.story && <p className="t-lead text-paper/80">{main.story}</p>}
+            <div className="mt-6 flex flex-wrap items-center gap-6">
+              {main.url && <a href={main.url} target="_blank" rel="noopener sponsored" className="link-u">{main.url.replace(/^https?:\/\/(www\.)?/, "")}</a>}
+              {main.code && <span>Código <strong className="tracking-wide">{main.code}</strong></span>}
+            </div>
+          </div>
+        </div>
+      )}
+      <ul className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-5">
+        {rest.map((s) => {
+          const body = (
+            <>
+              <span className="flex min-h-16 items-center"><Mark s={s} /></span>
+              <span className="mt-6 block t-small opacity-60">{tierLabel[s.tier]}</span>
+              <span className="mt-1 block t-small">{s.description}{s.code ? <> · código <strong className="tracking-wide">{s.code}</strong></> : null}</span>
+            </>
+          );
+          const cls = "flex h-full flex-col justify-between rounded-[8px] bg-mist p-6 text-ink transition-colors";
+          return (
+            <li key={s.id}>
+              {s.url ? (
+                s.url.startsWith("/") ? <Link href={s.url} className={cn(cls, "hover:bg-[#dde2ea]")}>{body}</Link> : <a href={s.url} target="_blank" rel="noopener sponsored" className={cn(cls, "hover:bg-[#dde2ea]")}>{body}</a>
+              ) : (
+                <div className={cls}>{body}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
