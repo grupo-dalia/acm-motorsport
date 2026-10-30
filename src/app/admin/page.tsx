@@ -110,7 +110,7 @@ export default async function AdminPage() {
         <Section title="Afiliados (30 días)" empty={false} emptyText="">
           <dl className="border-t border-line-dark">
             {affiliates.map((a) => (
-              <div key={a.id} className="flex justify-between border-b border-line-dark py-3"><dt>{a.name}</dt><dd className="tnum font-medium">{clicksBy.get(a.id) ?? 0} clics</dd></div>
+              <div key={a.id} className="flex justify-between border-b border-line-dark py-3"><dt>{a.name}</dt><dd className="tnum font-medium">{clicksBy.get(a.id) ?? 0} {clicksBy.get(a.id) === 1 ? "clic" : "clics"}</dd></div>
             ))}
           </dl>
           {topPages.length > 0 && (
