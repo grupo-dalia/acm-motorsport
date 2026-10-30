@@ -1,4 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
+import { TEAM_INBOX, html, layout, sendEmail } from "@/lib/email";
+import { absoluteUrl } from "@/lib/site";
 import { contactSchema } from "@/domain/contact";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { db } from "@/lib/supabase/service";
@@ -19,5 +21,20 @@ export async function POST(req: Request) {
     console.error("[contact]", error.message);
     return NextResponse.json({ ok: false, message: "No se ha podido enviar. Prueba en un rato o escríbenos por Instagram." }, { status: 500 });
   }
+  after(() =>
+    sendEmail({
+      to: TEAM_INBOX,
+      replyTo: email,
+      subject: `Web · ${topic}: ${name}${company ? ` (${company})` : ""}`,
+      html: layout({
+        title: `Nuevo mensaje: ${topic}`,
+        intro: `${name}${company ? ` · ${company}` : ""} · ${email}`,
+        body: `<p style="white-space:pre-line;margin:0">${html.esc(message)}</p>`,
+        cta: { href: absoluteUrl("/admin"), label: "Abrir el panel" },
+        foot: "Responde a este correo y le llega directamente a quien te ha escrito.",
+      }),
+      text: `${name}${company ? ` (${company})` : ""} <${email}> · ${topic}\n\n${message}`,
+    }),
+  );
   return NextResponse.json({ ok: true, message: "Mensaje recibido. Te contestamos lo antes posible." });
 }

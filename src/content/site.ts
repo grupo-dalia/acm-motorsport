@@ -11,7 +11,7 @@ export const site = {
   description:
     "Plataforma oficial de ACM Motorsport: el proyecto de rally todoterreno de Andrés Cubero Moreno con un Mitsubishi Pajero MK1 de 1989, la serie documental Objetivo Dakar, ACM Workshop, ACM Sim Racing y la tienda oficial.",
   locale: "es_ES",
-  email: "hola@example.com", // TODO: sustituir por el correo real de contacto
+  email: "hola@acmmotorsport.com", // reenviado al Gmail de Andrés con Cloudflare Email Routing
   // Verificar URLs antes de producción
   social: [
     { label: "Instagram", href: "https://www.instagram.com/andrescuberomoreno/" },

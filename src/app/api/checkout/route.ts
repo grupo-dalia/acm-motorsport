@@ -1,4 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
+import { TEAM_INBOX, html, layout, sendEmail } from "@/lib/email";
+import { formatPrice } from "@/lib/format";
 import { checkoutRequestSchema } from "@/domain/checkout";
 import { CheckoutError, createDraftOrder, paymentsProvider } from "@/integrations/commerce";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
@@ -31,6 +33,23 @@ export async function POST(req: Request) {
       successUrl: absoluteUrl("/checkout/exito"),
       cancelUrl: absoluteUrl("/carrito"),
     });
+    if (!replayed) {
+      // Aviso al equipo. En modo demo NO se escribe al cliente (cualquiera podría poner un email ajeno);
+      // la confirmación al cliente se enviará tras el pago verificado (Fase 4).
+      after(() =>
+        sendEmail({
+          to: TEAM_INBOX,
+          subject: `${order.mode === "demo" ? "[Prueba] " : ""}Pedido ${order.id} · ${formatPrice(order.totals.totalCents)}`,
+          html: layout({
+            title: `${order.mode === "demo" ? "Pedido de prueba" : "Nuevo pedido"} ${order.id}`,
+            intro: `${order.customer.name} · ${order.customer.email} · ${order.customer.city}`,
+            body: `<ul style="margin:0;padding-left:18px">${order.totals.lines.map((l) => `<li>${l.qty}× ${html.esc(l.name)}${l.variantLabel ? ` · ${html.esc(l.variantLabel)}` : ""}</li>`).join("")}</ul><p style="margin:12px 0 0"><strong>Total: ${formatPrice(order.totals.totalCents)}</strong></p>`,
+            cta: { href: absoluteUrl("/admin"), label: "Ver en el panel" },
+          }),
+          text: `Pedido ${order.id} · ${order.customer.name} · ${formatPrice(order.totals.totalCents)}`,
+        }),
+      );
+    }
     return NextResponse.json({ ok: true, orderId: order.id, mode: order.mode, replayed, redirectUrl, totalCents: order.totals.totalCents });
   } catch (e) {
     if (e instanceof CheckoutError) return NextResponse.json({ ok: false, message: e.message }, { status: 409 });
