@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
-import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -26,7 +25,6 @@ export default function SimRacingPage() {
         title="La pista que nunca cierra."
         lead="Simulación para entrenar reflejos, navegación y estrategia, y para disfrutar en directo con la comunidad."
         crumbs={[{ label: "Sim Racing", href: "/sim-racing" }]}
-        media={<MediaPlaceholder label="Cockpit ACM Sim Racing con las pantallas encendidas" tone="dust" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />}
       />
 
       <section className="on-paper py-24 lg:py-36" aria-labelledby="cockpit">
@@ -35,14 +33,17 @@ export default function SimRacingPage() {
             <h2 id="cockpit" className="t-display">El setup</h2>
             <p className="t-lead mt-6 text-slate">Diseño y construcción del puesto de simulación, documentado en vídeo de principio a fin. Los enlaces a productos serán de afiliación y estarán señalados.</p>
           </div>
-          <dl className="border-t border-line-dark lg:col-span-6 lg:col-start-7">
-            {gear.map(([k, v]) => (
+          <div className="lg:col-span-6 lg:col-start-7">
+          <dl className="border-t border-line-dark">
+            {gear.filter(([, v]) => v).map(([k, v]) => (
               <div key={k} className="grid grid-cols-5 gap-4 border-b border-line-dark py-4">
                 <dt className="col-span-2 text-slate">{k}</dt>
-                <dd className={v ? "col-span-3" : "col-span-3 text-slate/70"}>{v ?? "Por confirmar"}</dd>
+                <dd className="col-span-3">{v}</dd>
               </div>
             ))}
           </dl>
+          <p className="pt-4 text-slate">El resto del equipo aparecerá aquí cuando el cockpit esté terminado.</p>
+          </div>
         </Container>
       </section>
 

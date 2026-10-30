@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Marco de imagen. Con `src` muestra la foto real (next/image, AVIF/WebP automático);
- * sin `src`, un marco pendiente con el mismo aspecto y un pie que dice qué foto va ahí.
+ * sin `src`, un fondo decorativo de marca (curvas de nivel), sin textos de "pendiente" a la vista.
  */
 export function MediaPlaceholder({
   label,
@@ -38,10 +38,24 @@ export function MediaPlaceholder({
     light: "bg-[linear-gradient(160deg,#eef1f5_0%,#dfe4ec_100%)] text-ink",
   }[tone];
   return (
-    <div className={cn("grain reveal-clip relative isolate overflow-hidden", bg, className)}>
-      <p className="absolute bottom-4 left-4 right-4 t-small opacity-60">
-        {kind} pendiente · {label}
-      </p>
+    <div className={cn("grain reveal-clip relative isolate overflow-hidden", bg, className)} aria-hidden data-pending={`${kind}: ${label}`}>
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full opacity-[0.14]">
+        <g fill="none" stroke="currentColor" strokeWidth="1">
+          {CONTOURS.map((d, i) => <path key={i} d={d} />)}
+        </g>
+      </svg>
+      <span className="absolute bottom-4 left-4 font-[family-name:var(--font-display)] text-[1.05rem] font-[680] tracking-[-0.03em] opacity-35 [font-stretch:125%]">ACM</span>
     </div>
   );
 }
+
+/** Curvas de nivel generadas una vez (deterministas): dunas vistas desde arriba. */
+const CONTOURS = Array.from({ length: 11 }, (_, i) => {
+  const r = 24 + i * 22;
+  const pts = Array.from({ length: 72 }, (_, k) => {
+    const a = (k / 72) * Math.PI * 2;
+    const wob = 1 + 0.12 * Math.sin(a * 3 + i * 0.7) + 0.06 * Math.cos(a * 5 - i);
+    return [290 + Math.cos(a) * r * 1.35 * wob, 120 + Math.sin(a) * r * wob] as const;
+  });
+  return "M" + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(" L") + " Z";
+});

@@ -35,7 +35,6 @@ export default function MotorsportPage() {
           <div className="prose-acm text-lg text-slate lg:col-span-6 lg:col-start-7">
             <p>ACM Motorsport nace de un taller donde se cruzan la mecánica, el metal, la madera y la electrónica. De ahí sale un coche de competición con alma de clásico: un Mitsubishi Pajero MK1 de 1989.</p>
             <p>La hoja de ruta es pública: una temporada de base en regularidad, el salto al Campeonato de España de Rallyes TT y al Rallye du Maroc, y el Dakar en 2028. Cada paso se cuenta en la serie Objetivo Dakar.</p>
-            <p className="t-small">Texto provisional, pendiente de la versión de Andrés.</p>
           </div>
         </Container>
       </section>
@@ -44,10 +43,10 @@ export default function MotorsportPage() {
         <Container>
           <h2 id="equipo" className="t-display">Tripulación</h2>
           <ul className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6">
-            {crew.map((m) => (
+            {crew.filter((m) => m.name).map((m) => (
               <li key={m.role}>
                 <MediaPlaceholder label={m.name ?? m.role} src={m.name ? "/media/andres-retrato-gorra.jpg" : undefined} position="50% 30%" sizes="(min-width:768px) 33vw, 100vw" tone={m.name ? "night" : "light"} className="aspect-[4/5]" />
-                <p className="t-sub mt-5">{m.name ?? "Por confirmar"}</p>
+                <p className="t-sub mt-5">{m.name}</p>
                 <p className="mt-1 text-slate">{m.role}</p>
                 {m.bio && <p className="mt-3 max-w-[40ch] t-small text-slate">{m.bio}</p>}
               </li>
@@ -63,14 +62,14 @@ export default function MotorsportPage() {
             <p className="t-lead mt-6 text-paper/70">Azul medianoche, Starlink en el techo y un tripmaster diseñado en el taller.</p>
           </div>
           <div className="space-y-12 lg:col-span-7 lg:col-start-6">
-            {groups.map((g) => (
+            {groups.filter((g) => vehicleSpecs.some((s) => s.group === g && s.value)).map((g) => (
               <div key={g}>
                 <h3 className="t-sub">{g}</h3>
                 <dl className="mt-4 border-t border-line">
-                  {vehicleSpecs.filter((s) => s.group === g).map((s) => (
+                  {vehicleSpecs.filter((s) => s.group === g && s.value).map((s) => (
                     <div key={s.label} className="grid grid-cols-5 gap-4 border-b border-line py-4">
                       <dt className="col-span-2 text-steel">{s.label}</dt>
-                      <dd className={s.value ? "col-span-3" : "col-span-3 text-steel"}>{s.value ?? "Por confirmar"}</dd>
+                      <dd className="col-span-3">{s.value}</dd>
                     </div>
                   ))}
                 </dl>
@@ -96,7 +95,7 @@ export default function MotorsportPage() {
                     <td className="py-4 pr-4 tnum">{e.season}</td>
                     <td className="py-4 pr-4 font-medium">{e.name}</td>
                     <td className="py-4 pr-4 text-paper/70">{e.date ? formatDate(e.date) : statusText[e.status]}</td>
-                    <td className="py-4 text-paper/70">{e.location ?? "Por confirmar"}</td>
+                    <td className="py-4 text-paper/70">{e.location ?? "—"}</td>
                   </tr>
                 ))}
               </tbody>
