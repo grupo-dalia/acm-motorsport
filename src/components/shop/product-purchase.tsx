@@ -6,6 +6,7 @@ import type { Product } from "@/domain/catalog";
 import { findVariant, fulfillmentLabels } from "@/domain/catalog";
 import { MAX_QTY } from "@/domain/cart";
 import { ProductArt } from "./product-art";
+import { ProductVisual } from "./product-visual";
 import { useCart } from "./cart-provider";
 import { Button } from "@/components/ui/button";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
@@ -33,16 +34,19 @@ export function ProductPurchase({ product }: { product: Product }) {
     setOpen(true);
   }
 
-  const views = [
+  const photos = product.images?.[color?.id ?? ""] ?? Object.values(product.images ?? {})[0] ?? [];
+  const views = photos.length
+    ? photos.map((_, i) => ({ label: i === 0 ? "Producto" : `Vista ${i + 1}`, node: <ProductVisual product={product} colorId={color?.id} index={i} priority={i === 0} sizes="(min-width: 1024px) 58vw, 100vw" className="h-full w-full" /> }))
+    : [
     { label: "Diseño", node: <ProductArt kind={product.art.kind} print={product.art.print} color={color?.hex ?? "#111"} className="h-full w-full" /> },
     { label: "Foto de producto", node: <MediaPlaceholder tone="light" label={`${product.name}, foto de producto`} className="h-full w-full" /> },
     { label: "En uso", node: <MediaPlaceholder label={`${product.name} en el taller o en carrera`} className="h-full w-full" /> },
-  ];
+      ];
 
   return (
     <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
       <div className="lg:col-span-7">
-        <div className="aspect-[4/5] overflow-hidden rounded-[6px]">{views[view]!.node}</div>
+        <div className="aspect-[4/5] overflow-hidden rounded-[6px]">{views[Math.min(view, views.length - 1)]!.node}</div>
         <div className="mt-4 flex gap-2" role="tablist" aria-label="Imágenes del producto">
           {views.map((v, i) => (
             <button key={v.label} type="button" role="tab" aria-selected={view === i} onClick={() => setView(i)} className={cn("rounded-full px-4 py-2 t-small font-medium transition-colors", view === i ? "bg-ink text-paper" : "bg-mist text-slate hover:text-ink")}>

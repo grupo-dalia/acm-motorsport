@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "i.ytimg.com" },
       { protocol: "https", hostname: "files.cdn.printful.com" },
+      { protocol: "https", hostname: "*.printful.com" },
+      { protocol: "https", hostname: "printful-upload.s3-accelerate.amazonaws.com" },
       { protocol: "https", hostname: "*.supabase.co" },
     ],
   },

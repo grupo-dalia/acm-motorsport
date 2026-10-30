@@ -71,6 +71,8 @@ export type Product = {
   affiliate: { partner: string; url: string | null; disclosure: string } | null;
   /** true = producto de demostración, no está a la venta. */
   demo: boolean;
+  /** Fotos reales por color (maquetas de Printful). Sin fotos se dibuja la ilustración de `art`. */
+  images?: Record<string, string[]> | null;
 };
 
 export function buildVariants(p: Pick<Product, "id" | "colors" | "sizes" | "priceCents">, unavailable: string[] = []): Variant[] {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/domain/catalog";
 import { fulfillmentLabels } from "@/domain/catalog";
-import { ProductArt } from "./product-art";
+import { ProductVisual } from "./product-visual";
 import { formatPrice } from "@/lib/format";
 import { Tilt } from "@/components/ui/tilt";
 
@@ -12,7 +12,7 @@ export function ProductCard({ product, headingLevel = 3 }: { product: Product; p
     <article className="group relative">
       <Link href={`/tienda/${product.slug}`} className="block">
             <Tilt className="overflow-hidden rounded-[6px] shadow-[0_1px_2px_rgb(8_10_15/0.06)] transition-shadow duration-500 group-hover:shadow-[0_24px_48px_-16px_rgb(8_10_15/0.35)]">
-        <ProductArt kind={product.art.kind} print={product.art.print} color={first?.hex ?? "#111"} className="aspect-[4/5]" />
+        <ProductVisual product={product} colorId={first?.id} className="aspect-[4/5]" />
       </Tilt>
       <div className="mt-4 flex items-baseline justify-between gap-3">
         {headingLevel === 2 ? <h2 className="font-medium">{product.name}</h2> : <h3 className="font-medium">{product.name}</h3>}

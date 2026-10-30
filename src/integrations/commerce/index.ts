@@ -3,22 +3,39 @@ import { serverEnv, effectiveCommerceMode } from "@/lib/env";
 import { priceCart, type Cart } from "@/domain/cart";
 import { demoCatalog } from "./demo-catalog";
 import { PrintfulFulfillment } from "./printful";
+import { fetchPrintfulCatalog } from "./printful-catalog";
 import { DemoPayments } from "../payments/demo";
 import type { CatalogProvider, Customer, DraftOrder } from "./types";
+import type { Product } from "@/domain/catalog";
 import { db } from "@/lib/supabase/service";
 
-/** Catálogo activo. Fase 1–2: demo. Fase 4: Supabase (sincronizado desde Printful). */
-const demoCatalogProvider: CatalogProvider = {
-  id: "demo",
-  async listProducts() {
-    return demoCatalog;
+/**
+ * Con PRINTFUL_API_KEY y al menos un producto creado en Printful, la tienda muestra el catálogo real.
+ * Si Printful no responde o aún no hay productos, se queda el catálogo demo.
+ */
+let lastGood: Product[] | null = null;
+async function liveProducts(): Promise<Product[]> {
+  if (!serverEnv.PRINTFUL_API_KEY) return demoCatalog;
+  try {
+    const items = await fetchPrintfulCatalog(serverEnv.PRINTFUL_API_KEY, serverEnv.PRINTFUL_STORE_ID);
+    if (items.length) lastGood = items;
+    return items.length ? items : demoCatalog;
+  } catch (e) {
+    console.error("[printful] catálogo", e instanceof Error ? e.message : e);
+    return lastGood ?? demoCatalog;
+  }
+}
+
+export const catalog: CatalogProvider = {
+  get id() {
+    return serverEnv.PRINTFUL_API_KEY ? "printful" : "demo";
   },
+  listProducts: liveProducts,
   async getProductBySlug(slug) {
-    return demoCatalog.find((p) => p.slug === slug) ?? null;
+    return (await liveProducts()).find((p) => p.slug === slug) ?? null;
   },
 };
 
-export const catalog: CatalogProvider = demoCatalogProvider;
 export const fulfillment = new PrintfulFulfillment(serverEnv.PRINTFUL_API_KEY, serverEnv.PRINTFUL_STORE_ID);
 
 export function paymentsProvider() {

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Minus, Plus } from "lucide-react";
 import { useCart } from "./cart-provider";
-import { ProductArt } from "./product-art";
+import { ProductVisual } from "./product-visual";
 import { formatPrice } from "@/lib/format";
 import { SHIPPING_RULES } from "@/domain/cart";
 import { buttonVariants } from "@/components/ui/button";
@@ -63,7 +63,7 @@ export function CartDrawer() {
                     const color = product?.colors.find((c) => c.id === product.variants.find((v) => v.id === line.variantId)?.colorId);
                     return (
                       <li key={line.variantId} className="flex gap-4">
-                        {product && <ProductArt kind={product.art.kind} print={product.art.print} color={color?.hex ?? "#111"} className="size-24 shrink-0 rounded-[4px]" showDemoTag={false} />}
+                        {product && <ProductVisual product={product} colorId={color?.id} sizes="144px" className="size-24 shrink-0 rounded-[4px]" showDemoTag={false} />}
                         <div className="flex min-w-0 flex-1 flex-col">
                           <div className="flex justify-between gap-3">
                             <Link href={`/tienda/${line.slug}`} onClick={() => setOpen(false)} className="font-medium hover:underline">{line.name}</Link>
