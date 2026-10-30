@@ -5,6 +5,7 @@ import { demoCatalog } from "./demo-catalog";
 import { PrintfulFulfillment } from "./printful";
 import { DemoPayments } from "../payments/demo";
 import type { CatalogProvider, Customer, DraftOrder } from "./types";
+import { db } from "@/lib/supabase/service";
 
 /** Catálogo activo. Fase 1–2: demo. Fase 4: Supabase (sincronizado desde Printful). */
 const demoCatalogProvider: CatalogProvider = {
@@ -32,7 +33,7 @@ export function paymentsProvider() {
 const ordersByKey = new Map<string, DraftOrder>();
 
 export async function createDraftOrder(cart: Cart, customer: Customer, idempotencyKey: string) {
-  const existing = ordersByKey.get(idempotencyKey);
+  const existing = ordersByKey.get(idempotencyKey) ?? (await findStoredOrder(idempotencyKey));
   if (existing) return { order: existing, replayed: true as const };
 
   const totals = priceCart(cart, await catalog.listProducts());
@@ -51,7 +52,68 @@ export async function createDraftOrder(cart: Cart, customer: Customer, idempoten
     mode: effectiveCommerceMode(),
   };
   ordersByKey.set(idempotencyKey, order);
+  const replayedFromDb = await storeOrder(order);
+  if (replayedFromDb) return { order: replayedFromDb, replayed: true as const };
   return { order, replayed: false as const };
+}
+
+/** Pedido ya guardado con esa clave de idempotencia (si hay base de datos). */
+async function findStoredOrder(idempotencyKey: string): Promise<DraftOrder | null> {
+  const supa = db();
+  if (!supa) return null;
+  const { data } = await supa.from("orders").select("reference, created_at, status, mode, email, customer_name, customer_phone, shipping_address, subtotal_cents, discount_cents, shipping_cents, total_cents").eq("idempotency_key", idempotencyKey).maybeSingle();
+  if (!data) return null;
+  const addr = data.shipping_address as Customer;
+  return {
+    id: data.reference,
+    idempotencyKey,
+    createdAt: data.created_at,
+    status: data.status,
+    mode: data.mode,
+    customer: { ...addr, email: data.email },
+    totals: { lines: [], subtotalCents: data.subtotal_cents, discountCents: data.discount_cents, shippingCents: data.shipping_cents, totalCents: data.total_cents, coupon: null },
+  };
+}
+
+/**
+ * Guarda el pedido y sus líneas. La restricción UNIQUE(idempotency_key) evita duplicados
+ * aunque lleguen dos peticiones a la vez: si choca, devolvemos el pedido que ya existía.
+ */
+async function storeOrder(order: DraftOrder): Promise<DraftOrder | null> {
+  const supa = db();
+  if (!supa) return null;
+  const { customer: c, totals: t } = order;
+  const { data, error } = await supa
+    .from("orders")
+    .insert({
+      reference: order.id,
+      idempotency_key: order.idempotencyKey,
+      status: order.status,
+      mode: order.mode,
+      email: c.email.toLowerCase(),
+      customer_name: c.name,
+      customer_phone: c.phone ?? null,
+      shipping_address: c,
+      subtotal_cents: t.subtotalCents,
+      discount_cents: t.discountCents,
+      shipping_cents: t.shippingCents,
+      total_cents: t.totalCents,
+      payment_provider: order.mode === "demo" ? "demo" : "stripe",
+    })
+    .select("id")
+    .single();
+  if (error) {
+    if (error.code === "23505") return findStoredOrder(order.idempotencyKey);
+    console.error("[orders] no se ha podido guardar", error.message);
+    return null; // el pedido sigue adelante; queda en el registro del servidor
+  }
+  const items = t.lines.map((l) => ({ order_id: data.id, sku: l.variantId, name: [l.name, l.variantLabel].filter(Boolean).join(" · "), qty: l.qty, unit_cents: l.unitCents, fulfillment: l.fulfillment }));
+  if (items.length) {
+    const { error: e2 } = await supa.from("order_items").insert(items);
+    if (e2) console.error("[orders] líneas", e2.message);
+  }
+  await supa.from("order_events").insert({ order_id: data.id, type: "status_change", payload: { to: order.status, coupon: t.coupon?.code ?? null }, actor: "system" });
+  return null;
 }
 
 export class CheckoutError extends Error {}
