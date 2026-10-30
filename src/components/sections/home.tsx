@@ -183,7 +183,7 @@ export function ShopSection({ products }: { products: Product[] }) {
         <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
           {products.slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
         </div>
-        <p className="mt-10 t-small text-slate">Tienda en pruebas: productos y precios de ejemplo. No se realizan cobros.</p>
+        <p className="mt-10 t-small text-slate">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>
       </Container>
     </section>
   );

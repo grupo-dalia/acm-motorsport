@@ -44,7 +44,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SP }) {
   return (
     <>
       <PageHero tone="paper" title="Tienda" lead="Ropa y accesorios del equipo. Cada pedido empuja el coche un poco más cerca de la salida." crumbs={[{ label: "Tienda", href: "/tienda" }]}>
-        <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: productos y precios de ejemplo. No se realiza ningún cobro.</p>
+        <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>
       </PageHero>
 
       <section className="on-paper pb-24 lg:pb-36">

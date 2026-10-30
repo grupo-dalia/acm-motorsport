@@ -9,7 +9,7 @@ export function ProductVisual({ product, colorId, index = 0, className, sizes = 
   const src = product.images?.[color?.id ?? ""]?.[index] ?? Object.values(product.images ?? {})[0]?.[index];
   if (src)
     return (
-      <div className={cn("relative overflow-hidden bg-[#eef1f5]", className)}>
+      <div className={cn("relative overflow-hidden bg-white", className)}>
         <Image src={src} alt={`${product.name}${color ? `, ${color.name}` : ""}`} fill sizes={sizes} priority={priority} className="object-contain" />
       </div>
     );
