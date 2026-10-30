@@ -14,14 +14,20 @@ import { db } from "@/lib/supabase/service";
  * Si Printful no responde o aún no hay productos, se queda el catálogo demo.
  */
 let lastGood: Product[] | null = null;
+/** Último resultado de Printful, para /api/status (sin secretos). */
+export const printfulHealth: { ok: boolean | null; products: number; error: string | null } = { ok: null, products: 0, error: null };
+
 async function liveProducts(): Promise<Product[]> {
   if (!serverEnv.PRINTFUL_API_KEY) return demoCatalog;
   try {
     const items = await fetchPrintfulCatalog(serverEnv.PRINTFUL_API_KEY, serverEnv.PRINTFUL_STORE_ID);
+    Object.assign(printfulHealth, { ok: true, products: items.length, error: null });
     if (items.length) lastGood = items;
     return items.length ? items : demoCatalog;
   } catch (e) {
-    console.error("[printful] catálogo", e instanceof Error ? e.message : e);
+    const msg = e instanceof Error ? e.message : String(e);
+    Object.assign(printfulHealth, { ok: false, error: msg.replace(/Bearer\s+\S+/g, "").slice(0, 160) });
+    console.error("[printful] catálogo", msg);
     return lastGood ?? demoCatalog;
   }
 }

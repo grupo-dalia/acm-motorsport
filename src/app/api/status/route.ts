@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-import { integrationStatus } from "@/integrations/commerce";
+import { catalog, integrationStatus, printfulHealth } from "@/integrations/commerce";
 
-/** Estado de integraciones (sin secretos). Útil para monitorización y para el futuro dashboard. */
+export const dynamic = "force-dynamic";
+
+/** Estado de integraciones (sin secretos). Útil para monitorización y para el panel. */
 export async function GET() {
-  return NextResponse.json({ ok: true, ...integrationStatus() });
+  const products = await catalog.listProducts();
+  return NextResponse.json({ ok: true, ...integrationStatus(), shop: { products: products.length, demo: products.every((p) => p.demo) }, printful: printfulHealth });
 }
