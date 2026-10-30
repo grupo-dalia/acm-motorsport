@@ -26,7 +26,7 @@ export default function MotorsportPage() {
         title="Un equipo independiente."
         lead="Piloto, mecánico y productor en la misma persona. Un Pajero de 1989 preparado en casa para regularidad y rally raid."
         crumbs={[{ label: "Motorsport", href: "/motorsport" }]}
-        media={<MediaPlaceholder label="Andrés en el taller, con la pared de Euro4x4parts y Metal Lube" src="/media/taller-euro4x4parts.jpg" position="50% 35%" priority className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />}
+        media={<MediaPlaceholder label="El Pajero cruzando un vado en el Clàssic Raid La Garrotxa" src="/media/garrotxa-vadeo.jpg" position="55% 45%" priority className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />}
       />
 
       <section className="on-paper py-24 lg:py-36" aria-labelledby="historia">
@@ -45,7 +45,7 @@ export default function MotorsportPage() {
           <ul className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6">
             {crew.filter((m) => m.name).map((m) => (
               <li key={m.role}>
-                <MediaPlaceholder label={m.name ?? m.role} src={m.name ? "/media/andres-retrato-gorra.jpg" : undefined} position="50% 30%" sizes="(min-width:768px) 33vw, 100vw" tone={m.name ? "night" : "light"} className="aspect-[4/5]" />
+                <MediaPlaceholder label={m.name ?? m.role} src={m.image ?? undefined} position={m.imagePosition ?? "50% 30%"} sizes="(min-width:768px) 33vw, 100vw" tone={m.name ? "night" : "light"} className="aspect-[4/5]" />
                 <p className="t-sub mt-5">{m.name}</p>
                 <p className="mt-1 text-slate">{m.role}</p>
                 {m.bio && <p className="mt-3 max-w-[40ch] t-small text-slate">{m.bio}</p>}
@@ -59,7 +59,7 @@ export default function MotorsportPage() {
         <Container className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 id="vehiculo-title" className="t-display">Mitsubishi Pajero MK1, 1989</h2>
-            <p className="t-lead mt-6 text-paper/70">Azul medianoche, Starlink en el techo y un tripmaster diseñado en el taller.</p>
+            <p className="t-lead mt-6 text-paper/70">Batalla larga, motor 4D56, Starlink en el techo y un tripmaster diseñado en el taller.</p>
           </div>
           <div className="space-y-12 lg:col-span-7 lg:col-start-6">
             {groups.filter((g) => vehicleSpecs.some((s) => s.group === g && s.value)).map((g) => (
@@ -127,11 +127,11 @@ export default function MotorsportPage() {
         <Container>
           <h2 id="galeria" className="t-display">En el tramo</h2>
           <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2">
-            <MediaPlaceholder label="El Pajero levantando polvo en La Garrotxa" src="/media/pajero-polvo-garrotxa.jpg" position="62% 60%" sizes="(min-width:768px) 50vw, 100vw" className="col-span-2 row-span-2 aspect-square md:aspect-auto" />
+            <MediaPlaceholder label="El Pajero en tramo en el Clàssic Raid La Garrotxa" src="/media/garrotxa-pajero-tramo.jpg" position="55% 55%" sizes="(min-width:768px) 50vw, 100vw" className="col-span-2 row-span-2 aspect-square md:aspect-auto" />
+            <MediaPlaceholder label="Andrés pegando el dorsal 16 en La Garrotxa" src="/media/garrotxa-dorsal-16.jpg" position="55% 40%" sizes="25vw" className="aspect-square" />
+            <MediaPlaceholder label="El Pajero levantando polvo junto a un cerro" src="/media/pajero-pista-montana.jpg" position="62% 60%" sizes="25vw" className="aspect-square" />
+            <MediaPlaceholder label="Salida del Rally TT Jaén Mar de Olivos 2024" src="/media/jaen-mar-de-olivos-2024-salida.jpg" position="50% 62%" sizes="25vw" className="aspect-square" />
             <MediaPlaceholder label="Andrés junto al dorsal 21 en Salou" src="/media/andres-dorsal-21-salou.jpg" position="45% 50%" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="Montando los liberadores AVM" src="/media/liberador-avm.jpg" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="Instalando el Starlink en el techo" src="/media/starlink-techo.jpg" position="40% 40%" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="Puesta a punto antes de la ITV" src="/media/taller-lampara-itv.jpg" position="60% 40%" sizes="25vw" className="aspect-square" />
           </div>
         </Container>
       </section>

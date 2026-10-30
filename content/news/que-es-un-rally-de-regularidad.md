@@ -2,8 +2,8 @@
 title: "Qué es un rally de regularidad y por qué no gana el más rápido"
 summary: "Medias impuestas, controles secretos y décimas de segundo: la disciplina con la que arranca el camino al Dakar, explicada desde dentro del coche."
 date: 2026-10-20
-image: "/media/andres-besalu-garrotxa.jpg"
-imageAlt: "Andrés Cubero antes de la salida del Rally de La Garrotxa"
+image: "/media/garrotxa-dorsal-16.jpg"
+imageAlt: "Andrés Cubero pegando el dorsal 16 en el Clàssic Raid La Garrotxa"
 category: rally-raid
 tags: [regularidad, tripmaster, copiloto]
 ---

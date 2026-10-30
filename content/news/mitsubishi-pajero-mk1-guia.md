@@ -2,8 +2,8 @@
 title: "Mitsubishi Pajero MK1 (1982-1991): historia, motores y qué mirar antes de comprar uno"
 summary: "El primer Pajero ganó el Dakar en 1985 y hoy es un clásico 4x4 barato y duro. Motores, versiones y los puntos débiles que hemos sufrido con el nuestro."
 date: 2026-10-30
-image: "/media/andres-dorsal-21-salou.jpg"
-imageAlt: "Andrés Cubero junto al Mitsubishi Pajero MK1 de 1989 con el dorsal 21"
+image: "/media/garrotxa-pajero-tramo.jpg"
+imageAlt: "El Mitsubishi Pajero MK1 de batalla larga de ACM Motorsport en tramo de tierra"
 category: taller
 tags: [mitsubishi pajero, pajero mk1, 4x4 clásico, guía de compra]
 sources:
@@ -27,8 +27,8 @@ Desde ahí Mitsubishi sumó **12 victorias** en el Dakar entre 1985 y 2007, siet
 
 ## Versiones y carrocerías
 
-- **Corto de 3 puertas**, con techo metálico o de lona: el original de 1982 y el que tenemos nosotros.
-- **Largo de 5 puertas**, que llegó en 1983 con varias alturas de techo.
+- **Corto de 3 puertas**, con techo metálico o de lona: el original de 1982.
+- **Largo de 5 puertas**, que llegó en 1983 con varias alturas de techo. El nuestro es de estos: un **L049** de batalla larga con el turbodiésel 4D56.
 
 Todas las versiones del MK1 tienen **tracción 4x4 conectable** (part-time): se circula en trasera y se mete la delantera cuando hace falta. El famoso Super Select llegó con la segunda generación, no con esta.
 

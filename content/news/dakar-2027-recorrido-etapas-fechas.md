@@ -2,8 +2,8 @@
 title: "Dakar 2027: recorrido, etapas y fechas del rally más largo de la era saudí"
 summary: "Del 1 al 15 de enero de 2027, con salida y llegada en KAEC, 5.320 km cronometrados, más arena y dos maratones. Te contamos etapa a etapa cómo será."
 date: 2026-10-29
-image: "/media/pajero-polvo-garrotxa.jpg"
-imageAlt: "El Mitsubishi Pajero MK1 de ACM Motorsport levantando polvo en el Rally de La Garrotxa"
+image: "/media/pajero-pista-montana.jpg"
+imageAlt: "El Mitsubishi Pajero MK1 de ACM Motorsport levantando polvo en una pista junto a un cerro"
 category: rally-raid
 tags: [dakar, dakar 2027, recorrido, arabia saudí]
 sources:

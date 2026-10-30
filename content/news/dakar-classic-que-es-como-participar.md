@@ -2,8 +2,8 @@
 title: "Dakar Classic: qué es, qué coches pueden correr y por qué es la puerta de entrada al Dakar"
 summary: "La categoría de clásicos del Dakar no va de correr más, sino de ir exacto: regularidad, navegación y coches de los 80 y 90. Así funciona."
 date: 2026-10-29
-image: "/media/pajero-cabina-navegacion.jpg"
-imageAlt: "Cabina del Pajero de 1989 con el equipo de navegación para regularidad"
+image: "/media/garrotxa-vadeo.jpg"
+imageAlt: "El Pajero de 1989 cruzando un vado en el Clàssic Raid La Garrotxa"
 category: rally-raid
 tags: [dakar classic, regularidad, coches clásicos, dakar]
 sources:

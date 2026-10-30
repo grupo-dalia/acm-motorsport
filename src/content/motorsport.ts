@@ -39,10 +39,11 @@ export type SpecRow = { label: string; value: string | null; group: "Vehículo" 
 
 /** Ficha técnica editable. `null` = pendiente de confirmar por el equipo. */
 export const vehicleSpecs: SpecRow[] = [
-  { group: "Vehículo", label: "Modelo", value: "Mitsubishi Pajero MK1" },
+  { group: "Vehículo", label: "Modelo", value: "Mitsubishi Pajero MK1 (L049)" },
+  { group: "Vehículo", label: "Carrocería", value: "Batalla larga, 5 puertas" },
   { group: "Vehículo", label: "Año", value: "1989" },
   { group: "Vehículo", label: "Uso", value: "Rally raid y regularidad" },
-  { group: "Vehículo", label: "Motor", value: null },
+  { group: "Vehículo", label: "Motor", value: "4D56 · 2.5 turbodiésel" },
   { group: "Vehículo", label: "Transmisión", value: null },
   { group: "Vehículo", label: "Peso en orden de marcha", value: null },
   { group: "Preparación", label: "Suspensión", value: null },
@@ -54,15 +55,22 @@ export const vehicleSpecs: SpecRow[] = [
   { group: "Electrónica", label: "Conectividad", value: "Starlink Mini en techo" },
 ];
 
-export type CrewMember = { role: string; name: string | null; bio: string | null };
+export type CrewMember = { role: string; name: string | null; bio: string | null; image?: string; imagePosition?: string };
 
 export const crew: CrewMember[] = [
   {
     role: "Piloto",
     name: "Andrés Cubero Moreno",
     bio: "Piloto de rally todoterreno, mecánico y creador de contenido. Prepara, repara y documenta el coche con el que compite.",
+    image: "/media/andres-retrato-gorra.jpg",
   },
-  { role: "Copiloto", name: null, bio: null },
+  {
+    role: "Copiloto",
+    name: "Uno distinto en cada carrera",
+    bio: "En 2026 el asiento de la derecha va rotando: cada prueba, alguien nuevo. Por qué lo hago así lo cuento en el capítulo 1 de Objetivo Dakar.",
+    image: "/media/garrotxa-pajero-tramo.jpg",
+    imagePosition: "52% 40%",
+  },
   { role: "Asistencia", name: null, bio: null },
 ];
 
@@ -76,7 +84,7 @@ export type CalendarEvent = {
 };
 
 export const calendar: CalendarEvent[] = [
-  { id: "occ-2026-garrotxa", name: "Off-Road Classic Cup · Rally de La Garrotxa", season: 2026, date: null, location: "Besalú (Girona)", status: "disputado" },
+  { id: "occ-2026-garrotxa", name: "Off-Road Classic Cup · II Clàssic Raid La Garrotxa", season: 2026, date: "2026-02-21", location: "Besalú (Girona)", status: "disputado" },
   { id: "occ-2026-salou", name: "Off-Road Classic Cup · Salou", season: 2026, date: null, location: "Salou (Tarragona)", status: "disputado" },
   { id: "certt-2027", name: "CERTT", season: 2027, date: null, location: null, status: "por-confirmar" },
   { id: "maroc-2027", name: "Rallye du Maroc", season: 2027, date: null, location: "Marruecos", status: "por-confirmar" },

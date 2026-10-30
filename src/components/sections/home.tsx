@@ -85,11 +85,11 @@ export function TheCar() {
   const shown = vehicleSpecs.filter((s) => s.value).slice(0, 6);
   return (
     <section className="bg-midnight pb-24 lg:pb-36" aria-labelledby="car-title">
-      <MediaPlaceholder label="El Mitsubishi Pajero levantando polvo en el Rally de La Garrotxa" src="/media/pajero-polvo-garrotxa.jpg" position="60% 42%" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />
+      <MediaPlaceholder label="El Mitsubishi Pajero levantando polvo en una pista entre campos de cereal" src="/media/pajero-pista-montana.jpg" position="55% 58%" className="aspect-[4/3] w-full sm:aspect-[21/9] lg:max-h-[78vh]" />
       <Container className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <h2 id="car-title" className="t-display">Mitsubishi Pajero, 1989</h2>
-          <p className="t-lead mt-6 max-w-[38ch] text-paper/70">Azul medianoche, Starlink en el techo y electrónica de navegación diseñada en el taller.</p>
+          <p className="t-lead mt-6 max-w-[38ch] text-paper/70">Negro, de batalla larga, con Starlink en el techo y electrónica de navegación diseñada en el taller.</p>
           <ButtonLink href="/motorsport#vehiculo" variant="text" className="mt-8">Ver la ficha técnica</ButtonLink>
         </div>
         <dl className="grid gap-x-8 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
