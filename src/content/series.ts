@@ -33,7 +33,7 @@ export const seasons: SeasonConfig[] = [
     number: 1,
     year: 2026,
     title: "La base",
-    synopsis: "Primera temporada completa con el Pajero de 1989: regularidad, un tripmaster hecho en el taller, Starlink en el techo y la Offroad Classic Cup.",
+    synopsis: "La vuelta a las carreras con el Pajero de 1989: la Off-Road Classic Cup de regularidad, un copiloto distinto en cada prueba, un tripmaster hecho en el taller y Starlink en el techo.",
     status: "emision",
     totalEpisodes: 10,
     releasedThrough: 6,

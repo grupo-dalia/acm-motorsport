@@ -7,24 +7,38 @@ export type RoadmapStage = {
   year: number;
   title: string;
   events: string[];
-  status: "en-curso" | "planificado" | "objetivo";
+  status: "hecho" | "en-curso" | "planificado" | "objetivo";
   note: string;
 };
 
 export const roadmap: RoadmapStage[] = [
   {
+    year: 2024,
+    title: "Debut",
+    events: ["CERTT"],
+    status: "hecho",
+    note: "Debut en el Campeonato de España de Rallyes TT con el Pajero: 5.º en el Rallye TT Jaén Mar de Olivos. Después, Lorca, Cierzo y Cuenca.",
+  },
+  {
+    year: 2025,
+    title: "Parón",
+    events: ["Sin carreras"],
+    status: "hecho",
+    note: "Un año sin competir. Por qué, lo cuento en el capítulo piloto de Objetivo Dakar.",
+  },
+  {
     year: 2026,
-    title: "Base",
-    events: ["Offroad Classic Cup"],
+    title: "Regularidad",
+    events: ["Off-Road Classic Cup"],
     status: "en-curso",
-    note: "Primera temporada completa con el Pajero MK1. Regularidad, kilómetros y aprendizaje.",
+    note: "La copa de regularidad sobre tierra de Classics Rent Services, en Cataluña. Cinco pruebas y un copiloto distinto en cada una.",
   },
   {
     year: 2027,
     title: "Salto internacional",
     events: ["CERTT", "Rallye du Maroc"],
     status: "planificado",
-    note: "Campeonato de España de Rallyes TT y la primera gran prueba africana.",
+    note: "Vuelta al Campeonato de España de Rallyes TT y la primera gran prueba africana.",
   },
   {
     year: 2028,
@@ -67,9 +81,9 @@ export const crew: CrewMember[] = [
   {
     role: "Copiloto",
     name: "Uno distinto en cada carrera",
-    bio: "En 2026 el asiento de la derecha va rotando: cada prueba, alguien nuevo. Por qué lo hago así lo cuento en el capítulo 1 de Objetivo Dakar.",
-    image: "/media/garrotxa-pajero-tramo.jpg",
-    imagePosition: "52% 40%",
+    bio: "En 2026 el asiento de la derecha va rotando: cada prueba, alguien nuevo. En La Garrotxa fue Anaïs Soriano, que se llevó el premio a la mejor debutante. Por qué lo hago así lo cuento en el capítulo 1 de Objetivo Dakar.",
+    image: "/media/anais-soriano-mejor-debutante.jpg",
+    imagePosition: "50% 35%",
   },
   { role: "Asistencia", name: null, bio: null },
 ];
@@ -84,17 +98,26 @@ export type CalendarEvent = {
 };
 
 export const calendar: CalendarEvent[] = [
+  // 2024 · CERTT (Campeonato de España de Rallyes Todo Terreno). Andrés corrió Jaén, Lorca, Cierzo y Cuenca.
+  { id: "certt-2024-jaen", name: "CERTT · VI Rallye TT Jaén Mar de Olivos", season: 2024, date: "2024-04-13", location: "Jaén", status: "disputado" },
+  { id: "certt-2024-lorca", name: "CERTT · Baja Lorca Ciudad del Sol", season: 2024, date: "2024-05-25", location: "Lorca (Murcia)", status: "disputado" },
+  { id: "certt-2024-cierzo", name: "CERTT · VI Cierzo Rally Ejército de Tierra", season: 2024, date: "2024-07-05", location: "Zaragoza", status: "disputado" },
+  { id: "certt-2024-cuenca", name: "CERTT · Rallye TT Cuenca", season: 2024, date: "2024-10-04", location: "Cuenca", status: "disputado" },
+  // 2026 · Off-Road Classic Cup (Classics Rent Services)
   { id: "occ-2026-garrotxa", name: "Off-Road Classic Cup · II Clàssic Raid La Garrotxa", season: 2026, date: "2026-02-21", location: "Besalú (Girona)", status: "disputado" },
-  { id: "occ-2026-salou", name: "Off-Road Classic Cup · Salou", season: 2026, date: null, location: "Salou (Tarragona)", status: "disputado" },
+  { id: "occ-2026-salou", name: "Off-Road Classic Cup · I Clàssic Raid Salou", season: 2026, date: "2026-04-11", location: "Salou (Tarragona)", status: "disputado" },
+  { id: "occ-2026-selva", name: "Off-Road Classic Cup · VII Clàssic Raid La Selva", season: 2026, date: "2026-05-09", location: "Arbúcies (Girona)", status: "disputado" },
+  { id: "occ-2026-emporda", name: "Off-Road Classic Cup · VII Clàssic Raid Alt Empordà", season: 2026, date: "2026-09-19", location: "Palau-saverdera (Girona)", status: "disputado" },
+  { id: "occ-2026-estany", name: "Off-Road Classic Cup · VII Clàssic Raid Pla de l'Estany", season: 2026, date: "2026-11-07", location: "Cornellà del Terri (Girona)", status: "confirmado" },
   { id: "certt-2027", name: "CERTT", season: 2027, date: null, location: null, status: "por-confirmar" },
   { id: "maroc-2027", name: "Rallye du Maroc", season: 2027, date: null, location: "Marruecos", status: "por-confirmar" },
   { id: "dakar-2028", name: "Dakar Rally", season: 2028, date: null, location: "Arabia Saudí", status: "por-confirmar" },
 ];
 
-/** Resultados: vacío hasta que haya clasificaciones oficiales. No inventar. */
-export const results: { event: string; date: string; category: string; position: string; source: string }[] = [
-  // Fuente provisional: el propio capítulo. Sustituir por la clasificación oficial cuando se tenga el enlace.
-  { event: "Rally de La Garrotxa · Off-Road Classic Cup", date: "2026", category: "Regularidad", position: "22.º", source: "https://www.youtube.com/watch?v=_vlXff3ALLc" },
+/** Resultados confirmados por Andrés. `source` = enlace a la clasificación o, de momento, al capítulo. */
+export const results: { event: string; date: string; category: string; position: string; source: string | null; note?: string }[] = [
+  { event: "Rallye TT Jaén Mar de Olivos · CERTT", date: "2024", category: "Debut en el CERTT", position: "5.º", source: null },
+  { event: "Clàssic Raid La Garrotxa · Off-Road Classic Cup", date: "2026", category: "Regularidad", position: "22.º", source: "https://www.youtube.com/watch?v=_vlXff3ALLc", note: "Anaïs Soriano, premio a la mejor debutante" },
 ];
 
 export type Sponsor = {

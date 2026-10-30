@@ -17,6 +17,29 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const groups = ["Vehículo", "Preparación", "Electrónica"] as const;
+const gallery: { title: string; photos: { src: string; alt: string; pos?: string }[] }[] = [
+  {
+    title: "2026 · Off-Road Classic Cup",
+    photos: [
+      { src: "/media/salou-vadeo.jpg", alt: "El Pajero cruzando un vado en el Clàssic Raid Salou", pos: "50% 55%" },
+      { src: "/media/garrotxa-pajero-tramo.jpg", alt: "Andrés y Anaïs Soriano en tramo en La Garrotxa", pos: "50% 50%" },
+      { src: "/media/selva-frontal.jpg", alt: "El Pajero con los faros encendidos en el Clàssic Raid La Selva", pos: "50% 50%" },
+      { src: "/media/salou-205-valle.jpg", alt: "El Pajero con el dorsal 205 bajando hacia el valle en Salou", pos: "50% 55%" },
+      { src: "/media/garrotxa-205-polvo.jpg", alt: "El Pajero entre el polvo en La Garrotxa", pos: "50% 50%" },
+    ],
+  },
+  {
+    title: "2024 · Campeonato de España de Rallyes TT",
+    photos: [
+      { src: "/media/cierzo-2024.jpg", alt: "El Pajero levantando arena en el VI Cierzo Rally Ejército de Tierra", pos: "50% 55%" },
+      { src: "/media/jaen-mar-de-olivos-2024-salida.jpg", alt: "Salida del Rallye TT Jaén Mar de Olivos 2024", pos: "50% 62%" },
+      { src: "/media/pajero-pista-montana.jpg", alt: "El Pajero levantando polvo junto a un cerro", pos: "62% 60%" },
+      { src: "/media/certt-2024-barro.jpg", alt: "El Pajero saliendo del barro bajo un puente", pos: "55% 55%" },
+      { src: "/media/jaen-2024-asistencia.jpg", alt: "El Pajero en la carpa de asistencia de Euro4x4parts en Jaén", pos: "50% 60%" },
+    ],
+  },
+];
+
 const statusText = { "por-confirmar": "Fecha por confirmar", confirmado: "Confirmado", disputado: "Disputado" } as const;
 
 export default function MotorsportPage() {
@@ -34,7 +57,7 @@ export default function MotorsportPage() {
           <h2 id="historia" className="t-display lg:col-span-5">Cómo empezó</h2>
           <div className="prose-acm text-lg text-slate lg:col-span-6 lg:col-start-7">
             <p>ACM Motorsport nace de un taller donde se cruzan la mecánica, el metal, la madera y la electrónica. De ahí sale un coche de competición con alma de clásico: un Mitsubishi Pajero MK1 de 1989.</p>
-            <p>La hoja de ruta es pública: una temporada de base en regularidad, el salto al Campeonato de España de Rallyes TT y al Rallye du Maroc, y el Dakar en 2028. Cada paso se cuenta en la serie Objetivo Dakar.</p>
+            <p>El debut llegó en 2024, en el Campeonato de España de Rallyes TT: quinto en el Rallye TT Jaén Mar de Olivos a la primera, y después Lorca, Cierzo y Cuenca. En 2025 tocó parar. En 2026, la Off-Road Classic Cup de regularidad; en 2027, vuelta al CERTT y el Rallye du Maroc; y en 2028, el Dakar. Cada paso se cuenta en la serie Objetivo Dakar.</p>
           </div>
         </Container>
       </section>
@@ -85,7 +108,7 @@ export default function MotorsportPage() {
           <Seasons className="mt-16" />
           <div className="mt-20 overflow-x-auto">
             <table className="w-full min-w-[620px] text-left">
-              <caption className="t-sub mb-6 text-left">Próximas pruebas</caption>
+              <caption className="t-sub mb-6 text-left">Todas las pruebas</caption>
               <thead className="t-small text-steel">
                 <tr className="border-b border-line"><th className="py-3 pr-4 font-normal">Temporada</th><th className="py-3 pr-4 font-normal">Prueba</th><th className="py-3 pr-4 font-normal">Fecha</th><th className="py-3 font-normal">Lugar</th></tr>
               </thead>
@@ -112,9 +135,9 @@ export default function MotorsportPage() {
                     <p className="t-display tnum md:col-span-2">{r.position}</p>
                     <div className="md:col-span-7">
                       <p className="t-sub">{r.event}</p>
-                      <p className="t-small text-steel">{r.category} · {r.date}</p>
+                      <p className="t-small text-steel">{r.category} · {r.date}{r.note ? ` · ${r.note}` : ""}</p>
                     </div>
-                    <a href={r.source} target="_blank" rel="noopener noreferrer" className="link-u t-small md:col-span-3 md:text-right">Ver el capítulo</a>
+                    {r.source && <a href={r.source} target="_blank" rel="noopener noreferrer" className="link-u t-small md:col-span-3 md:text-right">Ver el capítulo</a>}
                   </li>
                 ))}
               </ul>
@@ -126,13 +149,19 @@ export default function MotorsportPage() {
       <section className="bg-midnight py-24 lg:py-36" aria-labelledby="galeria">
         <Container>
           <h2 id="galeria" className="t-display">En el tramo</h2>
-          <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:grid-rows-2">
-            <MediaPlaceholder label="El Pajero en tramo en el Clàssic Raid La Garrotxa" src="/media/garrotxa-pajero-tramo.jpg" position="55% 55%" sizes="(min-width:768px) 50vw, 100vw" className="col-span-2 row-span-2 aspect-square md:aspect-auto" />
-            <MediaPlaceholder label="Andrés pegando el dorsal 16 en La Garrotxa" src="/media/garrotxa-dorsal-16.jpg" position="55% 40%" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="El Pajero levantando polvo junto a un cerro" src="/media/pajero-pista-montana.jpg" position="62% 60%" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="Salida del Rally TT Jaén Mar de Olivos 2024" src="/media/jaen-mar-de-olivos-2024-salida.jpg" position="50% 62%" sizes="25vw" className="aspect-square" />
-            <MediaPlaceholder label="Andrés junto al dorsal 21 en Salou" src="/media/andres-dorsal-21-salou.jpg" position="45% 50%" sizes="25vw" className="aspect-square" />
+          <div className="mt-14 space-y-16">
+            {gallery.map((g) => (
+              <div key={g.title}>
+                <p className="t-sub">{g.title}</p>
+                <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
+                  {g.photos.map((ph, i) => (
+                    <MediaPlaceholder key={ph.src} label={ph.alt} src={ph.src} position={ph.pos} sizes={i === 0 ? "(min-width:768px) 50vw, 100vw" : "(min-width:768px) 25vw, 50vw"} className={i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square"} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
+          <p className="mt-10 t-small text-steel">Fotos de carrera: fotógrafos oficiales de cada prueba.</p>
         </Container>
       </section>
 

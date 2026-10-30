@@ -22,7 +22,7 @@ const HIGHLIGHT = new Set(["724", "504", "682"]); // España, Marruecos, Arabia 
 export type Stop = { id: string; label: string; year: number; event: string; lon: number; lat: number; anchor: "start" | "end"; dy: number };
 
 export const stops: Stop[] = [
-  { id: "es", label: "España", year: 2026, event: "Offroad Classic Cup", lon: -3.7, lat: 40.2, anchor: "start", dy: -6 },
+  { id: "es", label: "España", year: 2026, event: "Off-Road Classic Cup", lon: -3.7, lat: 40.2, anchor: "start", dy: -6 },
   { id: "ma", label: "Marruecos", year: 2027, event: "CERTT · Rallye du Maroc", lon: -4.6, lat: 30.6, anchor: "start", dy: 92 },
   { id: "sa", label: "Arabia Saudí", year: 2028, event: "Dakar", lon: 42.5, lat: 23.6, anchor: "end", dy: 56 },
 ];

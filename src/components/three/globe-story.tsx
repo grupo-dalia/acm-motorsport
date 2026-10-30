@@ -12,8 +12,8 @@ const GlobeScene = dynamic(() => import("./globe-scene"), { ssr: false });
 type Chapter = { from: number; to: number; year?: string; title: string; body: string };
 
 const chapters: Chapter[] = [
-  { from: 0.15, to: 0.37, year: "2026", title: "Offroad Classic Cup", body: "España. Primera temporada completa con el Pajero: regularidad, kilómetros y mucho aprendizaje." },
-  { from: 0.41, to: 0.6, year: "2027", title: "CERTT y Rallye du Maroc", body: "El Campeonato de España de Rallyes TT y la primera arena africana. Navegación de verdad." },
+  { from: 0.15, to: 0.37, year: "2026", title: "Off-Road Classic Cup", body: "España. Tras debutar en el CERTT en 2024 (5.º en Jaén), una temporada entera de regularidad para afinar coche y navegación." },
+  { from: 0.41, to: 0.6, year: "2027", title: "CERTT y Rallye du Maroc", body: "Vuelta al Campeonato de España de Rallyes TT y la primera arena africana. Navegación de verdad." },
   { from: 0.66, to: 0.84, year: "2028", title: "Dakar", body: "Arabia Saudí. La carrera que da nombre a todo el proyecto." },
 ];
 

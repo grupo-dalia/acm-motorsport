@@ -1,9 +1,9 @@
 import { roadmap } from "@/content/motorsport";
 import { cn } from "@/lib/utils";
 
-const statusLabel = { "en-curso": "En curso", planificado: "Planificado", objetivo: "El objetivo" } as const;
+const statusLabel = { hecho: "Hecho", "en-curso": "En curso", planificado: "Planificado", objetivo: "El objetivo" } as const;
 
-/** Las tres temporadas como filas editoriales (es una secuencia real: el año ordena). */
+/** Las temporadas como filas editoriales (es una secuencia real: el año ordena). */
 export function Seasons({ className, divider = "border-line" }: { className?: string; divider?: string }) {
   return (
     <ol className={cn("border-t", divider, className)}>
