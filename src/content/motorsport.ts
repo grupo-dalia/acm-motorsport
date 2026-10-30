@@ -147,7 +147,7 @@ export const sponsors: Sponsor[] = [
   },
   { id: "metal-lube", name: "Metal Lube", tier: "oficial", description: "Lubricación y tratamientos antifricción.", logo: null, url: null },
   { id: "fullcarx", name: "Full Carx", tier: "colaborador", description: "Limpieza y detailing.", logo: null, url: "https://fullcarx.com", code: "CUBERO" },
-  { id: "kingbolen", name: "Kingbolen", tier: "colaborador", description: "Herramientas de diagnosis.", logo: null, url: null },
+  { id: "kingbolen", name: "Kingbolen", tier: "colaborador", description: "Nos cedió el equipo de diagnosis.", logo: null, url: null },
   {
     id: "giants",
     name: "GIANTS Software",
