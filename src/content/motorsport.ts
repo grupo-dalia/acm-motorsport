@@ -125,8 +125,10 @@ export type Sponsor = {
   name: string;
   tier: "principal" | "oficial" | "colaborador" | "referido";
   description: string;
-  /** Logo en /public/sponsors. null = se muestra el nombre en tipografía hasta tener el archivo original. */
+  /** Logo: ruta en /public/sponsors o URL de la web oficial. null = nombre en tipografía. */
   logo: string | null;
+  /** Fondo de la tarjeta, para que el logo contraste. */
+  tile?: "light" | "white" | "dark";
   url: string | null;
   code?: string;
   /** Texto destacado (solo el principal). */
@@ -140,14 +142,14 @@ export const sponsors: Sponsor[] = [
     name: "Euro4x4parts",
     tier: "principal",
     description: "Recambios y equipamiento 4x4.",
-    logo: null,
+    logo: "https://cdn.euro4x4parts.com/e4xmedia/prod/images-frontend/company/euro4x4parts-blanc.svg",
     url: "https://www.euro4x4parts.com",
     code: "CUBERO",
     story: "Nos acompaña desde el minuto uno. Confió en el proyecto cuando era un Pajero de 1989 y un dorsal en Jaén, y sigue a nuestro lado en cada carrera.",
   },
-  { id: "metal-lube", name: "Metal Lube", tier: "oficial", description: "Lubricación y tratamientos antifricción.", logo: null, url: null },
-  { id: "fullcarx", name: "Full Carx", tier: "colaborador", description: "Limpieza y detailing.", logo: null, url: "https://fullcarx.com", code: "CUBERO" },
-  { id: "kingbolen", name: "Kingbolen", tier: "colaborador", description: "Nos cedió el equipo de diagnosis.", logo: null, url: null },
+  { id: "metal-lube", name: "Metal Lube", tier: "oficial", description: "Lubricación y tratamientos antifricción.", logo: "https://metallube.es/wp-content/uploads/2025/07/logo.webp", tile: "dark", url: "https://metallube.es" },
+  { id: "fullcarx", name: "Full Carx", tier: "colaborador", description: "Limpieza y detailing.", logo: "https://fullcarx.com/img/logo-1741601439.jpg", tile: "white", url: "https://fullcarx.com", code: "CUBERO" },
+  { id: "kingbolen", name: "Kingbolen", tier: "colaborador", description: "Nos cedió el equipo de diagnosis.", logo: "https://www.kingbolen.com/cdn/shop/files/e8fc6dfd30864aa1bb7da5787a10dd58.png?v=1742464172&width=450", tile: "white", url: "https://www.kingbolen.com" },
   {
     id: "giants",
     name: "GIANTS Software",
