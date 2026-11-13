@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { collectionById } from "@/content/guides";
 import { YouTubePlayer } from "@/components/media/youtube-player";
 import { AffiliateBox } from "@/components/news/affiliate-box";
 import { ProductInline } from "@/components/news/product-inline";
@@ -31,7 +32,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ArticlePage({ params }: { params: Params }) {
   const a = await getArticle((await params).slug);
   if (!a) notFound();
-  const more = (await getArticles()).filter((x) => x.slug !== a.slug).slice(0, 3);
+  const all = await getArticles();
+  const series = a.collection ? collectionById(a.collection) : undefined;
+  const siblings = series ? all.filter((x) => x.slug !== a.slug && x.collection === a.collection).sort((x, y) => x.order - y.order) : [];
+  const more = [...siblings, ...all.filter((x) => x.slug !== a.slug && !siblings.includes(x) && (a.kind !== "guide" || x.kind === "guide"))].slice(0, 3);
+  const crumbRoot = a.kind === "guide" ? { label: "Guías", href: "/guias" } : { label: "Noticias", href: "/noticias" };
 
   const ld = {
     "@context": "https://schema.org",
@@ -59,7 +64,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         />
       )}
       <Container className="pb-24 pt-28 lg:pb-36 lg:pt-36">
-        <Breadcrumbs items={[{ label: "Noticias", href: "/noticias" }, { label: a.title, href: `/noticias/${a.slug}` }]} />
+        <Breadcrumbs items={[crumbRoot, { label: a.title, href: `/noticias/${a.slug}` }]} />
         <header className="mt-10 max-w-4xl">
           <p className="text-slate">
             <Link href={`/noticias?categoria=${a.category}`} className="hover:underline">{newsCategories[a.category]}</Link> · <time dateTime={a.date.toISOString()}>{formatDate(a.date.toISOString())}</time> · {a.readingMinutes} min
@@ -125,7 +130,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
         {more.length > 0 && (
           <section className="mt-24" aria-labelledby="more">
-            <h2 id="more" className="t-title">Más artículos</h2>
+            <h2 id="more" className="t-title">{siblings.length ? `Sigue con «${series!.title}»` : a.kind === "guide" ? "Más guías" : "Más artículos"}</h2>
             <div className="mt-6 grid gap-x-8 md:grid-cols-3">{more.map((m) => <ArticleCard key={m.slug} a={m} className="py-6" />)}</div>
           </section>
         )}

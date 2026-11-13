@@ -6,6 +6,9 @@ image: "/media/starlink-techo.jpg"
 imageAlt: "Instalación del Starlink Mini en el techo del Pajero"
 category: overland
 tags: [starlink, conectividad, instalación]
+kind: guide
+collection: starlink
+order: 2
 ---
 
 Llevar conexión por satélite en el coche ya no es cosa de expediciones con presupuesto de televisión. Nosotros montamos un **Starlink Mini** en el techo del Pajero, y la primera decisión fue dónde ponerlo.
