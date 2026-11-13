@@ -11,6 +11,9 @@ sources:
     url: "https://es.motorsport.com/dakar/news/rally-dakar-classic-que-es-participantes-reglas-2023/10407785/"
   - title: "Goodwood · Dakar Rally introduces Classic category for pre-2000 vehicles"
     url: "https://www.goodwood.com/grr/race/modern/dakar-rally-introduces-classic-category-for-pre-2000-vehicles/"
+kind: guide
+collection: empezar-rally
+order: 2
 ---
 
 Cuando alguien piensa en el Dakar se imagina prototipos de cientos de caballos volando por las dunas. Pero desde 2021 hay otro Dakar corriendo a la vez: el **Dakar Classic**, la categoría para coches y camiones de otra época. Y para un proyecto como el nuestro, con un Pajero de 1989, es la pieza que hace que el sueño tenga sentido.

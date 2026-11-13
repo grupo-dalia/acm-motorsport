@@ -32,6 +32,9 @@ const schema = z.object({
   kind: z.enum(["news", "guide"]).default("news"),
   /** Preguntas frecuentes: se pintan al final y van como FAQPage en los datos estructurados. */
   faq: z.array(z.object({ q: z.string().min(5), a: z.string().min(10) })).default([]),
+  /** Colección del catálogo de guías (ver src/content/guides.ts) y orden dentro de ella. */
+  collection: z.string().optional(),
+  order: z.number().int().default(99),
 });
 
 export type Block = { type: "html"; html: string } | { type: "video" | "affiliate" | "product"; id: string };

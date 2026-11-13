@@ -15,6 +15,9 @@ sources:
     url: "https://unsealed4x4.com.au/throwback-thursday-remembering-the-dakar-pajero/"
   - title: "The Drive · Mitsubishi restores first Dakar-winning Pajero"
     url: "https://www.thedrive.com/news/mitsubishi-restores-first-dakar-winning-pajero-after-decades-of-neglect"
+kind: guide
+collection: pajero
+order: 1
 ---
 
 Nuestro coche de carreras es un **Mitsubishi Pajero MK1 de 1989**. No es un capricho de nostalgia: es un 4x4 sencillo, robusto, con recambios todavía fáciles de encontrar y con un apellido que pesa en el desierto. Si estás pensando en hacerte con uno, aquí va lo que sabemos, lo que hemos leído y lo que nos ha tocado arreglar.

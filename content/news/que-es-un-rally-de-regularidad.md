@@ -21,6 +21,8 @@ faq:
     a: "No hace falta un coche de carreras. Nosotros corremos con un Mitsubishi Pajero de 1989. Lo que pide cada prueba en seguridad, seguro y licencia está en su reglamento, y es lo primero que hay que leer."
   - q: "¿Qué hace el copiloto en regularidad?"
     a: "Lleva el roadbook, controla la distancia y el tiempo y le dice al piloto si va adelantado o retrasado respecto a la media. En regularidad el copiloto es medio resultado."
+collection: empezar-rally
+order: 1
 ---
 
 En un rally de regularidad **no gana quien llega antes**. Gana quien es capaz de rodar exactamente a la velocidad media que marca la organización en cada tramo, ni más rápido ni más lento. Suena fácil hasta que tienes una curva cerrada, una subida de tierra y un pueblo en medio del tramo.
