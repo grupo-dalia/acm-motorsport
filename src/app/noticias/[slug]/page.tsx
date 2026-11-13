@@ -35,7 +35,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   const ld = {
     "@context": "https://schema.org",
-    "@type": a.category === "taller" || a.category === "overland" ? "Article" : "NewsArticle",
+    "@type": a.kind === "guide" || a.category === "taller" || a.category === "overland" ? "Article" : "NewsArticle",
     headline: a.title,
     description: a.summary,
     datePublished: a.date.toISOString(),
@@ -49,6 +49,15 @@ export default async function ArticlePage({ params }: { params: Params }) {
   return (
     <div className="on-paper">
       <JsonLd data={ld} />
+      {a.faq.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: a.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+          }}
+        />
+      )}
       <Container className="pb-24 pt-28 lg:pb-36 lg:pt-36">
         <Breadcrumbs items={[{ label: "Noticias", href: "/noticias" }, { label: a.title, href: `/noticias/${a.slug}` }]} />
         <header className="mt-10 max-w-4xl">
@@ -76,6 +85,25 @@ export default async function ArticlePage({ params }: { params: Params }) {
             return <YouTubePlayer key={i} id={b.id} title={a.title} className="my-10 rounded-[6px]" />;
           })}
         </div>
+
+        {a.faq.length > 0 && (
+          <section className="mt-16 max-w-[68ch]" aria-labelledby="faq">
+            <h2 id="faq" className="t-title">Preguntas frecuentes</h2>
+            <div className="mt-6 border-t border-line-dark">
+              {a.faq.map((f) => (
+                <details key={f.q} className="group border-b border-line-dark py-5">
+                  <summary className="cursor-pointer list-none text-lg font-semibold marker:hidden">
+                    <span className="flex items-start justify-between gap-6">
+                      {f.q}
+                      <span aria-hidden className="text-racing transition-transform group-open:rotate-45">+</span>
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-lg leading-[1.7] text-ink/80">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         {a.sources.length > 0 && (
           <section className="mt-14 max-w-[68ch] border-t border-line-dark pt-6" aria-label="Fuentes">
