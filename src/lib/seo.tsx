@@ -39,6 +39,19 @@ export function organizationLd() {
   };
 }
 
+/** Nombre del sitio que Google muestra en los resultados: marca + persona, para que quien busque a Andrés lo asocie. */
+export function websiteLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    alternateName: [site.founder, `${site.founder} · ${site.name}`],
+    url: absoluteUrl("/"),
+    inLanguage: "es-ES",
+    publisher: { "@type": "Person", name: site.founder, sameAs: site.social.map((s) => s.href) },
+  };
+}
+
 export function personLd() {
   return {
     "@context": "https://schema.org",

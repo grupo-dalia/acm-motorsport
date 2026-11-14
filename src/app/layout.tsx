@@ -11,16 +11,16 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 import { catalog } from "@/integrations/commerce";
-import { JsonLd, organizationLd } from "@/lib/seo";
+import { JsonLd, organizationLd, websiteLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: `${site.name} — ${site.tagline}`, template: `%s · ${site.name}` },
+  title: { default: `${site.founder} · ${site.name}: rally, 4x4 y camino al Dakar`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.founder }],
   creator: site.founder,
-  openGraph: { type: "website", locale: site.locale, siteName: site.name },
+  openGraph: { type: "website", locale: site.locale, siteName: `${site.name} · ${site.founder}` },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
@@ -43,6 +43,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           Saltar al contenido
         </a>
         <JsonLd data={organizationLd()} />
+        <JsonLd data={websiteLd()} />
         <Providers catalog={products}>
           <Header />
           <main id="contenido">{children}</main>
