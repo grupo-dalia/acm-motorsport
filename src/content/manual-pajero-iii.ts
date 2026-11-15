@@ -10,6 +10,7 @@
  */
 
 import type { ManualVehicle, System } from "@/content/manual-types";
+import { pajeroShopByPart } from "@/content/euro4x4parts";
 import { correaB4d56, correaDistribucion4d56 } from "@/content/despieces/pajero-4d56-correas";
 
 export type { Figure, ManualVehicle, Part, Procedure, Spec, Step, System } from "@/content/manual-types";
@@ -20,6 +21,8 @@ export const manualVehicle: ManualVehicle = {
   years: "2001-2002",
   engine: "4D56 · 2.5 turbodiésel intercooler",
   basePath: "/manual/pajero-iii",
+  href: "/guias/manual-pajero-iii",
+  short: "Pajero III 2.5 TD (4D56)",
   photo: {
     file: "coche.jpg",
     alt: "Mitsubishi Pajero III de 2001, cinco puertas, visto de frente y de lado",
@@ -31,7 +34,7 @@ export const manualVehicle: ManualVehicle = {
 
 const PMS = "Gira el cigüeñal siempre en sentido horario (visto desde delante). Nunca hacia atrás salvo donde se indica.";
 
-export const manualSystems: System[] = [
+const systems: System[] = [
   {
     id: "motor",
     title: "Motor 4D56",
@@ -825,3 +828,6 @@ export const manualSystems: System[] = [
     ],
   },
 ];
+
+/** Sistemas del manual con sus enlaces de recambios. */
+export const manualSystems: System[] = systems.map((sys) => ({ ...sys, parts: sys.parts.map((p) => ({ ...p, shop: p.shop ?? pajeroShopByPart[p.id] })) }));

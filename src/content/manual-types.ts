@@ -18,6 +18,8 @@ export type Part = {
   exploded?: ExplodedView;
   /** Vistas de frente de las correas (dibujo ACM con la geometría real). */
   beltViews?: BeltView[];
+  /** Recambios para este trabajo. */
+  shop?: ShopLink[];
 };
 
 export type System = { id: string; title: string; parts: Part[] };
@@ -25,7 +27,21 @@ export type System = { id: string; title: string; parts: Part[] };
 /** Foto del coche (licencia libre) que sale en la cabecera y en la vista previa del enlace. `file` relativo a `basePath`. */
 export type VehiclePhoto = { file: string; alt: string; author: string; license: string; source: string };
 
-export type ManualVehicle = { model: string; chassis: string; years: string; engine: string; basePath: string; photo?: VehiclePhoto };
+export type ManualVehicle = {
+  model: string;
+  chassis: string;
+  years: string;
+  engine: string;
+  basePath: string;
+  photo?: VehiclePhoto;
+  /** Ruta del manual en la web, p. ej. /guias/manual-pajero-iii. */
+  href: string;
+  /** Nombre corto para títulos: "Pajero III 2.5 TD (4D56)". */
+  short: string;
+};
+
+/** Enlace a recambios (catálogo de Euro4x4parts filtrado por vehículo y familia). */
+export type ShopLink = { label: string; url: string };
 
 /** Forma con la que se dibuja una pieza en un despiece (dibujo propio de ACM, generado por código). */
 export type PartShape =
@@ -74,6 +90,8 @@ export type BeltPulley = {
   kind: "sprocket" | "idler";
   teeth?: number;
   oe?: string;
+  /** Enlace directo a la familia de recambio en la tienda. */
+  url?: string;
   search?: string;
   torque?: string;
   note?: string;

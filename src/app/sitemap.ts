@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { catalog } from "@/integrations/commerce";
 import { getArticles } from "@/lib/news";
+import { nivaManual, pajeroManual } from "@/content/manual-defs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -18,5 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const news = (await getArticles())
     .filter((a) => !a.draft)
     .map((a) => ({ url: absoluteUrl(`/noticias/${a.slug}`), lastModified: a.updated ?? a.date, changeFrequency: "monthly" as const, priority: 0.7 }));
-  return [...staticRoutes, ...news, ...products];
+  const manualJobs = [pajeroManual, nivaManual].flatMap((m) =>
+    m.systems.flatMap((s) => s.parts.map((p) => ({ url: absoluteUrl(`${m.vehicle.href}/${p.id}`), lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }))),
+  );
+  return [...staticRoutes, ...manualJobs, ...news, ...products];
 }
