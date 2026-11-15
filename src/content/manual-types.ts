@@ -34,7 +34,13 @@ export type PartShape =
   | { kind: "tensioner"; r: number }
   | { kind: "spring" }
   | { kind: "bolt"; len: number }
-  | { kind: "ring"; r: number };
+  | { kind: "ring"; r: number }
+  /** Polea con damper: llanta con gargantas, anillo de goma y buje. */
+  | { kind: "damper"; r: number; grooves: number; depth: number }
+  /** Embrague viscoso del ventilador: disco con aletas. */
+  | { kind: "fanclutch"; r: number }
+  /** Tensor automático: cuerpo con brazo y polea lisa. */
+  | { kind: "autotensioner"; r: number };
 
 export type ExplodedPart = {
   n: number;

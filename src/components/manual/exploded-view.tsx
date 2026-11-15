@@ -47,7 +47,12 @@ function Face({ shape, stroke, sw }: { shape: PartShape; stroke: string; sw: num
       return (
         <g>
           <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={h / 2} fill="none" stroke={stroke} strokeWidth={sw} />
-          <rect x={-w / 2 + 6} y={-h / 2 + 6} width={w - 12} height={h - 12} rx={(h - 12) / 2} fill="none" stroke={stroke} strokeWidth={sw * 0.6} strokeDasharray={shape.teeth === false ? undefined : "2 4"} />
+          <rect x={-w / 2 + 7} y={-h / 2 + 7} width={w - 14} height={h - 14} rx={(h - 14) / 2} fill="none" stroke={stroke} strokeWidth={sw * 0.8} />
+          {shape.teeth === false ? (
+            <rect x={-w / 2 + 3.5} y={-h / 2 + 3.5} width={w - 7} height={h - 7} rx={(h - 7) / 2} fill="none" stroke={stroke} strokeWidth={sw * 0.4} />
+          ) : (
+            <rect x={-w / 2 + 10} y={-h / 2 + 10} width={w - 20} height={h - 20} rx={(h - 20) / 2} fill="none" stroke={stroke} strokeWidth={6} strokeDasharray="3 3" />
+          )}
         </g>
       );
     }
@@ -67,13 +72,64 @@ function Face({ shape, stroke, sw }: { shape: PartShape; stroke: string; sw: num
     case "bolt":
       return (
         <g>
-          <polygon points="-8,-11 8,-11 13,0 8,11 -8,11 -13,0" fill={fill} stroke={stroke} strokeWidth={sw} />
+          <ellipse cx={-14} cy={0} rx={5} ry={18} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <rect x={-10} y={-15} width={6} height={30} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <polygon points="-4,-12 9,-12 13,-6 13,6 9,12 -4,12" fill={fill} stroke={stroke} strokeWidth={sw} strokeLinejoin="round" />
+          <line x1={-4} y1={-4} x2={13} y2={-4} stroke={stroke} strokeWidth={sw * 0.6} />
+          <line x1={-4} y1={4} x2={13} y2={4} stroke={stroke} strokeWidth={sw * 0.6} />
           <rect x={13} y={-5} width={shape.len} height={10} fill={fill} stroke={stroke} strokeWidth={sw} />
           {Array.from({ length: Math.floor(shape.len / 5) }, (_, i) => (
             <line key={i} x1={17 + i * 5} y1={-5} x2={20 + i * 5} y2={5} stroke={stroke} strokeWidth={sw * 0.5} />
           ))}
         </g>
       );
+    case "damper": {
+      const { r } = shape;
+      return (
+        <g>
+          <circle r={r} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <circle r={r * 0.78} fill="none" stroke={stroke} strokeWidth={sw * 0.7} />
+          <circle r={r * 0.72} fill="#e9e9e9" stroke={stroke} strokeWidth={sw * 0.7} />
+          <circle r={r * 0.62} fill={fill} stroke={stroke} strokeWidth={sw * 0.7} />
+          {[0, 1, 2, 3].map((i) => (
+            <circle key={i} cx={Math.cos((i * Math.PI) / 2 + 0.6) * r * 0.42} cy={Math.sin((i * Math.PI) / 2 + 0.6) * r * 0.42} r={r * 0.06} fill="none" stroke={stroke} strokeWidth={sw * 0.6} />
+          ))}
+          <circle r={r * 0.24} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <circle r={r * 0.13} fill="none" stroke={stroke} strokeWidth={sw * 0.7} />
+        </g>
+      );
+    }
+    case "fanclutch": {
+      const { r } = shape;
+      return (
+        <g>
+          <circle r={r} fill={fill} stroke={stroke} strokeWidth={sw} />
+          {Array.from({ length: 24 }, (_, i) => {
+            const a = (i * Math.PI * 2) / 24;
+            return <line key={i} x1={Math.cos(a) * r * 0.5} y1={Math.sin(a) * r * 0.5} x2={Math.cos(a) * r * 0.95} y2={Math.sin(a) * r * 0.95} stroke={stroke} strokeWidth={sw * 0.5} />;
+          })}
+          <circle r={r * 0.45} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <path d={`M${-r * 0.25} 0 A${r * 0.25} ${r * 0.25} 0 0 1 ${r * 0.25} 0`} fill="none" stroke={stroke} strokeWidth={sw} />
+          {[0, 1, 2, 3].map((i) => (
+            <circle key={i} cx={Math.cos((i * Math.PI) / 2) * r * 0.33} cy={Math.sin((i * Math.PI) / 2) * r * 0.33} r={r * 0.05} fill={stroke} />
+          ))}
+        </g>
+      );
+    }
+    case "autotensioner": {
+      const { r } = shape;
+      return (
+        <g>
+          <circle cx={r * 1.6} cy={r * 1.3} r={r * 0.75} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <circle cx={r * 1.6} cy={r * 1.3} r={r * 0.3} fill="none" stroke={stroke} strokeWidth={sw * 0.7} />
+          <path d={`M${r * 0.7} ${-r * 0.5} L${r * 2.1} ${r * 0.7} L${r * 1.3} ${r * 1.9} L${-r * 0.2} ${r * 0.6} Z`} fill={fill} stroke={stroke} strokeWidth={sw} strokeLinejoin="round" />
+          <circle r={r} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <circle r={r * 0.8} fill="none" stroke={stroke} strokeWidth={sw * 0.5} />
+          <circle r={r * 0.32} fill={fill} stroke={stroke} strokeWidth={sw} />
+          <polygon points={[0, 1, 2, 3, 4, 5].map((i) => `${(Math.cos((i * Math.PI) / 3) * r * 0.2).toFixed(1)},${(Math.sin((i * Math.PI) / 3) * r * 0.2).toFixed(1)}`).join(" ")} fill="none" stroke={stroke} strokeWidth={sw * 0.7} />
+        </g>
+      );
+    }
     case "ring":
       return (
         <g>
@@ -85,7 +141,17 @@ function Face({ shape, stroke, sw }: { shape: PartShape; stroke: string; sw: num
 }
 
 /** Grosor de la pieza en el dibujo: se repite la cara desplazada hacia atrás. */
-const depth = (s: PartShape) => (s.kind === "belt" ? 10 : s.kind === "cover" ? 8 : s.kind === "spring" || s.kind === "bolt" ? 0 : s.kind === "ring" ? 3 : 9);
+const depth = (s: PartShape) =>
+  s.kind === "damper" ? s.depth : s.kind === "fanclutch" ? 26 : s.kind === "autotensioner" ? 16 : s.kind === "belt" ? 12 : s.kind === "cover" ? 10 : s.kind === "spring" || s.kind === "bolt" ? 0 : s.kind === "ring" ? 3 : s.kind === "pulley" ? 14 : 10;
+
+/** Contorno exterior de una pieza redonda (para dibujar sus gargantas o su canto). */
+const outerR = (s: PartShape) => ("r" in s ? s.r : 0);
+
+/** Posiciones (de atrás hacia delante) de los anillos del canto. */
+function rings(s: PartShape, d: number): number[] {
+  const n = s.kind === "damper" ? s.grooves * 2 : s.kind === "pulley" ? (s.grooves ?? 0) * 2 : 0;
+  return Array.from({ length: n }, (_, i) => (d * (n - i)) / (n + 1));
+}
 
 /** Dibuja una pieza en perspectiva, con línea fina de taller. Dibujo propio generado por código. */
 function Shape({ shape, on }: { shape: PartShape; on: boolean }) {
@@ -100,6 +166,12 @@ function Shape({ shape, on }: { shape: PartShape; on: boolean }) {
           <Face shape={shape} stroke={stroke} sw={sw} />
         </g>
       )}
+      {/* Canto: anillos a lo largo del grosor; en poleas con gargantas, uno por garganta */}
+      {rings(shape, d).map((t, i) => (
+        <g key={i} transform={`translate(${t * 0.866} ${-t * 0.5}) ${ISO}`}>
+          <circle r={outerR(shape) * (i % 2 ? 0.93 : 1)} fill="#fff" stroke={stroke} strokeWidth={sw * 0.7} />
+        </g>
+      ))}
       <g transform={ISO}>
         <Face shape={shape} stroke={stroke} sw={sw} />
       </g>
