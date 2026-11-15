@@ -217,7 +217,7 @@ export const nivaSystems: System[] = [
         ],
         figures: [
           { file: "ciguenal-juego-axial", caption: "Cómo medir el juego axial con reloj comparador", ref: "Instrucción de reparación VAZ, fig. 50" },
-          { file: "ciguenal-medidas", caption: "Dónde se miden las muñequillas y el ancho de los apoyos", ref: "Instrucción de reparación VAZ, fig. 29" },
+          { file: "ciguenal-medidas", caption: "Dónde se miden los apoyos (D), las muñequillas (d) y el apoyo de empuje (t)", ref: "Instrucción de reparación VAZ, fig. 29" },
         ],
         procedures: [
           {
