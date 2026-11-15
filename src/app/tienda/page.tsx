@@ -45,6 +45,13 @@ export default async function ShopPage({ searchParams }: { searchParams: SP }) {
     <>
       <PageHero tone="paper" title="Tienda" lead="Ropa y accesorios del equipo. Cada pedido empuja el coche un poco más cerca de la salida." crumbs={[{ label: "Tienda", href: "/tienda" }]}>
         <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>
+        <Link href="/tienda/recambios" className="mt-6 flex max-w-xl items-center gap-4 rounded-[6px] bg-ink p-5 text-paper no-underline hover:bg-ink/90">
+          <span className="flex-1">
+            <span className="block t-sub">Recambios 4x4</span>
+            <span className="block t-small opacity-75">Mitsubishi Pajero y Lada Niva, por marca y modelo, con Euro4x4parts.</span>
+          </span>
+          <span aria-hidden className="text-2xl">→</span>
+        </Link>
       </PageHero>
 
       <section className="on-paper pb-24 lg:pb-36">

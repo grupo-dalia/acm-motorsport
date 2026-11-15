@@ -8,6 +8,8 @@ import type { ManualVehicle, Part, System } from "@/content/manual-types";
 import type { PartSeo } from "@/content/manual-seo";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
+import { partVehicles, partsFor } from "@/content/recambios";
+import { SparePartCard } from "@/components/shop/spare-part-card";
 
 /** Una página por trabajo del manual (/guias/manual-x/<pieza>), para que cada uno salga solo en Google. */
 export type ManualDef = { vehicle: ManualVehicle; systems: System[]; seo: Record<string, PartSeo>; label: string };
@@ -78,6 +80,23 @@ export function ManualPartPage({ manual, id }: { manual: ManualDef; id: string }
           <div className="mt-3">
             <PartDetail part={part} basePath={manual.vehicle.basePath} initialMode="lista" />
           </div>
+          {(() => {
+            const v = partVehicles.find((x) => x.manual === manual.vehicle.href);
+            const items = v ? partsFor(v.slug, part.id).slice(0, 10) : [];
+            if (!v || !items.length) return null;
+            return (
+              <section className="mt-16" aria-label="Recambios para este trabajo">
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <h2 className="t-sub">Recambios para este trabajo</h2>
+                  <Link href={`/tienda/recambios?coche=${v.slug}`} className="t-small text-racing-bright">Ver todos los recambios del {v.name}</Link>
+                </div>
+                <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
+                  {items.map((p) => <SparePartCard key={p.ref + p.category} part={p} dark />)}
+                </div>
+                <p className="t-small mt-3 opacity-50">Se compran en Euro4x4parts, patrocinador de ACM Motorsport. Precio orientativo.</p>
+              </section>
+            );
+          })()}
           <nav aria-label="Más trabajos del manual" className="mt-20 border-t border-line pt-10">
             <h2 className="t-sub">Más trabajos del {manual.label.toLowerCase()}</h2>
             <ul className="mt-4 flex flex-wrap gap-2">
