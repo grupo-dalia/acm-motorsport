@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 594" width="900" height="594" font-family="Arial, Helvetica, sans-serif">
+<rect width="900" height="594" fill="#fff"/>
+<path d="M389.9 142.5 L787.9 315.8 A70 70 0 0 1 756.8 449.9 L323.1 429.8 A150 150 0 1 1 389.9 142.5 Z" fill="none" stroke="#1b1b1b" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M389.9 142.5 L787.9 315.8 A70 70 0 0 1 756.8 449.9 L323.1 429.8 A150 150 0 1 1 389.9 142.5 Z" fill="none" stroke="#fff" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M389.9 142.5 L787.9 315.8 A70 70 0 0 1 756.8 449.9 L323.1 429.8 A150 150 0 1 1 389.9 142.5 Z" fill="none" stroke="#1b1b1b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 3" opacity="0.5"/>
+<polygon points="471,280.9 479.9,284 479.6,291 470.4,293.2 469.6,299.7 478.1,304 476.8,310.9 467.4,311.8 465.7,318.2 473.6,323.5 471.4,330.1 461.9,329.8 459.4,335.9 466.5,342.2 463.4,348.5 454.1,346.9 450.8,352.7 457,359.9 453.1,365.7 444.1,362.9 440.1,368.1 445.2,376.1 440.6,381.4 432,377.3 427.3,382 431.4,390.6 426.1,395.2 418.1,390.1 412.9,394.1 415.7,403.1 409.9,407 402.7,400.8 396.9,404.1 398.5,413.4 392.2,416.5 385.9,409.4 379.8,411.9 380.1,421.4 373.5,423.6 368.2,415.7 361.8,417.4 360.9,426.8 354,428.1 349.7,419.6 343.2,420.4 341,429.6 334,429.9 330.9,421 324.3,420.9 321,429.7 314,429.1 312.1,419.9 305.6,418.9 301.1,427.2 294.3,425.7 293.7,416.2 287.3,414.4 281.7,422 275.2,419.6 275.8,410.2 269.8,407.5 263.2,414.3 257,411.1 259,401.8 253.3,398.3 245.9,404.2 240.2,400.2 243.4,391.2 238.2,387.1 230.1,391.9 225,387.1 229.3,378.7 224.8,373.9 216.1,377.6 211.7,372.2 217,364.4 213.2,359 204.1,361.6 200.4,355.6 206.8,348.6 203.7,342.7 194.4,344 191.5,337.6 198.8,331.6 196.5,325.4 187,325.4 185.1,318.7 193.1,313.6 191.6,307.2 182.3,305.9 181.2,299 189.8,295.1 189.3,288.5 180.1,286 180,279 189.1,276.2 189.4,269.6 180.7,266 181.5,259 190.8,257.5 192,251 183.9,246.2 185.6,239.4 195.1,239.1 197.1,232.9 189.7,227 192.3,220.5 201.7,221.5 204.6,215.6 198,208.8 201.5,202.7 210.6,204.9 214.3,199.4 208.6,191.8 212.9,186.3 221.7,189.7 226.1,184.7 221.5,176.4 226.4,171.5 234.7,176.1 239.7,171.7 236.3,162.9 241.8,158.6 249.4,164.3 254.9,160.6 252.7,151.5 258.8,148 265.6,154.6 271.5,151.7 270.5,142.3 277,139.7 282.9,147.1 289.1,145.1 289.4,135.6 296.2,133.9 301,142 307.5,140.8 309,131.5 316,130.7 319.6,139.4 326.2,139.1 329,130 336,130.1 338.5,139.3 345.1,139.8 349,131.2 355.9,132.3 357.2,141.6 363.6,143.1 368.7,135.1 375.4,137 375.4,146.5 381.6,148.8 387.6,141.5 394,144.4 392.7,153.7 398.6,156.8 405.6,150.4 411.6,154.1 409,163.2 414.4,167 422.2,161.7 427.6,166.1 423.9,174.8 428.7,179.3 437.1,175 441.9,180.1 437.1,188.2 441.2,193.4 450.2,190.2 454.2,195.9 448.3,203.3 451.8,209 461.1,207 464.3,213.2 457.5,219.8 460.2,225.8 469.6,225.2 472,231.7 464.4,237.3 466.2,243.7 475.7,244.3 477.2,251.1 468.9,255.6 469.9,262.1 479.1,264 479.7,271 470.9,274.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.3" stroke-linejoin="round"/>
+<circle cx="330" cy="280" r="135" fill="none" stroke="#1b1b1b" stroke-width="0.9"/>
+<circle cx="408.8" cy="304.4" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="348.3" cy="360.4" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="269.5" cy="336.1" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="251.2" cy="255.6" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="311.7" cy="199.6" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="390.5" cy="223.9" r="19.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="330" cy="280" r="40.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<polygon points="352.5,280 341.2,299.5 318.8,299.5 307.5,280 318.8,260.5 341.2,260.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="330" cy="280" r="10.1" fill="#fff" stroke="#1b1b1b" stroke-width="0.84"/>
+<circle cx="760" cy="380" r="70" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="760" y="386" font-size="13" fill="#1b1b1b" text-anchor="middle" font-weight="400">hacia la bomba</text>
+<rect x="189.85058517949528" y="157.66922880193889" width="28" height="68" rx="6" fill="#e3141e" transform="rotate(215 203.85058517949528 191.66922880193889)"/>
+<rect x="198.0291557596774" y="344.9892918917271" width="28" height="68" rx="6" fill="#e3141e" transform="rotate(140 212.0291557596774 378.9892918917271)"/>
+<line x1="194.8" y1="185.4" x2="60" y2="70" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="194.8" cy="185.4" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="66" y="76" font-size="17" fill="#e3141e" text-anchor="start" font-weight="700">Bridas: piñón y correa atados</text>
+<text x="40" y="510" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Ata el piñón y la correa en dos puntos antes de soltar el tornillo (sujeta el piñón con MB990767 + MD998719).</text>
+<text x="40" y="528.8" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Así sacas el piñón con la correa puesta sin perder el calado.</text>
+<line x1="0" y1="560" x2="900" y2="560" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="582" font-size="14" fill="#1b1b1b" opacity="0.75">Piñón del árbol de levas atado a la correa con bridas</text>
+<text x="886" y="584" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
