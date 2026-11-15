@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { GuideRow } from "@/components/guides/guide-row";
+import { ManualRow, type ManualCard } from "@/components/manual/manual-row";
+import { countJobs, manuals } from "@/content/manuals";
 import { getArticles, coverOf } from "@/lib/news";
 import { guideCollections } from "@/content/guides";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
@@ -14,6 +16,16 @@ export const metadata: Metadata = pageMetadata({
   description: "Aprende regularidad, navegación, mecánica 4x4 y cómo llevar internet por satélite en el coche. Guías paso a paso escritas desde dentro de un Pajero de rally.",
   path: "/guias",
 });
+
+const manualCards: ManualCard[] = manuals.map((m) => ({
+  href: m.href,
+  brand: m.brand,
+  model: m.vehicle.model,
+  meta: `${m.vehicle.chassis} · ${m.vehicle.years}`,
+  engine: m.vehicle.engine,
+  jobs: countJobs(m.systems),
+  photo: m.vehicle.photo ? { src: `${m.vehicle.basePath}/${m.vehicle.photo.file}`, alt: m.vehicle.photo.alt } : undefined,
+}));
 
 export default async function GuidesPage() {
   const guides = (await getArticles()).filter((a) => a.kind === "guide");
@@ -57,22 +69,7 @@ export default async function GuidesPage() {
       </section>
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
-          <Link href="/guias/manual-pajero-iii" className="group mb-16 flex flex-wrap items-center justify-between gap-6 rounded-[6px] border border-line bg-midnight-deep p-6 no-underline transition-colors hover:border-racing lg:p-8">
-            <div className="max-w-[60ch]">
-              <p className="t-small font-semibold uppercase tracking-[0.14em] text-racing-bright">Nuevo · Manual interactivo</p>
-              <p className="t-title mt-2">Manual de taller Pajero III 4D56</p>
-              <p className="mt-2 opacity-70">Culata, distribución, válvulas, aceites y capacidades. Eliges la pieza y te sale todo: datos, aprietes y paso a paso.</p>
-            </div>
-            <span className="inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-racing px-6 font-medium text-paper transition-colors group-hover:bg-racing-dark">Abrir el manual</span>
-          </Link>
-          <Link href="/guias/manual-lada-niva" className="group mb-16 flex flex-wrap items-center justify-between gap-6 rounded-[6px] border border-line bg-midnight-deep p-6 no-underline transition-colors hover:border-racing lg:p-8">
-            <div className="max-w-[60ch]">
-              <p className="t-small font-semibold uppercase tracking-[0.14em] text-racing-bright">Nuevo · Manual interactivo</p>
-              <p className="t-title mt-2">Manual de taller Lada Niva 2121</p>
-              <p className="mt-2 opacity-70">Culata, cadena, reglaje de válvulas, aceites y cotas del Niva 1600. Con esquemas para hacerlo paso a paso.</p>
-            </div>
-            <span className="inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-racing px-6 font-medium text-paper transition-colors group-hover:bg-racing-dark">Abrir el manual</span>
-          </Link>
+          <ManualRow cards={manualCards} />
           {byCollection.map(({ collection, guides }) => <GuideRow key={collection.id} collection={collection} guides={guides} />)}
         </Container>
       </section>
