@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 634" width="940" height="634" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="634" fill="#fff"/>
+<defs><pattern id="hx" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#1b1b1b" stroke-width="1.1"/></pattern></defs>
+<rect x="140" y="180" width="495" height="142.5" rx="0" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8"/>
+<line x1="110" y1="250.5" x2="665" y2="250.5" stroke="#1b1b1b" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="18 4 3 4"/>
+<rect x="237.5" y="165" width="240" height="15" rx="0" fill="url(#hx)" stroke="#1b1b1b" stroke-width="1.4"/>
+<rect x="237.5" y="322.5" width="240" height="15" rx="0" fill="url(#hx)" stroke="#1b1b1b" stroke-width="1.4"/>
+<polygon points="110,142.5 455,142.5 455,165 143,165 143,337.5 455,337.5 455,360 110,360 89,333 89,261 104,261 104,240 89,240 89,169.5" fill="url(#hx)" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<rect x="455" y="123" width="52.5" height="42" rx="0" fill="#fff" stroke="#e3141e" stroke-width="2.2"/>
+<line x1="462.5" y1="129" x2="500" y2="159" stroke="#e3141e" stroke-width="1.4" stroke-linecap="round"/>
+<rect x="455" y="337.5" width="52.5" height="40.5" rx="0" fill="#fff" stroke="#e3141e" stroke-width="2.2"/>
+<line x1="462.5" y1="343.5" x2="500" y2="372" stroke="#e3141e" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M470.0 30.0 L530.0 30.0 L530.0 117.0 L507.5 117.0 L507.5 168.0 L605.0 168.0 L605.0 90.0 L620.0 90.0 L620.0 405.0 L605.0 405.0 L605.0 333.0 L507.5 333.0 L507.5 384.0 L530.0 384.0 L530.0 480.0 L470.0 480.0" fill="none" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<polygon points="20,260.5 54,260.5 54,272.5 80,250.5 54,228.5 54,240.5 20,240.5" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<line x1="477.5" y1="132" x2="620" y2="50" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="477.5" cy="132" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="626" y="56.3" font-size="18" fill="#e3141e" text-anchor="start" font-weight="700">Retén nuevo</text>
+<line x1="335" y1="250.5" x2="620" y2="250" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="335" cy="250.5" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="626" y="256.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Cigüeñal</text>
+<line x1="335" y1="330" x2="330" y2="520" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="335" cy="330" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="336" y="526.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Guía MD998383 (aceite por fuera)</text>
+<line x1="110" y1="345" x2="60" y2="480" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="110" cy="345" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="66" y="486.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Útil MD998382</text>
+<line x1="612.5" y1="165" x2="760" y2="140" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="612.5" cy="165" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="766" y="135.5" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Caja inferior</text>
+<text x="766" y="158" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">delantera</text>
+<text x="30" y="570" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Aceite en el labio del retén y por fuera de la guía. Empuja el útil hasta que haga tope.</text>
+<line x1="0" y1="600" x2="940" y2="600" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="622" font-size="14" fill="#1b1b1b" opacity="0.75">Montaje del retén delantero del cigüeñal con su guía (sección)</text>
+<text x="926" y="624" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
