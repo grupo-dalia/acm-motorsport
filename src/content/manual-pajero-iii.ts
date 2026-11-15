@@ -10,7 +10,7 @@
  */
 
 import type { ManualVehicle, System } from "@/content/manual-types";
-import { distribucion4d56 } from "@/content/despieces/pajero-4d56-distribucion";
+import { correaB4d56, correaDistribucion4d56 } from "@/content/despieces/pajero-4d56-correas";
 
 export type { Figure, ManualVehicle, Part, Procedure, Spec, Step, System } from "@/content/manual-types";
 
@@ -100,7 +100,7 @@ export const manualSystems: System[] = [
         id: "distribucion",
         title: "Correas de distribución",
         summary: "Dos correas: la principal (cigüeñal, bomba inyectora y árbol de levas) y la B, que va por detrás y mueve los ejes de equilibrado. La B se monta primero.",
-        exploded: distribucion4d56,
+        beltViews: [correaDistribucion4d56, correaB4d56],
         warning: PMS,
         specs: [
           { label: "Flecha correa principal y B", value: "4 – 5", unit: "mm" },

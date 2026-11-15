@@ -16,6 +16,8 @@ export type Part = {
   figures?: Figure[];
   tips?: string[];
   exploded?: ExplodedView;
+  /** Vistas de frente de las correas (dibujo ACM con la geometría real). */
+  beltViews?: BeltView[];
 };
 
 export type System = { id: string; title: string; parts: Part[] };
@@ -61,3 +63,33 @@ export type ExplodedPart = {
 
 /** Despiece interactivo: piezas numeradas en su orden de montaje, colocadas sobre un eje. */
 export type ExplodedView = { title: string; intro?: string; width: number; height: number; axis?: { x1: number; y1: number; x2: number; y2: number }; parts: ExplodedPart[] };
+
+/** Pieza dibujada en una vista de frente de la correa. Radio negativo = la correa apoya la espalda (rodillo tensor). */
+export type BeltPulley = {
+  n: number;
+  name: string;
+  x: number;
+  y: number;
+  r: number;
+  kind: "sprocket" | "idler";
+  teeth?: number;
+  oe?: string;
+  search?: string;
+  torque?: string;
+  note?: string;
+  /** Dirección del número (grados, 0 = derecha, 90 = abajo). */
+  labelAngle?: number;
+};
+
+export type BeltView = {
+  title: string;
+  intro?: string;
+  width: number;
+  height: number;
+  pulleys: BeltPulley[];
+  /** Números de pieza en el orden en que los recorre la correa (sentido horario en pantalla). */
+  order: number[];
+  belt: Omit<BeltPulley, "x" | "y" | "r" | "kind" | "teeth" | "labelAngle">;
+  /** Flecha de giro del cigüeñal y textos sueltos. */
+  notes?: { x: number; y: number; text: string }[];
+};
