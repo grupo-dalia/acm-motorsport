@@ -3,12 +3,14 @@ import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
 import { ManualExplorer } from "@/components/manual/manual-explorer";
 import { nivaSystems, nivaVehicle } from "@/content/manual-lada-niva";
+import { VehiclePhoto } from "@/components/manual/vehicle-photo";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Manual de taller Lada Niva 2121: culata, pares de apriete y capacidades",
   description: "Datos de taller del Lada Niva 1600 (VAZ-2121): cómo quitar y poner la culata, pares de apriete, reglaje de válvulas, cadena de distribución, aceite y capacidades.",
   path: "/guias/manual-lada-niva",
+  image: "/guias/manual-lada-niva/opengraph-image",
 });
 
 export default function ManualNivaPage() {
@@ -23,7 +25,9 @@ export default function ManualNivaPage() {
         title="Manual de taller Lada Niva."
         lead={`${nivaVehicle.engine} · ${nivaVehicle.chassis} · ${nivaVehicle.years}. Elige el sistema y la pieza: datos, aprietes, esquemas y paso a paso.`}
         crumbs={crumbs}
-      />
+      >
+        <VehiclePhoto vehicle={nivaVehicle} />
+      </PageHero>
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
           <ManualExplorer systems={nivaSystems} vehicle={nivaVehicle} />

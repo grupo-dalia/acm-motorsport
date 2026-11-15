@@ -19,4 +19,7 @@ export type Part = {
 
 export type System = { id: string; title: string; parts: Part[] };
 
-export type ManualVehicle = { model: string; chassis: string; years: string; engine: string; basePath: string };
+/** Foto del coche (licencia libre) que sale en la cabecera y en la vista previa del enlace. `file` relativo a `basePath`. */
+export type VehiclePhoto = { file: string; alt: string; author: string; license: string; source: string };
+
+export type ManualVehicle = { model: string; chassis: string; years: string; engine: string; basePath: string; photo?: VehiclePhoto };
