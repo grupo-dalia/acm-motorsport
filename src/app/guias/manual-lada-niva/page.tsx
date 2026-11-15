@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/container";
 import { ManualExplorer } from "@/components/manual/manual-explorer";
 import { nivaSystems, nivaVehicle } from "@/content/manual-lada-niva";
 import { VehiclePhoto } from "@/components/manual/vehicle-photo";
+import { ManualIndex } from "@/components/manual/manual-part-page";
+import { nivaManual } from "@/content/manual-defs";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -31,6 +33,7 @@ export default function ManualNivaPage() {
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
           <ManualExplorer systems={nivaSystems} vehicle={nivaVehicle} />
+          <ManualIndex manual={nivaManual} />
           <p className="t-small mt-16 max-w-[80ch] opacity-50">
             Datos técnicos del Lada Niva 1600 (VAZ-2121, 1977-1994) con motor de carburación, sacados del manual de reparación del VAZ-2121. Textos y esquemas de ACM Motorsport. Lada es una marca de AvtoVAZ; esta guía no está afiliada a ellos. Hay muchos Niva con motor cambiado: comprueba siempre los datos de tu versión antes de trabajar en el coche.
           </p>

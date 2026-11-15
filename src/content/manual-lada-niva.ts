@@ -14,6 +14,8 @@ export const nivaVehicle: ManualVehicle = {
   years: "1977-1994",
   engine: "2121 · 1,6 L gasolina, carburación",
   basePath: "/manual/lada-niva",
+  href: "/guias/manual-lada-niva",
+  short: "Lada Niva 1600",
   photo: {
     file: "coche.jpg",
     alt: "Lada Niva 1600 de 1989, tres puertas, visto de frente y de lado",

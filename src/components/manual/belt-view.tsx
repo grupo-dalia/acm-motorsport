@@ -16,7 +16,8 @@ const RED = "#e3141e";
 const SHOP = "https://www.euro4x4parts.com/es/buscar?q=";
 
 type Item = Omit<BeltPulley, "x" | "y" | "r" | "kind"> & Partial<Pick<BeltPulley, "x" | "y" | "r" | "kind">>;
-const shopUrl = (p: Item) => SHOP + encodeURIComponent(p.oe ?? p.search ?? p.name);
+/** Ficha de la familia de recambio; si solo hay referencia OE, su buscador sí la entiende. */
+const shopUrl = (p: Item) => p.url ?? (p.oe ? SHOP + encodeURIComponent(p.oe) : undefined);
 
 type Pt = [number, number];
 
@@ -180,9 +181,11 @@ export function BeltDiagram({ view }: { view: BeltView }) {
                   {current.torque && <div className="flex justify-between gap-3"><dt className="opacity-60">Apriete</dt><dd className="font-semibold text-racing-bright">{current.torque}</dd></div>}
                 </dl>
                 {current.note && <p className="t-small mt-2 opacity-75">{current.note}</p>}
+                {shopUrl(current) && (
                 <a href={shopUrl(current)} rel="sponsored noopener" target="_blank" className="mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-btn)] bg-racing px-4 font-medium text-paper no-underline hover:bg-racing-dark">
-                  <ShoppingCart aria-hidden className="size-4" /> Buscar en Euro4x4parts
+                  <ShoppingCart aria-hidden className="size-4" /> Ver recambios en Euro4x4parts
                 </a>
+                )}
               </>
             ) : (
               <p className="opacity-70">Toca una pieza del dibujo o de la lista para ver su referencia, su apriete y dónde comprarla.</p>

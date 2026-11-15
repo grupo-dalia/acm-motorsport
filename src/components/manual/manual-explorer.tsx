@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight, ListOrdered, Wrench } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, ListOrdered, ShoppingCart, Wrench } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ExplodedDiagram } from "@/components/manual/exploded-view";
 import { BeltDiagram } from "@/components/manual/belt-view";
 import type { Figure, ManualVehicle, Part, Procedure, System } from "@/content/manual-types";
 
@@ -158,8 +158,10 @@ function Checklist({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function ProcedureBlock({ procedure, figures, basePath }: { procedure: Procedure; figures: Figure[]; basePath: string }) {
-  const [mode, setMode] = useState<"taller" | "lista">("taller");
+type Mode = "taller" | "lista";
+
+function ProcedureBlock({ procedure, figures, basePath, initialMode = "taller" }: { procedure: Procedure; figures: Figure[]; basePath: string; initialMode?: Mode }) {
+  const [mode, setMode] = useState<Mode>(initialMode);
   const tab = (on: boolean) => cn("inline-flex items-center gap-1.5 rounded-[calc(var(--radius-btn)-2px)] px-3 py-1.5 text-sm", on && "bg-paper text-midnight-deep");
   return (
     <section className="mt-12" aria-label={procedure.title}>
@@ -184,11 +186,13 @@ function ProcedureBlock({ procedure, figures, basePath }: { procedure: Procedure
   );
 }
 
-function PartDetail({ part, basePath }: { part: Part; basePath: string }) {
+/** Ficha de un trabajo. En su página propia sale en modo lista para que el texto completo esté en el HTML. */
+export function PartDetail({ part, basePath, initialMode, heading = "h2" }: { part: Part; basePath: string; initialMode?: Mode; heading?: "h1" | "h2" }) {
+  const Title = heading;
   const figures = part.figures ?? [];
   return (
     <article className="min-w-0">
-      <h2 className="t-display">{part.title}</h2>
+      <Title className="t-display">{part.title}</Title>
       <p className="t-lead mt-4 max-w-[60ch] opacity-80">{part.summary}</p>
 
       {part.warning && (
@@ -219,9 +223,8 @@ function PartDetail({ part, basePath }: { part: Part; basePath: string }) {
       )}
 
       {part.beltViews?.map((v) => <BeltDiagram key={v.title} view={v} />)}
-      {part.exploded && <ExplodedDiagram view={part.exploded} />}
 
-      {part.procedures?.map((p) => <ProcedureBlock key={p.title} procedure={p} figures={figures} basePath={basePath} />)}
+      {part.procedures?.map((p) => <ProcedureBlock key={p.title} procedure={p} figures={figures} basePath={basePath} initialMode={initialMode} />)}
 
       {figures.length > 0 && (
         <section className="mt-12" aria-label="Figuras">
@@ -238,6 +241,23 @@ function PartDetail({ part, basePath }: { part: Part; basePath: string }) {
           {t}
         </p>
       ))}
+
+      {part.shop && part.shop.length > 0 && (
+        <section className="mt-12 rounded-[6px] border border-line p-5" aria-label="Recambios">
+          <h3 className="t-sub">Recambios para este trabajo</h3>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {part.shop.map((l) => (
+              <li key={l.url}>
+                <a href={l.url} rel="sponsored noopener" target="_blank" className="flex h-full items-center gap-3 rounded-[6px] border border-line px-4 py-3 no-underline hover:border-racing hover:bg-racing/10">
+                  <ShoppingCart aria-hidden className="size-4 shrink-0 text-racing-bright" />
+                  <span>{l.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="t-small mt-3 opacity-50">Catálogo de Euro4x4parts filtrado para este vehículo. Euro4x4parts es patrocinador de ACM Motorsport.</p>
+        </section>
+      )}
     </article>
   );
 }
@@ -297,6 +317,9 @@ export function ManualExplorer({ systems, vehicle }: { systems: System[]; vehicl
         <p className="t-small uppercase tracking-[0.14em] opacity-60">
           {vehicle.model} · {vehicle.years} · {current.system.title}
         </p>
+        <Link href={`${vehicle.href}/${current.part.id}`} className="t-small mt-1 inline-flex items-center gap-1 text-racing-bright">
+          Abrir este trabajo en su página <ExternalLink aria-hidden className="size-3.5" />
+        </Link>
         <div className="mt-3">
           <PartDetail key={current.part.id} part={current.part} basePath={vehicle.basePath} />
         </div>
