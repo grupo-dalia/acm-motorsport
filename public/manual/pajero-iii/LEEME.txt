@@ -1,0 +1,17 @@
+Figuras del manual interactivo del Pajero III (/guias/manual-pajero-iii).
+
+Deja aquí cada imagen con el nombre exacto de su hueco (.webp, .jpg o .png).
+La web la pone sola. Los nombres y la página del manual de cada una
+están en src/content/manual-pajero-iii.ts (campo "file" de cada figura):
+
+culata-orden-apriete      Manual 11B-33 (2001) / 11B-16 (2002)
+culata-arandela           Manual 11B-32
+culata-junta-marcas       Manual 11B-32 / 11B-15
+distribucion-marcas       Manual 11B-21
+distribucion-tensor-principal  Manual 11B-22
+distribucion-correa-b     Manual 11B-22
+distribucion-recorrido    Manual 11B-23 / 11B-24
+valvulas-pms-1            Manual 11B-8
+valvulas-pms-4            Manual 11B-9
+valvulas-sellador         Manual 11B-9
+aceite-arandela-tapon     Manual 12-4
