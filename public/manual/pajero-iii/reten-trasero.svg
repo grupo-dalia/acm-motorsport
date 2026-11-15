@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 554" width="940" height="554" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="554" fill="#fff"/>
+<polygon points="57.5,377.5 145,296.2 142.5,255 130,240 138.8,215 155,200 152.5,175 160,150 195,117.5 245,90 295,80 305,55 330,55 340,80 395,100 445,140 472.5,155 485,177.5 480,227.5 505,250 510,277.5 485,292.5 495,352.5 442.5,375 438.8,387.5 57.5,387.5" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"/>
+<circle cx="288.8" cy="227.5" r="145" fill="none" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="288.8" cy="227.5" r="120" fill="#fff" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="288.8" cy="227.5" r="112.5" fill="none" stroke="#1b1b1b" stroke-width="1"/>
+<circle cx="316.2" cy="67.5" r="8.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="163.8" cy="161.2" r="8.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="138.8" cy="262.5" r="8.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="495" cy="262.5" r="8.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="463.8" cy="161.2" r="7.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="142.5" cy="350" r="7.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="432.5" cy="352.5" r="7.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<path d="M195.0 377.5 L195.0 350.0 Q213.75 330.0 232.5 350.0 L232.5 377.5" fill="none" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="57.5" y1="387.5" x2="438.8" y2="387.5" stroke="#e3141e" stroke-width="4" stroke-linecap="round"/>
+<polygon points="317.5,446.2 317.5,422.2 329.5,422.2 307.5,396.2 285.5,422.2 297.5,422.2 297.5,446.2" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<text x="257.5" y="471.2" font-size="15" fill="#e3141e" text-anchor="middle" font-weight="700">Cara de apoyo del cárter: enrasada con el bloque</text>
+<circle cx="545" cy="233.8" r="175" fill="none" stroke="#1b1b1b" stroke-width="2.4"/>
+<circle cx="545" cy="233.8" r="160" fill="none" stroke="#1b1b1b" stroke-width="1.6"/>
+<circle cx="545" cy="393.8" r="10" fill="#fff" stroke="#e3141e" stroke-width="2.4"/>
+<circle cx="385" cy="233.8" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="705" cy="233.8" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="545" cy="73.8" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<path d="M378.1 248.3 A167.5 167.5 0 0 1 383.2 190.4" fill="none" stroke="#1b1b1b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M711.9 219.2 A167.5 167.5 0 0 1 706.8 277.1" fill="none" stroke="#1b1b1b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M574.1 398.7 A167.5 167.5 0 0 1 515.9 398.7" fill="none" stroke="#1b1b1b" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="545" y1="393.8" x2="900" y2="470" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="545" cy="393.8" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="894" y="465.8" font-size="17" fill="#e3141e" text-anchor="end" font-weight="700">Agujero del separador</text>
+<text x="894" y="487" font-size="17" fill="#e3141e" text-anchor="end" font-weight="700">hacia abajo</text>
+<text x="545" y="40" font-size="16" fill="#1b1b1b" text-anchor="middle" font-weight="400">Separador de aceite</text>
+<text x="288.8" y="27.5" font-size="16" fill="#1b1b1b" text-anchor="middle" font-weight="400">Caja del retén trasero</text>
+<line x1="0" y1="520" x2="940" y2="520" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="542" font-size="14" fill="#1b1b1b" opacity="0.75">Caja del retén trasero y separador de aceite con el agujero hacia abajo</text>
+<text x="926" y="544" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

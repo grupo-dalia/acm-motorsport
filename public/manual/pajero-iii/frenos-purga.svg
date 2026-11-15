@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 554" width="900" height="554" font-family="Arial, Helvetica, sans-serif">
+<rect width="900" height="554" fill="#fff"/>
+<rect x="150" y="120" width="600" height="260" rx="0" fill="none" stroke="#1b1b1b" stroke-width="1.4" stroke-dasharray="10 6"/>
+<text x="160" y="110" font-size="14" fill="#1b1b1b" text-anchor="start" font-weight="400">Vista desde arriba</text>
+<rect x="150" y="90" width="140" height="60" rx="18" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="220" cy="58" r="18" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="220" y="64" font-size="18" fill="#fff" text-anchor="middle" font-weight="700">2</text>
+<text x="220" y="126" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="400">Delantera izquierda</text>
+<rect x="610" y="90" width="140" height="60" rx="18" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="680" cy="58" r="18" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="680" y="64" font-size="18" fill="#fff" text-anchor="middle" font-weight="700">4</text>
+<text x="680" y="126" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="400">Delantera derecha</text>
+<rect x="150" y="350" width="140" height="60" rx="18" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="220" cy="442" r="18" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="220" y="448" font-size="18" fill="#fff" text-anchor="middle" font-weight="700">3</text>
+<text x="220" y="386" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="400">Trasera izquierda</text>
+<rect x="610" y="350" width="140" height="60" rx="18" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="680" cy="442" r="18" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="680" y="448" font-size="18" fill="#fff" text-anchor="middle" font-weight="700">1</text>
+<text x="680" y="386" font-size="14" fill="#1b1b1b" text-anchor="middle" font-weight="400">Trasera derecha</text>
+<rect x="260" y="160" width="80" height="40" rx="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<text x="300" y="220" font-size="13" fill="#1b1b1b" text-anchor="middle" font-weight="400">Bomba de freno</text>
+<line x1="450" y1="90" x2="450" y2="40" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/>
+<polygon points="450,40 454.7,51.1 445.3,51.1" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<text x="465" y="60" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Delante</text>
+<text x="450" y="490" font-size="13" fill="#1b1b1b" text-anchor="middle" font-weight="400">Volante a la izquierda. Con volante a la derecha: 1 trasera izq., 2 delantera der., 3 trasera der., 4 delantera izq.</text>
+<line x1="0" y1="520" x2="900" y2="520" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="542" font-size="14" fill="#1b1b1b" opacity="0.75">Orden de purga de los frenos</text>
+<text x="886" y="544" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
