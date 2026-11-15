@@ -49,7 +49,7 @@ export const nivaSystems: System[] = [
         id: "culata",
         title: "Culata y junta",
         summary: "La culata sale con el motor en el coche. El colector de admisión con el carburador y el de escape pueden salir pegados a ella: menos trabajo y menos juntas.",
-        warning: "Junta de culata y junta de la tapa de balancines siempre nuevas. Y la tapa, como mucho a 8 N·m: con más se rompe la junta o se alabea la tapa.",
+        warning: "Junta de culata y junta de la tapa de balancines siempre nuevas. Y la tapa, como mucho a 8 N·m: con más se rompe la junta o se alabea la tapa. La instrucción de reparación de AvtoVAZ da pares casi iguales a los del manual: 34-42 y 100-120 N·m, y el tornillo 11 en dos pasos (14-16 y 32-40 N·m).",
         specs: [
           { label: "Culata, 1.ª pasada (tornillos 1 a 10)", value: "33-41", unit: "N·m", note: "3,4-4,2 kgf·m" },
           { label: "Culata, 2.ª pasada (tornillos 1 a 10)", value: "96-118", unit: "N·m", note: "9,8-12,1 kgf·m" },
@@ -57,7 +57,8 @@ export const nivaSystems: System[] = [
           { label: "Tuercas de la tapa de balancines", value: "≤ 8", unit: "N·m" },
         ],
         figures: [
-          { file: "culata-orden-apriete", caption: "Cómo se aprieta: del centro hacia los extremos y en dos pasadas", ref: "Orden numerado exacto: fig. 2-16 del manual" },
+          { file: "culata-orden-apriete", caption: "Orden de apriete de los 11 tornillos de culata, vista desde arriba", ref: "Esquema ACM con las posiciones de la fig. 55 de la instrucción de reparación VAZ" },
+          { file: "arbol-levas-tuercas", caption: "Orden de apriete de las 9 tuercas del soporte del árbol de levas", ref: "Esquema ACM con las posiciones de la fig. 59" },
           { file: "distribucion-marcas", caption: "Marcas de calado antes de soltar el árbol de levas", ref: "Manual fig. 7-19 y 2-19" },
         ],
         procedures: [{ title: "Quitar y poner la culata", steps: [
@@ -73,8 +74,8 @@ export const nivaSystems: System[] = [
           { title: "Piñón y árbol de levas", text: "Quita el piñón del árbol de levas y saca el soporte con el árbol entero." },
           { title: "Afloja y levanta", text: "Afloja los tornillos de culata en el orden inverso al de apriete, poco a poco, y levanta la culata recta." },
           { title: "Monta con junta nueva", text: "Superficies limpias y junta nueva sin golpes, grietas ni el recubrimiento despegado. Culata en su sitio con el motor todavía en marcas." },
-          { title: "Aprieta en dos pasadas", text: "Del centro hacia fuera (figura 1): primero todos a par bajo y después al par final. El tornillo 11 va aparte, en la segunda pasada.", torque: "33-41 N·m → 96-118 N·m · tornillo 11: 31-39 N·m", figure: "culata-orden-apriete" },
-          { title: "Árbol de levas y cadena", text: "Monta el soporte con el árbol (tuercas en el orden de la fig. 2-18 del manual), el piñón con las marcas alineadas, y suelta el tensor para tensar la cadena." },
+          { title: "Aprieta en dos pasadas", text: "Del 1 al 10 en el orden de la figura 1, que empieza en el centro y abre en cruz: primero todos a par bajo y después, otra vez del 1 al 10, al par final. El 11, el pequeño de la esquina junto al 7, va aparte.", torque: "33-41 N·m → 96-118 N·m · tornillo 11: 31-39 N·m", figure: "culata-orden-apriete" },
+          { title: "Árbol de levas y cadena", text: "Monta el soporte con el árbol y aprieta sus 9 tuercas del 1 al 9, del centro hacia los extremos. Pon el piñón con las marcas alineadas y suelta el tensor para tensar la cadena.", figure: "arbol-levas-tuercas" },
           { title: "Válvulas, tapa y lo demás", text: "Regla las válvulas en frío, monta la tapa con junta nueva y vuelve a conectar todo. Al arrancar, comprueba el avance de encendido.", torque: "Tapa: máx. 8 N·m" },
         ] }],
       },
@@ -103,14 +104,13 @@ export const nivaSystems: System[] = [
       {
         id: "valvulas",
         title: "Reglaje de válvulas",
-        warning: "La primera posición (levas 8 y 6) es la del manual. Las tres siguientes salen de su tabla de reglaje y del orden de las levas: si tienes el manual a mano, cotéjalas.",
         summary: "En frío y con la cadena ya tensada. Galga plana de 0,15 mm entre leva y balancín: tiene que entrar con un poco de roce.",
         specs: [
           { label: "Holgura (admisión y escape)", value: "0,15", unit: "mm", note: "motor frío" },
           { label: "Margen admitido", value: "0,14-0,17", unit: "mm" },
         ],
         figures: [
-          { file: "levas-numeracion", caption: "Numeración de las levas y qué pareja se regla en cada posición", ref: "Manual tabla 2-5" },
+          { file: "levas-numeracion", caption: "Numeración de las levas y qué pareja se regla en cada posición", ref: "Manual tabla 2-5 · tabla 21 de la instrucción de reparación VAZ" },
           { file: "valvulas-galga", caption: "Dónde va la galga y qué se afloja", ref: "Esquema ACM" },
         ],
         procedures: [{ title: "Reglaje", steps: [
