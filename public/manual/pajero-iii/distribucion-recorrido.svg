@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 894" width="940" height="894" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="894" fill="#fff"/>
+<path d="M295.9 159.6 L603.9 297.1 A88 88 0 0 1 631.4 438.6 L369.2 710.6 A60 60 0 0 1 273.8 639.4 L445 337.7 A42 42 0 0 0 391.7 278.5 L295.2 320.6 A88 88 0 1 1 295.9 159.6 Z" fill="none" stroke="#1b1b1b" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M295.9 159.6 L603.9 297.1 A88 88 0 0 1 631.4 438.6 L369.2 710.6 A60 60 0 0 1 273.8 639.4 L445 337.7 A42 42 0 0 0 391.7 278.5 L295.2 320.6 A88 88 0 1 1 295.9 159.6 Z" fill="none" stroke="#fff" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M295.9 159.6 L603.9 297.1 A88 88 0 0 1 631.4 438.6 L369.2 710.6 A60 60 0 0 1 273.8 639.4 L445 337.7 A42 42 0 0 0 391.7 278.5 L295.2 320.6 A88 88 0 1 1 295.9 159.6 Z" fill="none" stroke="#1b1b1b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 3" opacity="0.5"/>
+<polygon points="342.7,240.9 347.9,243.9 347.3,250.8 341.7,252.9 340.4,259.3 344.8,263.4 342.7,270 336.8,270.8 334.1,276.7 337.5,281.7 334,287.7 328,287.1 324.1,292.3 326.3,297.9 321.5,302.9 315.8,301.1 310.8,305.2 311.7,311.2 306,315 300.8,311.9 295.1,314.9 294.6,320.9 288.1,323.4 283.8,319.2 277.5,320.8 275.7,326.6 268.9,327.6 265.6,322.5 259.1,322.7 256.1,327.9 249.2,327.3 247.1,321.7 240.7,320.4 236.6,324.8 230,322.7 229.2,316.8 223.3,314.1 218.3,317.5 212.3,314 212.9,308 207.7,304.1 202.1,306.3 197.1,301.5 198.9,295.8 194.8,290.8 188.8,291.7 185,286 188.1,280.8 185.1,275.1 179.1,274.6 176.6,268.1 180.8,263.8 179.2,257.5 173.4,255.7 172.4,248.9 177.5,245.6 177.3,239.1 172.1,236.1 172.7,229.2 178.3,227.1 179.6,220.7 175.2,216.6 177.3,210 183.2,209.2 185.9,203.3 182.5,198.3 186,192.3 192,192.9 195.9,187.7 193.7,182.1 198.5,177.1 204.2,178.9 209.2,174.8 208.3,168.8 214,165 219.2,168.1 224.9,165.1 225.4,159.1 231.9,156.6 236.2,160.8 242.5,159.2 244.3,153.4 251.1,152.4 254.4,157.5 260.9,157.3 263.9,152.1 270.8,152.7 272.9,158.3 279.3,159.6 283.4,155.2 290,157.3 290.8,163.2 296.7,165.9 301.7,162.5 307.7,166 307.1,172 312.3,175.9 317.9,173.7 322.9,178.5 321.1,184.2 325.2,189.2 331.2,188.3 335,194 331.9,199.2 334.9,204.9 340.9,205.4 343.4,211.9 339.2,216.2 340.8,222.5 346.6,224.3 347.6,231.1 342.5,234.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.3" stroke-linejoin="round"/>
+<circle cx="260" cy="240" r="76.7" fill="none" stroke="#1b1b1b" stroke-width="0.9"/>
+<ellipse cx="294.2" cy="274.2" rx="17.6" ry="12.3" transform="rotate(45 294.2 274.2)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<ellipse cx="225.8" cy="274.2" rx="17.6" ry="12.3" transform="rotate(135 225.8 274.2)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<ellipse cx="225.8" cy="205.8" rx="17.6" ry="12.3" transform="rotate(225 225.8 205.8)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<ellipse cx="294.2" cy="205.8" rx="17.6" ry="12.3" transform="rotate(315 294.2 205.8)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="260" cy="240" r="23.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<polygon points="273.2,240 266.6,251.4 253.4,251.4 246.8,240 253.4,228.6 266.6,228.6" fill="#fff" stroke="#1b1b1b" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="260" cy="240" r="5.9" fill="#fff" stroke="#1b1b1b" stroke-width="0.84"/>
+<polygon points="650.7,378.4 655.9,381.4 655.3,388.3 649.7,390.4 648.4,396.8 652.8,400.9 650.7,407.5 644.8,408.3 642.1,414.2 645.5,419.2 642,425.2 636,424.6 632.1,429.8 634.3,435.4 629.5,440.4 623.8,438.6 618.8,442.7 619.7,448.7 614,452.5 608.8,449.4 603.1,452.4 602.6,458.4 596.1,460.9 591.8,456.7 585.5,458.3 583.7,464.1 576.9,465.1 573.6,460 567.1,460.2 564.1,465.4 557.2,464.8 555.1,459.2 548.7,457.9 544.6,462.3 538,460.2 537.2,454.3 531.3,451.6 526.3,455 520.3,451.5 520.9,445.5 515.7,441.6 510.1,443.8 505.1,439 506.9,433.3 502.8,428.3 496.8,429.2 493,423.5 496.1,418.3 493.1,412.6 487.1,412.1 484.6,405.6 488.8,401.3 487.2,395 481.4,393.2 480.4,386.4 485.5,383.1 485.3,376.6 480.1,373.6 480.7,366.7 486.3,364.6 487.6,358.2 483.2,354.1 485.3,347.5 491.2,346.7 493.9,340.8 490.5,335.8 494,329.8 500,330.4 503.9,325.2 501.7,319.6 506.5,314.6 512.2,316.4 517.2,312.3 516.3,306.3 522,302.5 527.2,305.6 532.9,302.6 533.4,296.6 539.9,294.1 544.2,298.3 550.5,296.7 552.3,290.9 559.1,289.9 562.4,295 568.9,294.8 571.9,289.6 578.8,290.2 580.9,295.8 587.3,297.1 591.4,292.7 598,294.8 598.8,300.7 604.7,303.4 609.7,300 615.7,303.5 615.1,309.5 620.3,313.4 625.9,311.2 630.9,316 629.1,321.7 633.2,326.7 639.2,325.8 643,331.5 639.9,336.7 642.9,342.4 648.9,342.9 651.4,349.4 647.2,353.7 648.8,360 654.6,361.8 655.6,368.6 650.5,371.9" fill="#fff" stroke="#1b1b1b" stroke-width="1.3" stroke-linejoin="round"/>
+<circle cx="568" cy="377.5" r="76.7" fill="none" stroke="#1b1b1b" stroke-width="0.9"/>
+<circle cx="614.2" cy="391.8" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="578.7" cy="424.7" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="532.5" cy="410.4" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="521.8" cy="363.2" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="557.3" cy="330.3" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="603.5" cy="344.6" r="11.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="568" cy="377.5" r="23.8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<polygon points="581.2,377.5 574.6,388.9 561.4,388.9 554.8,377.5 561.4,366.1 574.6,366.1" fill="#fff" stroke="#1b1b1b" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="568" cy="377.5" r="5.9" fill="#fff" stroke="#1b1b1b" stroke-width="0.84"/>
+<polygon points="382,669.9 385.9,673 385,679.9 380.5,681.8 378.7,688.1 381.3,692.2 378.3,698.4 373.4,698.8 369.6,704.1 370.8,708.9 365.9,713.8 361.1,712.6 355.8,716.4 355.4,721.3 349.2,724.3 345.1,721.7 338.8,723.5 336.9,728 330,728.9 326.9,725 320.5,724.7 317.1,728.3 310.3,726.9 308.7,722.3 302.7,719.9 298.3,722.2 292.4,718.7 292.3,713.8 287.4,709.6 282.5,710.4 278,705.1 279.6,700.4 276.3,694.8 271.5,694 268.9,687.5 271.9,683.6 270.6,677.3 266.3,674.9 266,668 270.1,665.3 270.9,658.9 267.6,655.2 269.6,648.6 274.4,647.4 277.2,641.5 275.2,637 279.3,631.4 284.2,631.8 288.8,627.2 288.4,622.3 294,618.2 298.5,620.2 304.4,617.4 305.6,612.6 312.2,610.6 315.9,613.9 322.3,613.1 325,609 331.9,609.3 334.3,613.6 340.6,614.9 344.5,611.9 351,614.5 351.8,619.3 357.4,622.6 362.1,621 367.4,625.5 366.6,630.4 370.8,635.3 375.7,635.4 379.2,641.3 376.9,645.7 379.3,651.7 383.9,653.3 385.3,660.1 381.7,663.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.3" stroke-linejoin="round"/>
+<circle cx="326" cy="669" r="50" fill="none" stroke="#1b1b1b" stroke-width="0.9"/>
+<ellipse cx="342.5" cy="697.6" rx="12" ry="8.4" transform="rotate(60 342.5 697.6)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<ellipse cx="293" cy="669" rx="12" ry="8.4" transform="rotate(180 293 669)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<ellipse cx="342.5" cy="640.4" rx="12" ry="8.4" transform="rotate(300 342.5 640.4)" fill="none" stroke="#1b1b1b" stroke-width="1.1"/>
+<circle cx="326" cy="669" r="16.2" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<polygon points="335,669 330.5,676.8 321.5,676.8 317,669 321.5,661.2 330.5,661.2" fill="#fff" stroke="#1b1b1b" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="326" cy="669" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.84"/>
+<polygon points="381,278.5 463.5,284 491,302.7 483.3,344.5 463.5,399.5 436,401.7 386.5,364.3 370,333.5" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="408.5" cy="317" r="42" fill="#fff" stroke="#1b1b1b" stroke-width="1.8"/>
+<circle cx="408.5" cy="317" r="34.4" fill="none" stroke="#1b1b1b" stroke-width="0.8"/>
+<circle cx="408.5" cy="317" r="18.9" fill="none" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="408.5" cy="317" r="8.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="353.5" cy="368.7" r="13.5" fill="#fff" stroke="#1b1b1b" stroke-width="0.96"/>
+<polygon points="363.5,368.7 358.5,377.4 348.5,377.4 343.5,368.7 348.5,360 358.5,360" fill="#fff" stroke="#1b1b1b" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="353.5" cy="368.7" r="4.5" fill="#fff" stroke="#1b1b1b" stroke-width="0.84"/>
+<circle cx="474.5" cy="302.7" r="13.5" fill="#fff" stroke="#e3141e" stroke-width="1.4400000000000002"/>
+<polygon points="484.5,302.7 479.5,311.4 469.5,311.4 464.5,302.7 469.5,294 479.5,294" fill="#fff" stroke="#e3141e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="474.5" cy="302.7" r="4.5" fill="#fff" stroke="#e3141e" stroke-width="1.26"/>
+<circle cx="452.5" cy="390.7" r="13.5" fill="#fff" stroke="#e3141e" stroke-width="1.4400000000000002"/>
+<polygon points="462.5,390.7 457.5,399.4 447.5,399.4 442.5,390.7 447.5,382 457.5,382" fill="#fff" stroke="#e3141e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="452.5" cy="390.7" r="4.5" fill="#fff" stroke="#e3141e" stroke-width="1.26"/>
+<polygon points="365.4,251.1 377.7,246.7 376.5,257.9" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="288.2,600.8 277.6,593.3 287.5,587.8" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="230" cy="669" r="16" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="230" y="675" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">1</text>
+<circle cx="691.2" cy="377.5" r="16" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="691.2" y="383.5" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">2</text>
+<circle cx="305.9" cy="279.7" r="16" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="305.9" y="285.7" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">3</text>
+<circle cx="216.4" cy="359.9" r="16" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="216.4" y="365.9" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">4</text>
+<text x="30" y="40" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="700">Orden de montaje: 1 cigüeñal, 2 bomba inyectora, 3 tensor, 4 árbol de levas.</text>
+<text x="30" y="64" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Sin dejar holgura en el lado tenso (cigüeñal → bomba → levas).</text>
+<polygon points="127.1,178.3 152.2,192.8 146.2,203.2 179.7,197.1 168.2,165 162.2,175.4 137.1,160.9" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<text x="30" y="112" font-size="16" fill="#e3141e" text-anchor="start" font-weight="700">A: aquí la correa no debe levantarse</text>
+<line x1="474.5" y1="302.7" x2="700" y2="200" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="474.5" cy="302.7" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="706" y="196" font-size="16" fill="#e3141e" text-anchor="start" font-weight="700">Perno del agujero profundo:</text>
+<text x="706" y="216" font-size="16" fill="#e3141e" text-anchor="start" font-weight="700">se aprieta el primero</text>
+<line x1="452.5" y1="390.7" x2="700" y2="560" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="452.5" cy="390.7" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="706" y="565.6" font-size="16" fill="#e3141e" text-anchor="start" font-weight="700">Perno de abajo</text>
+<line x1="408.5" y1="317" x2="120" y2="420" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="408.5" cy="317" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="114" y="426.3" font-size="18" fill="#1b1b1b" text-anchor="end" font-weight="400">Tensor</text>
+<text x="30" y="800" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Suelta los pernos para que tense el muelle, gira el cigüeñal a derechas 2 dientes del piñón de levas</text>
+<text x="30" y="818.8" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">y aprieta empezando por el perno del agujero profundo (26 ± 3 N·m).</text>
+<line x1="0" y1="860" x2="940" y2="860" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="882" font-size="14" fill="#1b1b1b" opacity="0.75">Recorrido de la correa principal, pernos del tensor y punto A</text>
+<text x="926" y="884" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

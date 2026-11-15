@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 674" width="940" height="674" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="674" fill="#fff"/>
+<path d="M30 220 L300 122" fill="none" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M10 252 L250 170" fill="none" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+<polygon points="232,212 300,136 480,126 560,128 640,142 690,175 692,222 650,256 590,292 552,330 540,380 546,422 574,470 582,528 556,566 518,572 482,542 440,502 382,474 300,442 280,402 262,360" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="232,212 172,266 186,298 232,278" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="395" cy="260" r="155" fill="#fff" stroke="#1b1b1b" stroke-width="2.4"/>
+<circle cx="395" cy="260" r="120" fill="none" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="395" cy="260" r="90" fill="none" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="395" cy="260" r="45" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<path d="M140 266 L152 266 L232 442 L214 442 L136 280 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="172" cy="450" r="66" fill="#fff" stroke="#1b1b1b" stroke-width="2"/>
+<circle cx="172" cy="450" r="32.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="196,450 184,470.8 160,470.8 148,450 160,429.2 184,429.2" fill="#fff" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round"/>
+<circle cx="172" cy="450" r="10.8" fill="#fff" stroke="#1b1b1b" stroke-width="0.9799999999999999"/>
+<path d="M22 498 L170 498 M22 516 L140 516" fill="none" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="608" cy="188" r="42" fill="#fff" stroke="#1b1b1b" stroke-width="1.8"/>
+<polygon points="630,188 619,207.1 597,207.1 586,188 597,168.9 619,168.9" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="608" cy="188" r="9.9" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<circle cx="668" cy="206" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="540" cy="518" r="42" fill="#fff" stroke="#1b1b1b" stroke-width="1.8"/>
+<polygon points="562,518 551,537.1 529,537.1 518,518 529,498.9 551,498.9" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="540" cy="518" r="9.9" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<line x1="608" y1="188" x2="760" y2="150" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="608" cy="188" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="766" y="145" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">Tornillo A</text>
+<text x="766" y="170" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">(lado de la ranura)</text>
+<line x1="540" y1="518" x2="690" y2="500" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="540" cy="518" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="696" y="507" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">Tornillo B</text>
+<polygon points="640,80 694,80 694,92 720,70 694,48 694,60 640,60" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<text x="470" y="76" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="700">Lado de tensión</text>
+<text x="30" y="594" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Afloja A y B 1-2 vueltas, gira el cigüeñal a derechas 2 dientes del piñón de levas</text>
+<text x="30" y="614" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">y aprieta primero A y luego B (26 ± 3 N·m).</text>
+<line x1="0" y1="640" x2="940" y2="640" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="662" font-size="14" fill="#1b1b1b" opacity="0.75">Tornillo A (lado de la ranura) y tornillo B del tensor principal</text>
+<text x="926" y="664" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
