@@ -1,17 +1,51 @@
 Figuras del manual interactivo del Pajero III (/guias/manual-pajero-iii).
 
 Deja aquí cada imagen con el nombre exacto de su hueco (.webp, .jpg o .png).
-La web la pone sola. Los nombres y la página del manual de cada una
-están en src/content/manual-pajero-iii.ts (campo "file" de cada figura):
+La web la pone sola. Lista generada desde src/content/manual-pajero-iii.ts:
 
-culata-orden-apriete      Manual 11B-33 (2001) / 11B-16 (2002)
-culata-arandela           Manual 11B-32
-culata-junta-marcas       Manual 11B-32 / 11B-15
-distribucion-marcas       Manual 11B-21
-distribucion-tensor-principal  Manual 11B-22
-distribucion-correa-b     Manual 11B-22
-distribucion-recorrido    Manual 11B-23 / 11B-24
-valvulas-pms-1            Manual 11B-8
-valvulas-pms-4            Manual 11B-9
-valvulas-sellador         Manual 11B-9
-aceite-arandela-tapon     Manual 12-4
+correa-aux-tensor-marca          Manual 11B-5                           Marca del tensor automático y zona A en la que tiene que quedar
+correa-aux-llave-allen           Manual 11B-21                          Cómo bloquear el tensor automático con una llave Allen
+correa-aux-aa                    Manual 11B-6 · 11B-7                   Correa del aire acondicionado: dónde medir la flecha y tornillos A y B
+distribucion-despiece            Manual 11B-19 · 11B-20                 Despiece: qué sale y en qué orden hasta llegar a las correas
+distribucion-marcas              Manual 11B-21                          Marcas de distribución con el cilindro 1 en PMS y útil de la polea
+distribucion-tensor-principal    Manual 11B-22                          Tensor de la correa principal: tornillos A y B
+distribucion-correa-b            Manual 11B-22                          Correa B: marcas de los tres piñones, tensor (C y D) y lado tenso
+distribucion-recorrido           Manual 11B-23                          Recorrido de la correa principal, los 2 dientes y el punto A
+distribucion-flecha              Manual 11B-24                          Dónde medir la flecha y posición de los tornillos de la tapa
+tension-principal                Manual 11B-14 · 11B-15                 Tornillo A (lado de la ranura) y B del tensor principal
+tension-acceso-b                 Manual 11B-16                          Tapa de acceso y tensor B: tornillo del pivote y tuerca de la ranura
+valvulas-pms-1                   Manual 11B-8                           Válvulas que se reglan con el cilindro 1 en PMS
+valvulas-pms-4                   Manual 11B-9                           Válvulas que se reglan con el cilindro 4 en PMS
+valvulas-sellador                Manual 11B-9                           Dónde va el sellador de las juntas semicirculares (10 mm a cada lado)
+levas-despiece                   Manual 11B-27                          Despiece de tapa de balancines, balancines, tapas de cojinete y árbol
+levas-brida-pinon                Manual 11B-28                          Piñón atado a la correa con una brida y útil para sujetarlo
+levas-numeros-tapas              Manual 11B-28                          Números de las tapas de cojinete y sentido hacia delante
+levas-reten                      Manual 11B-29                          Profundidad a la que va el retén del árbol de levas
+culata-despiece                  Manual 11B-30 (2001) · 11B-13 (2002)   Despiece: todo lo que hay que soltar para sacar la culata
+culata-orden-aflojado            Manual 11B-31 · 11B-14                 Orden para aflojar los tornillos de culata
+culata-orden-apriete             Manual 11B-33 (2001) · 11B-16 (2002)   Orden de apriete de los 18 tornillos (vista desde arriba, delante a la izquierda)
+culata-arandela                  Manual 11B-32 · 11B-15                 Posición del bisel de la arandela del tornillo de culata
+culata-junta-marcas              Manual 11B-32 · 11B-15                 Dónde mirar la marca de grosor de la junta
+aceite-varilla                   Manual 12-4                            Niveles de la varilla
+aceite-arandela-tapon            Manual 12-4 · 11B-18                   Orientación de la arandela del tapón de vaciado
+carter-despiece                  Manual 11B-17                          Despiece del cárter, colador, sensor de nivel y tapa del volante
+carter-sellador                  Manual 11B-18                          Recorrido del cordón de sellador por dentro de los agujeros
+reten-delantero                  Manual 11B-26                          Montaje del retén delantero con su guía
+reten-trasero                    Manual 11B-25 · 11B-26                 Caja del retén trasero y separador de aceite con el agujero hacia abajo
+refri-tapon-bloque               Manual 14-4                            Dónde está el tapón de vaciado del bloque en el 4D56
+refri-termostato                 Manual 14-8 · 14-9                     Termostato, toma de agua y anillo de goma
+refri-bomba-agua                 Manual 14-12                           Bomba de agua y posición de cada tornillo (8×25, 8×40, 8×85)
+gasoil-filtro                    Manual 13D-13 · 13E-59 · 13E-60        Filtro de gasoil: bomba manual, tapón de purga y sensor de agua
+inyector-chorro                  Manual 13E-55                          Chorros correctos e incorrectos del inyector
+calado-tapon                     Manual 11B-9                           Tapón de comprobación en la parte trasera de la bomba
+calado-reloj                     Manual 11B-10                          Útil con reloj comparador montado en la bomba
+calado-ajuste                    Manual 11B-11                          Hacia dónde girar la bomba según la lectura, y sus tuercas y tornillos
+ralenti-tornillo                 Manual 11B-12                          Tornillo de ajuste del ralentí
+turbo-manometro                  Manual 15-2                            Dónde conectar el manómetro para medir el soplado
+turbo-actuador                   Manual 15-3                            Prueba del actuador de la wastegate con bomba manual
+turbo-despiece                   Manual 15-12                           Despiece de turbo, colectores, tubos de agua y aceite y EGR
+intercooler                      Manual 15-5                            Intercooler y sus manguitos
+calentadores-placa               Manual 16-45 · 16-51                   Placa de conexión de los calentadores y dónde medir
+compresion-corte                 Manual 11B-13                          Conector que hay que soltar para cortar la inyección
+frenos-pastillas                 Manual 35A-31                          Despiece de pastillas, clips y suplementos, delante y detrás
+frenos-purga                     Manual 35A-30                          Orden de purga de las ruedas
