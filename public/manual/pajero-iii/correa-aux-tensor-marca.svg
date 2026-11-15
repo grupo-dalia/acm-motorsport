@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 674" width="940" height="674" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="674" fill="#fff"/>
+<path d="M80.0 57.5 Q280.0 207.5 442.5 207.5 Q630.0 201.25 711.25 70.0 L711.25 20.0 L80.0 20.0 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<polygon points="413.2,258 425.7,208 603.2,201.8 590.7,276.8" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="405,263.8 417.5,213.8 425.7,208 413.2,258" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="417.5,213.8 595,207.5 603.2,201.8 425.7,208" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="595,207.5 582.5,282.5 590.7,276.8 603.2,201.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="582.5,282.5 405,263.8 413.2,258 590.7,276.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="405,263.8 417.5,213.8 595,207.5 582.5,282.5" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="480,217.5 536.2,215 527.5,280 470,273.8" fill="#ffe3e5" stroke="#e3141e" stroke-width="2" stroke-linejoin="round"/>
+<line x1="495" y1="170" x2="542.5" y2="167.5" stroke="#e3141e" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="542.5,167.5 534.4,171.4 534,164.4" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<line x1="542.5" y1="167.5" x2="495" y2="170" stroke="#e3141e" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="495,170 503.1,166.1 503.5,173.1" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<text x="518.8" y="161.8" font-size="16" fill="#e3141e" text-anchor="middle" font-weight="700" transform="rotate(-3 518.8 168.8)">A</text>
+<line x1="498.8" y1="176.2" x2="482.5" y2="276.2" stroke="#e3141e" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4"/>
+<line x1="540" y1="176.2" x2="527.5" y2="276.2" stroke="#e3141e" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4"/>
+<line x1="470" y1="297.5" x2="480" y2="270" stroke="#1b1b1b" stroke-width="4" stroke-linecap="round"/>
+<line x1="477.5" y1="287.5" x2="640" y2="320" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="477.5" cy="287.5" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="646" y="326.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="700">Marca indicadora</text>
+<path d="M73.8 276.2 L730.0 485.0 L680.0 545.0 L105.0 310.0 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<line x1="186.2" y1="312" x2="198.8" y2="351.2" stroke="#1b1b1b" stroke-width="0.6" stroke-linecap="round"/>
+<line x1="298.8" y1="347.8" x2="298.8" y2="392.5" stroke="#1b1b1b" stroke-width="0.6" stroke-linecap="round"/>
+<line x1="411.2" y1="383.5" x2="398.8" y2="433.8" stroke="#1b1b1b" stroke-width="0.6" stroke-linecap="round"/>
+<line x1="523.8" y1="419.2" x2="498.8" y2="475" stroke="#1b1b1b" stroke-width="0.6" stroke-linecap="round"/>
+<line x1="636.2" y1="455" x2="598.8" y2="516.2" stroke="#1b1b1b" stroke-width="0.6" stroke-linecap="round"/>
+<ellipse cx="261.2" cy="451.2" rx="147.5" ry="85.0" transform="rotate(14 261.2 451.2)" fill="#fff" stroke="#1b1b1b" stroke-width="2"/>
+<ellipse cx="261.2" cy="451.2" rx="120.0" ry="67.5" transform="rotate(14 261.2 451.2)" fill="none" stroke="#1b1b1b" stroke-width="1.2"/>
+<ellipse cx="261.2" cy="451.2" rx="65.0" ry="37.5" transform="rotate(14 261.2 451.2)" fill="none" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="650" cy="374.3" r="32.5" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="673,406.1 680.6,385.4 619.5,363.2 612,383.9" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="673" y1="406.1" x2="680.6" y2="385.4" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="612" y1="383.9" x2="619.5" y2="363.2" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="642.5" cy="395" r="32.5" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6"/>
+<text x="30" y="590" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">La marca tiene que caer dentro de la zona A. Si se sale, la correa está estirada: cámbiala.</text>
+<line x1="0" y1="640" x2="940" y2="640" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="662" font-size="14" fill="#1b1b1b" opacity="0.75">Marca del tensor automático y zona A en la que tiene que quedar</text>
+<text x="926" y="664" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
