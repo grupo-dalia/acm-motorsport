@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 434" width="940" height="434" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="434" fill="#fff"/>
+<path d="M82 100 L178 100 L178 250 L82 250 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="108" cy="130" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="152" cy="220" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="130" cy="175" r="22" fill="none" stroke="#1b1b1b" stroke-width="1.2" stroke-dasharray="5 3"/>
+<path d="M252 100 L348 100 L348 250 L252 250 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="278" cy="130" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="322" cy="220" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="300" cy="175" r="22" fill="none" stroke="#1b1b1b" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="296" y="145" font-size="26" fill="#e3141e" text-anchor="middle" font-weight="700">2</text>
+<path d="M422 100 L518 100 L518 250 L422 250 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="448" cy="130" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="492" cy="220" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="470" cy="175" r="22" fill="none" stroke="#1b1b1b" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="466" y="145" font-size="26" fill="#e3141e" text-anchor="middle" font-weight="700">3</text>
+<path d="M592 100 L688 100 L688 250 L592 250 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="618" cy="130" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="662" cy="220" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="640" cy="175" r="22" fill="none" stroke="#1b1b1b" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="636" y="145" font-size="26" fill="#e3141e" text-anchor="middle" font-weight="700">4</text>
+<path d="M752 100 L848 100 L848 250 L752 250 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="778" cy="130" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="822" cy="220" r="9" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="800" cy="175" r="22" fill="none" stroke="#1b1b1b" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="130" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">1 (sin número)</text>
+<text x="800" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">5 (sin número)</text>
+<line x1="300" y1="140" x2="470" y2="60" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="300" cy="140" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="476" y="66" font-size="17" fill="#e3141e" text-anchor="start" font-weight="700">Número grabado de la tapa</text>
+<line x1="470" y1="140" x2="470" y2="72" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<line x1="260" y1="345" x2="120" y2="345" stroke="#1b1b1b" stroke-width="2.4" stroke-linecap="round"/>
+<polygon points="120,345 132.9,339.5 132.9,350.5" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<text x="275" y="351" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Parte delantera del motor · cada tapa en su sitio y con el número hacia delante</text>
+<line x1="0" y1="400" x2="940" y2="400" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="422" font-size="14" fill="#1b1b1b" opacity="0.75">Números de las tapas de cojinete del árbol de levas (20 N·m)</text>
+<text x="926" y="424" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

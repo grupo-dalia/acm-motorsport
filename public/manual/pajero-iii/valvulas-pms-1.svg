@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 494" width="940" height="494" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="494" fill="#fff"/>
+<text x="40" y="46" font-size="20" fill="#1b1b1b" text-anchor="start" font-weight="700">Cilindro 1 en PMS de compresión: regla los balancines marcados</text>
+<path d="M70 90 L880 90 L880 300 L70 300 Z" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="40" y="150" width="30" height="80" rx="0" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.4"/>
+<rect x="80" y="170" width="790" height="26" rx="0" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<path d="M126 130 L154 130 L152 230 Q150 262 140 262 Q130 262 128 230 Z" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="140" cy="248" r="8" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<text x="140" y="285" font-size="15" fill="#e3141e" text-anchor="middle" font-weight="700">1</text>
+<line x1="140" y1="380" x2="140" y2="318" stroke="#e3141e" stroke-width="4" stroke-linecap="round"/>
+<polygon points="140,318 147,334.6 133,334.6" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<path d="M221 130 L249 130 L247 230 Q245 262 235 262 Q225 262 223 230 Z" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="235" cy="248" r="8" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<text x="235" y="285" font-size="15" fill="#e3141e" text-anchor="middle" font-weight="700">2</text>
+<line x1="235" y1="380" x2="235" y2="318" stroke="#e3141e" stroke-width="4" stroke-linecap="round"/>
+<polygon points="235,318 242,334.6 228,334.6" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<path d="M316 130 L344 130 L342 230 Q340 262 330 262 Q320 262 318 230 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="330" cy="248" r="8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="330" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="700">3</text>
+<path d="M411 130 L439 130 L437 230 Q435 262 425 262 Q415 262 413 230 Z" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="425" cy="248" r="8" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<text x="425" y="285" font-size="15" fill="#e3141e" text-anchor="middle" font-weight="700">4</text>
+<line x1="425" y1="380" x2="425" y2="318" stroke="#e3141e" stroke-width="4" stroke-linecap="round"/>
+<polygon points="425,318 432,334.6 418,334.6" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<path d="M506 130 L534 130 L532 230 Q530 262 520 262 Q510 262 508 230 Z" fill="#fff" stroke="#e3141e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="520" cy="248" r="8" fill="#fff" stroke="#e3141e" stroke-width="1.4"/>
+<text x="520" y="285" font-size="15" fill="#e3141e" text-anchor="middle" font-weight="700">5</text>
+<line x1="520" y1="380" x2="520" y2="318" stroke="#e3141e" stroke-width="4" stroke-linecap="round"/>
+<polygon points="520,318 527,334.6 513,334.6" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<path d="M601 130 L629 130 L627 230 Q625 262 615 262 Q605 262 603 230 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="615" cy="248" r="8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="615" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="700">6</text>
+<path d="M696 130 L724 130 L722 230 Q720 262 710 262 Q700 262 698 230 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="710" cy="248" r="8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="710" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="700">7</text>
+<path d="M791 130 L819 130 L817 230 Q815 262 805 262 Q795 262 793 230 Z" fill="#fff" stroke="#1b1b1b" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="805" cy="248" r="8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="805" y="285" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="700">8</text>
+<circle cx="95" cy="183" r="12.2" fill="#fff" stroke="#1b1b1b" stroke-width="0.8"/>
+<polygon points="104,183 99.5,190.8 90.5,190.8 86,183 90.5,175.2 99.5,175.2" fill="#fff" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="95" cy="183" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.7"/>
+<circle cx="330" cy="183" r="12.2" fill="#fff" stroke="#1b1b1b" stroke-width="0.8"/>
+<polygon points="339,183 334.5,190.8 325.5,190.8 321,183 325.5,175.2 334.5,175.2" fill="#fff" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="330" cy="183" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.7"/>
+<circle cx="520" cy="183" r="12.2" fill="#fff" stroke="#1b1b1b" stroke-width="0.8"/>
+<polygon points="529,183 524.5,190.8 515.5,190.8 511,183 515.5,175.2 524.5,175.2" fill="#fff" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="520" cy="183" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.7"/>
+<circle cx="710" cy="183" r="12.2" fill="#fff" stroke="#1b1b1b" stroke-width="0.8"/>
+<polygon points="719,183 714.5,190.8 705.5,190.8 701,183 705.5,175.2 714.5,175.2" fill="#fff" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="710" cy="183" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.7"/>
+<circle cx="860" cy="183" r="12.2" fill="#fff" stroke="#1b1b1b" stroke-width="0.8"/>
+<polygon points="869,183 864.5,190.8 855.5,190.8 851,183 855.5,175.2 864.5,175.2" fill="#fff" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="860" cy="183" r="4" fill="#fff" stroke="#1b1b1b" stroke-width="0.7"/>
+<line x1="250" y1="430" x2="120" y2="430" stroke="#1b1b1b" stroke-width="2.2" stroke-linecap="round"/>
+<polygon points="120,430 132.9,424.5 132.9,435.5" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<text x="265" y="436" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Delante · balancines numerados del 1 al 8 desde delante</text>
+<line x1="0" y1="460" x2="940" y2="460" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="482" font-size="14" fill="#1b1b1b" opacity="0.75">Válvulas que se reglan con el cilindro 1 en PMS (holgura 0,25 mm en caliente)</text>
+<text x="926" y="484" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

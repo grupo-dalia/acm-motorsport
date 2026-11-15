@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 554" width="700" height="554" font-family="Arial, Helvetica, sans-serif">
+<rect width="700" height="554" fill="#fff"/>
+<polygon points="230,70 370,70 380,90 380,170 220,170 220,90" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<line x1="260" y1="70" x2="260" y2="170" stroke="#1b1b1b" stroke-width="0.8" stroke-linecap="round"/>
+<line x1="340" y1="70" x2="340" y2="170" stroke="#1b1b1b" stroke-width="0.8" stroke-linecap="round"/>
+<polygon points="175,184 185,170 415,170 425,184 425,200 175,200" fill="#fff" stroke="#e3141e" stroke-width="2.4" stroke-linejoin="round"/>
+<rect x="255" y="200" width="90" height="260" rx="0" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2"/>
+<line x1="255" y1="340" x2="345" y2="344" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="348" x2="345" y2="352" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="356" x2="345" y2="360" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="364" x2="345" y2="368" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="372" x2="345" y2="376" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="380" x2="345" y2="384" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="388" x2="345" y2="392" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="396" x2="345" y2="400" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="404" x2="345" y2="408" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="412" x2="345" y2="416" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="420" x2="345" y2="424" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="428" x2="345" y2="432" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="436" x2="345" y2="440" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="255" y1="444" x2="345" y2="448" stroke="#1b1b1b" stroke-width="0.9" stroke-linecap="round"/>
+<line x1="420" y1="176" x2="470" y2="150" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="420" cy="176" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="476" y="157" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">Lado biselado</text>
+<line x1="175" y1="188" x2="90" y2="300" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="175" cy="188" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="84" y="306.3" font-size="18" fill="#1b1b1b" text-anchor="end" font-weight="400">Arandela</text>
+<text x="40" y="470" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">El bisel de la arandela mira hacia la cabeza del tornillo, no hacia la culata.</text>
+<line x1="0" y1="520" x2="700" y2="520" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="542" font-size="14" fill="#1b1b1b" opacity="0.75">Arandela del tornillo de culata: bisel hacia la cabeza del tornillo</text>
+<text x="686" y="544" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
