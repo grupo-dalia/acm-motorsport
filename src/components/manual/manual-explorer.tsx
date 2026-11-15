@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, ListOrdered, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ExplodedDiagram } from "@/components/manual/exploded-view";
 import type { Figure, ManualVehicle, Part, Procedure, System } from "@/content/manual-types";
 
 const EXTENSIONS = ["svg", "webp", "jpg", "png"] as const;
@@ -215,6 +216,8 @@ function PartDetail({ part, basePath }: { part: Part; basePath: string }) {
           </dl>
         </section>
       )}
+
+      {part.exploded && <ExplodedDiagram view={part.exploded} />}
 
       {part.procedures?.map((p) => <ProcedureBlock key={p.title} procedure={p} figures={figures} basePath={basePath} />)}
 
