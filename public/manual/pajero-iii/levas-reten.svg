@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 594" width="940" height="594" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="594" fill="#fff"/>
+<defs><pattern id="hx" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#1b1b1b" stroke-width="1.1"/></pattern></defs>
+<rect x="170" y="160" width="550" height="220" rx="0" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8"/>
+<rect x="510" y="100" width="60" height="340" rx="0" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6"/>
+<line x1="120" y1="270" x2="760" y2="270" stroke="#1b1b1b" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="18 4 3 4"/>
+<path d="M200.0 84.0 L340.0 84.0 L360.0 44.0 L700.0 44.0" fill="none" stroke="#1b1b1b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="170" y="92" width="120" height="64" rx="0" fill="#fff" stroke="#e3141e" stroke-width="2.2"/>
+<rect x="170" y="384" width="120" height="64" rx="0" fill="#fff" stroke="#e3141e" stroke-width="2.2"/>
+<polygon points="90,110 140,90 236,90 236,124 170,124 170,416 236,416 236,450 140,450 90,430" fill="url(#hx)" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="20,280 54,280 54,292 80,270 54,248 54,260 20,260" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<line x1="230" y1="420" x2="520" y2="470" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="230" cy="420" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="526" y="476.3" font-size="18" fill="#e3141e" text-anchor="start" font-weight="700">Retén</text>
+<line x1="116" y1="140" x2="60" y2="60" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="116" cy="140" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="66" y="66.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Útil MD998381</text>
+<line x1="640" y1="300" x2="800" y2="300" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="640" cy="300" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="806" y="306.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Árbol de levas</text>
+<line x1="480" y1="44" x2="720" y2="120" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="480" cy="44" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="726" y="126.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Culata</text>
+<text x="30" y="530" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Aceite en el labio y en el árbol. Golpea el útil hasta que haga tope: él deja el retén a su profundidad.</text>
+<line x1="0" y1="560" x2="940" y2="560" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="582" font-size="14" fill="#1b1b1b" opacity="0.75">Montaje del retén del árbol de levas con su útil (sección)</text>
+<text x="926" y="584" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
