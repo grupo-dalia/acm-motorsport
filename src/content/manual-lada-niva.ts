@@ -2,7 +2,8 @@
  * Manual interactivo del Lada Niva 1600 (VAZ-2121, 1977-1994), motor 2121 de 1,6 L de carburación.
  * Datos técnicos sacados del manual de reparación del VAZ-2121; textos y esquemas redactados por ACM.
  *
- * FIGURAS: esquemas propios de ACM en `public/manual/lada-niva/<file>.svg`.
+ * FIGURAS: en `public/manual/lada-niva/`. Las fig*.png son dibujos originales de AvtoVAZ (instrucción tecnológica
+ * ИТЦ АВТО 3100.25100.40157, copia de niva-faq.msk.ru), con leyendas en castellano; los .svg son esquemas de ACM.
  */
 
 import type { System } from "@/content/manual-pajero-iii";
@@ -49,8 +50,10 @@ export const nivaSystems: System[] = [
           { label: "Tuercas de la tapa de balancines", value: "≤ 8", unit: "N·m" },
         ],
         figures: [
-          { file: "culata-orden-apriete", caption: "Cómo se aprieta: del centro hacia los extremos y en dos pasadas", ref: "Orden numerado exacto: fig. 2-16 del manual" },
-          { file: "distribucion-marcas", caption: "Marcas de calado antes de soltar el árbol de levas", ref: "Manual fig. 7-19 y 2-19" },
+          { file: "fig55-orden-apriete-culata", caption: "Orden de apriete de los tornillos de culata, del 1 al 10. El 11 es el pequeño de la esquina, junto al 7", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 55" },
+          { file: "culata-orden-apriete", caption: "Resumen: del centro hacia los extremos y en dos pasadas", ref: "Esquema ACM" },
+          { file: "fig19-despiece-culata-arbol-levas", caption: "Despiece: 1 tapa · 2 junta · 3 soporte del árbol de levas · 4 árbol de levas · 8 tornillos de reglaje · 10 balancines · 11 muelles · 12 retén · 13 soporte del retén · 14 brida de tope", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 19" },
+          { file: "fig59-orden-tuercas-soporte-arbol-levas", caption: "Orden de apriete de las 9 tuercas del soporte del árbol de levas", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 59" },
         ],
         steps: [
           { title: "Saca la rueda de repuesto", text: "En el Niva va en el vano motor y estorba para todo lo demás." },
@@ -58,15 +61,15 @@ export const nivaSystems: System[] = [
           { title: "Desconecta lo eléctrico", text: "Batería, cables de bujías, sensor de temperatura del agua y el cable del estárter del carburador." },
           { title: "Fuera bujías y sensor de temperatura", text: "Antes de que se cuele nada por los agujeros." },
           { title: "Varillaje y tapa de balancines", text: "Suelta las varillas del acelerador de la palanca intermedia y quita la tapa." },
-          { title: "Pon el motor en marcas", text: "Gira el cigüeñal hasta que la marca de la polea coincida con la marca larga de la tapa de distribución, y la del piñón del árbol de levas con la de su soporte (figura 2)." },
+          { title: "Pon el motor en marcas", text: "Gira el cigüeñal hasta que la marca de la polea coincida con la marca larga de la tapa de distribución, y la del piñón del árbol de levas con la de su soporte (pieza Cadena de distribución)." },
           { title: "Manguitos y tubos", text: "Calefacción, carburador, colector de admisión y salida de agua de la culata." },
           { title: "Escape", text: "Separa el bajante del colector de escape y la chapa que protege el motor de arranque." },
           { title: "Bloquea el tensor de la cadena", text: "Afloja la tuerca de sombrerete del tensor, empuja la varilla hacia dentro con una palanca y vuelve a apretar la tuerca para que se quede recogida." },
           { title: "Piñón y árbol de levas", text: "Quita el piñón del árbol de levas y saca el soporte con el árbol entero." },
           { title: "Afloja y levanta", text: "Afloja los tornillos de culata en el orden inverso al de apriete, poco a poco, y levanta la culata recta." },
           { title: "Monta con junta nueva", text: "Superficies limpias y junta nueva sin golpes, grietas ni el recubrimiento despegado. Culata en su sitio con el motor todavía en marcas." },
-          { title: "Aprieta en dos pasadas", text: "Del centro hacia fuera (figura 1): primero todos a par bajo y después al par final. El tornillo 11 va aparte, en la segunda pasada.", torque: "33-41 N·m → 96-118 N·m · tornillo 11: 31-39 N·m" },
-          { title: "Árbol de levas y cadena", text: "Monta el soporte con el árbol (tuercas en el orden de la fig. 2-18 del manual), el piñón con las marcas alineadas, y suelta el tensor para tensar la cadena." },
+          { title: "Aprieta en dos pasadas", text: "En el orden de la figura 1: primero todos a par bajo y después al par final. El tornillo 11 va aparte, en la segunda pasada.", torque: "33-41 N·m → 96-118 N·m · tornillo 11: 31-39 N·m" },
+          { title: "Árbol de levas y cadena", text: "Monta el soporte con el árbol (tuercas en el orden de la figura 4), el piñón con las marcas alineadas, y suelta el tensor para tensar la cadena." },
           { title: "Válvulas, tapa y lo demás", text: "Regla las válvulas en frío, monta la tapa con junta nueva y vuelve a conectar todo. Al arrancar, comprueba el avance de encendido.", torque: "Tapa: máx. 8 N·m" },
         ],
       },
@@ -85,7 +88,12 @@ export const nivaSystems: System[] = [
         title: "Cadena de distribución",
         summary: "La cadena la tensa un tensor con muelle. Se reajusta sola si la dejas suelta y le das vueltas al motor.",
         specs: [{ label: "Holgura entre varilla y émbolo del tensor", value: "0,2-0,5", unit: "mm", note: "la garantiza el propio tensor" }],
-        figures: [{ file: "distribucion-marcas", caption: "Marcas de calado: polea con tapa y piñón con soporte", ref: "Manual fig. 7-19 y 2-19" }],
+        figures: [
+          { file: "fig60-marca-pinon-arbol-levas", caption: "Marca del piñón del árbol de levas contra la del soporte", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 60" },
+          { file: "fig58-marca-pinon-ciguenal", caption: "Marca del piñón del cigüeñal contra la del bloque (sin la tapa de distribución)", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 58" },
+          { file: "distribucion-marcas", caption: "Resumen de las marcas de calado", ref: "Esquema ACM" },
+          { file: "fig12-despiece-cadena-distribucion", caption: "Despiece: 3 piñón de la bomba de aceite · 4 piñón del cigüeñal · 5 pasador limitador · 6/9 patín del tensor · 7 cadena · 8 tensor · 10 piñón del árbol de levas · 11 patín amortiguador", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 12" },
+        ],
         steps: [
           { title: "Afloja la tuerca del tensor", text: "Queda libre la varilla y el muelle empuja el patín contra la cadena." },
           { title: "Dale vueltas al motor", text: "Gira el cigüeñal 1-1,5 vueltas en su sentido de giro. El muelle deja la cadena con la tensión justa." },
@@ -101,7 +109,8 @@ export const nivaSystems: System[] = [
           { label: "Margen admitido", value: "0,14-0,17", unit: "mm" },
         ],
         figures: [
-          { file: "levas-numeracion", caption: "Numeración de las levas y qué pareja se regla en cada posición", ref: "Manual tabla 2-5" },
+          { file: "fig61-holgura-valvulas", caption: "1 leva · 2 balancín · 3 tornillo de reglaje · 4 contratuerca · A holgura", ref: "Original AvtoVAZ (instrucción ИТЦ АВТО), fig. 61" },
+          { file: "levas-numeracion", caption: "Numeración de las levas y qué pareja se regla en cada posición", ref: "Esquema ACM · tabla 21 del manual" },
           { file: "valvulas-galga", caption: "Dónde va la galga y qué se afloja", ref: "Esquema ACM" },
         ],
         steps: [
