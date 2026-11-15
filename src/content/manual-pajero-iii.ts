@@ -345,7 +345,7 @@ const systems: System[] = [
           { label: "Presión a 3.500 rpm", value: "2,9 – 6,9", unit: "bar" },
         ],
         figures: [
-          { file: "aceite-varilla", caption: "Niveles de la varilla", ref: "Manual 12-4" },
+          { file: "aceite-viscosidad", caption: "Qué viscosidad de aceite usar según la temperatura (4D56)", ref: "Manual 12-5" },
           { file: "aceite-arandela-tapon", caption: "Orientación de la arandela del tapón de vaciado", ref: "Manual 12-4 · 11B-18" },
         ],
         procedures: [
@@ -358,7 +358,7 @@ const systems: System[] = [
               { title: "Filtro fuera", text: "Quita la tapa inferior y saca el filtro con su llave." },
               { title: "Filtro nuevo", text: "Limpia el asiento del soporte, pon un poco de aceite en la junta del filtro nuevo y apriétalo con la llave desde que la junta toca el asiento." },
               { title: "Tapón", text: "Pon una arandela nueva bien orientada y aprieta el tapón.", torque: "39 N·m", figure: "aceite-arandela-tapon" },
-              { title: "Llena y comprueba", text: "Echa el aceite, arranca, mira que no gotee nada, para y comprueba el nivel con la varilla tras un par de minutos.", figure: "aceite-varilla" },
+              { title: "Llena y comprueba", text: "Echa el aceite, arranca, mira que no gotee nada, para y comprueba el nivel con la varilla tras un par de minutos.", figure: "aceite-viscosidad" },
             ],
           },
         ],

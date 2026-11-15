@@ -26,7 +26,7 @@ culata-orden-aflojado            Manual 11B-31 · 11B-14                 Orden p
 culata-orden-apriete             Manual 11B-33 (2001) · 11B-16 (2002)   Orden de apriete de los 18 tornillos (vista desde arriba, delante a la izquierda)
 culata-arandela                  Manual 11B-32 · 11B-15                 Posición del bisel de la arandela del tornillo de culata
 culata-junta-marcas              Manual 11B-32 · 11B-15                 Dónde mirar la marca de grosor de la junta
-aceite-varilla                   Manual 12-4                            Niveles de la varilla
+aceite-viscosidad                Manual 12-5                            Viscosidad del aceite según la temperatura ambiente
 aceite-arandela-tapon            Manual 12-4 · 11B-18                   Orientación de la arandela del tapón de vaciado
 carter-despiece                  Manual 11B-17                          Despiece del cárter, colador, sensor de nivel y tapa del volante
 carter-sellador                  Manual 11B-18                          Recorrido del cordón de sellador por dentro de los agujeros
