@@ -9,30 +9,23 @@
  * Un paso puede apuntar a una figura con `figure: "<file>"` y el modo taller la enseña al lado.
  */
 
-export type Spec = { label: string; value: string; unit?: string; note?: string };
-export type Step = { title: string; text: string; torque?: string; caution?: string; figure?: string };
-export type Procedure = { title: string; intro?: string; before?: string[]; steps: Step[]; after?: string[] };
-export type Figure = { file: string; caption: string; ref?: string };
+import type { ManualVehicle, System } from "@/content/manual-types";
 
-export type Part = {
-  id: string;
-  title: string;
-  summary: string;
-  warning?: string;
-  specs?: Spec[];
-  procedures?: Procedure[];
-  figures?: Figure[];
-  tips?: string[];
-};
+export type { Figure, ManualVehicle, Part, Procedure, Spec, Step, System } from "@/content/manual-types";
 
-export type System = { id: string; title: string; parts: Part[] };
-
-export const manualVehicle = {
+export const manualVehicle: ManualVehicle = {
   model: "Mitsubishi Pajero III",
   chassis: "V60 / V70",
   years: "2001-2002",
   engine: "4D56 · 2.5 turbodiésel intercooler",
   basePath: "/manual/pajero-iii",
+  photo: {
+    file: "coche.jpg",
+    alt: "Mitsubishi Pajero III de 2001, cinco puertas, visto de frente y de lado",
+    author: "OSX",
+    license: "Dominio público",
+    source: "https://commons.wikimedia.org/wiki/File:2001_Mitsubishi_Pajero_(NM_MY01)_Exceed_5-door_wagon_(2015-08-07)_01.jpg",
+  },
 };
 
 const PMS = "Gira el cigüeñal siempre en sentido horario (visto desde delante). Nunca hacia atrás salvo donde se indica.";

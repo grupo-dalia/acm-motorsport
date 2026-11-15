@@ -4,15 +4,15 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, ListOrdered, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { manualSystems, manualVehicle, type Figure, type Part, type Procedure } from "@/content/manual-pajero-iii";
+import type { Figure, ManualVehicle, Part, Procedure, System } from "@/content/manual-types";
 
-const EXTENSIONS = ["webp", "jpg", "png"] as const;
+const EXTENSIONS = ["svg", "webp", "jpg", "png"] as const;
 
 /** Hueco de figura: busca la imagen en /public con varias extensiones; si no hay ninguna, enseña el hueco con su referencia. */
-function FigureSlot({ figure, label }: { figure: Figure; label: string }) {
+function FigureSlot({ figure, label, basePath }: { figure: Figure; label: string; basePath: string }) {
   const [ext, setExt] = useState(0);
   const missing = ext >= EXTENSIONS.length;
-  const src = `${manualVehicle.basePath}/${figure.file}.${EXTENSIONS[Math.min(ext, EXTENSIONS.length - 1)]}`;
+  const src = `${basePath}/${figure.file}.${EXTENSIONS[Math.min(ext, EXTENSIONS.length - 1)]}`;
 
   return (
     <figure className="overflow-hidden rounded-[6px] border border-line bg-midnight-deep">
@@ -20,7 +20,7 @@ function FigureSlot({ figure, label }: { figure: Figure; label: string }) {
         <div className="flex aspect-[4/3] flex-col items-center justify-center gap-3 border-b border-dashed border-paper/25 p-6 text-center">
           <span className="rounded-full border border-paper/30 px-3 py-1 text-sm font-medium opacity-80">{label} · pendiente</span>
           {figure.ref && <span className="t-small opacity-60">{figure.ref}</span>}
-          <code className="t-small break-all opacity-40">public{manualVehicle.basePath}/{figure.file}.jpg</code>
+          <code className="t-small break-all opacity-40">public{basePath}/{figure.file}.jpg</code>
         </div>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element -- la extensión se resuelve en el cliente
@@ -37,7 +37,7 @@ function FigureSlot({ figure, label }: { figure: Figure; label: string }) {
 const num = "font-[family-name:var(--font-display)] tnum";
 
 /** Modo taller: un paso cada vez, con su figura, su apriete y lo que hay que tener en cuenta. */
-function StepRunner({ procedure, figures }: { procedure: Procedure; figures: Figure[] }) {
+function StepRunner({ procedure, figures, basePath }: { procedure: Procedure; figures: Figure[]; basePath: string }) {
   const [i, setI] = useState(0);
   const [dir, setDir] = useState(1);
   const total = procedure.steps.length;
@@ -99,7 +99,7 @@ function StepRunner({ procedure, figures }: { procedure: Procedure; figures: Fig
                 </p>
               )}
             </div>
-            {fig && <FigureSlot figure={fig} label={`Fig. ${figIndex + 1}`} />}
+            {fig && <FigureSlot figure={fig} label={`Fig. ${figIndex + 1}`} basePath={basePath} />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -156,7 +156,7 @@ function Checklist({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function ProcedureBlock({ procedure, figures }: { procedure: Procedure; figures: Figure[] }) {
+function ProcedureBlock({ procedure, figures, basePath }: { procedure: Procedure; figures: Figure[]; basePath: string }) {
   const [mode, setMode] = useState<"taller" | "lista">("taller");
   const tab = (on: boolean) => cn("inline-flex items-center gap-1.5 rounded-[calc(var(--radius-btn)-2px)] px-3 py-1.5 text-sm", on && "bg-paper text-midnight-deep");
   return (
@@ -176,13 +176,13 @@ function ProcedureBlock({ procedure, figures }: { procedure: Procedure; figures:
         </div>
       </div>
       {procedure.before && procedure.before.length > 0 && <Checklist title="Antes de empezar" items={procedure.before} />}
-      <div className="mt-4">{mode === "taller" ? <StepRunner procedure={procedure} figures={figures} /> : <StepList procedure={procedure} figures={figures} />}</div>
+      <div className="mt-4">{mode === "taller" ? <StepRunner procedure={procedure} figures={figures} basePath={basePath} /> : <StepList procedure={procedure} figures={figures} />}</div>
       {procedure.after && procedure.after.length > 0 && <Checklist title="Al terminar" items={procedure.after} />}
     </section>
   );
 }
 
-function PartDetail({ part }: { part: Part }) {
+function PartDetail({ part, basePath }: { part: Part; basePath: string }) {
   const figures = part.figures ?? [];
   return (
     <article className="min-w-0">
@@ -216,13 +216,13 @@ function PartDetail({ part }: { part: Part }) {
         </section>
       )}
 
-      {part.procedures?.map((p) => <ProcedureBlock key={p.title} procedure={p} figures={figures} />)}
+      {part.procedures?.map((p) => <ProcedureBlock key={p.title} procedure={p} figures={figures} basePath={basePath} />)}
 
       {figures.length > 0 && (
         <section className="mt-12" aria-label="Figuras">
           <h3 className="t-sub">Todas las figuras</h3>
           <div className="mt-4 grid gap-5 md:grid-cols-2">
-            {figures.map((f, i) => <FigureSlot key={f.file} figure={f} label={`Fig. ${i + 1}`} />)}
+            {figures.map((f, i) => <FigureSlot key={f.file} figure={f} label={`Fig. ${i + 1}`} basePath={basePath} />)}
           </div>
         </section>
       )}
@@ -237,11 +237,10 @@ function PartDetail({ part }: { part: Part }) {
   );
 }
 
-const allParts = manualSystems.flatMap((s) => s.parts.map((p) => ({ system: s, part: p })));
-const firstPart = allParts[0]!;
-
-/** Explorador del manual: eliges sistema y pieza, y se abre su ficha. La pieza abierta va en el #hash para poder compartirla. */
-export function ManualExplorer() {
+/** Explorador de un manual: eliges sistema y pieza, y se abre su ficha. La pieza abierta va en el #hash para poder compartirla. */
+export function ManualExplorer({ systems, vehicle }: { systems: System[]; vehicle: ManualVehicle }) {
+  const allParts = useMemo(() => systems.flatMap((s) => s.parts.map((p) => ({ system: s, part: p }))), [systems]);
+  const firstPart = allParts[0]!;
   const [active, setActive] = useState(firstPart.part.id);
 
   useEffect(() => {
@@ -252,10 +251,9 @@ export function ManualExplorer() {
     read();
     window.addEventListener("hashchange", read);
     return () => window.removeEventListener("hashchange", read);
-  }, []);
+  }, [allParts]);
 
-  const current = useMemo(() => allParts.find((x) => x.part.id === active) ?? firstPart, [active]);
-
+  const current = allParts.find((x) => x.part.id === active) ?? firstPart;
   const select = (id: string) => {
     setActive(id);
     history.replaceState(null, "", `#${id}`);
@@ -266,7 +264,7 @@ export function ManualExplorer() {
     <div className="grid gap-10 lg:grid-cols-12">
       <nav aria-label="Sistemas del vehículo" className="lg:col-span-3">
         <div className="lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-2">
-          {manualSystems.map((sys) => (
+          {systems.map((sys) => (
             <div key={sys.id} className="mb-6">
               <p className="t-small font-semibold uppercase tracking-[0.14em] opacity-60">{sys.title}</p>
               <ul className="mt-2 flex flex-wrap gap-2 lg:flex-col lg:gap-1">
@@ -292,10 +290,10 @@ export function ManualExplorer() {
       </nav>
       <div id="manual-detalle" className="scroll-mt-28 lg:col-span-9">
         <p className="t-small uppercase tracking-[0.14em] opacity-60">
-          {manualVehicle.model} · {manualVehicle.years} · {current.system.title}
+          {vehicle.model} · {vehicle.years} · {current.system.title}
         </p>
         <div className="mt-3">
-          <PartDetail key={current.part.id} part={current.part} />
+          <PartDetail key={current.part.id} part={current.part} basePath={vehicle.basePath} />
         </div>
       </div>
     </div>
