@@ -9,25 +9,11 @@
  * Un paso puede apuntar a una figura con `figure: "<file>"` y el modo taller la enseña al lado.
  */
 
-export type Spec = { label: string; value: string; unit?: string; note?: string };
-export type Step = { title: string; text: string; torque?: string; caution?: string; figure?: string };
-export type Procedure = { title: string; intro?: string; before?: string[]; steps: Step[]; after?: string[] };
-export type Figure = { file: string; caption: string; ref?: string };
+import type { ManualVehicle, System } from "@/content/manual-types";
 
-export type Part = {
-  id: string;
-  title: string;
-  summary: string;
-  warning?: string;
-  specs?: Spec[];
-  procedures?: Procedure[];
-  figures?: Figure[];
-  tips?: string[];
-};
+export type { Figure, ManualVehicle, Part, Procedure, Spec, Step, System } from "@/content/manual-types";
 
-export type System = { id: string; title: string; parts: Part[] };
-
-export const manualVehicle = {
+export const manualVehicle: ManualVehicle = {
   model: "Mitsubishi Pajero III",
   chassis: "V60 / V70",
   years: "2001-2002",

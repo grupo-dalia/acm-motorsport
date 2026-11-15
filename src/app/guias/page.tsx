@@ -65,6 +65,14 @@ export default async function GuidesPage() {
             </div>
             <span className="inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-racing px-6 font-medium text-paper transition-colors group-hover:bg-racing-dark">Abrir el manual</span>
           </Link>
+          <Link href="/guias/manual-lada-niva" className="group mb-16 flex flex-wrap items-center justify-between gap-6 rounded-[6px] border border-line bg-midnight-deep p-6 no-underline transition-colors hover:border-racing lg:p-8">
+            <div className="max-w-[60ch]">
+              <p className="t-small font-semibold uppercase tracking-[0.14em] text-racing-bright">Nuevo · Manual interactivo</p>
+              <p className="t-title mt-2">Manual de taller Lada Niva 2121</p>
+              <p className="mt-2 opacity-70">Culata, cadena, reglaje de válvulas, aceites y cotas del Niva 1600. Con esquemas para hacerlo paso a paso.</p>
+            </div>
+            <span className="inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-racing px-6 font-medium text-paper transition-colors group-hover:bg-racing-dark">Abrir el manual</span>
+          </Link>
           {byCollection.map(({ collection, guides }) => <GuideRow key={collection.id} collection={collection} guides={guides} />)}
         </Container>
       </section>

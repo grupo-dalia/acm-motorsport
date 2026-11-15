@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
 import { ManualExplorer } from "@/components/manual/manual-explorer";
-import { manualVehicle } from "@/content/manual-pajero-iii";
+import { manualSystems, manualVehicle } from "@/content/manual-pajero-iii";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -26,7 +26,7 @@ export default function ManualPajeroPage() {
       />
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
-          <ManualExplorer />
+          <ManualExplorer systems={manualSystems} vehicle={manualVehicle} />
           <p className="t-small mt-16 max-w-[80ch] opacity-50">
             Datos técnicos del Mitsubishi Pajero III (V60/V70) de 2001-2002, redactados por ACM Motorsport. Mitsubishi y Pajero son marcas de Mitsubishi Motors Corporation; esta guía no está afiliada a ellos. Comprueba siempre los datos de tu versión antes de trabajar en el coche.
           </p>
