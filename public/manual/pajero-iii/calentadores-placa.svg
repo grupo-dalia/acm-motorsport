@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 634" width="940" height="634" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="634" fill="#fff"/>
+<polygon points="112.6,78.8 416.6,46.8 432.6,494.8 96.6,510.8" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="88,96 392,64 416.6,46.8 112.6,78.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="392,64 408,512 432.6,494.8 416.6,46.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="408,512 72,528 96.6,510.8 432.6,494.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="72,528 88,96 112.6,78.8 96.6,510.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="88,96 392,64 408,512 72,528" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<text x="152" y="480" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Culata</text>
+<polygon points="427.5,312 515.5,312 518.7,520 432.3,520" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="416,320 504,320 515.5,312 427.5,312" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="504,320 507.2,528 518.7,520 515.5,312" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="507.2,528 420.8,528 432.3,520 518.7,520" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="420.8,528 416,320 427.5,312 432.3,520" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="416,320 504,320 507.2,528 420.8,528" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<polygon points="424,320 456,304 496,312 500.8,344 459.2,355.2 427.2,345.6" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="469" cy="273.1" r="22.4" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="472,298.3 481.9,291.5 456.2,254.8 446.4,261.7" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="472" y1="298.3" x2="481.9" y2="291.5" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="446.4" y1="261.7" x2="456.2" y2="254.8" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="459.2" cy="280" r="22.4" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6"/>
+<line x1="459.2" y1="240" x2="459.2" y2="176" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
+<rect x="440" y="0" width="38.4" height="112" rx="6" fill="#e3141e" stroke="#1b1b1b" stroke-width="1.6"/>
+<line x1="459.2" y1="112" x2="459.2" y2="240" stroke="#1b1b1b" stroke-width="3" stroke-linecap="round"/>
+<text x="520" y="64" font-size="26" fill="#1b1b1b" text-anchor="start" font-weight="700">(+)</text>
+<path d="M488.0 384.0 L648.0 480.0" fill="none" stroke="#1b1b1b" stroke-width="22" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M488.0 384.0 L648.0 480.0" fill="none" stroke="#333" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+<text x="664" y="432" font-size="26" fill="#1b1b1b" text-anchor="start" font-weight="700">(−)</text>
+<line x1="459.2" y1="280" x2="640" y2="140" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="459.2" cy="280" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="646" y="135.8" font-size="17" fill="#1b1b1b" text-anchor="start" font-weight="400">Placa de conexión</text>
+<text x="646" y="157" font-size="17" fill="#1b1b1b" text-anchor="start" font-weight="400">de los calentadores</text>
+<text x="40" y="510" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="700">Entre la placa y la culata (masa):</text>
+<text x="40" y="530" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="700">0,15 – 0,25 Ω a 20 °C</text>
+<text x="40" y="550" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="700">(los cuatro calentadores en paralelo).</text>
+<line x1="0" y1="600" x2="940" y2="600" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="622" font-size="14" fill="#1b1b1b" opacity="0.75">Dónde poner las puntas del polímetro para medir un calentador</text>
+<text x="926" y="624" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

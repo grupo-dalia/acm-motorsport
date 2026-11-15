@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 634" width="940" height="634" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="634" fill="#fff"/>
+<path d="M404.0 224.0 L420.0 160.0 L500.0 64.0 L516.0 0.0" fill="none" stroke="#1b1b1b" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M404.0 224.0 L420.0 160.0 L500.0 64.0 L516.0 0.0" fill="none" stroke="#fff" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M420.0 232.0 L500.0 240.0 L572.0 304.0 L588.0 344.0" fill="none" stroke="#1b1b1b" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M420.0 232.0 L500.0 240.0 L572.0 304.0 L588.0 344.0" fill="none" stroke="#fff" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M204.0 232.0 L260.0 256.0 L364.0 240.0 L404.0 224.0" fill="none" stroke="#e3141e" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M204.0 232.0 L260.0 256.0 L364.0 240.0 L404.0 224.0" fill="none" stroke="#ffe3e5" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" />
+<polygon points="397.8,206.6 445.8,203.4 449,238.6 401,243.4" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="391.2,211.2 439.2,208 445.8,203.4 397.8,206.6" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="439.2,208 442.4,243.2 449,238.6 445.8,203.4" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="442.4,243.2 394.4,248 401,243.4 449,238.6" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="394.4,248 391.2,211.2 397.8,206.6 401,243.4" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="391.2,211.2 439.2,208 442.4,243.2 394.4,248" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="183.5" cy="136" r="88" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="222.5,216.1 233.9,208.1 133,63.9 121.5,71.9" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="222.5" y1="216.1" x2="233.9" y2="208.1" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="121.5" y1="71.9" x2="133" y2="63.9" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="172" cy="144" r="88" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<line x1="113.8" y1="192.9" x2="107.7" y2="198" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="100.6" y1="170" x2="93.1" y2="172.7" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="96" y1="144" x2="88" y2="144" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="100.6" y1="118" x2="93.1" y2="115.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="113.8" y1="95.1" x2="107.7" y2="90" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="134" y1="78.2" x2="130" y2="71.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="158.8" y1="69.2" x2="157.4" y2="61.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="185.2" y1="69.2" x2="186.6" y2="61.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="210" y1="78.2" x2="214" y2="71.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="230.2" y1="95.1" x2="236.3" y2="90" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="243.4" y1="118" x2="250.9" y2="115.3" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="248" y1="144" x2="256" y2="144" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="243.4" y1="170" x2="250.9" y2="172.7" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="230.2" y1="192.9" x2="236.3" y2="198" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<line x1="172" y1="144" x2="208" y2="81.6" stroke="#e3141e" stroke-width="3" stroke-linecap="round"/>
+<circle cx="172" cy="144" r="4" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<polygon points="548.4,324.5 676.4,316.5 708.4,404.5 676.4,468.5 564.4,468.5 532.4,404.5" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="532,336 660,328 676.4,316.5 548.4,324.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="660,328 692,416 708.4,404.5 676.4,316.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="692,416 660,480 676.4,468.5 708.4,404.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="660,480 548,480 564.4,468.5 676.4,468.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="548,480 516,416 532.4,404.5 564.4,468.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="516,416 532,336 548.4,324.5 532.4,404.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="532,336 660,328 692,416 660,480 548,480 516,416" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="618.7" cy="365.7" r="32" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="622.4,402.2 637.1,391.9 600.4,339.5 585.6,349.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="622.4" y1="402.2" x2="637.1" y2="391.9" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="585.6" y1="349.8" x2="600.4" y2="339.5" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="604" cy="376" r="32" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<text x="724" y="320" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Compensador de soplado</text>
+<line x1="416.8" y1="227.2" x2="520" y2="120" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="416.8" cy="227.2" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="526" y="126.3" font-size="18" fill="#e3141e" text-anchor="start" font-weight="700">Racor en T</text>
+<line x1="172" y1="232" x2="40" y2="380" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="172" cy="232" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="46" y="386.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="700">Manómetro</text>
+<line x1="500" y1="64" x2="640" y2="40" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="500" cy="64" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="646" y="46.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Hacia el colector de admisión</text>
+<text x="30" y="555" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">En un sitio seguro y con alguien leyendo: 2ª a fondo, lee la presión a unas 3.000 rpm.</text>
+<text x="30" y="573.8" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Si pasa de 84 kPa, la wastegate no regula: revisa actuador, válvula y manguera.</text>
+<line x1="0" y1="600" x2="940" y2="600" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="622" font-size="14" fill="#1b1b1b" opacity="0.75">Dónde conectar el manómetro para medir la presión del turbo</text>
+<text x="926" y="624" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
