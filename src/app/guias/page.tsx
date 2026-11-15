@@ -57,6 +57,14 @@ export default async function GuidesPage() {
       </section>
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
+          <Link href="/guias/manual-pajero-iii" className="group mb-16 flex flex-wrap items-center justify-between gap-6 rounded-[6px] border border-line bg-midnight-deep p-6 no-underline transition-colors hover:border-racing lg:p-8">
+            <div className="max-w-[60ch]">
+              <p className="t-small font-semibold uppercase tracking-[0.14em] text-racing-bright">Nuevo · Manual interactivo</p>
+              <p className="t-title mt-2">Manual de taller Pajero III 4D56</p>
+              <p className="mt-2 opacity-70">Culata, distribución, válvulas, aceites y capacidades. Eliges la pieza y te sale todo: datos, aprietes y paso a paso.</p>
+            </div>
+            <span className="inline-flex h-12 items-center rounded-[var(--radius-btn)] bg-racing px-6 font-medium text-paper transition-colors group-hover:bg-racing-dark">Abrir el manual</span>
+          </Link>
           {byCollection.map(({ collection, guides }) => <GuideRow key={collection.id} collection={collection} guides={guides} />)}
         </Container>
       </section>

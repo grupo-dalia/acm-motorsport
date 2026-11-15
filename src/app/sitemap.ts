@@ -5,7 +5,7 @@ import { getArticles } from "@/lib/news";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const staticRoutes = ["/", "/motorsport", "/objetivo-dakar", "/workshop", "/sim-racing", "/guias", "/noticias", "/starlink", "/tienda", "/contacto"].map((p) => ({
+  const staticRoutes = ["/", "/motorsport", "/objetivo-dakar", "/workshop", "/sim-racing", "/guias", "/guias/manual-pajero-iii", "/noticias", "/starlink", "/tienda", "/contacto"].map((p) => ({
     url: absoluteUrl(p),
     lastModified: now,
     changeFrequency: "weekly" as const,
