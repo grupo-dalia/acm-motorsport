@@ -11,6 +11,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Recambios 4x4 por marca y modelo",
   description: "Recambios para Mitsubishi Pajero 2.5 TD 4D56 y Lada Niva: distribución, bomba de agua, filtros, frenos, embrague y más, con el catálogo de Euro4x4parts.",
   path: "/tienda/recambios",
+  image: "/tienda/recambios/opengraph-image",
 });
 
 type SP = Promise<Record<string, string | string[] | undefined>>;
