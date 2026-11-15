@@ -74,6 +74,8 @@ export function breadcrumbLd(items: { label: string; href: string }[]) {
 
 /** Product JSON-LD. Sin valoraciones: no existen reseñas reales todavía. Los productos demo no emiten oferta. */
 export function productLd(p: Product) {
+  // Fotos reales (Printful). Google exige "image" en las fichas de comerciante.
+  const images = [...new Set(Object.values(p.images ?? {}).flat())].slice(0, 6).map((u) => (u.startsWith("http") ? u : absoluteUrl(u)));
   const base = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -82,8 +84,10 @@ export function productLd(p: Product) {
     sku: p.variants[0]?.sku,
     brand: { "@type": "Brand", name: site.name },
     url: absoluteUrl(`/tienda/${p.slug}`),
+    ...(images.length ? { image: images } : {}),
   };
-  if (p.demo || p.fulfillment === "affiliate") return base;
+  // Sin foto real no emitimos oferta: Google rechaza fichas de comerciante sin imagen.
+  if (p.demo || p.fulfillment === "affiliate" || !images.length) return base;
   return {
     ...base,
     offers: {
