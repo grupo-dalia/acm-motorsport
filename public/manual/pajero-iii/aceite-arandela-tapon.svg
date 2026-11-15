@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 554" width="900" height="554" font-family="Arial, Helvetica, sans-serif">
+<rect width="900" height="554" fill="#fff"/>
+<ellipse cx="360" cy="260" rx="63.0" ry="207.0" transform="rotate(-25 360 260)" fill="none" stroke="#1b1b1b" stroke-width="3"/>
+<ellipse cx="360" cy="260" rx="53.8" ry="184.5" transform="rotate(-25 360 260)" fill="none" stroke="#1b1b1b" stroke-width="1.4"/>
+<ellipse cx="360" cy="260" rx="49.6" ry="172.8" transform="rotate(-25 360 260)" fill="none" stroke="#1b1b1b" stroke-width="2.4"/>
+<ellipse cx="378" cy="250" rx="63.0" ry="207.0" transform="rotate(-25 378 250)" fill="none" stroke="#1b1b1b" stroke-width="1.4"/>
+<ellipse cx="360" cy="260" rx="42.0" ry="148.5" transform="rotate(-25 360 260)" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<polygon points="520.1,187 599,158.3 603.1,169.6 620,140 588,128.2 592.1,139.5 513.2,168.2" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<text x="640" y="120" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">Lado del cárter</text>
+<line x1="305" y1="300" x2="120" y2="440" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="305" cy="300" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="126" y="446.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Arandela del tapón (nueva)</text>
+<text x="640" y="300" font-size="20" fill="#1b1b1b" text-anchor="start" font-weight="700">Tapón: 39 ± 5 N·m</text>
+<text x="640" y="340" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Monta la arandela nueva</text>
+<text x="640" y="360" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">con esta cara hacia el cárter.</text>
+<line x1="0" y1="520" x2="900" y2="520" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="542" font-size="14" fill="#1b1b1b" opacity="0.75">Orientación de la arandela del tapón de vaciado</text>
+<text x="886" y="544" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
