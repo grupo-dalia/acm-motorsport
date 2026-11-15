@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 734" width="940" height="734" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="734" fill="#fff"/>
+<ellipse cx="215.0" cy="265.0" rx="195.0" ry="247.0" fill="none" stroke="#1b1b1b" stroke-width="1" opacity="0.5"/>
+<ellipse cx="215.0" cy="265.0" rx="169.0" ry="221.0" fill="none" stroke="#1b1b1b" stroke-width="1" opacity="0.5"/>
+<ellipse cx="312.5" cy="551.0" rx="123.5" ry="91.0" fill="#fff" stroke="#1b1b1b" stroke-width="1.8"/>
+<ellipse cx="312.5" cy="551.0" rx="71.5" ry="52.0" fill="none" stroke="#1b1b1b" stroke-width="1.2"/>
+<polygon points="241.4,345.8 293.4,280.8 364.9,137.8 429.9,85.8 488.4,105.3 527.4,163.8 540.4,196.3 527.4,313.3 501.4,365.3 429.9,391.3 384.4,417.3 345.4,430.3 299.9,417.3 247.9,378.3" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.26" stroke-linejoin="round"/>
+<polygon points="221.5,362.5 273.5,297.5 293.4,280.8 241.4,345.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="273.5,297.5 345,154.5 364.9,137.8 293.4,280.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="345,154.5 410,102.5 429.9,85.8 364.9,137.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="410,102.5 468.5,122 488.4,105.3 429.9,85.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="468.5,122 507.5,180.5 527.4,163.8 488.4,105.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="507.5,180.5 520.5,213 540.4,196.3 527.4,163.8" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="520.5,213 507.5,330 527.4,313.3 540.4,196.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="507.5,330 481.5,382 501.4,365.3 527.4,313.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="481.5,382 410,408 429.9,391.3 501.4,365.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="410,408 364.5,434 384.4,417.3 429.9,391.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="364.5,434 325.5,447 345.4,430.3 384.4,417.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="325.5,447 280,434 299.9,417.3 345.4,430.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="280,434 228,395 247.9,378.3 299.9,417.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="228,395 221.5,362.5 241.4,345.8 247.9,378.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="1.08" stroke-linejoin="round"/>
+<polygon points="221.5,362.5 273.5,297.5 345,154.5 410,102.5 468.5,122 507.5,180.5 520.5,213 507.5,330 481.5,382 410,408 364.5,434 325.5,447 280,434 228,395" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M280.0 288.4 L351.5 154.5 L410.0 111.6" fill="none" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="458.1" cy="152.2" r="19.5" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="481.7,140.1 464.8,133.9 451.4,170.6 468.3,176.7" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="481.7" y1="140.1" x2="464.8" y2="133.9" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="468.3" y1="176.7" x2="451.4" y2="170.6" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="475" cy="158.4" r="19.5" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6"/>
+<circle cx="299.5" cy="388.8" r="19.5" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="323.1,376.7 306.2,370.5 292.8,407.2 309.7,413.3" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="323.1" y1="376.7" x2="306.2" y2="370.5" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="309.7" y1="413.3" x2="292.8" y2="407.2" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="316.4" cy="395" r="19.5" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="1.6"/>
+<path d="M514.0 258.5 L529.6 249.4 L537.4 280.6 L527.0 317.0" fill="none" stroke="#e3141e" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M410.0 375.5 L566.0 453.5" fill="none" stroke="#1b1b1b" stroke-width="26" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M410.0 375.5 L566.0 453.5" fill="none" stroke="#f1f2f5" stroke-width="22" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="584.8" cy="447.1" r="26" fill="#c7cbd6" stroke="#1b1b1b" stroke-width="1.1199999999999999"/>
+<polygon points="589.2,477.3 601.5,467 568,427.2 555.8,437.5" fill="#d9dce4" stroke="#1b1b1b" stroke-width="0.96" stroke-linejoin="round"/>
+<line x1="589.2" y1="477.3" x2="601.5" y2="467" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<line x1="555.8" y1="437.5" x2="568" y2="427.2" stroke="#1b1b1b" stroke-width="1.2800000000000002" stroke-linecap="round"/>
+<circle cx="572.5" cy="457.4" r="26" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<path d="M579.0 449.6 L813.0 304.0" fill="none" stroke="#1b1b1b" stroke-width="18" stroke-linejoin="round" stroke-linecap="round" />
+<path d="M579.0 449.6 L813.0 304.0" fill="none" stroke="#fff" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" />
+<polygon points="794.2,369.5 772.4,343.5 781.6,335.8 748,330 747.9,364.1 757.1,356.3 778.9,382.4" fill="#e3141e" stroke="#e3141e" stroke-width="1" stroke-linejoin="round"/>
+<line x1="533.5" y1="280.6" x2="700" y2="140" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="533.5" cy="280.6" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="706" y="147" font-size="20" fill="#e3141e" text-anchor="start" font-weight="700">Llave Allen</text>
+<line x1="410" y1="421" x2="560" y2="600" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="410" cy="421" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="566" y="606.3" font-size="18" fill="#1b1b1b" text-anchor="start" font-weight="400">Perno de la polea del tensor automático</text>
+<text x="30" y="680" font-size="15" fill="#1b1b1b" text-anchor="start" font-weight="400">Gira el tensor con la carraca en el perno de la polea y mete la Allen en el agujero para dejarlo bloqueado.</text>
+<line x1="0" y1="700" x2="940" y2="700" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="722" font-size="14" fill="#1b1b1b" opacity="0.75">Cómo bloquear el tensor automático con una llave Allen</text>
+<text x="926" y="724" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
