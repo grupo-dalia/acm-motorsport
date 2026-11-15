@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 594" width="940" height="594" font-family="Arial, Helvetica, sans-serif">
+<rect width="940" height="594" fill="#fff"/>
+<polygon points="115,124.2 166.7,120.7 184,135.7 287.5,138 310.5,109.2 310.5,86.2 368,71.3 414,97.7 477.2,126.5 529,161 575,201.2 603.7,235.7 598,266.8 563.5,333.5 506,379.5 460,408.2 414,396.7 345,379.5 310.5,368 276,333.5 195.5,339.2 172.5,347.3 155.2,345" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2.2" stroke-linejoin="round"/>
+<polygon points="115,124.2 166.7,120.7 172.5,347.3 155.2,345" fill="#fff" stroke="#1b1b1b" stroke-width="1.6" stroke-linejoin="round"/>
+<circle cx="431.2" cy="258.8" r="71.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.8"/>
+<circle cx="431.2" cy="258.8" r="32.2" fill="#fff" stroke="#1b1b1b" stroke-width="1.6"/>
+<circle cx="431.2" cy="189.7" r="7" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="379.5" cy="247.2" r="7" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="494.5" cy="253" r="7" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="431.2" cy="316.2" r="7" fill="#fff" stroke="#1b1b1b" stroke-width="1.2"/>
+<circle cx="325.4" cy="204.7" r="18.9" fill="#fff" stroke="#e3141e" stroke-width="1.4400000000000002"/>
+<polygon points="339.4,204.7 332.4,216.8 318.4,216.8 311.4,204.7 318.4,192.6 332.4,192.6" fill="#fff" stroke="#e3141e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="325.4" cy="204.7" r="6.3" fill="#fff" stroke="#e3141e" stroke-width="1.26"/>
+<line x1="325.4" y1="204.7" x2="300" y2="60" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="325.4" cy="204.7" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="300" y="67" font-size="20" fill="#e3141e" text-anchor="middle" font-weight="700">8 × 85</text>
+<circle cx="313.9" cy="101.2" r="18.9" fill="#fff" stroke="#1b1b1b" stroke-width="1.4400000000000002"/>
+<polygon points="327.9,101.2 320.9,113.3 306.9,113.3 299.9,101.2 306.9,89.1 320.9,89.1" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="313.9" cy="101.2" r="6.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.26"/>
+<line x1="313.9" y1="101.2" x2="560" y2="30" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="313.9" cy="101.2" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="560" y="37" font-size="20" fill="#1b1b1b" text-anchor="middle" font-weight="700">8 × 40</text>
+<circle cx="394.4" cy="140.3" r="18.9" fill="#fff" stroke="#1b1b1b" stroke-width="1.4400000000000002"/>
+<polygon points="408.4,140.3 401.4,152.4 387.4,152.4 380.4,140.3 387.4,128.2 401.4,128.2" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="394.4" cy="140.3" r="6.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.26"/>
+<line x1="394.4" y1="140.3" x2="560" y2="30" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="316.2" cy="356.5" r="18.9" fill="#fff" stroke="#1b1b1b" stroke-width="1.4400000000000002"/>
+<polygon points="330.2,356.5 323.2,368.6 309.2,368.6 302.2,356.5 309.2,344.4 323.2,344.4" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="316.2" cy="356.5" r="6.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.26"/>
+<line x1="316.2" y1="356.5" x2="330" y2="480" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="316.2" cy="356.5" r="2.6" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1"/>
+<text x="330" y="487" font-size="20" fill="#1b1b1b" text-anchor="middle" font-weight="700">8 × 40</text>
+<circle cx="448.5" cy="394.4" r="18.9" fill="#fff" stroke="#1b1b1b" stroke-width="1.4400000000000002"/>
+<polygon points="462.5,394.4 455.5,406.6 441.5,406.6 434.5,394.4 441.5,382.3 455.5,382.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="448.5" cy="394.4" r="6.3" fill="#fff" stroke="#1b1b1b" stroke-width="1.26"/>
+<line x1="448.5" y1="394.4" x2="330" y2="480" stroke="#1b1b1b" stroke-width="1" stroke-linecap="round"/>
+<circle cx="592.2" cy="243.8" r="18.9" fill="#fff" stroke="#e3141e" stroke-width="1.4400000000000002"/>
+<polygon points="606.2,243.8 599.2,255.9 585.2,255.9 578.2,243.8 585.2,231.7 599.2,231.7" fill="#fff" stroke="#e3141e" stroke-width="1.8" stroke-linejoin="round"/>
+<circle cx="592.2" cy="243.8" r="6.3" fill="#fff" stroke="#e3141e" stroke-width="1.26"/>
+<line x1="592.2" y1="243.8" x2="860" y2="120" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="592.2" cy="243.8" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="860" y="127" font-size="20" fill="#e3141e" text-anchor="middle" font-weight="700">8 × 25</text>
+<text x="30" y="530" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Diámetro × largo en mm, vista desde delante. Junta nueva en la bomba y en la placa.</text>
+<line x1="0" y1="560" x2="940" y2="560" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="582" font-size="14" fill="#1b1b1b" opacity="0.75">Bomba de agua del 4D56: posición de cada tornillo (8×25, 8×40, 8×85)</text>
+<text x="926" y="584" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>

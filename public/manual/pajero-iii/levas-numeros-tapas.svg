@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 504" width="900" height="504" font-family="Arial, Helvetica, sans-serif">
+<rect width="900" height="504" fill="#fff"/>
+<polygon points="85,160 100,145 125,150 130,190 160,192 160,150 180,142 205,155 200,190 200,245 180,260 160,270 150,295 90,295 82,270" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="105" cy="165" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="180" cy="163" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="105" cy="275" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="175" cy="228" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="130" cy="230" r="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="147.1" y="335" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Tapa 1 (sin nº)</text>
+<polygon points="275,140 320,140 338,155 338,192 360,200 360,250 330,260 320,300 275,300 275,260 278,220 275,175" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="300" cy="167" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="335" cy="228" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="300" cy="232" r="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="295" cy="278" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="303.0" y="192.0" font-size="26" fill="#e3141e" font-weight="700" text-anchor="middle" transform="rotate(-90 303.0 184.0)">2</text>
+<text x="312" y="335" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Tapa 2</text>
+<polygon points="440,140 478,142 510,145 517,190 530,200 530,250 490,260 485,300 440,300 440,260 442,210 440,175" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="467" cy="165" r="8" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="500" cy="230" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="468" cy="235" r="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="460" cy="280" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="463.0" y="196.0" font-size="26" fill="#e3141e" font-weight="700" text-anchor="middle" transform="rotate(-90 463.0 188.0)">3</text>
+<text x="478.5" y="335" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Tapa 3</text>
+<polygon points="605,145 650,145 670,165 680,192 685,200 680,250 650,260 645,300 605,300 603,260 605,210 603,175" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="625" cy="168" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="660" cy="228" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="627" cy="233" r="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="623" cy="278" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="627.0" y="194.0" font-size="26" fill="#e3141e" font-weight="700" text-anchor="middle" transform="rotate(-90 627.0 186.0)">4</text>
+<text x="640.1" y="335" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Tapa 4</text>
+<polygon points="765,145 810,148 815,190 840,225 825,260 815,300 765,300 760,280 765,240 760,200" fill="#f1f2f5" stroke="#1b1b1b" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="785" cy="170" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="817" cy="230" r="10" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="790" cy="232" r="6" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<circle cx="785" cy="278" r="12" fill="#fff" stroke="#1b1b1b" stroke-width="1.4"/>
+<text x="792" y="335" font-size="15" fill="#1b1b1b" text-anchor="middle" font-weight="400">Tapa 5 (sin nº)</text>
+<line x1="303" y1="185" x2="460" y2="40" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<circle cx="303" cy="185" r="2.6" fill="#e3141e" stroke="#e3141e" stroke-width="1"/>
+<text x="466" y="46" font-size="17" fill="#e3141e" text-anchor="start" font-weight="700">Números grabados de las tapas</text>
+<line x1="463" y1="188" x2="460" y2="40" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<line x1="627" y1="188" x2="460" y2="40" stroke="#e3141e" stroke-width="1" stroke-linecap="round"/>
+<line x1="240" y1="410" x2="90" y2="410" stroke="#1b1b1b" stroke-width="2.4" stroke-linecap="round"/>
+<polygon points="90,410 102.9,404.5 102.9,415.5" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1" stroke-linejoin="round"/>
+<text x="255" y="416" font-size="16" fill="#1b1b1b" text-anchor="start" font-weight="400">Parte delantera del motor · cada tapa en su sitio (20 N·m)</text>
+<line x1="0" y1="470" x2="900" y2="470" stroke="#1b1b1b" stroke-width="0.6" opacity="0.3"/>
+<text x="16" y="492" font-size="14" fill="#1b1b1b" opacity="0.75">Tapas de cojinete del árbol de levas: número y posición</text>
+<text x="886" y="494" font-size="12" fill="#1b1b1b" opacity="0.45" text-anchor="end">Dibujo ACM Motorsport</text>
+</svg>
