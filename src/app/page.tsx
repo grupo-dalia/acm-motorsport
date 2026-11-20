@@ -2,6 +2,8 @@ import { HomeHero, Intro, TheCar, DakarSection, LatestVideos, NewsSection, ShopS
 import { getChannelVideos, isPlaceholder } from "@/lib/youtube";
 import { getArticles } from "@/lib/news";
 import { catalog } from "@/integrations/commerce";
+import { PromoBanner } from "@/components/promo/promo-banner";
+import { Container } from "@/components/ui/container";
 import { JsonLd, personLd, videoListLd } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
@@ -18,6 +20,11 @@ export default async function HomePage() {
       {realVideos.length > 0 && <JsonLd data={videoListLd(realVideos)} />}
       <HomeHero />
       <Intro />
+      <section className="bg-midnight py-12 lg:py-20" aria-label="Tienda">
+        <Container>
+          <PromoBanner />
+        </Container>
+      </section>
       <TheCar />
       <DakarSection episodes={episodes} />
       {channel.live && <LatestVideos data={channel} />}
