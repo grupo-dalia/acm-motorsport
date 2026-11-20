@@ -16,7 +16,14 @@ export function ProductCard({ product, headingLevel = 3 }: { product: Product; p
       </Tilt>
       <div className="mt-4 flex items-baseline justify-between gap-3">
         {headingLevel === 2 ? <h2 className="font-medium">{product.name}</h2> : <h3 className="font-medium">{product.name}</h3>}
-        <p className="shrink-0 tnum">{product.fulfillment === "affiliate" ? "Tienda externa" : formatPrice(product.priceCents)}</p>
+        <p className="shrink-0 tnum">
+          {product.fulfillment === "affiliate" ? "Tienda externa" : (
+            <>
+              {product.compareAtCents ? <s className="mr-2 opacity-60">{formatPrice(product.compareAtCents)}</s> : null}
+              <span className={product.compareAtCents ? "text-racing font-semibold" : undefined}>{formatPrice(product.priceCents)}</span>
+            </>
+          )}
+        </p>
       </div>
       <p className="mt-1 t-small opacity-60">
         {soldOut ? "Agotado" : fulfillmentLabels[product.fulfillment].short}

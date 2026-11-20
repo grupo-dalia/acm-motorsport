@@ -1,4 +1,5 @@
 import "server-only";
+import { applyPricing, activeCampaign } from "@/content/pricing";
 import type { CategorySlug, ColorOption, Product, ProductArtKind, Variant } from "@/domain/catalog";
 
 /**
@@ -70,13 +71,15 @@ export function toProduct(sp: PfSyncProduct, vs: PfSyncVariant[], index: number)
       sku: v.sku || `PF-${v.id}`,
       colorId,
       size: v.size || null,
-      priceCents: Math.round(Number(v.retail_price ?? 0) * 100),
+      ...applyPricing(category, Math.round(Number(v.retail_price ?? 0) * 100)),
       available: v.availability_status !== "discontinued" && v.availability_status !== "out_of_stock" && Number(v.retail_price ?? 0) > 0,
       providerVariantId: String(v.id),
     };
   });
-  const prices = variants.filter((v) => v.priceCents > 0).map((v) => v.priceCents);
+  const priced = variants.filter((v) => v.priceCents > 0).sort((a, b) => a.priceCents - b.priceCents);
+  const prices = priced.map((v) => v.priceCents);
   if (!prices.length) return null;
+  const cheapest = priced[0]!;
   return {
     id: `pf-${sp.id}`,
     slug: slug(sp.name),
@@ -89,6 +92,8 @@ export function toProduct(sp: PfSyncProduct, vs: PfSyncVariant[], index: number)
     fulfillment: "pod",
     availability: "made_to_order",
     priceCents: Math.min(...prices),
+    compareAtCents: cheapest.compareAtCents ?? null,
+    saleLabel: cheapest.compareAtCents ? (activeCampaign()?.label ?? null) : null,
     unitCostCents: null,
     vatRate: 0.21,
     art: { kind: artKind(category), print: "acm" },

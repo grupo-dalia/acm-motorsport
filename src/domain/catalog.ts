@@ -42,6 +42,8 @@ export type Variant = {
   colorId: string;
   size: string | null;
   priceCents: number;
+  /** Precio antes de la rebaja (tachado). null sin campaña. */
+  compareAtCents?: number | null;
   available: boolean;
   /** ID de variante en el proveedor (Printful sync_variant_id). null en demo. */
   providerVariantId: string | null;
@@ -59,6 +61,10 @@ export type Product = {
   fulfillment: FulfillmentType;
   availability: Availability;
   priceCents: number;
+  /** Precio antes de la rebaja de la variante más barata (tachado). null sin campaña. */
+  compareAtCents?: number | null;
+  /** Etiqueta de la campaña activa ("Black Friday −20 %"). */
+  saleLabel?: string | null;
   /** Coste estimado de fabricación por unidad (para márgenes en admin). Nunca se expone en la ficha. */
   unitCostCents: number | null;
   vatRate: number;

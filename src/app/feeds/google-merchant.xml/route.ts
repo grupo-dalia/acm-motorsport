@@ -2,6 +2,7 @@ import { catalog } from "@/integrations/commerce";
 import { absoluteUrl } from "@/lib/site";
 import { site } from "@/content/site";
 import { SHIPPING_RULES } from "@/domain/cart";
+import { activeCampaign } from "@/content/pricing";
 import type { Product, Variant } from "@/domain/catalog";
 
 /**
@@ -29,7 +30,10 @@ function images(p: Product, v: Variant): string[] {
   return [...new Set(all)].slice(0, 10).map((u) => (u.startsWith("http") ? u : absoluteUrl(u)));
 }
 
-function item(p: Product, v: Variant): string | null {
+/** Marcas de terceros: Google rechaza (y puede suspender la cuenta) por ropa con marcas sin licencia. Fuera del feed. */
+const thirdPartyMarks = /mitsubishi|rallyart|ralliart|toyota|lada|red bull|monster/i;
+
+function item(p: Product, v: Variant, sale: { from: string; to: string } | null): string | null {
   const imgs = images(p, v);
   if (!imgs.length) return null;
   const color = p.colors.find((c) => c.id === v.colorId)?.name;
@@ -44,7 +48,8 @@ function item(p: Product, v: Variant): string | null {
     `<g:image_link>${esc(imgs[0]!)}</g:image_link>`,
     ...imgs.slice(1).map((u) => `<g:additional_image_link>${esc(u)}</g:additional_image_link>`),
     `<g:availability>${v.available ? "in_stock" : "out_of_stock"}</g:availability>`,
-    `<g:price>${eur(v.priceCents)}</g:price>`,
+    `<g:price>${eur(v.compareAtCents ?? v.priceCents)}</g:price>`,
+    ...(v.compareAtCents && sale ? [`<g:sale_price>${eur(v.priceCents)}</g:sale_price>`, `<g:sale_price_effective_date>${sale.from}/${sale.to}</g:sale_price_effective_date>`] : []),
     `<g:condition>new</g:condition>`,
     `<g:brand>${esc(site.name)}</g:brand>`,
     `<g:identifier_exists>no</g:identifier_exists>`,
@@ -59,8 +64,10 @@ function item(p: Product, v: Variant): string | null {
 }
 
 export async function GET() {
-  const products = (await catalog.listProducts()).filter((p) => !p.demo && p.fulfillment !== "affiliate");
-  const items = products.flatMap((p) => p.variants.map((v) => item(p, v))).filter(Boolean);
+  const products = (await catalog.listProducts()).filter((p) => !p.demo && p.fulfillment !== "affiliate" && !thirdPartyMarks.test(p.name));
+  const c = activeCampaign();
+  const sale = c ? { from: c.from, to: c.to } : null;
+  const items = products.flatMap((p) => p.variants.map((v) => item(p, v, sale))).filter(Boolean);
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel>
 <title>${esc(site.name)} · Tienda</title><link>${absoluteUrl("/tienda")}</link><description>${esc(site.description)}</description>
