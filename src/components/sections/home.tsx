@@ -252,7 +252,63 @@ export function NewsSection({ articles }: { articles: Article[] }) {
         <div className="mt-14 grid gap-x-8 gap-y-4 md:grid-cols-3">
           {articles.slice(0, 3).map((a) => <ArticleCard key={a.slug} a={a} className="py-6" />)}
         </div>
+        <TopGuides />
       </Container>
     </section>
+  );
+}
+
+/**
+ * Enlaces de la portada a las páginas que queremos subir en Google, con el texto exacto que busca la gente.
+ * La portada es la página con más autoridad: cada enlace le pasa fuerza a su destino.
+ */
+const topGuides: { group: string; links: [string, string][] }[] = [
+  {
+    group: "Manual Mitsubishi Pajero 2.5 TD (4D56)",
+    links: [
+      ["Calar la bomba inyectora del Pajero 2.5 TD", "/guias/manual-pajero-iii/bomba-inyectora"],
+      ["Cambiar la correa de distribución del Pajero 4D56", "/guias/manual-pajero-iii/distribucion"],
+      ["Par de apriete de la culata del Pajero III", "/guias/manual-pajero-iii/culata"],
+      ["Reglaje de válvulas del 4D56", "/guias/manual-pajero-iii/valvulas"],
+      ["Presión del turbo del Pajero 2.5 TD", "/guias/manual-pajero-iii/turbo"],
+      ["Purgar el gasoil del Pajero", "/guias/manual-pajero-iii/gasoil"],
+    ],
+  },
+  {
+    group: "Manual Lada Niva 1600",
+    links: [
+      ["Par de apriete de la culata del Lada Niva", "/guias/manual-lada-niva/culata"],
+      ["Tensar la cadena de distribución del Lada Niva", "/guias/manual-lada-niva/distribucion"],
+      ["Reglaje de válvulas del Lada Niva", "/guias/manual-lada-niva/valvulas"],
+      ["Pares de apriete del motor del Niva", "/guias/manual-lada-niva/pares-motor"],
+    ],
+  },
+  {
+    group: "Rally y Dakar",
+    links: [
+      ["Requisitos para correr el Dakar", "/noticias/requisitos-para-correr-el-dakar"],
+      ["Qué es el Dakar Classic", "/noticias/dakar-classic-que-es-como-participar"],
+      ["Qué es un rally de regularidad", "/noticias/que-es-un-rally-de-regularidad"],
+      ["Dakar 2027: recorrido por Portugal y Marruecos", "/noticias/dakar-2027-portugal-marruecos"],
+      ["Pajero MK1: qué mirar antes de comprar uno", "/noticias/mitsubishi-pajero-mk1-guia"],
+      ["Cómo instalar Starlink Mini en el coche", "/noticias/como-instalar-starlink-mini-en-el-coche"],
+    ],
+  },
+];
+
+function TopGuides() {
+  return (
+    <div className="mt-20 grid gap-10 border-t border-line-dark pt-12 md:grid-cols-3">
+      {topGuides.map((g) => (
+        <nav key={g.group} aria-label={g.group}>
+          <h3 className="t-sub">{g.group}</h3>
+          <ul className="mt-4 space-y-2">
+            {g.links.map(([label, href]) => (
+              <li key={href}><Link href={href} className="link-u text-ink">{label}</Link></li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+    </div>
   );
 }
