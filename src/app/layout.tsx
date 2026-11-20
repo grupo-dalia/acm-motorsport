@@ -1,3 +1,4 @@
+import { announcement } from "@/content/pricing";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { hubot, mona } from "./fonts";
@@ -45,7 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
         <Providers catalog={products}>
-          <Header />
+          <Header announcement={announcement()} />
           <main id="contenido">{children}</main>
           <Footer />
           <CartDrawer />

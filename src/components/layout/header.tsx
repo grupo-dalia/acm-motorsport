@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 /** Páginas cuya cabecera arranca sobre fondo claro */
 const LIGHT_TOP = ["/tienda", "/carrito", "/checkout", "/legal", "/contacto", "/noticias", "/admin"];
 
-export function Header() {
+export function Header({ announcement }: { announcement?: string | null }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,6 +51,11 @@ export function Header() {
         solid && (light ? "bg-paper/92 shadow-[0_1px_0_rgb(8_10_15/0.08)] backdrop-blur-md" : "bg-midnight/92 shadow-[0_1px_0_rgb(245_247_250/0.08)] backdrop-blur-md"),
       )}
     >
+      {announcement && !scrolled && !menuOpen ? (
+        <Link href="/tienda" className="block bg-racing px-4 py-1.5 text-center text-xs font-semibold text-paper hover:bg-racing-dark sm:text-sm">
+          {announcement} <span aria-hidden>→</span>
+        </Link>
+      ) : null}
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-12">
         <Logo />
         <nav aria-label="Principal" className="hidden lg:block">

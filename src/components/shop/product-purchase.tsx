@@ -61,7 +61,19 @@ export function ProductPurchase({ product }: { product: Product }) {
           <p className="t-small text-slate">{fulfillmentLabels[product.fulfillment].short}{product.demo && " · producto de ejemplo"}</p>
           <h1 className="t-display mt-3 text-[clamp(2rem,3.4vw,3.2rem)]">{product.name}</h1>
           <p className="t-lead mt-3 text-slate">{product.tagline}</p>
-          {!isAffiliate && <p className="t-title mt-8 tnum">{formatPrice(variant?.priceCents ?? product.priceCents)} <span className="t-small font-normal text-slate">IVA incluido</span></p>}
+          {!isAffiliate && (() => {
+            const was = variant ? variant.compareAtCents : product.compareAtCents;
+            return (
+              <div className="mt-8">
+                {was && product.saleLabel ? <p className="t-small inline-block bg-racing px-2 py-0.5 font-semibold uppercase tracking-wide text-white">{product.saleLabel}</p> : null}
+                <p className="t-title mt-2 tnum">
+                  {was ? <s className="mr-3 font-normal opacity-60">{formatPrice(was)}</s> : null}
+                  <span className={was ? "text-racing" : undefined}>{formatPrice(variant?.priceCents ?? product.priceCents)}</span>{" "}
+                  <span className="t-small font-normal text-slate">IVA incluido</span>
+                </p>
+              </div>
+            );
+          })()}
 
           {!isAffiliate && (
             <div className="mt-10 space-y-8 border-t border-line-dark pt-8">
