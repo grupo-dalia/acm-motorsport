@@ -1,6 +1,6 @@
 ---
-title: "Cómo alimentar Starlink Mini a 12V en el coche: consumo, cables y baterías"
-summary: "Cuánto gasta, qué cargador USB-C sirve y cuál no, cómo hacer una línea a 12V con su fusible y cuántas horas aguanta con batería. Con números."
+title: "Starlink Mini a 12V: qué cargador sirve y cuántas horas aguanta con batería"
+summary: "Consumo real de 20 a 40 W, qué cargadores USB-C funcionan y cuáles no, la línea a 12V con su fusible y las horas de batería. Con números."
 date: 2026-11-13
 image: "/media/taller-lampara-itv.jpg"
 imageAlt: "Andrés trabajando en el vano motor del Pajero en el taller"

@@ -1,6 +1,6 @@
 ---
-title: "Mitsubishi Pajero MK1 (1982-1991): historia, motores y qué mirar antes de comprar uno"
-summary: "El primer Pajero ganó el Dakar en 1985 y hoy es un clásico 4x4 barato y duro. Motores, versiones y los puntos débiles que hemos sufrido con el nuestro."
+title: "Pajero MK1 (1982-1991): motores, versiones y qué mirar antes de comprar uno"
+summary: "Ganó el Dakar en 1985 y hoy es un 4x4 clásico barato y duro. Los motores, las versiones y los puntos débiles que hemos sufrido con el nuestro en carreras."
 date: 2026-10-30
 image: "/media/garrotxa-pajero-tramo.jpg"
 imageAlt: "El Mitsubishi Pajero MK1 de batalla larga de ACM Motorsport en tramo de tierra"

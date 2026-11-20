@@ -30,6 +30,7 @@ export const mainNav: NavItem[] = [
   { label: "Guías", href: "/guias", description: "Aprende rally, 4x4 y taller" },
   { label: "Noticias", href: "/noticias", description: "Crónicas y actualidad" },
   { label: "Tienda", href: "/tienda", description: "Merchandising oficial" },
+  { label: "Descuentos", href: "/descuentos", description: "Nuestros códigos y enlaces directos" },
 ];
 
 export const legalNav: NavItem[] = [

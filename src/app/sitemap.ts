@@ -6,7 +6,7 @@ import { nivaManual, pajeroManual } from "@/content/manual-defs";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const staticRoutes = ["/", "/motorsport", "/objetivo-dakar", "/workshop", "/sim-racing", "/guias", "/guias/manual-pajero-iii", "/guias/manual-lada-niva", "/noticias", "/starlink", "/tienda", "/tienda/recambios", "/contacto"].map((p) => ({
+  const staticRoutes = ["/", "/motorsport", "/objetivo-dakar", "/workshop", "/sim-racing", "/guias", "/guias/manual-pajero-iii", "/guias/manual-lada-niva", "/noticias", "/starlink", "/tienda", "/tienda/recambios", "/descuentos", "/contacto"].map((p) => ({
     url: absoluteUrl(p),
     lastModified: now,
     changeFrequency: "weekly" as const,

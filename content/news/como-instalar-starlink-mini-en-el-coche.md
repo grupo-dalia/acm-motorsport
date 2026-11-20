@@ -1,6 +1,6 @@
 ---
-title: "Cómo instalar Starlink Mini en el coche: guía paso a paso"
-summary: "Dónde ponerlo, cómo fijarlo para que aguante la pista, por dónde meter el cable sin goteras y cómo comprobar que ve el cielo. Lo que aprendimos montándolo en un Pajero."
+title: "Starlink Mini en el coche: cómo instalarlo sin goteras ni vibraciones"
+summary: "Probado en el techo de un Pajero que compite en tierra: dónde ponerlo, cómo fijarlo, por dónde meter el cable y qué no hacer. Con fotos y vídeo."
 date: 2026-11-13
 youtubeId: "3aBYyv4A7fs"
 imageAlt: "Instalación de Starlink Mini en el techo del Mitsubishi Pajero de ACM Motorsport"

@@ -52,6 +52,13 @@ export default async function ShopPage({ searchParams }: { searchParams: SP }) {
           </span>
           <span aria-hidden className="text-2xl">→</span>
         </Link>
+        <Link href="/descuentos" className="mt-3 flex max-w-xl items-center gap-4 rounded-[6px] bg-racing p-5 text-paper no-underline hover:bg-racing-dark">
+          <span className="flex-1">
+            <span className="block t-sub">Códigos de descuento</span>
+            <span className="block t-small opacity-85">Euro4x4parts, Full Carx, Starlink y más, con enlace directo.</span>
+          </span>
+          <span aria-hidden className="text-2xl">→</span>
+        </Link>
       </PageHero>
 
       <section className="on-paper pb-24 lg:pb-36">
