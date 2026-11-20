@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "*.supabase.co" },
     ],
   },
+  async redirects() {
+    return [
+      // El recorrido saudí del Dakar 2027 se canceló el 30/10/2026: la noticia vieja apunta a la buena.
+      { source: "/noticias/dakar-2027-recorrido-etapas-fechas", destination: "/noticias/dakar-2027-portugal-marruecos", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

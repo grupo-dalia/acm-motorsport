@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { absoluteUrl } from "./site";
 import type { Product } from "@/domain/catalog";
+import { SHIPPING_RULES } from "@/domain/cart";
 
 export function pageMetadata({ title, description, path, image }: { title: string; description: string; path: string; image?: string }): Metadata {
   return {
@@ -96,6 +97,19 @@ export function productLd(p: Product) {
       price: (p.priceCents / 100).toFixed(2),
       availability: p.variants.some((v) => v.available) ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       url: absoluteUrl(`/tienda/${p.slug}`),
+      // Envío y devoluciones: Google los enseña en la ficha y en Shopping ("Envío 4,95 €", "Devolución en 14 días").
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: { "@type": "MonetaryAmount", value: (p.priceCents >= SHIPPING_RULES.freeFromCents ? 0 : SHIPPING_RULES.flatCents / 100).toFixed(2), currency: "EUR" },
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "ES" },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "ES",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 14,
+        returnMethod: "https://schema.org/ReturnByMail",
+      },
     },
   };
 }
