@@ -42,3 +42,29 @@ export const nivaSeo: Record<string, PartSeo> = {
   "bomba-aceite": { title: "Bomba de aceite del Lada Niva 1600: holguras y montaje", description: "Holguras de la bomba de aceite del Lada Niva 2121, diferencias con la del 2101 y montaje." },
   cotas: { title: "Cotas de dirección y alineado del Lada Niva", description: "Convergencia, caída y avance del Lada Niva: valores y cómo ajustarlos." },
 };
+
+/** English: Pajero is sold as Montero (Spain, Americas) and Shogun (UK); the 4D56 also powers the L200 and Delica. */
+export const pajeroSeoEn: Record<string, PartSeo> = {
+  ficha: { title: "Mitsubishi 4D56 2.5 TD engine specs (Pajero / Montero III)", description: "4D56 2.5 TD data for the Pajero III / Montero / Shogun (2001-2002): displacement, compression, valve timing, oil, capacities and main torque settings." },
+  "correa-auxiliar": { title: "Pajero III 2.5 TD (4D56) accessory belt replacement", description: "How to check, remove and fit the serpentine belt and the A/C belt on the Mitsubishi Pajero III / Montero 2.5 TD, with the Allen key trick for the tensioner." },
+  distribucion: { title: "Pajero 2.5 TD 4D56 timing belt replacement: marks and torques", description: "Step by step timing belt and balance shaft belt (belt B) replacement on the Mitsubishi Pajero / Montero / Shogun 2.5 TD 4D56: timing marks, routing, tensioners and torques." },
+  "tension-distribucion": { title: "How to tension the 4D56 timing belt (Pajero 2.5 TD)", description: "Re-tension the main belt and belt B on the Pajero III 4D56 without removing them: bolt order, correct deflection and common mistakes." },
+  valvulas: { title: "4D56 valve clearance: Mitsubishi Pajero 2.5 TD", description: "4D56 hot valve clearance, which valves to set with cylinder 1 and cylinder 4 at TDC, and how to close the rocker cover without leaks." },
+  "arbol-levas": { title: "Pajero 2.5 TD (4D56) camshaft seal replacement", description: "Removing and fitting the camshaft and its oil seal on the Pajero III 4D56 without losing the timing: cap numbers, torques and seal depth." },
+  culata: { title: "Pajero III 2.5 TD head gasket: 4D56 head bolt torque and sequence", description: "Changing the 4D56 head gasket on the Pajero III / Montero: loosening and tightening order of the 18 bolts, 2001 and 2002 torque, and how to choose gasket thickness." },
+  aceite: { title: "Mitsubishi Pajero 2.5 TD (4D56) oil capacity and oil change", description: "Which oil the Pajero III 2.5 TD takes, how many litres with the filter, drain plug torque and how to read the dipstick." },
+  carter: { title: "Pajero III 2.5 TD (4D56) oil sump removal and sealing", description: "How to remove and seal the 4D56 sump on the Pajero III: what has to come off, where the sealant bead goes and torques." },
+  "retenes-ciguenal": { title: "4D56 crankshaft oil seals: Pajero 2.5 TD front and rear", description: "Front and rear crankshaft seals on the Pajero III 4D56: how to remove them, fit them with their guide, and flywheel torque." },
+  refrigeracion: { title: "Pajero III 2.5 TD (4D56) water pump and thermostat", description: "Change the coolant, thermostat and water pump on the Mitsubishi Pajero / Montero 2.5 TD: capacity, drain plugs and the size of every bolt." },
+  gasoil: { title: "Bleed the fuel system and change the filter: Pajero 2.5 TD (4D56)", description: "How to drain water from the fuel filter, bleed the air and test the injectors on the Mitsubishi Pajero III 2.5 TD." },
+  "bomba-inyectora": { title: "4D56 injection pump timing: Mitsubishi Pajero 2.5 TD", description: "How to check and set injection pump timing on the Pajero III / Montero 2.5 TD (2001 engine, mechanical pump) with a dial gauge, and how to set idle speed." },
+  turbo: { title: "Pajero III 2.5 TD turbo: boost pressure and wastegate test", description: "How to measure 4D56 boost, test the wastegate actuator and remove the turbo on the Mitsubishi Pajero III 2.5 TD." },
+  calentadores: { title: "How to test the glow plugs on a Mitsubishi Pajero 2.5 TD (4D56)", description: "Testing the Pajero III 4D56 glow plugs with a multimeter, plus alternator and charging data." },
+  compresion: { title: "4D56 compression test: Mitsubishi Pajero 2.5 TD", description: "How to measure 4D56 compression on the Pajero III: which connector to unplug, normal and minimum values and maximum difference between cylinders." },
+  embrague: { title: "Mitsubishi Pajero III 2.5 TD clutch: specs and adjustment", description: "Pajero III 2.5 TD clutch data: type, hydraulic release and fluid." },
+  "caja-reductora": { title: "Pajero III gearbox and transfer case oil", description: "Which oil and how much goes in the Mitsubishi Pajero III 2.5 TD gearbox and transfer case, and how to change it." },
+  diferenciales: { title: "Mitsubishi Pajero III differential oil", description: "Oil type, capacity and plugs for the Pajero III front and rear differentials." },
+  frenos: { title: "Mitsubishi Pajero III brake pads and brake bleeding", description: "Front and rear brake pad replacement on the Pajero III, minimum thickness, caliper torques and bleeding order." },
+  ruedas: { title: "Mitsubishi Pajero III wheel nut torque", description: "Wheel nut and spare wheel torque for the Mitsubishi Pajero III." },
+  direccion: { title: "Mitsubishi Pajero III steering: play and fluid", description: "Power steering fluid and maximum steering wheel play on the Mitsubishi Pajero III." },
+};

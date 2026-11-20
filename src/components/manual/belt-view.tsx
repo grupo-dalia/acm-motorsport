@@ -1,5 +1,6 @@
 "use client";
 
+import { useManualUi } from "@/components/manual/manual-lang";
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import type { BeltPulley, BeltView } from "@/content/manual-types";
@@ -114,6 +115,7 @@ function Wheel({ p, on }: { p: BeltPulley; on: boolean }) {
 }
 
 export function BeltDiagram({ view }: { view: BeltView }) {
+  const t = useManualUi();
   const [sel, setSel] = useState<number | null>(null);
   const byN = new Map(view.pulleys.map((p) => [p.n, p]));
   const loop = view.order.map((n) => byN.get(n)!);
@@ -167,28 +169,28 @@ export function BeltDiagram({ view }: { view: BeltView }) {
               </text>
             ))}
           </svg>
-          <p className="t-small absolute bottom-2 right-3 text-midnight-deep/60">Dibujo ACM Motorsport · vista de frente · toca una pieza</p>
+          <p className="t-small absolute bottom-2 right-3 text-midnight-deep/60">{t.beltHint}</p>
         </div>
 
         <div className="flex flex-col gap-3">
           <div className={cn("rounded-[6px] border p-4 transition-colors", current ? "border-[#f7c600] bg-[#f7c600]/10" : "border-line")}>
             {current ? (
               <>
-                <p className="t-small font-semibold uppercase tracking-[0.14em] text-[#f7c600]">Pieza {current.n}</p>
+                <p className="t-small font-semibold uppercase tracking-[0.14em] text-[#f7c600]">{t.piece} {current.n}</p>
                 <p className="t-sub mt-1">{current.name}</p>
                 <dl className="mt-3 grid gap-1 text-sm">
-                  <div className="flex justify-between gap-3"><dt className="opacity-60">Referencia</dt><dd className="tnum">{current.oe ?? "por confirmar"}</dd></div>
-                  {current.torque && <div className="flex justify-between gap-3"><dt className="opacity-60">Apriete</dt><dd className="font-semibold text-racing-bright">{current.torque}</dd></div>}
+                  <div className="flex justify-between gap-3"><dt className="opacity-60">{t.reference}</dt><dd className="tnum">{current.oe ?? t.tbc}</dd></div>
+                  {current.torque && <div className="flex justify-between gap-3"><dt className="opacity-60">{t.torque}</dt><dd className="font-semibold text-racing-bright">{current.torque}</dd></div>}
                 </dl>
                 {current.note && <p className="t-small mt-2 opacity-75">{current.note}</p>}
                 {shopUrl(current) && (
                 <a href={shopUrl(current)} rel="sponsored noopener" target="_blank" className="mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-btn)] bg-racing px-4 font-medium text-paper no-underline hover:bg-racing-dark">
-                  <ShoppingCart aria-hidden className="size-4" /> Ver recambios en Euro4x4parts
+                  <ShoppingCart aria-hidden className="size-4" /> {t.beltShop}
                 </a>
                 )}
               </>
             ) : (
-              <p className="opacity-70">Toca una pieza del dibujo o de la lista para ver su referencia, su apriete y dónde comprarla.</p>
+              <p className="opacity-70">{t.beltEmpty}</p>
             )}
           </div>
           <ol className="rounded-[6px] border border-line">
@@ -201,7 +203,7 @@ export function BeltDiagram({ view }: { view: BeltView }) {
               </li>
             ))}
           </ol>
-          <p className="t-small opacity-50">Euro4x4parts es patrocinador de ACM Motorsport.</p>
+          <p className="t-small opacity-50">{t.sponsor}</p>
         </div>
       </div>
     </section>
