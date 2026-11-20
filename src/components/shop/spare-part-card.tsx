@@ -6,7 +6,7 @@ const eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" 
 /** Ficha de un recambio de Euro4x4parts: miniatura, referencia, precio y compra en su tienda. */
 export function SparePartCard({ part, dark = false }: { part: SparePart; dark?: boolean }) {
   return (
-    <article className={dark ? "rounded-[6px] border border-line p-3" : "rounded-[6px] border border-line-dark p-3"}>
+    <article className={dark ? "min-w-0 rounded-[6px] border border-line p-3" : "min-w-0 rounded-[6px] border border-line-dark p-3"}>
       <a href={part.url} rel="sponsored noopener" target="_blank" className="block no-underline">
         <div className="grid aspect-square place-items-center overflow-hidden rounded-[4px] bg-white">
           {part.img ? (
