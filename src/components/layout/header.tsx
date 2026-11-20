@@ -51,7 +51,7 @@ export function Header({ announcement }: { announcement?: string | null }) {
         solid && (light ? "bg-paper/92 shadow-[0_1px_0_rgb(8_10_15/0.08)] backdrop-blur-md" : "bg-midnight/92 shadow-[0_1px_0_rgb(245_247_250/0.08)] backdrop-blur-md"),
       )}
     >
-      {announcement && !scrolled && !menuOpen ? (
+      {announcement && !scrolled && !menuOpen && !pathname.startsWith("/en") ? (
         <Link href="/tienda" className="block bg-racing px-4 py-1.5 text-center text-xs font-semibold text-paper hover:bg-racing-dark sm:text-sm">
           {announcement} <span aria-hidden>→</span>
         </Link>

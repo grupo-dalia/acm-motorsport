@@ -38,7 +38,12 @@ export type ManualVehicle = {
   href: string;
   /** Nombre corto para títulos: "Pajero III 2.5 TD (4D56)". */
   short: string;
+  /** Slug de la URL de cada trabajo si no es su id (p. ej. en inglés: distribucion → timing-belt). */
+  slugs?: Record<string, string>;
 };
+
+/** Ruta de un trabajo del manual. */
+export const jobPath = (v: Pick<ManualVehicle, "href" | "slugs">, id: string) => `${v.href}/${v.slugs?.[id] ?? id}`;
 
 /** Enlace a recambios (catálogo de Euro4x4parts filtrado por vehículo y familia). */
 export type ShopLink = { label: string; url: string };

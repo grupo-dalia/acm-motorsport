@@ -4,17 +4,17 @@ import { absoluteUrl } from "./site";
 import type { Product } from "@/domain/catalog";
 import { SHIPPING_RULES } from "@/domain/cart";
 
-export function pageMetadata({ title, description, path, image }: { title: string; description: string; path: string; image?: string }): Metadata {
+export function pageMetadata({ title, description, path, image, languages, locale }: { title: string; description: string; path: string; image?: string; languages?: Record<string, string>; locale?: string }): Metadata {
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(path) },
+    alternates: { canonical: absoluteUrl(path), ...(languages ? { languages: Object.fromEntries(Object.entries(languages).map(([k, v]) => [k, absoluteUrl(v)])) } : {}) },
     openGraph: {
       title: `${title} · ${site.name}`,
       description,
       url: absoluteUrl(path),
       siteName: site.name,
-      locale: site.locale,
+      locale: locale ?? site.locale,
       type: "website",
       images: [{ url: image ?? "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
     },

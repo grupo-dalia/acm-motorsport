@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/page-hero";
 import { Container } from "@/components/ui/container";
 import { ManualExplorer } from "@/components/manual/manual-explorer";
 import { manualSystems, manualVehicle } from "@/content/manual-pajero-iii";
 import { VehiclePhoto } from "@/components/manual/vehicle-photo";
-import { ManualIndex } from "@/components/manual/manual-part-page";
+import { ManualIndex, manualLanguages } from "@/components/manual/manual-part-page";
 import { pajeroManual } from "@/content/manual-defs";
 import { JsonLd, breadcrumbLd, pageMetadata } from "@/lib/seo";
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = pageMetadata({
   description: "Datos de taller del Mitsubishi Pajero III (2001-2002) con motor 4D56 2.5 TD: orden y par de apriete de culata, correas de distribución, reglaje de válvulas, aceites y capacidades.",
   path: "/guias/manual-pajero-iii",
   image: "/guias/manual-pajero-iii/opengraph-image",
+  languages: manualLanguages(pajeroManual),
 });
 
 export default function ManualPajeroPage() {
@@ -32,6 +34,9 @@ export default function ManualPajeroPage() {
       </PageHero>
       <section className="bg-midnight pb-24 lg:pb-36">
         <Container>
+          <p className="t-small mb-8 opacity-70" lang="en">
+            In English: <Link href="/en/manuals/mitsubishi-pajero-4d56" hrefLang="en" className="text-racing-bright">Pajero / Montero 4D56 workshop manual</Link>
+          </p>
           <ManualExplorer systems={manualSystems} vehicle={manualVehicle} />
           <ManualIndex manual={pajeroManual} />
           <p className="t-small mt-16 max-w-[80ch] opacity-50">
