@@ -16,59 +16,62 @@ const barlow = localFont({
   display: "swap",
 });
 
-type Copy = { kicker: string; l1: string; l2: string; lead: string };
-
-/** Qué dice el banner según la fecha: Black Friday → Navidad → colección. */
-function copyFor(now = new Date()): Copy {
+/** Primera tarjeta: cambia sola según la fecha (Black Friday → Navidad → colección). */
+function lead(now = new Date()) {
   const c = activeCampaign(now);
-  if (c) return { kicker: c.label.replace(/\s*−?\d+ ?%/, "").trim() || "Oferta", l1: `−${c.percent} % en`, l2: "toda la tienda", lead: "Hasta el lunes 30 de noviembre. Camisetas de rally y motor, hechas una a una bajo pedido." };
-  if (now >= new Date(christmas.from) && now <= new Date(christmas.orderBy)) return { kicker: "Navidad", l1: "Regala", l2: "rally", lead: "Pide antes del 10 de diciembre y lo tienes en casa para Navidad." };
-  return { kicker: "Nueva colección", l1: "Hecha", l2: "para correr", lead: "Camisetas de rally y motor, diseñadas por ACM e impresas una a una bajo pedido." };
+  if (c) return { pill: "Black Friday", title: `−${c.percent} % en todo`, text: "Hasta el lunes 30 de noviembre.", btn: "Comprar ahora" };
+  if (now >= new Date(christmas.from) && now <= new Date(christmas.orderBy)) return { pill: "Navidad", title: "Regala rally", text: "Pide antes del 10 de diciembre y llega a tiempo.", btn: "Ver regalos" };
+  return { pill: "Tienda ACM", title: "Hecha para correr", text: "Diseñada por el equipo, impresa bajo pedido.", btn: "Ver la tienda" };
 }
 
-/** Banner animado (solo CSS): apaisado en ordenador, en vertical en el móvil. */
-export async function PromoBanner({ variant = "full", className }: { variant?: "full" | "slim"; className?: string }) {
+/** Tarjetas de la tienda (foto, etiqueta, título y botón). En el móvil se deslizan de lado. */
+export async function PromoBanner({ className, heading = true }: { className?: string; heading?: boolean; variant?: "full" | "slim" }) {
   const products = await catalog.listProducts();
-  const [front, back] = promoShirts;
-  if (!front) return null;
-  const p = products.find((x) => x.slug === front.slug);
-  const copy = copyFor();
+  const l = lead();
   return (
-    <Link href="/tienda" className={cn(s.banner, variant === "slim" && s.slim, barlow.variable, className)} aria-label={`${copy.kicker}: ${copy.l1} ${copy.l2}. Ir a la tienda`}>
-      <span className={s.stripe} aria-hidden />
-      <div className={s.copy}>
-        <span className={s.kicker}>{copy.kicker}</span>
-        <p className={s.title}>
-          <span>{copy.l1}</span>
-          <span>{copy.l2}</span>
-        </p>
-        <span className={s.bars} aria-hidden><i /><i /><i /></span>
-        <p className={s.lead}>{copy.lead}</p>
-        {p && (
-          <p className={s.price}>
-            {p.compareAtCents ? <s>{formatPrice(p.compareAtCents)}</s> : null}
-            <b>{p.compareAtCents ? "" : "desde "}{formatPrice(p.priceCents)}</b>
-          </p>
-        )}
-        <span className={s.cta}>Ver la tienda →</span>
-      </div>
-      <div className={s.stage} aria-hidden>
-        {back && (
-          // eslint-disable-next-line @next/next/no-img-element -- recortes ligeros en webp, ya a su tamaño
-          <img src={back.images[0]} alt="" className={cn(s.shirt, s.back)} loading="lazy" />
-        )}
-        <div className={s.cycle}>
-          {front.images.map((src, i) => (
-            // eslint-disable-next-line @next/next/no-img-element -- ídem
-            <img key={src} src={src} alt="" className={cn(s.shirt, s.front)} loading={i === 0 ? "eager" : "lazy"} style={{ animationDelay: `${i * 2}s, ${-i * 0.6}s` }} />
-          ))}
+    <div className={cn(s.wrap, barlow.variable, className)}>
+      {heading && (
+        <div className={s.head}>
+          <div>
+            <p className={s.eyebrow}>Tienda ACM Motorsport</p>
+            <p className={s.h}>Nueva colección</p>
+          </div>
+          <Link href="/tienda" className={s.all}>Ver todo</Link>
         </div>
-        {front.images.length > 1 && <span className={s.tag}>{front.images.length} colores</span>}
-        <span className={s.plate}>
-          {front.name}
-          <small>Camiseta · unisex</small>
-        </span>
+      )}
+      <div className={s.row}>
+        <Link href="/tienda" className={s.card}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- foto propia ya optimizada */}
+          <img src="/promo/card-rally.webp" alt="" className={s.photo} loading="lazy" />
+          <span className={cn(s.pill, s.red)}>{l.pill}</span>
+          <span className={s.title}>{l.title}</span>
+          <span className={s.text}>{l.text}</span>
+          <span className={s.btn}>{l.btn}</span>
+        </Link>
+        {promoShirts.map((shirt) => {
+          const p = products.find((x) => x.slug === shirt.slug);
+          return (
+            <Link key={shirt.slug} href={`/tienda/${shirt.slug}`} className={s.card}>
+              <span className={s.stripes} aria-hidden />
+              <span className={cn(s.shirts, shirt.images.length > 1 && s.cycle)} aria-hidden>
+                {shirt.images.map((src, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element -- recortes webp ligeros
+                  <img key={src} src={src} alt="" loading="lazy" style={shirt.images.length > 1 ? { animationDelay: `${i * 2 - 1}s` } : undefined} />
+                ))}
+              </span>
+              <span className={s.pill}>{shirt.images.length > 1 ? `Nuevo · ${shirt.images.length} colores` : "Nuevo"}</span>
+              <span className={s.title}>{shirt.name}</span>
+              {p && (
+                <span className={s.price}>
+                  {p.compareAtCents ? <s>{formatPrice(p.compareAtCents)}</s> : null}
+                  <b>{formatPrice(p.priceCents)}</b>
+                </span>
+              )}
+              <span className={s.btn}>Ver camiseta</span>
+            </Link>
+          );
+        })}
       </div>
-    </Link>
+    </div>
   );
 }

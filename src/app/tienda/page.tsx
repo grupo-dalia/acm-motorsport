@@ -64,7 +64,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SP }) {
 
       <section className="on-paper pb-24 lg:pb-36">
         <Container>
-          <PromoBanner className="mb-12" />
+          <PromoBanner className="mb-12" heading={false} />
           <div className="flex flex-col gap-4 border-y border-line-dark py-5">
             <nav aria-label="Categorías" className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
               <ul className="flex w-max gap-1">
