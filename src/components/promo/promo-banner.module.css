@@ -1,0 +1,211 @@
+/* Banner promocional animado (estilo ACM: azul, franjas diagonales, rojo y amarillo). Solo CSS. */
+.banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at 78% 30%, #1d3fa6 0%, #132e86 30%, #0a1a52 62%, #050c25 100%);
+  box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.6);
+  grid-template-columns: 1fr;
+  min-height: 560px;
+}
+.banner::before {
+  /* franjas a 115° */
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background:
+    linear-gradient(115deg, transparent 52%, rgb(110 150 255 / 0.13) 52% 62%, transparent 62%),
+    linear-gradient(115deg, transparent 66%, rgb(227 20 30 / 0.12) 66% 69.5%, transparent 69.5%),
+    radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1.4px) 0 0 / 22px 22px;
+  animation: drift 14s linear infinite;
+}
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.45) 100%);
+  pointer-events: none;
+}
+@keyframes drift { to { transform: translateX(-44px); } }
+
+.copy {
+  position: relative;
+  padding: 28px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  z-index: 2;
+}
+.kicker {
+  font-family: var(--font-barlow-c);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 15px;
+  padding: 6px 18px 6px 14px;
+  background: #e3141e;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  animation: slideIn 0.6s cubic-bezier(.2,.9,.3,1.2) both;
+}
+.title {
+  font-family: var(--font-barlow-c);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.9;
+  font-size: clamp(54px, 15vw, 96px);
+  margin: 0;
+  text-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+}
+.title span { display: block; animation: slideIn 0.7s cubic-bezier(.2,.9,.3,1.25) both; }
+.title span:nth-child(1) { animation-delay: 0.12s; }
+.title span:nth-child(2) { animation-delay: 0.24s; color: #e3141e; }
+.bars { display: flex; gap: 8px; animation: slideIn 0.6s 0.4s both; }
+.bars i { display: block; height: 14px; transform: skewX(-30deg); }
+.bars i:nth-child(1), .bars i:nth-child(3) { width: 52px; background: #e3141e; }
+.bars i:nth-child(2) { width: 104px; background: #f7c600; }
+.lead { font-size: 17px; line-height: 1.4; max-width: 34ch; opacity: 0.9; animation: fadeUp 0.6s 0.5s both; }
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+  font-family: var(--font-barlow-c);
+  font-style: italic;
+  animation: fadeUp 0.6s 0.6s both;
+}
+.price s { font-weight: 800; font-size: 26px; color: #c9d3ee; text-decoration-color: #e3141e; text-decoration-thickness: 3px; }
+.price b {
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 1;
+  padding: 6px 22px 4px;
+  background: #f7c600;
+  color: #050c25;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+}
+.cta {
+  margin-top: 6px;
+  font-family: var(--font-barlow-c);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background: #fff;
+  color: #050c25;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  transition: background 0.2s, color 0.2s;
+  animation: fadeUp 0.6s 0.7s both;
+}
+.banner:hover .cta { background: #e3141e; color: #fff; }
+
+.stage {
+  position: relative;
+  height: 330px;
+  margin-top: 6px;
+}
+.shirt {
+  position: absolute;
+  bottom: 6px;
+  height: 92%;
+  width: auto;
+  filter: drop-shadow(0 22px 22px rgb(0 0 0 / 0.45));
+  animation: floatY 5s ease-in-out infinite;
+}
+.front { left: 50%; translate: -62% 0; z-index: 2; }
+.back { left: 50%; translate: -5% 0; height: 74%; bottom: 40px; z-index: 1; animation-delay: -2.5s; opacity: 0.95; }
+.cycle { position: absolute; inset: 0; }
+.cycle img { opacity: 0; animation: cycle 16s infinite, floatY 5s ease-in-out infinite; }
+.cycle img:first-child { opacity: 1; }
+.tag {
+  position: absolute;
+  z-index: 3;
+  right: 18px;
+  top: 6px;
+  font-family: var(--font-barlow-c);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  padding: 5px 14px;
+  background: #f7c600;
+  color: #050c25;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.plate {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  bottom: 18px;
+  padding: 8px 34px 8px 16px;
+  background: linear-gradient(90deg, #0a1a44, #13307a);
+  border-left: 6px solid #e3141e;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  font-family: var(--font-barlow-c);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: 22px;
+  line-height: 1;
+}
+.plate small { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #c9d3ee; margin-top: 3px; }
+
+.stripe {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, #e3141e 40% 48%, #f7c600 48% 54%, #e3141e 54% 62%, transparent 62%);
+  background-size: 300% 100%;
+  animation: wipe 1.1s cubic-bezier(.7,0,.3,1) both;
+}
+
+@keyframes slideIn { from { opacity: 0; transform: translateX(-60px) skewX(-8deg); } to { opacity: 1; transform: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes wipe { from { background-position: 100% 0; } to { background-position: -50% 0; } }
+/* 8 colores, 2 s cada uno */
+@keyframes cycle { 0% { opacity: 0; } 2% { opacity: 1; } 12.5% { opacity: 1; } 14.5% { opacity: 0; } 100% { opacity: 0; } }
+
+@media (min-width: 900px) {
+  .banner { grid-template-columns: 1.1fr 1fr; min-height: 0; height: 480px; }
+  .copy { padding: 40px 0 40px 56px; justify-content: center; gap: 12px; }
+  .title { font-size: clamp(64px, 6.4vw, 100px); }
+  .lead { font-size: 18px; }
+  .stage { height: 480px; margin-top: 0; }
+  .shirt { height: 86%; }
+  .back { height: 66%; }
+  .front { translate: -70% 0; }
+  .back { translate: 0 0; }
+  .plate { left: auto; right: 60%; bottom: 34px; font-size: 26px; }
+  .tag { right: 40px; top: 30px; font-size: 15px; }
+}
+/* Banner fino (para el pie de los manuales) */
+.slim { min-height: 0; }
+@media (min-width: 900px) {
+  .slim { height: 360px; }
+  .slim .stage { height: 360px; }
+  .slim .title { font-size: 72px; }
+  .slim .lead { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner *, .banner::before { animation: none !important; }
+  .cycle img:first-child { opacity: 1; }
+}
