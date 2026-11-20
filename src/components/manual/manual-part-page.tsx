@@ -126,7 +126,7 @@ export function ManualPartPage({ manual, id }: { manual: ManualDef; id: string }
               </section>
             );
           })()}
-          {manual.lang === "es" && <PromoBanner variant="slim" className="mt-20" />}
+          {manual.lang === "es" && <PromoBanner className="mt-20" />}
           <nav aria-label={`${t.more} ${manual.label.toLowerCase()}`} className="mt-20 border-t border-line pt-10">
             <h2 className="t-sub">{t.more} {manual.label.toLowerCase()}</h2>
             <ul className="mt-4 flex flex-wrap gap-2">
