@@ -68,6 +68,7 @@ const to95 = (cents: number) => Math.max(95, Math.floor((cents + 5) / 100) * 100
 
 /** Precio final de una variante: aplica el mínimo y, si hay campaña, la rebaja. */
 export function applyPricing(category: CategorySlug, retailCents: number, now = new Date()): { priceCents: number; compareAtCents: number | null } {
+  if (retailCents <= 0) return { priceCents: 0, compareAtCents: null }; // sin precio en Printful: no se vende
   const base = Math.max(retailCents, priceFloorCents[category] ?? 0);
   const c = activeCampaign(now);
   if (!c || base <= 0) return { priceCents: base, compareAtCents: null };

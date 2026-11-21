@@ -35,7 +35,6 @@ export class PrintfulFulfillment implements FulfillmentProvider {
   }
 
   async createDraft(order: DraftOrder) {
-    // TODO Fase 4: mapear líneas → sync_variant_id y revisar campos con la doc vigente.
     const body = {
       external_id: order.id,
       recipient: {
@@ -47,10 +46,12 @@ export class PrintfulFulfillment implements FulfillmentProvider {
         state_name: order.customer.province,
         country_code: order.customer.country,
         email: order.customer.email,
+        phone: order.customer.phone,
       },
       items: order.totals.lines
         .filter((l) => l.fulfillment === "pod")
-        .map((l) => ({ external_variant_id: l.variantId, quantity: l.qty })),
+        // Nuestro id de variante es "pf-<id de la variante sincronizada en Printful>".
+        .map((l) => ({ sync_variant_id: Number(l.variantId.replace(/^pf-/, "")), quantity: l.qty, retail_price: (l.unitCents / 100).toFixed(2) })),
     };
     const data = await this.request<{ result: { id: number } }>("/orders?confirm=false", { method: "POST", body: JSON.stringify(body) });
     return { providerOrderId: String(data.result.id) };

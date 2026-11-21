@@ -5,7 +5,8 @@ import { demoCatalog } from "./demo-catalog";
 import { PrintfulFulfillment } from "./printful";
 import { fetchPrintfulCatalog } from "./printful-catalog";
 import { DemoPayments } from "../payments/demo";
-import type { CatalogProvider, Customer, DraftOrder } from "./types";
+import { StripePayments } from "../payments/stripe";
+import type { CatalogProvider, Customer, DraftOrder, PaymentProvider } from "./types";
 import type { Product } from "@/domain/catalog";
 import { db } from "@/lib/supabase/service";
 
@@ -44,9 +45,85 @@ export const catalog: CatalogProvider = {
 
 export const fulfillment = new PrintfulFulfillment(serverEnv.PRINTFUL_API_KEY, serverEnv.PRINTFUL_STORE_ID);
 
-export function paymentsProvider() {
-  // Fase 4: devolver StripePayments cuando effectiveCommerceMode() !== "demo".
-  return new DemoPayments();
+export function paymentsProvider(): PaymentProvider {
+  return effectiveCommerceMode() === "demo" ? new DemoPayments() : new StripePayments();
+}
+
+/** Guarda el id de la sesión de pago en el pedido (para cruzarlo con el webhook). */
+export async function attachPaymentSession(reference: string, sessionId: string) {
+  const supa = db();
+  if (!supa) return;
+  const { error } = await supa.from("orders").update({ payment_session_id: sessionId, updated_at: new Date().toISOString() }).eq("reference", reference);
+  if (error) console.error("[orders] sesión de pago", error.message);
+}
+
+type PaidInfo = { sessionId: string; paymentIntentId: string | null; amountCents: number | null };
+
+/**
+ * Marca el pedido como pagado SOLO si estaba pendiente (idempotente: Stripe puede repetir el webhook).
+ * Devuelve el pedido con sus líneas para producirlo, o null si ya estaba procesado o no existe.
+ */
+export async function markOrderPaid(reference: string, info: PaidInfo): Promise<(DraftOrder & { dbId: string }) | null> {
+  const supa = db();
+  if (!supa) throw new Error("Base de datos no disponible");
+  const { data, error } = await supa
+    .from("orders")
+    .update({ status: "paid", payment_session_id: info.sessionId, payment_intent_id: info.paymentIntentId, updated_at: new Date().toISOString() })
+    .eq("reference", reference)
+    .eq("status", "pending_payment")
+    .select("id, reference, idempotency_key, created_at, status, mode, email, customer_name, customer_phone, shipping_address, subtotal_cents, discount_cents, shipping_cents, total_cents")
+    .maybeSingle();
+  if (error) throw new Error(`[orders] marcar pagado: ${error.message}`);
+  if (!data) return null;
+  if (info.amountCents != null && info.amountCents !== data.total_cents) {
+    await supa.from("order_events").insert({ order_id: data.id, type: "incident", payload: { reason: "amount_mismatch", paid: info.amountCents, expected: data.total_cents }, actor: "webhook:stripe" });
+  }
+  await supa.from("order_events").insert({ order_id: data.id, type: "status_change", payload: { to: "paid", session: info.sessionId }, actor: "webhook:stripe" });
+  const { data: items } = await supa.from("order_items").select("sku, name, qty, unit_cents, fulfillment").eq("order_id", data.id);
+  const addr = data.shipping_address as Customer;
+  return {
+    dbId: data.id,
+    id: data.reference,
+    idempotencyKey: data.idempotency_key,
+    createdAt: data.created_at,
+    status: "paid",
+    mode: data.mode,
+    customer: { ...addr, email: data.email },
+    totals: {
+      lines: (items ?? []).map((i) => ({ productId: "", variantId: i.sku, qty: i.qty, name: i.name, slug: "", variantLabel: "", unitCents: i.unit_cents, totalCents: i.unit_cents * i.qty, fulfillment: i.fulfillment })),
+      subtotalCents: data.subtotal_cents,
+      discountCents: data.discount_cents,
+      shippingCents: data.shipping_cents,
+      totalCents: data.total_cents,
+      coupon: null,
+    },
+  };
+}
+
+/** Cambia el estado de un pedido pendiente (pago fallido, sesión caducada…). */
+export async function setOrderStatus(reference: string, status: "payment_failed" | "cancelled", payload: Record<string, unknown>) {
+  const supa = db();
+  if (!supa) return;
+  const { data } = await supa.from("orders").update({ status, updated_at: new Date().toISOString() }).eq("reference", reference).eq("status", "pending_payment").select("id").maybeSingle();
+  if (data) await supa.from("order_events").insert({ order_id: data.id, type: "status_change", payload: { to: status, ...payload }, actor: "webhook:stripe" });
+}
+
+/** Tras el pago: borrador en Printful y, solo en modo live autorizado, confirmación para producir. */
+export async function sendToProduction(order: DraftOrder & { dbId: string }) {
+  const supa = db();
+  if (!fulfillment.configured || !order.totals.lines.some((l) => l.fulfillment === "pod")) return;
+  try {
+    const { providerOrderId } = await fulfillment.createDraft(order);
+    const live = order.mode === "live" && effectiveCommerceMode() === "live";
+    if (live) await fulfillment.confirm(providerOrderId);
+    await supa?.from("orders").update({ provider_order_id: providerOrderId, status: live ? "in_production" : "paid", updated_at: new Date().toISOString() }).eq("id", order.dbId);
+    await supa?.from("order_events").insert({ order_id: order.dbId, type: "status_change", payload: { to: live ? "in_production" : "paid", printful: providerOrderId, confirmed: live }, actor: "system" });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message.slice(0, 300) : String(e);
+    console.error("[printful] pedido", order.id, msg);
+    await supa?.from("orders").update({ status: "incident", updated_at: new Date().toISOString() }).eq("id", order.dbId);
+    await supa?.from("order_events").insert({ order_id: order.dbId, type: "incident", payload: { reason: "printful", error: msg }, actor: "system" });
+  }
 }
 
 /**
