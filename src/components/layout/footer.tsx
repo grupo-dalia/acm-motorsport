@@ -11,9 +11,9 @@ export function Footer() {
     <footer className="bg-ink text-paper">
       <Container className="grid gap-16 py-20 lg:grid-cols-12 lg:py-28">
         <div className="lg:col-span-6">
-          <h2 className="t-title max-w-[18ch]">Sigue el camino a Dakar desde dentro.</h2>
-          <p className="mt-4 max-w-md text-steel">Nuevos episodios, crónicas de carrera y lanzamientos de la tienda. Un correo cuando hay algo que contar.</p>
-          <NewsletterForm className="mt-8 max-w-lg" />
+          <h2 className="t-title max-w-[18ch]">Únete al Club ACM.</h2>
+          <p className="mt-4 max-w-md text-steel">Un 10 % en tu primer pedido, ofertas solo para el club, camisetas nuevas antes que nadie y el camino a Dakar desde dentro. Un correo cuando hay algo que contar.</p>
+          <NewsletterForm className="mt-8 max-w-lg" cta="Quiero mi 10 %" />
         </div>
         <nav aria-label="Secciones" className="lg:col-span-2 lg:col-start-8">
           <ul className="space-y-3">

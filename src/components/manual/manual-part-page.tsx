@@ -11,6 +11,7 @@ import { absoluteUrl } from "@/lib/site";
 import { partVehicles, partsFor } from "@/content/recambios";
 import { SparePartCard } from "@/components/shop/spare-part-card";
 import { PromoBanner } from "@/components/promo/promo-banner";
+import { ClubSignup } from "@/components/forms/club-signup";
 import { manualUi, type ManualLang } from "@/content/manual-ui";
 
 /** Una página por trabajo del manual (/guias/manual-x/<pieza>), para que cada uno salga solo en Google. */
@@ -127,6 +128,7 @@ export function ManualPartPage({ manual, id }: { manual: ManualDef; id: string }
             );
           })()}
           {manual.lang === "es" && <PromoBanner className="mt-20" />}
+          {manual.lang === "es" && <ClubSignup className="mt-6" />}
           <nav aria-label={`${t.more} ${manual.label.toLowerCase()}`} className="mt-20 border-t border-line pt-10">
             <h2 className="t-sub">{t.more} {manual.label.toLowerCase()}</h2>
             <ul className="mt-4 flex flex-wrap gap-2">
