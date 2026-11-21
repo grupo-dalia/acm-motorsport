@@ -2,7 +2,7 @@ import { NextResponse, after } from "next/server";
 import { TEAM_INBOX, html, layout, sendEmail } from "@/lib/email";
 import { formatPrice } from "@/lib/format";
 import { checkoutRequestSchema } from "@/domain/checkout";
-import { CheckoutError, createDraftOrder, paymentsProvider } from "@/integrations/commerce";
+import { CheckoutError, attachPaymentSession, createDraftOrder, paymentsProvider } from "@/integrations/commerce";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { absoluteUrl } from "@/lib/site";
 
@@ -29,11 +29,12 @@ export async function POST(req: Request) {
   const { cart, customer, idempotencyKey } = parsed.data;
   try {
     const { order, replayed } = await createDraftOrder(cart, { ...customer, address2: customer.address2 || undefined, phone: customer.phone || undefined }, idempotencyKey);
-    const { redirectUrl } = await paymentsProvider().createCheckout(order, {
+    const { redirectUrl, sessionId } = await paymentsProvider().createCheckout(order, {
       successUrl: absoluteUrl("/checkout/exito"),
       cancelUrl: absoluteUrl("/carrito"),
     });
-    if (!replayed) {
+    if (sessionId) await attachPaymentSession(order.id, sessionId);
+    if (!replayed && order.mode === "demo") {
       // Aviso al equipo. En modo demo NO se escribe al cliente (cualquiera podría poner un email ajeno);
       // la confirmación al cliente se enviará tras el pago verificado (Fase 4).
       after(() =>

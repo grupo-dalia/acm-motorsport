@@ -49,7 +49,7 @@ export type OrderStatus =
 
 export interface PaymentProvider {
   readonly id: string;
-  createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string }): Promise<{ redirectUrl: string }>;
+  createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string }): Promise<{ redirectUrl: string; sessionId?: string }>;
 }
 
 export interface FulfillmentProvider {

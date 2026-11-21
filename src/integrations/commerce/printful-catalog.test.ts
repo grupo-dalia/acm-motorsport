@@ -1,3 +1,4 @@
+import { applyPricing } from "@/content/pricing";
 import { describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import { toProduct } from "./printful-catalog";
@@ -23,7 +24,7 @@ describe("Printful → catálogo", () => {
   it("mapea nombre, slug, categoría y precio mínimo", () => {
     expect(p.slug).toBe("camiseta-ruta-al-desierto");
     expect(p.category).toBe("camisetas");
-    expect(p.priceCents).toBe(2995);
+    expect(p.priceCents).toBe(applyPricing(p.category, 2995).priceCents); // 29,95 € en Printful, con la campaña vigente
     expect(p.fulfillment).toBe("pod");
     expect(p.demo).toBe(false);
   });

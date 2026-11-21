@@ -60,7 +60,8 @@ export function CheckoutForm() {
       setServerError(data.message ?? "No se ha podido completar.");
       return;
     }
-    router.push(data.redirectUrl);
+    if (/^https?:\/\//.test(data.redirectUrl)) window.location.assign(data.redirectUrl); // Stripe Checkout
+    else router.push(data.redirectUrl);
   }
 
   return (
