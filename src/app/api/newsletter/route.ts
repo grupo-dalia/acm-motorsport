@@ -34,17 +34,17 @@ export async function POST(req: Request) {
   after(() =>
     sendEmail({
       to: email,
-      subject: "Confirma tu suscripción a ACM Motorsport",
+      subject: "Confirma y te mandamos tu 10 % del Club ACM",
       html: layout({
-        title: "Un clic y estás dentro",
-        intro: "Confirma que quieres recibir los nuevos capítulos de Objetivo Dakar, crónicas de carrera y novedades de la tienda. Pocas veces y solo cuando haya algo que contar.",
-        cta: { href: newsletterLink(email, "confirm"), label: "Confirmar suscripción" },
+        title: "Un clic y estás en el Club ACM",
+        intro: "Confirma tu correo y te mandamos el código del 10 % para tu primer pedido. Después, solo te escribiremos cuando haya algo que contar: camisetas nuevas, ofertas del club, crónicas de carrera y guías nuevas.",
+        cta: { href: newsletterLink(email, "confirm"), label: "Confirmar y recibir mi 10 %" },
         foot: "Si no te has apuntado tú, ignora este correo y no volverás a saber de nosotros.",
       }),
       text: `Confirma tu suscripción a ACM Motorsport: ${newsletterLink(email, "confirm")}\n\nSi no te has apuntado tú, ignora este correo.`,
     }),
   );
-  return NextResponse.json({ ok: true, message: "¡Casi! Te hemos enviado un correo para confirmar." });
+  return NextResponse.json({ ok: true, message: "¡Casi! Mira tu correo: confirma y te llega el código del 10 %." });
 }
 
 function safePath(ref: string | null) {

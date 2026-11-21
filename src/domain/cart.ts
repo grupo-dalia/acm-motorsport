@@ -56,9 +56,11 @@ export function cartReducer(state: Cart, action: CartAction): Cart {
 /** Reglas de envío de DEMOSTRACIÓN. Sustituir por tarifas reales del proveedor en Fase 4. */
 export const SHIPPING_RULES = { flatCents: 495, freeFromCents: 6000 } as const;
 
-/** Cupones de DEMOSTRACIÓN. En Fase 3 se leen de la tabla `coupons`. */
+/** Códigos de descuento. CLUB10 es el regalo de bienvenida del Club ACM (newsletter). */
+export const CLUB_COUPON = "CLUB10";
 export const DEMO_COUPONS: Record<string, { percent: number; label: string }> = {
   DEMO10: { percent: 0.1, label: "Cupón de prueba −10 %" },
+  [CLUB_COUPON]: { percent: 0.1, label: "Club ACM −10 %" },
 };
 
 export type PricedLine = CartLine & {

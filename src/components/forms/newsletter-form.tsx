@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type State = { status: "idle" | "loading" | "ok" | "error"; message?: string };
 
-export function NewsletterForm({ className }: { className?: string }) {
+export function NewsletterForm({ className, cta = "Suscribirme" }: { className?: string; cta?: string }) {
   const [state, setState] = useState<State>({ status: "idle" });
+  const id = useId();
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,11 +32,11 @@ export function NewsletterForm({ className }: { className?: string }) {
   return (
     <form onSubmit={onSubmit} className={cn("w-full", className)}>
       <div className="flex gap-2 border-b border-current/30 focus-within:border-current">
-        <label htmlFor="nl-email" className="sr-only">Correo electrónico</label>
-        <input id="nl-email" name="email" type="email" required autoComplete="email" placeholder="Tu correo" className="h-14 min-w-0 flex-1 bg-transparent text-lg placeholder:text-current/40 focus:outline-none" />
+        <label htmlFor={`${id}-email`} className="sr-only">Correo electrónico</label>
+        <input id={`${id}-email`} name="email" type="email" required autoComplete="email" placeholder="Tu correo" className="h-14 min-w-0 flex-1 bg-transparent text-lg placeholder:text-current/40 focus:outline-none" />
         <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
         <button type="submit" disabled={state.status === "loading"} className="shrink-0 font-medium disabled:opacity-50">
-          {state.status === "loading" ? "Enviando…" : "Suscribirme"}
+          {state.status === "loading" ? "Enviando…" : cta}
         </button>
       </div>
       <label className="mt-4 flex items-start gap-2.5 t-small opacity-70">
