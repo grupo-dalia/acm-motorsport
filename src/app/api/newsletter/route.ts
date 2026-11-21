@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     .select("confirmed_at")
     .single();
   if (error) {
-    console.error("[newsletter]", error.message);
+    console.error("[newsletter]", error.message, (error as { details?: string }).details ?? "");
     return NextResponse.json({ ok: false, message: "No hemos podido guardarte. Prueba en un rato." }, { status: 500 });
   }
   if (data?.confirmed_at) return NextResponse.json({ ok: true, message: "Ya estabas dentro. ¡Gracias!" });
