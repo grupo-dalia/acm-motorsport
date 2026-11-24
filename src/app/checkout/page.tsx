@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CheckoutForm } from "@/components/shop/checkout-form";
+import { effectiveCommerceMode } from "@/lib/env";
 
 export const metadata: Metadata = { title: "Finalizar compra", robots: { index: false } };
 
@@ -10,7 +11,7 @@ export default function CheckoutPage() {
     <div className="on-paper min-h-[80vh]"><Container className="pb-24 pt-24 lg:pt-32">
       <Breadcrumbs items={[{ label: "Cesta", href: "/carrito" }, { label: "Finalizar compra", href: "/checkout" }]} />
       <h1 className="t-display mt-8">Finalizar compra</h1>
-      <div className="mt-10"><CheckoutForm /></div>
+      <div className="mt-10"><CheckoutForm live={effectiveCommerceMode() === "live"} /></div>
     </Container></div>
   );
 }

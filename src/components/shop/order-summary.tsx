@@ -26,7 +26,7 @@ export function OrderSummary({ editableCoupon = true }: { editableCoupon?: boole
         <div className="flex justify-between"><dt className="text-slate">Envío</dt><dd className="tnum">{totals.shippingCents === 0 ? "Gratis" : formatPrice(totals.shippingCents)}</dd></div>
         <div className="flex justify-between border-t border-line-dark pt-4 t-sub"><dt>Total</dt><dd className="tnum">{formatPrice(totals.totalCents)}</dd></div>
       </dl>
-      <p className="mt-2 t-small text-slate">IVA incluido. Envío gratis desde {formatPrice(SHIPPING_RULES.freeFromCents)} (tarifa de ejemplo).</p>
+      <p className="mt-2 t-small text-slate">IVA incluido. Envío gratis desde {formatPrice(SHIPPING_RULES.freeFromCents)}.</p>
       {editableCoupon && (
         <form onSubmit={apply} className="mt-6 flex gap-2">
           <label htmlFor="coupon" className="sr-only">Código de descuento</label>
@@ -34,7 +34,6 @@ export function OrderSummary({ editableCoupon = true }: { editableCoupon?: boole
           <button type="submit" className="h-11 rounded-[var(--radius-btn)] bg-ink px-4 font-medium text-paper">Aplicar</button>
         </form>
       )}
-      {editableCoupon && <p className="mt-2 t-small text-slate">Para probar, usa DEMO10.</p>}
       {invalidCoupon && <p role="alert" className="mt-2 t-small text-racing">El código {cart.coupon} no es válido.</p>}
     </div>
   );

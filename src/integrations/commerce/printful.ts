@@ -57,6 +57,28 @@ export class PrintfulFulfillment implements FulfillmentProvider {
     return { providerOrderId: String(data.result.id) };
   }
 
+  /**
+   * Tarifa de envío real de Printful para una dirección (céntimos de EUR, envío estándar).
+   * Se usa en las zonas con `rate.type === "printful"` (src/content/shipping.ts); hoy ninguna está activa.
+   * Printful cotiza con el id de catálogo de la variante, así que primero se resuelve desde la variante sincronizada.
+   */
+  async quoteShipping(recipient: { countryCode: string; zip: string; stateCode?: string }, items: { syncVariantId: number; qty: number }[]): Promise<number> {
+    const resolved = await Promise.all(
+      items.map(async (i) => {
+        const v = await this.request<{ result: { variant_id: number } }>(`/store/variants/${i.syncVariantId}`, { method: "GET" });
+        return { variant_id: v.result.variant_id, quantity: i.qty };
+      }),
+    );
+    const data = await this.request<{ result: { id: string; rate: string; currency: string }[] }>("/shipping/rates", {
+      method: "POST",
+      body: JSON.stringify({ recipient: { country_code: recipient.countryCode, zip: recipient.zip, ...(recipient.stateCode ? { state_code: recipient.stateCode } : {}) }, items: resolved, currency: "EUR", locale: "es_ES" }),
+    });
+    const rates = data.result.filter((r) => r.currency === "EUR");
+    const pick = rates.find((r) => r.id === "STANDARD") ?? rates.sort((a, b) => Number(a.rate) - Number(b.rate))[0];
+    if (!pick) throw new Error("Printful no ha devuelto tarifa de envío en EUR");
+    return Math.round(Number(pick.rate) * 100);
+  }
+
   async confirm(providerOrderId: string) {
     await this.request(`/orders/${encodeURIComponent(providerOrderId)}/confirm`, { method: "POST" });
   }

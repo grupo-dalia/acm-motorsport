@@ -9,6 +9,7 @@ import { catalog } from "@/integrations/commerce";
 import { categories, fulfillmentLabels, queryProducts, type CategorySlug, type FulfillmentType, type ShopQuery } from "@/domain/catalog";
 import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { effectiveCommerceMode } from "@/lib/env";
 
 export const metadata: Metadata = pageMetadata({
   title: "Tienda oficial",
@@ -46,7 +47,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SP }) {
   return (
     <>
       <PageHero tone="paper" title="Tienda" lead="Ropa y accesorios del equipo. Cada pedido empuja el coche un poco más cerca de la salida." crumbs={[{ label: "Tienda", href: "/tienda" }]}>
-        <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>
+        {effectiveCommerceMode() !== "live" && <p className="mt-8 inline-block rounded-[6px] bg-mist px-4 py-3 t-small">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>}
         <Link href="/tienda/recambios" className="mt-6 flex max-w-xl items-center gap-4 rounded-[6px] bg-ink p-5 text-paper no-underline hover:bg-ink/90">
           <span className="flex-1">
             <span className="block t-sub">Recambios 4x4</span>

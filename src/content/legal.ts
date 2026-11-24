@@ -2,6 +2,16 @@
  * ⚠️ TEXTOS LEGALES PROVISIONALES — pendientes de revisión por un profesional jurídico.
  * Los campos entre [corchetes] deben completarse con los datos reales del titular.
  */
+import { shippingZones, DUTIES_NOTICE } from "./shipping";
+
+const activeZones = shippingZones.filter((z) => z.active);
+const eur = (c: number) => `${(c / 100).toFixed(2).replace(".", ",")} €`;
+const zoneCost = (z: (typeof shippingZones)[number]) =>
+  z.rate.type === "flat"
+    ? `${z.label}: ${eur(z.rate.flatCents)} por pedido${z.rate.freeFromCents !== null ? `, gratis a partir de ${eur(z.rate.freeFromCents)}` : ""}.`
+    : `${z.label}: según destino y peso, calculado al finalizar la compra antes de pagar.`;
+const notServed = ["ES-islas", "UE", "LATAM", "resto"].filter((id) => !activeZones.some((z) => z.id === id));
+
 export type LegalDoc = { slug: string; title: string; description: string; sections: { h: string; p: string[] }[] };
 
 const TITULAR = "[Nombre/razón social del titular], NIF [NIF], domicilio en [dirección], email [email de contacto]";
@@ -41,7 +51,7 @@ export const legalDocs: LegalDoc[] = [
       { h: "Técnicas (necesarias)", p: ["Carrito de compra (acm.cart.v1) y preferencias de consentimiento (acm.consent.v1). No requieren consentimiento."] },
       { h: "Analíticas (opcionales)", p: ["Google Analytics 4 (Google Ireland Ltd.), solo si las aceptas: cookies _ga y _ga_* para contar visitas de forma agregada, con una duración de hasta 2 años."] },
       { h: "Medición sin cookies", p: ["Usamos Vercel Web Analytics y Speed Insights para contar visitas y medir la velocidad de la web de forma agregada. No usan cookies ni almacenan nada en tu navegador, y no permiten identificarte."] },
-      { h: "Marketing (opcionales)", p: ["Píxeles publicitarios (p. ej. Meta, Google Ads) solo con consentimiento. Actualmente no activos."] },
+      { h: "Marketing (opcionales)", p: ["Meta Pixel (Meta Platforms Ireland Ltd.), solo si aceptas las cookies de marketing: cookies _fbp y _fbc, con una duración de hasta 90 días, para medir qué anuncios de Instagram y Facebook terminan en visitas o compras y para mostrar anuncios a quien ya ha visitado la tienda.", "Si las aceptas y compras, también enviamos a Meta desde nuestro servidor el aviso de compra (importe, productos y tu email y teléfono cifrados con SHA-256), para que la medición no dependa de bloqueadores. Sin tu consentimiento no se envía nada.", "Meta puede tratar estos datos en Estados Unidos, al amparo del Marco de Privacidad de Datos UE-EE. UU."] },
       { h: "Vídeos incrustados", p: ["Los vídeos de YouTube se cargan desde youtube-nocookie.com solo cuando pulsas reproducir."] },
       { h: "Gestión", p: ["Puedes cambiar tu elección en cualquier momento desde «Preferencias de cookies» en el pie de página."] },
     ],
@@ -65,9 +75,10 @@ export const legalDocs: LegalDoc[] = [
     title: "Política de envíos",
     description: "Plazos, zonas y costes de envío.",
     sections: [
-      { h: "Zonas", p: ["España peninsular y Baleares. A Canarias, Ceuta y Melilla todavía no enviamos."] },
+      { h: "Zonas", p: [`Enviamos a: ${activeZones.map((z) => z.label).join(", ")}.`, ...(notServed.includes("ES-islas") ? ["A Canarias, Ceuta y Melilla todavía no enviamos."] : []), ...(notServed.includes("UE") || notServed.includes("LATAM") ? ["De momento no enviamos fuera de España. Estamos preparando envíos a Europa y Latinoamérica."] : [])] },
       { h: "Plazos", p: ["Las prendas se fabrican cuando haces el pedido: la impresión suele tardar de 2 a 5 días laborables y el transporte, de 3 a 6 más. En campañas como Black Friday o Navidad puede alargarse."] },
-      { h: "Costes", p: ["4,95 € por pedido. Gratis a partir de 60 €."] },
+      { h: "Costes", p: activeZones.map(zoneCost) },
+      ...(activeZones.some((z) => z.dutiesNotice) ? [{ h: "Aranceles e impuestos de importación", p: [`${DUTIES_NOTICE} Pasa en envíos fuera de la Unión Europea y a Canarias, Ceuta y Melilla.`] }] : []),
       { h: "Seguimiento", p: ["Recibirás el número de seguimiento por email cuando el pedido salga."] },
     ],
   },
@@ -90,7 +101,8 @@ export const legalDocs: LegalDoc[] = [
     title: "Información de IVA y precios",
     description: "Cómo se muestran precios e impuestos.",
     sections: [
-      { h: "IVA", p: ["Todos los precios incluyen el IVA español vigente (21 % general). En la factura se desglosa la base imponible y la cuota."] },
+      { h: "IVA", p: ["Los precios de la web incluyen el IVA español vigente (21 % general) para envíos a España peninsular y Baleares. En la factura se desglosa la base imponible y la cuota.", ...(activeZones.some((z) => z.vat === "exempt") ? ["En envíos a Canarias, Ceuta, Melilla y fuera de la Unión Europea no se cobra IVA español: pagas la base imponible y, al recibir el pedido, los impuestos de importación del destino."] : [])] },
+      ...(activeZones.some((z) => z.currency === "USD") ? [{ h: "Moneda", p: ["En Latinoamérica los precios se muestran y se cobran en dólares estadounidenses (USD)."] }] : []),
       { h: "Facturas", p: ["Si necesitas factura completa, escríbenos a hola@acmmotorsport.com con tu número de pedido, nombre o razón social, NIF y dirección, y te la enviamos por email."] },
       { h: "Afiliación", p: ["En productos de afiliación el precio y los impuestos los fija el vendedor externo."] },
     ],

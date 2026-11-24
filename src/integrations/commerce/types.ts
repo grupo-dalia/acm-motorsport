@@ -17,7 +17,7 @@ export type Customer = {
   city: string;
   postalCode: string;
   province: string;
-  country: "ES";
+  country: string;
   phone?: string;
 };
 
@@ -49,7 +49,7 @@ export type OrderStatus =
 
 export interface PaymentProvider {
   readonly id: string;
-  createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string }): Promise<{ redirectUrl: string; sessionId?: string }>;
+  createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string; tracking?: Record<string, string> }): Promise<{ redirectUrl: string; sessionId?: string }>;
 }
 
 export interface FulfillmentProvider {

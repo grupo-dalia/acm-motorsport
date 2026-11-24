@@ -3,6 +3,10 @@ import { site } from "@/content/site";
 import { absoluteUrl } from "./site";
 import type { Product } from "@/domain/catalog";
 import { SHIPPING_RULES } from "@/domain/cart";
+import { activeCountries } from "@/domain/shipping";
+
+/** Países con zona de envío activa (src/content/shipping.ts). */
+const activeShippingCountries = () => activeCountries().map((c) => c.code);
 
 export function pageMetadata({ title, description, path, image, languages, locale }: { title: string; description: string; path: string; image?: string; languages?: Record<string, string>; locale?: string }): Metadata {
   return {
@@ -101,11 +105,11 @@ export function productLd(p: Product) {
       shippingDetails: {
         "@type": "OfferShippingDetails",
         shippingRate: { "@type": "MonetaryAmount", value: (p.priceCents >= SHIPPING_RULES.freeFromCents ? 0 : SHIPPING_RULES.flatCents / 100).toFixed(2), currency: "EUR" },
-        shippingDestination: { "@type": "DefinedRegion", addressCountry: "ES" },
+        shippingDestination: activeShippingCountries().map((c) => ({ "@type": "DefinedRegion", addressCountry: c })),
       },
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
-        applicableCountry: "ES",
+        applicableCountry: activeShippingCountries(),
         returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
         merchantReturnDays: 14,
         returnMethod: "https://schema.org/ReturnByMail",

@@ -1,7 +1,8 @@
 import { NextResponse, after } from "next/server";
 import type Stripe from "stripe";
 import { stripe } from "@/integrations/payments/stripe";
-import { markOrderPaid, sendToProduction, setOrderStatus } from "@/integrations/commerce";
+import { catalog, markOrderPaid, sendToProduction, setOrderStatus } from "@/integrations/commerce";
+import { sendPurchaseToMeta } from "@/lib/meta-capi";
 import { TEAM_INBOX, html, layout, sendEmail } from "@/lib/email";
 import { formatPrice } from "@/lib/format";
 import { absoluteUrl } from "@/lib/site";
@@ -43,6 +44,7 @@ export async function POST(req: Request) {
         after(async () => {
           await sendToProduction(order);
           await notify(order, session);
+          await purchaseToMeta(order, session);
         });
         break;
       }
@@ -69,6 +71,33 @@ export async function POST(req: Request) {
 }
 
 type PaidOrder = NonNullable<Awaited<ReturnType<typeof markOrderPaid>>>;
+
+/**
+ * Purchase a la API de conversiones de Meta, solo si el comprador aceptó cookies de marketing (mc=1).
+ * Mismo event_id que el del navegador en /checkout/exito → Meta lo deduplica.
+ */
+async function purchaseToMeta(order: PaidOrder, session: Stripe.Checkout.Session) {
+  const m = session.metadata ?? {};
+  if (m.mc !== "1") return;
+  const variants = (await catalog.listProducts()).flatMap((p) => p.variants);
+  const skuOf = (variantId: string) => variants.find((v) => v.id === variantId)?.sku || variantId;
+  await sendPurchaseToMeta({
+    orderReference: order.id,
+    valueCents: session.amount_total ?? order.totals.totalCents,
+    contents: order.totals.lines.map((l) => ({ id: skuOf(l.variantId), quantity: l.qty, itemPriceCents: l.unitCents })),
+    email: order.customer.email,
+    phone: order.customer.phone ?? null,
+    country: order.customer.country,
+    postalCode: order.customer.postalCode,
+    city: order.customer.city,
+    fbp: m.fbp ?? null,
+    fbc: m.fbc ?? null,
+    clientIp: m.ip ?? null,
+    userAgent: m.ua ?? null,
+    eventSourceUrl: absoluteUrl("/checkout/exito"),
+    eventTime: session.created,
+  });
+}
 
 async function notify(order: PaidOrder, session: Stripe.Checkout.Session) {
   const list = `<ul style="margin:0;padding-left:18px">${order.totals.lines.map((l) => `<li>${l.qty}× ${html.esc(l.name)} · ${formatPrice(l.totalCents)}</li>`).join("")}</ul>`;

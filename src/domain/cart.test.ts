@@ -46,9 +46,10 @@ describe("priceCart (precio autoritativo)", () => {
     expect(t.lines).toHaveLength(0);
     expect(t.invalid).toHaveLength(3);
   });
-  it("aplica el cupón demo e ignora cupones desconocidos", () => {
+  it("aplica el cupón del Club e ignora cupones desconocidos o de prueba", () => {
     const lines = [{ productId: tee.id, variantId: teeM.id, qty: 1 }];
-    expect(priceCart({ coupon: "demo10", lines }, demoCatalog).discountCents).toBe(Math.round(tee.priceCents * 0.1));
+    expect(priceCart({ coupon: "club10", lines }, demoCatalog).discountCents).toBe(Math.round(tee.priceCents * 0.1));
+    expect(priceCart({ coupon: "DEMO10", lines }, demoCatalog).discountCents).toBe(0); // el cupón de pruebas ya no existe en producción
     expect(priceCart({ coupon: "GRATIS", lines }, demoCatalog).discountCents).toBe(0);
   });
 });

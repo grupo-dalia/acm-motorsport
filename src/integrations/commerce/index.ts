@@ -1,6 +1,7 @@
 import "server-only";
 import { serverEnv, effectiveCommerceMode } from "@/lib/env";
 import { priceCart, type Cart } from "@/domain/cart";
+import { activeZoneFor, withoutVat } from "@/domain/shipping";
 import { demoCatalog } from "./demo-catalog";
 import { PrintfulFulfillment } from "./printful";
 import { fetchPrintfulCatalog } from "./printful-catalog";
@@ -136,12 +137,25 @@ export async function createDraftOrder(cart: Cart, customer: Customer, idempoten
   const existing = ordersByKey.get(idempotencyKey) ?? (await findStoredOrder(idempotencyKey));
   if (existing) return { order: existing, replayed: true as const };
 
-  const totals = priceCart(cart, await catalog.listProducts());
+  // Zona de envío (src/content/shipping.ts): solo se aceptan direcciones de zonas activas.
+  const zone = activeZoneFor(customer.country, customer.postalCode);
+  if (!zone) throw new CheckoutError("De momento no enviamos a esa dirección.");
+  // Cobrar en USD necesita los precios en USD por producto: hasta tenerlos, una zona en USD no puede vender.
+  if (zone.currency !== "EUR") throw new CheckoutError("Esta zona todavía no está disponible.");
+
+  const totals = priceCart(cart, await catalog.listProducts(), zone);
   if (totals.lines.length === 0) throw new CheckoutError("El carrito no contiene productos válidos.");
   if (totals.invalid.length > 0) throw new CheckoutError("Algunos productos ya no están disponibles. Revisa el carrito.");
 
-  const { invalid: _invalid, ...rest } = totals;
+  const { invalid: _invalid, ...priced } = totals;
   void _invalid;
+  let rest = zone.vat === "exempt" ? exVat(priced) : priced;
+  if (zone.rate.type === "printful") {
+    const pod = rest.lines.filter((l) => l.fulfillment === "pod");
+    const quoted = pod.length ? await fulfillment.quoteShipping({ countryCode: customer.country, zip: customer.postalCode }, pod.map((l) => ({ syncVariantId: Number(l.variantId.replace(/^pf-/, "")), qty: l.qty }))) : 0;
+    const shippingCents = quoted + zone.rate.marginCents;
+    rest = { ...rest, shippingCents, totalCents: rest.subtotalCents - rest.discountCents + shippingCents };
+  }
   const order: DraftOrder = {
     id: `ACM-${Date.now().toString(36).toUpperCase()}-${idempotencyKey.slice(0, 4).toUpperCase()}`,
     idempotencyKey,
@@ -218,12 +232,28 @@ async function storeOrder(order: DraftOrder): Promise<DraftOrder | null> {
 
 export class CheckoutError extends Error {}
 
+/** Zonas sin IVA español (Canarias, Ceuta, Melilla, exportación): se cobra la base imponible. */
+function exVat<T extends { lines: { unitCents: number; totalCents: number; qty: number }[]; subtotalCents: number; discountCents: number; shippingCents: number; totalCents: number }>(t: T): T {
+  const lines = t.lines.map((l) => {
+    const unitCents = withoutVat(l.unitCents);
+    return { ...l, unitCents, totalCents: unitCents * l.qty };
+  });
+  const subtotalCents = lines.reduce((s, l) => s + l.totalCents, 0);
+  const discountCents = t.subtotalCents ? Math.round((t.discountCents * subtotalCents) / t.subtotalCents) : 0;
+  const shippingCents = withoutVat(t.shippingCents);
+  return { ...t, lines, subtotalCents, discountCents, shippingCents, totalCents: subtotalCents - discountCents + shippingCents };
+}
+
 /** Estado de integraciones sin exponer secretos (para /api/status y el futuro dashboard). */
 export function integrationStatus() {
   return {
     commerceMode: effectiveCommerceMode(),
     catalog: catalog.id,
     payments: Boolean(serverEnv.STRIPE_SECRET_KEY) ? "configured" : "not_configured",
+    // Solo el tipo de clave (nunca la clave): confirma que los cobros son reales.
+    stripeKey: serverEnv.STRIPE_SECRET_KEY?.startsWith("sk_live_") || serverEnv.STRIPE_SECRET_KEY?.startsWith("rk_live_") ? "live" : serverEnv.STRIPE_SECRET_KEY ? "test" : "none",
+    metaPixel: Boolean(process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim()),
+    metaCapi: Boolean(process.env.META_CAPI_TOKEN?.trim()),
     fulfillment: fulfillment.configured ? "configured" : "not_configured",
     database: Boolean(serverEnv.SUPABASE_SERVICE_ROLE_KEY) ? "configured" : "not_configured",
     email: Boolean(serverEnv.EMAIL_PROVIDER_API_KEY) ? "configured" : "not_configured",

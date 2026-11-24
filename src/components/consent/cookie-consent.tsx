@@ -4,6 +4,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { CONSENT_EVENT } from "@/lib/meta-pixel";
 
 type Consent = { analytics: boolean; marketing: boolean; v: 1; at: string };
 const KEY = "acm.consent.v1";
@@ -54,6 +55,7 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
       window.localStorage.setItem(KEY, JSON.stringify(value));
     } catch {}
     setConsent(value);
+    window.dispatchEvent(new Event(CONSENT_EVENT)); // el píxel de Meta se activa o se retira sin recargar
     setVisible(false);
     setCustom(false);
   };
@@ -72,7 +74,7 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
         <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" data-cookie-banner={custom ? "open" : ""} className="fixed inset-x-3 bottom-3 z-[70] max-w-md rounded-[8px] bg-paper p-5 text-ink shadow-[0_20px_60px_rgb(0_0_0/0.35)] sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
           <p id="cookie-title" className="t-sub">Cookies</p>
           <p className="mt-2 text-sm leading-relaxed text-slate">
-            Usamos cookies técnicas para que la web funcione (carrito, preferencias). Con tu permiso, también analíticas para saber qué contenido funciona. Nada se activa hasta que decidas.{" "}
+            Usamos cookies técnicas para que la web funcione (carrito, preferencias). Con tu permiso, también analíticas para saber qué contenido funciona y de marketing para medir nuestros anuncios. Nada se activa hasta que decidas.{" "}
             <Link href="/legal/cookies" className="underline underline-offset-4 hover:text-ink">Política de cookies</Link>.
           </p>
           {custom && (
@@ -85,7 +87,7 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
                 Analítica (Google Analytics 4) <input type="checkbox" checked={analytics} onChange={(e) => setAnalytics(e.target.checked)} className="size-4 accent-racing" />
               </label>
               <label className="flex items-center justify-between gap-4">
-                Marketing (píxeles publicitarios) <input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} className="size-4 accent-racing" />
+                Marketing (Meta Pixel) <input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} className="size-4 accent-racing" />
               </label>
             </fieldset>
           )}

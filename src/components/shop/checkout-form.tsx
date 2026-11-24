@@ -3,16 +3,19 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { customerSchema } from "@/domain/checkout";
+import { customerBaseSchema, refineCustomer } from "@/domain/checkout";
 import { useCart } from "./cart-provider";
 import { OrderSummary } from "./order-summary";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { readMarketingConsent, trackPixel } from "@/lib/meta-pixel";
+import { activeCountries, countryLabel, zoneFor } from "@/domain/shipping";
+import { DUTIES_NOTICE } from "@/content/shipping";
 
-const formSchema = customerSchema.extend({ acceptTerms: z.boolean().refine((v) => v, "Debes aceptar las condiciones") });
+const formSchema = customerBaseSchema.extend({ acceptTerms: z.boolean().refine((v) => v, "Debes aceptar las condiciones") }).superRefine(refineCustomer);
 type FormValues = z.input<typeof formSchema>;
 
 function Field({ label, error, className, children }: { label: string; error?: string; className?: string; children: React.ReactNode }) {
@@ -26,17 +29,22 @@ function Field({ label, error, className, children }: { label: string; error?: s
 }
 const inputCls = "h-12 w-full rounded-[var(--radius-btn)] bg-mist px-4 text-ink placeholder:text-slate focus:outline-none focus:ring-2 focus:ring-ink/25 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-racing/60";
 
-export function CheckoutForm() {
-  const { cart, totals, hydrated } = useCart();
+const countries = activeCountries();
+
+export function CheckoutForm({ live = false }: { live?: boolean }) {
+  const { cart, totals, hydrated, catalog } = useCart();
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   // Una clave por intento de compra: reintentos/dobles clics no duplican pedidos.
   const [idemKey] = useState(() => crypto.randomUUID());
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { country: "ES", acceptTerms: false },
   });
+
+  const [country, postalCode] = useWatch({ control, name: ["country", "postalCode"] });
+  const zone = zoneFor(country ?? "ES", postalCode ?? "");
 
   if (!hydrated) return <div className="h-96 animate-pulse rounded-[6px] bg-mist" aria-busy="true" />;
   if (totals.lines.length === 0)
@@ -50,10 +58,18 @@ export function CheckoutForm() {
   async function onSubmit(values: FormValues) {
     setServerError(null);
     const { acceptTerms, ...customer } = values;
+    const skuOf = (variantId: string) => catalog.flatMap((p) => p.variants).find((v) => v.id === variantId)?.sku || variantId;
+    trackPixel("InitiateCheckout", {
+      contentIds: totals.lines.map((l) => skuOf(l.variantId)),
+      valueCents: totals.totalCents,
+      numItems: totals.lines.reduce((s, l) => s + l.qty, 0),
+      contents: totals.lines.map((l) => ({ id: skuOf(l.variantId), quantity: l.qty, itemPriceCents: l.unitCents })),
+    });
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cart, customer, acceptTerms, idempotencyKey: idemKey }),
+      // marketingConsent: el servidor solo manda la compra a Meta (API de conversiones) si es true.
+      body: JSON.stringify({ cart, customer, acceptTerms, idempotencyKey: idemKey, marketingConsent: readMarketingConsent() }),
     });
     const data = (await res.json().catch(() => ({ ok: false, message: "Error de red" }))) as { ok: boolean; message?: string; redirectUrl?: string };
     if (!data.ok || !data.redirectUrl) {
@@ -97,7 +113,9 @@ export function CheckoutForm() {
             <input autoComplete="address-level1" className={inputCls} aria-invalid={!!errors.province} {...register("province")} />
           </Field>
           <Field label="País">
-            <select className={inputCls} {...register("country")}><option value="ES">España (península y Baleares)</option></select>
+            <select className={inputCls} {...register("country")}>
+              {countries.map((c) => <option key={c.code} value={c.code}>{countryLabel(c.code)}</option>)}
+            </select>
           </Field>
         </fieldset>
         <label className="flex items-start gap-3 text-slate">
@@ -110,11 +128,13 @@ export function CheckoutForm() {
       <div className="lg:col-span-5">
         <div className="space-y-4 lg:sticky lg:top-28">
           <OrderSummary editableCoupon={false} />
-          <p className="t-small text-slate">Tienda en pruebas: al confirmar se crea un pedido de ejemplo. No se conecta con ninguna pasarela ni se cobra nada.</p>
+          {!live && <p className="t-small text-slate">Tienda en pruebas: al confirmar se crea un pedido de ejemplo. No se conecta con ninguna pasarela ni se cobra nada.</p>}
+          {zone?.active && zone.dutiesNotice && <p className="t-small text-slate">{DUTIES_NOTICE}</p>}
           {serverError && <p role="alert" className="text-racing">{serverError}</p>}
           <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? "Creando el pedido…" : "Confirmar pedido de prueba"}
+            {isSubmitting ? (live ? "Abriendo el pago…" : "Creando el pedido…") : live ? "Ir al pago seguro" : "Confirmar pedido de prueba"}
           </Button>
+          {live && <p className="t-small text-slate">Pagas en la página segura de Stripe: tarjeta, Apple Pay o Google Pay.</p>}
         </div>
       </div>
     </form>
