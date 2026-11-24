@@ -23,6 +23,8 @@ sources:
 
 Giro de guion a dos meses de la salida: el **Dakar 2027 no se corre en Arabia Saudí**. La organización lo ha trasladado a **Portugal y Marruecos**, y eso significa que el rally vuelve a pisar África por primera vez desde 2007. Para los que soñamos con el Dakar desde un Pajero de los 80, la noticia tiene algo de vuelta a casa.
 
+¿Nunca has seguido el Dakar? Empieza por [qué es el Dakar y cómo funciona](/noticias/que-es-el-dakar-cuando-empieza-2027).
+
 ## Por qué se va de Arabia Saudí
 
 El motivo es la seguridad. Según contó David Castera, director de la carrera, a la agencia EFE, los ataques de los rebeldes hutíes desde Yemen hacían inviable celebrarlo allí este año. Él mismo lo llama "un paréntesis": la idea es que el rally **vuelva a Arabia Saudí en 2028**, que será además la edición número 50.
