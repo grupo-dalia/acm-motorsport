@@ -69,6 +69,41 @@ export const productCopy: Record<string, ProductCopy> = {
     details: [TEE, DTG, "Diseño ACM Motorsport: Sunset Trail"],
     tags: ["overland t-shirt", "4x4 t-shirt", "camiseta overland"],
   },
+  "camiseta-mas-barro-menos-asfalto": {
+    tagline: "Barro hasta el techo y una sonrisa de oreja a oreja.",
+    description:
+      "Camiseta offroad con un 4x4 clásico saliendo de un barrizal entre salpicaduras naranjas. Para los que lavan el coche una vez al año y por obligación, y para regalar a quien siempre elige la pista en vez de la autovía.",
+    details: [TEE, DTG, "Diseño ACM Motorsport: Más barro, menos asfalto"],
+    tags: ["camiseta barro 4x4", "camiseta offroad", "regalo 4x4", "camiseta todoterreno"],
+  },
+  "camiseta-mud-over-asphalt-4x4": {
+    tagline: "Mud over asphalt: la filosofía offroad, en inglés.",
+    description:
+      "Versión en inglés de nuestro diseño de barro: 4x4 clásico atravesando el lodo con todo. Para raids, quedadas y para el que tiene las alfombrillas del coche llenas de tierra de tres comunidades distintas.",
+    details: [TEE, DTG, "Diseño ACM Motorsport: Mud Over Asphalt"],
+    tags: ["mud t-shirt", "offroad t-shirt", "4x4 t-shirt"],
+  },
+  "camiseta-sol-naciente-4x4": {
+    tagline: "Estilo japonés ukiyo-e: olas, monte nevado y un 4x4 clásico.",
+    description:
+      "Camiseta 4x4 inspirada en los grabados japoneses: un todoterreno clásico rompiendo entre olas, con el monte nevado y el sol rojo detrás. Para fans de los 4x4 japoneses de los 80 y 90 que se saben de memoria el código de su motor.",
+    details: [TEE, DTG, "Diseño ACM Motorsport: Sol naciente 4x4"],
+    tags: ["camiseta japonesa coche", "camiseta 4x4 japonés", "camiseta jdm 4x4"],
+  },
+  "camiseta-rising-sun-4x4": {
+    tagline: "Rising Sun: el 4x4 entre olas japonesas, en inglés.",
+    description:
+      "Diseño estilo grabado japonés con un todoterreno clásico entre olas, monte nevado y sol rojo, con texto en inglés. Camiseta para los amantes de los 4x4 japoneses de toda la vida.",
+    details: [TEE, DTG, "Diseño ACM Motorsport: Rising Sun 4x4"],
+    tags: ["jdm 4x4 t-shirt", "japanese car t-shirt", "camiseta japonesa 4x4"],
+  },
+  "camiseta-acm-street-racing-japan": {
+    tagline: "ACM Street Racing Division, con katakana y sakura.",
+    description:
+      "Camiseta de la división Street Racing de ACM Motorsport: 4x4 clásico derrapando en plena ciudad japonesa con cerezos, monte nevado y letras en katakana. Estética JDM pura para los que mezclan offroad y cultura del motor japonesa.",
+    details: [TEE, DTG, "Diseño ACM Motorsport: Street Racing Division"],
+    tags: ["camiseta jdm", "camiseta street racing", "camiseta japonesa coche"],
+  },
   "camiseta-ficha-tecnica-4x4": {
     tagline: "Plano técnico de un 4x4 clásico: vistas, cotas y despiece.",
     description:
