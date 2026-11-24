@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/layout/providers";
 import { CartDrawer } from "@/components/shop/cart-drawer";
 import { CookieConsent } from "@/components/consent/cookie-consent";
+import { MetaPixel } from "@/components/consent/meta-pixel";
+import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/content/site";
@@ -52,6 +54,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <CartDrawer />
         </Providers>
         <CookieConsent gaId={process.env.NEXT_PUBLIC_GA_ID || undefined} />
+        {/* Meta Pixel: sin ID no se pinta nada; con ID, solo carga tras aceptar cookies de marketing. */}
+        {process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() && (
+          <Suspense fallback={null}>
+            <MetaPixel pixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID.trim()} />
+          </Suspense>
+        )}
         {/* Medición agregada y sin cookies (Vercel). No identifica a nadie ni guarda nada en el navegador. */}
         <Analytics />
         <SpeedInsights />

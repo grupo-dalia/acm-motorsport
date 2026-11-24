@@ -1,6 +1,7 @@
 import "server-only";
 import Stripe from "stripe";
 import type { DraftOrder, PaymentProvider } from "../commerce/types";
+import { activeZoneFor } from "@/domain/shipping";
 
 /**
  * Pago con Stripe Checkout (página alojada por Stripe).
@@ -32,9 +33,11 @@ async function vatRate(s: Stripe): Promise<string> {
 export class StripePayments implements PaymentProvider {
   readonly id = "stripe";
 
-  async createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string }) {
+  async createCheckout(order: DraftOrder, opts: { successUrl: string; cancelUrl: string; tracking?: Record<string, string> }) {
     const s = stripe();
-    const tax = await vatRate(s);
+    // Solo las zonas con IVA español incluido llevan el 21 %; en las exentas el pedido ya viene en base imponible.
+    const vatIncluded = (activeZoneFor(order.customer.country, order.customer.postalCode)?.vat ?? "included") === "included";
+    const tax = vatIncluded ? await vatRate(s) : null;
     const t = order.totals;
 
     // Descuento calculado en nuestro servidor → cupón de un solo uso por el importe exacto.
@@ -58,11 +61,12 @@ export class StripePayments implements PaymentProvider {
         currency: "eur",
         customer_email: order.customer.email,
         client_reference_id: order.id,
-        metadata: { order: order.id, mode: order.mode },
+        // tracking: consentimiento de marketing y cookies de Meta (_fbp/_fbc) para la API de conversiones.
+        metadata: { order: order.id, mode: order.mode, ...opts.tracking },
         payment_intent_data: { metadata: { order: order.id }, description: `Pedido ${order.id}` },
         line_items: t.lines.map((l) => ({
           quantity: l.qty,
-          tax_rates: [tax],
+          ...(tax ? { tax_rates: [tax] } : {}),
           price_data: {
             currency: "eur",
             unit_amount: l.unitCents,

@@ -26,12 +26,13 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return NextResponse.json({ ok: false, message: "Revisa los datos del formulario.", issues: parsed.error.issues.map((i) => ({ path: i.path.join("."), message: i.message })) }, { status: 422 });
   }
-  const { cart, customer, idempotencyKey } = parsed.data;
+  const { cart, customer, idempotencyKey, marketingConsent } = parsed.data;
   try {
     const { order, replayed } = await createDraftOrder(cart, { ...customer, address2: customer.address2 || undefined, phone: customer.phone || undefined }, idempotencyKey);
     const { redirectUrl, sessionId } = await paymentsProvider().createCheckout(order, {
       successUrl: absoluteUrl("/checkout/exito"),
       cancelUrl: absoluteUrl("/carrito"),
+      tracking: metaTracking(req, marketingConsent),
     });
     if (sessionId) await attachPaymentSession(order.id, sessionId);
     if (!replayed && order.mode === "demo") {
@@ -57,4 +58,24 @@ export async function POST(req: Request) {
     console.error("[checkout]", e);
     return NextResponse.json({ ok: false, message: "No se ha podido iniciar el pago." }, { status: 500 });
   }
+}
+
+/**
+ * Datos para la API de conversiones de Meta, guardados en la sesión de Stripe y leídos en el webhook.
+ * Sin consentimiento de marketing solo viaja mc=0 y el webhook no envía nada a Meta.
+ */
+function metaTracking(req: Request, consent: boolean): Record<string, string> {
+  if (!consent) return { mc: "0" };
+  const cookies = Object.fromEntries((req.headers.get("cookie") ?? "").split(/;\s*/).filter(Boolean).map((c) => {
+    const i = c.indexOf("=");
+    return [c.slice(0, i), decodeURIComponent(c.slice(i + 1))];
+  }));
+  const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0]?.trim();
+  const out: Record<string, string> = { mc: "1" };
+  if (cookies._fbp) out.fbp = cookies._fbp.slice(0, 200);
+  if (cookies._fbc) out.fbc = cookies._fbc.slice(0, 200);
+  if (ip) out.ip = ip.slice(0, 64);
+  const ua = req.headers.get("user-agent");
+  if (ua) out.ua = ua.slice(0, 450);
+  return out;
 }

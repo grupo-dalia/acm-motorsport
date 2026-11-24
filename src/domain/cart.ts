@@ -1,5 +1,7 @@
 import { z } from "zod";
 import type { Product } from "./catalog";
+import type { ShippingZone } from "@/content/shipping";
+import { flatShippingCents, homeZone } from "./shipping";
 
 /**
  * Carrito: estado mínimo en cliente (solo IDs y cantidades).
@@ -53,13 +55,12 @@ export function cartReducer(state: Cart, action: CartAction): Cart {
   }
 }
 
-/** Reglas de envío de DEMOSTRACIÓN. Sustituir por tarifas reales del proveedor en Fase 4. */
-export const SHIPPING_RULES = { flatCents: 495, freeFromCents: 6000 } as const;
+/** Envío a España peninsular y Baleares (zona "ES" de src/content/shipping.ts). */
+export const SHIPPING_RULES = { flatCents: homeZone().rate.flatCents, freeFromCents: homeZone().rate.freeFromCents ?? Number.POSITIVE_INFINITY } as const;
 
 /** Códigos de descuento. CLUB10 es el regalo de bienvenida del Club ACM (newsletter). */
 export const CLUB_COUPON = "CLUB10";
 export const DEMO_COUPONS: Record<string, { percent: number; label: string }> = {
-  DEMO10: { percent: 0.1, label: "Cupón de prueba −10 %" },
   [CLUB_COUPON]: { percent: 0.1, label: "Club ACM −10 %" },
 };
 
@@ -83,7 +84,7 @@ export type CartTotals = {
 };
 
 /** Precio autoritativo del carrito a partir del catálogo. Las líneas no válidas se separan. */
-export function priceCart(cart: Cart, catalog: Product[]): CartTotals {
+export function priceCart(cart: Cart, catalog: Product[], zone: ShippingZone = homeZone()): CartTotals {
   const lines: PricedLine[] = [];
   const invalid: CartLine[] = [];
   for (const line of cart.lines) {
@@ -108,7 +109,8 @@ export function priceCart(cart: Cart, catalog: Product[]): CartTotals {
   const couponDef = cart.coupon ? DEMO_COUPONS[cart.coupon.toUpperCase()] : undefined;
   const discountCents = couponDef ? Math.round(subtotalCents * couponDef.percent) : 0;
   const afterDiscount = subtotalCents - discountCents;
-  const shippingCents = lines.length === 0 || afterDiscount >= SHIPPING_RULES.freeFromCents ? 0 : SHIPPING_RULES.flatCents;
+  // Zonas con tarifa de Printful: aquí 0; el importe real se pide a Printful al crear el pedido.
+  const shippingCents = flatShippingCents(zone, afterDiscount, lines.length > 0) ?? 0;
   return {
     lines,
     invalid,

@@ -18,6 +18,7 @@ import { vehicleSpecs } from "@/content/motorsport";
 import type { Product } from "@/domain/catalog";
 import type { Article } from "@/lib/news";
 import { ArticleCard } from "@/components/news/article-card";
+import { effectiveCommerceMode } from "@/lib/env";
 
 const heroVideo = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
 const heroPoster = process.env.NEXT_PUBLIC_HERO_POSTER_URL;
@@ -183,7 +184,7 @@ export function ShopSection({ products }: { products: Product[] }) {
         <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
           {products.slice(0, 4).map((p) => <ProductCard key={p.id} product={p} />)}
         </div>
-        <p className="mt-10 t-small text-slate">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>
+        {effectiveCommerceMode() !== "live" && <p className="mt-10 t-small text-slate">Tienda en pruebas: todavía no se realiza ningún cobro ni se envían pedidos.</p>}
       </Container>
     </section>
   );

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { MediaPlaceholder } from "@/components/media/media-placeholder";
 import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { trackPixel } from "@/lib/meta-pixel";
 
 export function ProductPurchase({ product }: { product: Product }) {
   const { dispatch, setOpen } = useCart();
@@ -31,6 +32,7 @@ export function ProductPurchase({ product }: { product: Product }) {
     if (!variant || !variant.available) return setError("Esta combinación no está disponible.");
     setError(null);
     dispatch({ type: "add", line: { productId: product.id, variantId: variant.id, qty } });
+    trackPixel("AddToCart", { contentIds: [variant.sku || variant.id], valueCents: variant.priceCents * qty, numItems: qty, contents: [{ id: variant.sku || variant.id, quantity: qty, itemPriceCents: variant.priceCents }] });
     setOpen(true);
   }
 

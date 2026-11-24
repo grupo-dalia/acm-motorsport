@@ -8,6 +8,9 @@ import { catalog } from "@/integrations/commerce";
 import { categories, relatedProducts } from "@/domain/catalog";
 import { JsonLd, pageMetadata, productLd } from "@/lib/seo";
 import Link from "next/link";
+import { TrackViewContent } from "@/components/analytics/track-view-content";
+import { activeZonesSummary, anyActiveDutiesZone } from "@/domain/shipping";
+import { DUTIES_NOTICE } from "@/content/shipping";
 
 type Params = Promise<{ slug: string }>;
 
@@ -31,6 +34,9 @@ export default async function ProductPage({ params }: { params: Params }) {
   return (
     <div className="on-paper">
       <JsonLd data={productLd(product)} />
+      {product.fulfillment !== "affiliate" && !product.demo && (
+        <TrackViewContent contentIds={product.variants.filter((v) => v.available).map((v) => v.sku || v.id)} valueCents={product.priceCents} />
+      )}
       <Container className="pb-24 pt-24 lg:pb-36 lg:pt-32">
         <Breadcrumbs items={[{ label: "Tienda", href: "/tienda" }, ...(category ? [{ label: category.name, href: `/tienda?categoria=${category.slug}` }] : []), { label: product.name, href: `/tienda/${product.slug}` }]} />
         <div className="mt-8"><ProductPurchase product={product} /></div>
@@ -38,7 +44,7 @@ export default async function ProductPage({ params }: { params: Params }) {
         {product.fulfillment !== "affiliate" && (
           <dl className="mt-24 grid gap-10 border-t border-line-dark pt-10 md:grid-cols-3">
             {[
-              ["Envíos", "España peninsular y Baleares.", "/legal/envios"],
+              ["Envíos", `${activeZonesSummary()}${anyActiveDutiesZone() ? ` Fuera de la UE: ${DUTIES_NOTICE.charAt(0).toLowerCase()}${DUTIES_NOTICE.slice(1)}` : ""}`, "/legal/envios"],
               ["Devoluciones", "14 días, salvo productos personalizados.", "/legal/devoluciones"],
               ["Pago", "Pasarela segura externa. No guardamos datos de tarjeta.", "/legal/condiciones"],
             ].map(([t, d, h]) => (
