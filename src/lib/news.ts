@@ -18,6 +18,10 @@ export { newsCategories };
 const schema = z.object({
   title: z.string().min(5),
   summary: z.string().min(20).max(220),
+  /** Título solo para Google (la etiqueta <title>). Corto (≤ 60) y con lo que busca la gente delante. El H1 sigue siendo `title`. */
+  seoTitle: z.string().min(10).max(62).optional(),
+  /** Meta descripción para Google (≤ 160). Si falta, se usa `summary`. */
+  seoDescription: z.string().min(50).max(160).optional(),
   date: z.coerce.date(),
   updated: z.coerce.date().optional(),
   category: z.enum(Object.keys(newsCategories) as [keyof typeof newsCategories, ...(keyof typeof newsCategories)[]]),

@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const a = await getArticle((await params).slug);
   if (!a) return {};
-  const meta = pageMetadata({ title: a.title, description: a.summary, path: `/noticias/${a.slug}`, image: coverOf(a) ?? undefined });
+  const meta = pageMetadata({ title: a.seoTitle ?? a.title, description: a.seoDescription ?? a.summary, path: `/noticias/${a.slug}`, image: coverOf(a) ?? undefined });
   return { ...meta, openGraph: { ...meta.openGraph, type: "article", publishedTime: a.date.toISOString(), modifiedTime: (a.updated ?? a.date).toISOString(), authors: [site.founder] }, ...(a.draft ? { robots: { index: false } } : {}) };
 }
 

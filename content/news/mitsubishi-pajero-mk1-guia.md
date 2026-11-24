@@ -1,7 +1,10 @@
 ---
 title: "Pajero MK1 (1982-1991): motores, versiones y qué mirar antes de comprar uno"
 summary: "Ganó el Dakar en 1985 y hoy es un 4x4 clásico barato y duro. Los motores, las versiones y los puntos débiles que hemos sufrido con el nuestro en carreras."
+seoTitle: "Mitsubishi Pajero MK1 (1982-1991): motores y guía de compra"
+seoDescription: "El Pajero de primera generación (Montero, L040): motores, versiones, puntos débiles y qué revisar antes de comprar uno. Contado por quien corre con él."
 date: 2026-10-30
+updated: 2026-11-24
 image: "/media/garrotxa-pajero-tramo.jpg"
 imageAlt: "El Mitsubishi Pajero MK1 de batalla larga de ACM Motorsport en tramo de tierra"
 category: taller
@@ -21,6 +24,8 @@ order: 1
 ---
 
 Nuestro coche de carreras es un **Mitsubishi Pajero MK1 de 1989**. No es un capricho de nostalgia: es un 4x4 sencillo, robusto, con recambios todavía fáciles de encontrar y con un apellido que pesa en el desierto. Si estás pensando en hacerte con uno, aquí va lo que sabemos, lo que hemos leído y lo que nos ha tocado arreglar.
+
+Un apunte de nombres para que no te líes buscando: en España y en América se vendió como **Mitsubishi Montero**, en Reino Unido como **Shogun**, y en los foros lo verás como **Pajero L040** (o L04x), el código de la primera generación. Es el mismo coche.
 
 ## Un todoterreno que nació para el Dakar
 

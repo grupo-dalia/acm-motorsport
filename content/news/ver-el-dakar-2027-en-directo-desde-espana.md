@@ -1,6 +1,8 @@
 ---
 title: "Ver el Dakar 2027 en directo desde España: en el Algarve, en Marruecos o por la tele"
 summary: "El Dakar 2027 sale a tiro de coche desde España. Dónde y cuándo verlo en Portugal, qué pasa con el paso por Andalucía, cómo seguirlo en Marruecos y en qué canal."
+seoTitle: "Dónde ver el Dakar 2027 en directo: TV, Portugal y Marruecos"
+seoDescription: "Dónde ver el Dakar 2027: en Teledeporte y RTVE Play, o en persona en la salida del Algarve y en Marruecos. Fechas, sitios y cómo llegar desde España."
 date: 2026-11-16
 image: "/media/pajero-atardecer.jpg"
 imageAlt: "El Mitsubishi Pajero MK1 de ACM Motorsport aparcado en una pista de montaña al atardecer"

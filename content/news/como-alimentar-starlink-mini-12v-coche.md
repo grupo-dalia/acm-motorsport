@@ -1,6 +1,8 @@
 ---
 title: "Starlink Mini a 12V: qué cargador sirve y cuántas horas aguanta con batería"
 summary: "Consumo real de 20 a 40 W, qué cargadores USB-C funcionan y cuáles no, la línea a 12V con su fusible y las horas de batería. Con números."
+seoTitle: "Starlink Mini a 12V: cargador, consumo y horas de batería"
+seoDescription: "Cómo conectar Starlink Mini a 12V en el coche: consumo real de 20 a 40 W, qué cargador USB-C sirve, el fusible y cuántas horas aguanta con batería."
 date: 2026-11-13
 image: "/media/taller-lampara-itv.jpg"
 imageAlt: "Andrés trabajando en el vano motor del Pajero en el taller"

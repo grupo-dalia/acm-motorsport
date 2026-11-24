@@ -1,6 +1,8 @@
 ---
 title: "Qué plan de Starlink elegir para viajar en coche, furgo o 4x4"
 summary: "Residencial o Itinerante, 100 GB o ilimitado, y cuándo compensa cada uno si lo quieres para viajar, competir o trabajar desde cualquier sitio."
+seoTitle: "Qué plan de Starlink elegir para viajar en coche o furgo"
+seoDescription: "Starlink Residencial o Itinerante, 100 GB o ilimitado: qué plan compensa para viajar en coche, furgoneta o 4x4, competir o trabajar desde cualquier sitio."
 date: 2026-11-13
 image: "/media/pajero-pista-montana.jpg"
 imageAlt: "El Pajero de ACM Motorsport levantando polvo en una pista de montaña"
