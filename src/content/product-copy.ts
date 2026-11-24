@@ -11,6 +11,8 @@ export type ProductCopy = {
 
 const TEE = "Camiseta unisex Bella+Canvas 3001: algodón peinado de 145 g, suave y de corte actual";
 const DTG = "Estampado directo (DTG) de alta resolución que aguanta lavados";
+const HOODIE = "Sudadera con capucha unisex Cotton Heritage M2580: felpa gruesa con interior cepillado y bolsillo canguro";
+const BACK = "Logo ACM Motorsport pequeño en el pecho y el diseño grande en la espalda";
 
 export const productCopy: Record<string, ProductCopy> = {
   "camiseta-dunas-retro-4x4": {
@@ -117,5 +119,124 @@ export const productCopy: Record<string, ProductCopy> = {
       "Plano técnico de un todoterreno clásico con vistas y cotas, versión con texto en inglés. Camiseta para taller, garaje y fans de la mecánica de verdad.",
     details: [TEE, DTG, "Mejor en colores claros", "Diseño ACM Motorsport: 4x4 Blueprint"],
     tags: ["blueprint t-shirt", "car blueprint", "camiseta plano 4x4"],
+  },
+  "camiseta-club-del-cambio-manual": {
+    tagline: 'Club del Cambio: para los que no perdonan el tercer pedal.',
+    description:
+      'Camiseta para amantes del cambio manual: escudo retro con un pomo de 5 marchas entre laureles, cuadros de carreras y el lema «Nacidos para conducir». Para los que bajan marcha antes de la curva y miran raro a los coches automáticos.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Club del Cambio"],
+    tags: ['camiseta cambio manual', 'camiseta coches', 'camiseta motor', 'regalo para conductores'],
+  },
+  "sudadera-club-del-cambio-manual": {
+    tagline: 'Club del Cambio en sudadera: tres pedales y manga larga.',
+    description:
+      'Sudadera con capucha con el escudo del Club del Cambio a la espalda: pomo de 5 marchas, laureles y «Nacidos para conducir». Para quedadas, circuito en invierno o madrugones de tramo.',
+    details: [HOODIE, DTG, BACK, "Diseño ACM Motorsport: Club del Cambio"],
+    tags: ['sudadera cambio manual', 'sudadera coches', 'sudadera motor', 'regalo motero de coches'],
+  },
+  "camiseta-overland-division-4x4": {
+    tagline: 'Overland Division: baca cargada, sol bajo y nada de prisa.',
+    description:
+      'Camiseta overland con un todoterreno clásico de 5 puertas con baca y equipaje, montañas y sol rojo. «Go far, stay dirty». Para viajeros 4x4, campistas de techo y los que miden las vacaciones en kilómetros de pista.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Overland Division"],
+    tags: ['camiseta overland', 'camiseta 4x4', 'camiseta todoterreno', 'camiseta viaje 4x4'],
+  },
+  "sudadera-overland-division-4x4": {
+    tagline: 'Overland Division para noches frías de acampada.',
+    description:
+      'Sudadera con capucha overland: todoterreno clásico con baca, montañas y sol rojo a la espalda, y logo ACM en el pecho. La que vas a llevar puesta junto al fuego cuando baje la temperatura en la sierra.',
+    details: [HOODIE, DTG, BACK, "Diseño ACM Motorsport: Overland Division"],
+    tags: ['sudadera overland', 'sudadera 4x4', 'sudadera todoterreno', 'regalo 4x4'],
+  },
+  "camiseta-beyond-the-road-4x4": {
+    tagline: 'Beyond The Road: donde se acaba el asfalto empieza lo bueno.',
+    description:
+      'Camiseta 4x4 con un todoterreno clásico subiendo entre piedras, pinos y montañas, con el texto «Beyond The Road». Estilo outdoor para los que salen del camino marcado cada vez que pueden.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Beyond The Road"],
+    tags: ['camiseta 4x4', 'camiseta offroad', '4x4 t-shirt', 'camiseta montaña'],
+  },
+  "camiseta-rey-del-barro-4x4": {
+    tagline: 'Rey del Barro: polvo, golpes y gloria.',
+    description:
+      'Camiseta off-road con un 4x4 clásico salpicando barro entre montañas, con «Rey del Barro» y «Polvo, golpes y gloria». Para el que siempre vuelve de la ruta con el coche irreconocible y una sonrisa de oreja a oreja.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Rey del Barro"],
+    tags: ['camiseta barro 4x4', 'camiseta offroad', 'camiseta todoterreno', 'regalo 4x4'],
+  },
+  "sudadera-rey-del-barro-4x4": {
+    tagline: 'Rey del Barro en sudadera, para rutas de invierno.',
+    description:
+      'Sudadera con capucha con el 4x4 cubierto de barro y el lema «Polvo, golpes y gloria» a la espalda. Para rutas de invierno, salidas de club y para mancharla sin miedo.',
+    details: [HOODIE, DTG, BACK, "Diseño ACM Motorsport: Rey del Barro"],
+    tags: ['sudadera 4x4', 'sudadera offroad', 'sudadera barro', 'regalo todoterreno'],
+  },
+  "camiseta-racing-culture-acm": {
+    tagline: 'Racing Culture: cars, people, passion.',
+    description:
+      'Camiseta motorsport con tipografía grande «Racing Culture», cuadros de meta y el logo ACM Motorsport. Para los que viven las carreras de coches dentro y fuera de la pista.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Racing Culture"],
+    tags: ['camiseta racing', 'camiseta motorsport', 'camiseta carreras', 'racing t-shirt'],
+  },
+  "sudadera-racing-culture-acm": {
+    tagline: 'Racing Culture en sudadera para el paddock.',
+    description:
+      'Sudadera con capucha «Racing Culture» con cuadros de meta y logo ACM. Para el paddock, el circuito en invierno o el sofá viendo el rally de madrugada.',
+    details: [HOODIE, DTG, BACK, "Diseño ACM Motorsport: Racing Culture"],
+    tags: ['sudadera racing', 'sudadera motorsport', 'sudadera carreras', 'racing hoodie'],
+  },
+  "camiseta-gasolina-en-las-venas": {
+    tagline: 'Gasolina en las venas: no tiene cura y tampoco la buscamos.',
+    description:
+      'Camiseta para quemados del motor con «Gasolina en las venas» en letra de pincel roja y crema con cuadros de carreras. Regalo fácil para el que habla de coches en todas las comidas familiares.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Gasolina en las venas"],
+    tags: ['camiseta gasolina', 'camiseta motor', 'camiseta coches', 'regalo amante coches'],
+  },
+  "sudadera-gasolina-en-las-venas": {
+    tagline: 'Gasolina en las venas, ahora con capucha.',
+    description:
+      'Sudadera con capucha «Gasolina en las venas» a la espalda y logo ACM en el pecho. Para los que huelen a gasolina hasta cuando salen de la ducha.',
+    details: [HOODIE, DTG, BACK, "Diseño ACM Motorsport: Gasolina en las venas"],
+    tags: ['sudadera gasolina', 'sudadera motor', 'sudadera coches', 'regalo motor'],
+  },
+  "camiseta-mas-gas-menos-drama": {
+    tagline: 'Más gas, menos drama.',
+    description:
+      'Camiseta de humor motero-coche con «Más gas, menos drama» en tipografía de pincel. Filosofía de vida resumida en cuatro palabras: si hay un problema, se pisa y se sigue.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Más gas, menos drama"],
+    tags: ['camiseta graciosa coches', 'camiseta motor', 'camiseta gas', 'regalo original coches'],
+  },
+  "camiseta-la-calle-es-mi-circuito": {
+    tagline: 'La calle es mi circuito (dentro de la ley, eh).',
+    description:
+      'Camiseta street racing con «La calle es mi circuito», franjas rojas, cuadros de meta y texto en japonés. Estética de cultura de coches callejera para quedadas y concentraciones.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: La calle es mi circuito"],
+    tags: ['camiseta street racing', 'camiseta coches', 'camiseta jdm', 'camiseta tuning'],
+  },
+  "camiseta-no-es-ruido-es-musica": {
+    tagline: 'No es ruido, es música.',
+    description:
+      'Camiseta para los que suben el escape y bajan la radio: «No es ruido, es música» en letras grandes con cuadros de carreras. Ideal para regalar a quien defiende su escape en cada comunidad de vecinos.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: No es ruido, es música"],
+    tags: ['camiseta escape', 'camiseta motor', 'camiseta graciosa coches', 'regalo coches'],
+  },
+  "camiseta-built-not-bought": {
+    tagline: 'Built not bought: late nights, dirty hands.',
+    description:
+      'Camiseta de taller con llave fija y biela cruzadas y el lema «Built Not Bought». Para los que montan su coche pieza a pieza en el garaje, de noche y con las manos negras.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Built Not Bought"],
+    tags: ['camiseta mecánico', 'camiseta taller', 'camiseta garaje', 'built not bought t-shirt'],
+  },
+  "camiseta-save-the-manuals": {
+    tagline: 'Save the manuals: three pedals, full soul.',
+    description:
+      'Camiseta «Save The Manuals – Three pedals. Full soul.» para defensores del cambio manual en plena era del automático y el eléctrico. En inglés para que se entienda en cualquier quedada.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Save The Manuals"],
+    tags: ['save the manuals', 'camiseta cambio manual', 'manual transmission t-shirt', 'camiseta coches'],
+  },
+  "camiseta-eat-sleep-race-repeat": {
+    tagline: 'Eat, sleep, race, repeat.',
+    description:
+      'Camiseta motorsport con el clásico «Eat Sleep Race Repeat» en tipografía grande, con «Race» en rojo y logo ACM Motorsport. Para pilotos de rally, karting, circuito o simulador.',
+    details: [TEE, DTG, BACK, "Diseño ACM Motorsport: Eat Sleep Race Repeat"],
+    tags: ['eat sleep race repeat', 'camiseta racing', 'camiseta piloto', 'regalo piloto'],
   },
 };
