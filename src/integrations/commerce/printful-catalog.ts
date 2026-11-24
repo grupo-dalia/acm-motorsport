@@ -1,4 +1,5 @@
 import "server-only";
+import { productCopy } from "@/content/product-copy";
 import { applyPricing, activeCampaign } from "@/content/pricing";
 import type { CategorySlug, ColorOption, Product, ProductArtKind, Variant } from "@/domain/catalog";
 
@@ -80,13 +81,16 @@ export function toProduct(sp: PfSyncProduct, vs: PfSyncVariant[], index: number)
   const prices = priced.map((v) => v.priceCents);
   if (!prices.length) return null;
   const cheapest = priced[0]!;
+  const copy = productCopy[slug(sp.name)];
   return {
     id: `pf-${sp.id}`,
     slug: slug(sp.name),
     name: sp.name,
-    tagline: "",
-    description: `${sp.name}. Se fabrica bajo demanda cuando haces el pedido, así no sobra nada en un almacén.`,
-    details: ["Fabricado bajo demanda tras confirmar el pago", baseName ? `Prenda base: ${baseName}` : ""].filter(Boolean),
+    tagline: copy?.tagline ?? "",
+    description: copy
+      ? `${copy.description} Se fabrica bajo demanda cuando haces el pedido, así no sobra nada en un almacén.`
+      : `${sp.name}. Se fabrica bajo demanda cuando haces el pedido, así no sobra nada en un almacén.`,
+    details: [...(copy?.details ?? []), "Fabricado bajo demanda tras confirmar el pago", !copy && baseName ? `Prenda base: ${baseName}` : ""].filter(Boolean),
     category,
     collection: null,
     fulfillment: "pod",
@@ -101,7 +105,7 @@ export function toProduct(sp: PfSyncProduct, vs: PfSyncVariant[], index: number)
     sizes: sizes.length > 1 || (sizes[0] && sizes[0] !== "One size") ? sortSizes(sizes) : null,
     variants,
     featured: index < 4,
-    tags: [],
+    tags: copy?.tags ?? [],
     affiliate: null,
     demo: false,
     images,
