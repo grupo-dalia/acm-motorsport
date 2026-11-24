@@ -1,7 +1,10 @@
 ---
 title: "Starlink Mini en el coche: cómo instalarlo sin goteras ni vibraciones"
 summary: "Probado en el techo de un Pajero que compite en tierra: dónde ponerlo, cómo fijarlo, por dónde meter el cable y qué no hacer. Con fotos y vídeo."
+seoTitle: "Cómo instalar Starlink Mini en el coche, paso a paso"
+seoDescription: "Cómo instalar la antena Starlink Mini en el coche, auto o 4x4: dónde ponerla, cómo fijarla sin taladrar, cómo pasar el cable y conectarla. Probado en rally."
 date: 2026-11-13
+updated: 2026-11-24
 youtubeId: "3aBYyv4A7fs"
 imageAlt: "Instalación de Starlink Mini en el techo del Mitsubishi Pajero de ACM Motorsport"
 category: overland
@@ -20,6 +23,10 @@ faq:
     a: "Con la app de Starlink: tiene una herramienta para comprobar obstrucciones que te dice si algo le tapa parte del cielo."
   - q: "¿Me lo podéis instalar?"
     a: "Sí. En ACM Workshop instalamos Starlink Mini en coches, furgonetas y 4x4: fijación, paso de cable sellado y alimentación. Escríbenos desde la página de contacto."
+  - q: "¿Sirve esta guía para cualquier auto, carro o furgoneta?"
+    a: "Sí. Lo hicimos en un Pajero, pero los pasos son los mismos en un turismo, un 4x4, una furgo o un camper: buscar cielo despejado, fijar bien la antena, sellar el paso del cable y darle una alimentación estable a 12V o con su cargador."
+  - q: "¿Cómo se conecta el Starlink Mini al auto?"
+    a: "Por USB-C con un cargador de coche que dé al menos 100 W (PD), o con una línea a 12V con su fusible. En nuestra guía de alimentación a 12V tienes los consumos reales y qué cargadores funcionan."
 sources:
   - title: "Starlink · Especificaciones de Starlink Mini"
     url: "https://www.starlink.com/specifications?spec=5"

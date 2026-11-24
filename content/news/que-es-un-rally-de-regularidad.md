@@ -1,6 +1,8 @@
 ---
 title: "Rally de regularidad: qué es, cómo funciona y cómo empezar (guía paso a paso)"
 summary: "Medias impuestas, controles secretos, tripmaster y décimas de segundo. La guía para entender la regularidad y correr tu primera prueba, contada desde dentro del Pajero."
+seoTitle: "Qué es un rally de regularidad y cómo empezar"
+seoDescription: "Qué es un rally de regularidad: medias impuestas, controles secretos, tripmaster, penalizaciones y lo que necesitas para correr tu primera prueba."
 date: 2026-10-20
 updated: 2026-11-13
 image: "/media/selva-frontal.jpg"

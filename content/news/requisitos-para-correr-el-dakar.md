@@ -1,6 +1,8 @@
 ---
 title: "Requisitos para correr el Dakar: licencia, experiencia, médico y cuánto cuesta"
 summary: "Edad, licencia FIA o FIM, la carrera previa que te piden, el reconocimiento médico y el dinero. Lo que hace falta para el Dakar y para el Dakar Classic, sin adornos."
+seoTitle: "Requisitos para correr el Dakar: licencia, médico y precio"
+seoDescription: "Qué hace falta para correr el Dakar: edad, licencia FIA o FIM, carrera previa, reconocimiento médico y cuánto cuesta. También para el Dakar Classic."
 date: 2026-11-20
 image: "/media/andres-dorsal-21-salou.jpg"
 imageAlt: "Andrés Cubero con el dorsal 21 junto al Pajero de ACM Motorsport en Salou"

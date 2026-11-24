@@ -1,6 +1,8 @@
 ---
 title: "Dakar 2027 en Portugal y Marruecos: nuevo recorrido, fechas y por qué deja Arabia Saudí"
 summary: "El Dakar 2027 sale del Algarve el 9 de enero y acaba en Marrakech el 23. Vuelve a África 20 años después y la caravana cruzará España. Te lo contamos."
+seoTitle: "Dakar 2027: recorrido, etapas y fechas (Portugal y Marruecos)"
+seoDescription: "Recorrido del Dakar 2027 etapa a etapa: sale del Algarve el 9 de enero y llega a Marrakech el 23. Fechas, ruta, paso por España y por qué deja Arabia Saudí."
 date: 2026-11-02
 image: "/media/certt-2024-tierra-roja-2.jpg"
 imageAlt: "El Mitsubishi Pajero MK1 de ACM Motorsport rodando por una pista de tierra en el CERTT 2024"
