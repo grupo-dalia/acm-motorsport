@@ -18,6 +18,8 @@ import { JsonLd, organizationLd, websiteLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  // Verificación del dominio en Meta (portfolio ACM Motorsport → Dominios).
+  verification: { other: { "facebook-domain-verification": "jwn0emhgyfqinyqswmtie3les3neym" } },
   title: { default: `${site.founder} · ${site.name}: rally, 4x4 y camino al Dakar`, template: `%s · ${site.name}` },
   description: site.description,
   applicationName: site.name,
