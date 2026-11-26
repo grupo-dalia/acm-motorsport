@@ -17,7 +17,10 @@
 }
 .row::-webkit-scrollbar { display: none; }
 @media (min-width: 768px) {
-  .row { grid-auto-flow: row; grid-template-columns: 1.3fr 1fr 1fr; overflow: visible; }
+  .row { grid-auto-columns: 44%; }
+}
+@media (min-width: 1024px) {
+  .row { grid-auto-flow: row; grid-template-columns: 1.2fr 1fr 1fr 1fr; overflow: visible; }
 }
 
 .card {
@@ -92,7 +95,17 @@
 }
 .card:hover .btn { background: #e3141e; color: #fff; }
 
+/* Tarjeta destacada: fondo blanco y la foto del producto entera, para que salte a la vista entre las azules. */
+.light { background: #fff; color: #050c25; box-shadow: inset 0 0 0 2px #e3141e; }
+.light::after { background: linear-gradient(180deg, transparent 52%, rgb(255 255 255 / 0.96) 72%); }
+.shot { position: absolute; inset: 0 0 26% 0; z-index: -2; }
+.shotImg { object-fit: contain; object-position: center top; transition: transform 0.5s ease; }
+.light:hover .shotImg { transform: scale(1.04); }
+.light .price b { color: #e3141e; }
+.light .btn { background: #050c25; color: #fff; }
+
 @media (prefers-reduced-motion: reduce) {
+  .shotImg { transition: none; }
   .cycle img { animation: none; }
   .photo, .shirts img { transition: none; }
 }
