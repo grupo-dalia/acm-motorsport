@@ -28,6 +28,8 @@ export type Campaign = {
   /** Fechas en hora de Madrid, inclusive. */
   from: string;
   to: string;
+  /** Imagen 1200×630 para las vistas previas (WhatsApp, Instagram…) de la portada y la tienda mientras dure. */
+  ogImage?: string;
 };
 
 export const campaigns: Campaign[] = [
@@ -38,6 +40,7 @@ export const campaigns: Campaign[] = [
     percent: 20,
     from: "2026-11-20T00:00:00+01:00",
     to: "2026-11-30T23:59:59+01:00",
+    ogImage: "/og/black-friday",
   },
 ];
 

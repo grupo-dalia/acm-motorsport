@@ -4,10 +4,14 @@ import { getArticles } from "@/lib/news";
 import { catalog } from "@/integrations/commerce";
 import { PromoBanner } from "@/components/promo/promo-banner";
 import { Container } from "@/components/ui/container";
-import { JsonLd, personLd, videoListLd } from "@/lib/seo";
+import { JsonLd, campaignShareMetadata, personLd, videoListLd } from "@/lib/seo";
+import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 
-export const metadata = { alternates: { canonical: absoluteUrl("/") } };
+export function generateMetadata(): Metadata {
+  const share = campaignShareMetadata({ title: "ACM Motorsport", description: "Camisetas y sudaderas de rally y 4x4.", url: absoluteUrl("/") });
+  return { alternates: { canonical: absoluteUrl("/") }, ...(share ?? {}) };
+}
 export const revalidate = 3600; // vídeos de YouTube: se refrescan cada hora
 
 export default async function HomePage() {

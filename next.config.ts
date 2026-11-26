@@ -10,6 +10,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // La imagen de vista previa del Black Friday lee su fondo y su sello de public/og/.
+  outputFileTracingIncludes: { "/og/black-friday": ["./public/og/**"] },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

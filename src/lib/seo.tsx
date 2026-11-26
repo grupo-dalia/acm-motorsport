@@ -4,6 +4,7 @@ import { absoluteUrl } from "./site";
 import type { Product } from "@/domain/catalog";
 import { SHIPPING_RULES } from "@/domain/cart";
 import { activeCountries } from "@/domain/shipping";
+import { activeCampaign } from "@/content/pricing";
 
 /** Países con zona de envío activa (src/content/shipping.ts). */
 const activeShippingCountries = () => activeCountries().map((c) => c.code);
@@ -23,6 +24,21 @@ export function pageMetadata({ title, description, path, image, languages, local
       images: [{ url: image ?? "/opengraph-image", width: 1200, height: 630, alt: `${site.name}: ${site.tagline}` }],
     },
     twitter: { card: "summary_large_image", title: `${title} · ${site.name}`, description, images: [image ? image.replace(/opengraph-image$/, "twitter-image") : "/twitter-image"] },
+  };
+}
+
+/**
+ * Vista previa al compartir la portada o la tienda: durante una campaña con imagen propia, usa esa imagen
+ * (y vuelve sola a la normal al terminar). Devuelve solo openGraph/twitter para mezclar con el resto.
+ */
+export function campaignShareMetadata(base: { title: string; description: string; url: string }): Pick<Metadata, "openGraph" | "twitter"> | null {
+  const c = activeCampaign();
+  if (!c?.ogImage) return null;
+  const title = `${c.label} · ${site.name}`;
+  const description = `${c.banner}. ${base.description}`;
+  return {
+    openGraph: { title, description, url: base.url, siteName: site.name, locale: site.locale, type: "website", images: [{ url: c.ogImage, width: 1200, height: 630, alt: c.banner }] },
+    twitter: { card: "summary_large_image", title, description, images: [c.ogImage] },
   };
 }
 
