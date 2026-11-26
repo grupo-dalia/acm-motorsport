@@ -7,15 +7,22 @@ import { Container } from "@/components/ui/container";
 import { ProductCard } from "@/components/shop/product-card";
 import { catalog } from "@/integrations/commerce";
 import { categories, fulfillmentLabels, queryProducts, type CategorySlug, type FulfillmentType, type ShopQuery } from "@/domain/catalog";
-import { pageMetadata } from "@/lib/seo";
+import { campaignShareMetadata, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { effectiveCommerceMode } from "@/lib/env";
 
-export const metadata: Metadata = pageMetadata({
+const shopMeta = {
   title: "Tienda oficial",
   description: "Camisetas, sudaderas, gorras, pegatinas y accesorios oficiales de ACM Motorsport y Objetivo Dakar.",
   path: "/tienda",
-});
+};
+
+export function generateMetadata(): Metadata {
+  const base = pageMetadata(shopMeta);
+  const share = campaignShareMetadata({ title: shopMeta.title, description: shopMeta.description, url: absoluteUrl(shopMeta.path) });
+  return share ? { ...base, ...share } : base;
+}
 
 type SP = Promise<Record<string, string | string[] | undefined>>;
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
