@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { activeCampaign, christmas } from "@/content/pricing";
@@ -50,6 +51,24 @@ export async function PromoBanner({ className, heading = true }: { className?: s
         </Link>
         {promoShirts.map((shirt) => {
           const p = products.find((x) => x.slug === shirt.slug);
+          if (shirt.photo) {
+            const src = p?.images ? Object.values(p.images)[0]?.[0] : undefined;
+            if (!p || !src) return null;
+            return (
+              <Link key={shirt.slug} href={`/tienda/${shirt.slug}`} className={cn(s.card, s.light)}>
+                <span className={s.shot} aria-hidden>
+                  <Image src={src} alt="" fill sizes="(min-width: 1024px) 25vw, 84vw" className={s.shotImg} />
+                </span>
+                <span className={cn(s.pill, s.red)}>{shirt.pill ?? "Nuevo"}</span>
+                <span className={s.title}>{shirt.name}</span>
+                <span className={s.price}>
+                  {p.compareAtCents ? <s>{formatPrice(p.compareAtCents)}</s> : null}
+                  <b>{formatPrice(p.priceCents)}</b>
+                </span>
+                <span className={s.btn}>Ver camiseta</span>
+              </Link>
+            );
+          }
           return (
             <Link key={shirt.slug} href={`/tienda/${shirt.slug}`} className={s.card}>
               <span className={s.stripes} aria-hidden />
@@ -59,7 +78,7 @@ export async function PromoBanner({ className, heading = true }: { className?: s
                   <img key={src} src={src} alt="" loading="lazy" style={shirt.images.length > 1 ? { animationDelay: `${i * 2 - 1}s` } : undefined} />
                 ))}
               </span>
-              <span className={s.pill}>{shirt.images.length > 1 ? `Nuevo · ${shirt.images.length} colores` : "Nuevo"}</span>
+              <span className={s.pill}>{shirt.pill ?? (shirt.images.length > 1 ? `Nuevo · ${shirt.images.length} colores` : "Nuevo")}</span>
               <span className={s.title}>{shirt.name}</span>
               {p && (
                 <span className={s.price}>
