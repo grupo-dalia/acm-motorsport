@@ -75,3 +75,32 @@ export function activeZonesSummary(zones: ShippingZone[] = shippingZones): strin
 export function anyActiveDutiesZone(zones: ShippingZone[] = shippingZones): boolean {
   return zones.some((z) => z.active && z.dutiesNotice);
 }
+
+/**
+ * Ventana de entrega estimada para pedidos bajo demanda en la península:
+ * impresión 2-5 días laborables + transporte 3-6 (ver /legal/envios) → 5 a 11 laborables.
+ * Se calcula en el navegador con la fecha de hoy (las fichas son estáticas).
+ */
+export function addBusinessDays(from: Date, days: number) {
+  const d = new Date(from);
+  let left = days;
+  while (left > 0) {
+    d.setDate(d.getDate() + 1);
+    const wd = d.getDay();
+    if (wd !== 0 && wd !== 6) left--;
+  }
+  return d;
+}
+
+export function deliveryWindow(from = new Date(), min = 5, max = 11) {
+  return { from: addBusinessDays(from, min), to: addBusinessDays(from, max) };
+}
+
+export function formatDeliveryWindow(w: { from: Date; to: Date }) {
+  const day = new Intl.DateTimeFormat("es-ES", { weekday: "short", day: "numeric", timeZone: "Europe/Madrid" });
+  const month = new Intl.DateTimeFormat("es-ES", { month: "short", timeZone: "Europe/Madrid" });
+  const sameMonth = w.from.getMonth() === w.to.getMonth();
+  const a = day.format(w.from).replace(".", "");
+  const b = day.format(w.to).replace(".", "");
+  return sameMonth ? `entre el ${a} y el ${b} de ${month.format(w.to).replace(".", "")}` : `entre el ${a} de ${month.format(w.from).replace(".", "")} y el ${b} de ${month.format(w.to).replace(".", "")}`;
+}

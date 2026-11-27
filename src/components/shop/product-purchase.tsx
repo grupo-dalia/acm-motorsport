@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Minus, Plus } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { BadgeCheck, Lock, Minus, Plus, Truck } from "lucide-react";
 import type { Product } from "@/domain/catalog";
 import { findVariant, fulfillmentLabels } from "@/domain/catalog";
-import { MAX_QTY } from "@/domain/cart";
+import { MAX_QTY, SHIPPING_RULES } from "@/domain/cart";
+import { deliveryWindow, formatDeliveryWindow } from "@/domain/shipping";
 import { ProductArt } from "./product-art";
 import { ProductVisual } from "./product-visual";
 import { useCart } from "./cart-provider";
@@ -21,6 +22,25 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [view, setView] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [eta, setEta] = useState<string | null>(null);
+  const [showBar, setShowBar] = useState(false);
+  const buyRef = useRef<HTMLDivElement>(null);
+  const sizesRef = useRef<HTMLFieldSetElement>(null);
+
+  // Fecha de entrega con el día de hoy del visitante (la ficha es estática).
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- depende de la fecha del navegador
+    setEta(formatDeliveryWindow(deliveryWindow()));
+  }, []);
+
+  // Barra fija de compra en el móvil cuando el botón principal ya no se ve.
+  useEffect(() => {
+    const el = buyRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([e]) => setShowBar(!e!.isIntersecting && e!.boundingClientRect.top < 0), { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const color = product.colors.find((c) => c.id === colorId) ?? product.colors[0];
   const needsSize = Boolean(product.sizes?.length);
@@ -28,7 +48,11 @@ export function ProductPurchase({ product }: { product: Product }) {
   const isAffiliate = product.fulfillment === "affiliate";
 
   function add() {
-    if (needsSize && !size) return setError("Elige una talla para continuar.");
+    if (needsSize && !size) {
+      setError("Elige una talla para continuar.");
+      sizesRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     if (!variant || !variant.available) return setError("Esta combinación no está disponible.");
     setError(null);
     dispatch({ type: "add", line: { productId: product.id, variantId: variant.id, qty } });
@@ -95,7 +119,7 @@ export function ProductPurchase({ product }: { product: Product }) {
               </fieldset>
 
               {needsSize && (
-                <fieldset>
+                <fieldset ref={sizesRef}>
                   <legend className="font-medium">Talla</legend>
                   <div className="mt-3 grid grid-cols-6 gap-2">
                     {product.sizes!.map((s) => {
@@ -111,7 +135,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                 </fieldset>
               )}
 
-              <div className="flex gap-3">
+              <div ref={buyRef} className="flex gap-3">
                 <div className="flex h-14 items-center rounded-[var(--radius-btn)] bg-mist">
                   <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} className="grid h-full w-11 place-items-center" aria-label="Quitar una unidad"><Minus className="size-4" /></button>
                   <span className="w-6 text-center tnum" aria-live="polite">{qty}</span>
@@ -122,7 +146,31 @@ export function ProductPurchase({ product }: { product: Product }) {
                 </Button>
               </div>
               {error && <p role="alert" className="-mt-4 text-racing">{error}</p>}
-              <p className="t-small text-slate">{fulfillmentLabels[product.fulfillment].long}</p>
+              <ul className="space-y-2.5 rounded-[6px] bg-mist p-4 t-small">
+                <li className="flex gap-2.5"><Truck className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                  <span><b className="font-semibold">Pídela hoy y recíbela {eta ?? "en 5 a 11 días laborables"}.</b> Se imprime para ti al hacer el pedido.</span></li>
+                <li className="flex gap-2.5"><Truck className="mt-0.5 size-4 shrink-0 text-transparent" aria-hidden />
+                  <span>Envío {formatPrice(SHIPPING_RULES.flatCents)} · <b className="font-semibold">gratis desde {formatPrice(SHIPPING_RULES.freeFromCents)}</b>{(variant?.priceCents ?? product.priceCents) * 3 >= SHIPPING_RULES.freeFromCents ? " (con 3 prendas ya lo tienes)" : ""}.</span></li>
+                <li className="flex gap-2.5"><BadgeCheck className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                  <span>Si llega con algún fallo, te mandamos otra o te devolvemos el dinero. 14 días para devolverla.</span></li>
+                <li className="flex gap-2.5"><Lock className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                  <span>Pago seguro con tarjeta, Apple Pay o Google Pay.</span></li>
+              </ul>
+            </div>
+          )}
+
+          {!isAffiliate && (
+            <div aria-hidden={!showBar} className={cn("fixed inset-x-0 bottom-0 z-[60] flex items-center gap-3 border-t border-line-dark bg-paper/95 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden", showBar ? "translate-y-0" : "translate-y-full")}>
+              <div className="min-w-0 flex-1">
+                <p className="truncate t-small font-medium">{product.name}</p>
+                <p className="tnum t-small">
+                  {(variant ? variant.compareAtCents : product.compareAtCents) ? <s className="mr-1.5 opacity-60">{formatPrice((variant ? variant.compareAtCents : product.compareAtCents)!)}</s> : null}
+                  <b className="text-racing">{formatPrice(variant?.priceCents ?? product.priceCents)}</b>
+                </p>
+              </div>
+              <Button size="md" tabIndex={showBar ? 0 : -1} onClick={add} disabled={variant ? !variant.available : false}>
+                {needsSize && !size ? "Elegir talla" : "Añadir a la cesta"}
+              </Button>
             </div>
           )}
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { activeCountries, activeZoneFor, flatShippingCents, zoneFor } from "./shipping";
+import { activeCountries, activeZoneFor, deliveryWindow, flatShippingCents, formatDeliveryWindow, zoneFor } from "./shipping";
 import { shippingZones } from "@/content/shipping";
 import { customerSchema } from "./checkout";
 
@@ -39,5 +39,15 @@ describe("zonas de envío", () => {
     expect(customerSchema.safeParse({ ...customer, postalCode: "35001" }).success).toBe(false);
     expect(customerSchema.safeParse({ ...customer, postalCode: "52001" }).success).toBe(false);
     expect(customerSchema.safeParse({ ...customer, country: "FR", postalCode: "75001" }).success).toBe(false);
+  });
+});
+
+describe("deliveryWindow", () => {
+  it("cuenta solo días laborables", () => {
+    // viernes 27 nov 2026 → +5 laborables = vie 4 dic; +11 = lun 14 dic
+    const w = deliveryWindow(new Date("2026-11-27T12:00:00+01:00"));
+    expect(w.from.toISOString().slice(0, 10)).toBe("2026-12-04");
+    expect(w.to.toISOString().slice(0, 10)).toBe("2026-12-14");
+    expect(formatDeliveryWindow(w)).toBe("entre el vie 4 y el lun 14 de dic");
   });
 });

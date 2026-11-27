@@ -71,9 +71,14 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
         </>
       )}
       {visible && (
-        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" data-cookie-banner={custom ? "open" : ""} className="fixed inset-x-3 bottom-3 z-[70] max-w-md rounded-[8px] bg-paper p-5 text-ink shadow-[0_20px_60px_rgb(0_0_0/0.35)] sm:bottom-6 sm:left-6 sm:right-auto sm:p-6">
-          <p id="cookie-title" className="t-sub">Cookies</p>
-          <p className="mt-2 text-sm leading-relaxed text-slate">
+        <div role="dialog" aria-modal="false" aria-labelledby="cookie-title" data-cookie-banner={custom ? "open" : ""} className="fixed inset-x-0 bottom-0 z-[70] border-t border-line-dark bg-paper px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 text-ink shadow-[0_-10px_40px_rgb(0_0_0/0.18)] sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:rounded-[8px] sm:border-0 sm:p-6 sm:shadow-[0_20px_60px_rgb(0_0_0/0.35)]">
+          <p id="cookie-title" className="t-sub hidden sm:block">Cookies</p>
+          {/* Móvil: versión corta en una franja para no tapar la ficha; mismo contenido esencial. */}
+          <p className="text-[13px] leading-snug text-slate sm:hidden">
+            <b className="font-semibold text-ink">Cookies:</b> técnicas para que la web funcione y, si aceptas, analíticas y de marketing para medir los anuncios. Nada se activa hasta que decidas.{" "}
+            <Link href="/legal/cookies" className="underline underline-offset-2">Más info</Link>
+          </p>
+          <p className="mt-2 hidden text-sm leading-relaxed text-slate sm:block">
             Usamos cookies técnicas para que la web funcione (carrito, preferencias). Con tu permiso, también analíticas para saber qué contenido funciona y de marketing para medir nuestros anuncios. Nada se activa hasta que decidas.{" "}
             <Link href="/legal/cookies" className="underline underline-offset-4 hover:text-ink">Política de cookies</Link>.
           </p>
@@ -91,12 +96,12 @@ export function CookieConsent({ gaId }: { gaId?: string }) {
               </label>
             </fieldset>
           )}
-          <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:justify-end">
+          <div className="mt-2.5 grid grid-cols-[auto_1fr_1fr] items-center gap-2 sm:mt-5 sm:flex sm:justify-end">
             {custom ? (
-              <Button size="sm" variant="dark" className="col-span-2" onClick={() => save({ analytics, marketing })}>Guardar preferencias</Button>
+              <Button size="sm" variant="dark" className="col-span-3" onClick={() => save({ analytics, marketing })}>Guardar preferencias</Button>
             ) : (
               <>
-                <Button size="sm" variant="text" onClick={() => setCustom(true)} className="col-span-2 sm:col-span-1">Configurar</Button>
+                <Button size="sm" variant="text" onClick={() => setCustom(true)} className="px-2">Configurar</Button>
                 <Button size="sm" variant="dark" onClick={() => save({ analytics: false, marketing: false })}>Rechazar</Button>
                 <Button size="sm" variant="dark" onClick={() => save({ analytics: true, marketing: true })}>Aceptar</Button>
               </>

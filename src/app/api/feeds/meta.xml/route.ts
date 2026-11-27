@@ -14,7 +14,7 @@ import type { Product, Variant } from "@/domain/catalog";
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const eur = (cents: number) => `${(cents / 100).toFixed(2)} EUR`;
-const thirdPartyMarks = /mitsubishi|rallyart|ralliart|toyota|lada|red bull|monster/i;
+const thirdPartyMarks = /mitsubishi|rallyart|ralliart|toyota|lada|red bull|monster|alonso/i;
 
 const fbCategory: Partial<Record<Product["category"], string>> = {
   camisetas: "clothing & accessories > clothing > shirts & tops",

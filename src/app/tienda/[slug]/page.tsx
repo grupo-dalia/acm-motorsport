@@ -11,6 +11,11 @@ import Link from "next/link";
 import { TrackViewContent } from "@/components/analytics/track-view-content";
 import { activeZonesSummary, anyActiveDutiesZone } from "@/domain/shipping";
 import { DUTIES_NOTICE } from "@/content/shipping";
+import { pinnedRecommendations } from "@/content/promo";
+import { activeCampaign } from "@/content/pricing";
+import { SHIPPING_RULES } from "@/domain/cart";
+import { formatPrice } from "@/lib/format";
+import { SurveyPrompt } from "@/components/shop/survey-prompt";
 
 type Params = Promise<{ slug: string }>;
 
@@ -28,7 +33,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ProductPage({ params }: { params: Params }) {
   const product = await catalog.getProductBySlug((await params).slug);
   if (!product) notFound();
-  const related = relatedProducts(await catalog.listProducts(), product);
+  const related = relatedProducts(await catalog.listProducts(), product, 4, pinnedRecommendations);
   const category = categories.find((c) => c.slug === product.category);
 
   return (
@@ -40,6 +45,16 @@ export default async function ProductPage({ params }: { params: Params }) {
       <Container className="pb-24 pt-24 lg:pb-36 lg:pt-32">
         <Breadcrumbs items={[{ label: "Tienda", href: "/tienda" }, ...(category ? [{ label: category.name, href: `/tienda?categoria=${category.slug}` }] : []), { label: product.name, href: `/tienda/${product.slug}` }]} />
         <div className="mt-8"><ProductPurchase product={product} /></div>
+
+        {related.length > 0 && (
+          <section className="mt-16 lg:mt-24" aria-labelledby="rel-title">
+            <h2 id="rel-title" className="t-title">Te puede gustar</h2>
+            <p className="mt-2 text-slate">{activeCampaign() ? `También con el ${activeCampaign()!.label.replace(/^.*?(−\d+ ?%)$/, "$1")}` : "Combínala"} y envío gratis desde {formatPrice(SHIPPING_RULES.freeFromCents)}.</p>
+            <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
+              {related.map((p) => <ProductCard key={p.id} product={p} />)}
+            </div>
+          </section>
+        )}
 
         {product.fulfillment !== "affiliate" && (
           <dl className="mt-24 grid gap-10 border-t border-line-dark pt-10 md:grid-cols-3">
@@ -56,15 +71,8 @@ export default async function ProductPage({ params }: { params: Params }) {
           </dl>
         )}
 
-        {related.length > 0 && (
-          <section className="mt-28" aria-labelledby="rel-title">
-            <h2 id="rel-title" className="t-title">También del equipo</h2>
-            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4 lg:gap-x-6">
-              {related.map((p) => <ProductCard key={p.id} product={p} />)}
-            </div>
-          </section>
-        )}
       </Container>
+      {product.fulfillment !== "affiliate" && !product.demo && <SurveyPrompt productName={product.name} />}
     </div>
   );
 }
