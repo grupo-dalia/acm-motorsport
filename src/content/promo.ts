@@ -13,3 +13,6 @@ export const promoShirts: PromoShirt[] = [
   { slug: "camiseta-sin-plomo-98", name: "Sin Plomo 98", images: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => `/promo/sinplomo-${i}.webp`) },
   { slug: "camiseta-suprimo", name: "Suprimo", images: ["/promo/suprimo-1.webp"] },
 ];
+
+/** Camisetas que se recomiendan siempre en las fichas de producto ("Te puede gustar"). */
+export const pinnedRecommendations = ["f-alonso-world-champions"];

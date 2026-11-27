@@ -25,7 +25,7 @@ export type FulfillmentType = "acm" | "pod" | "affiliate";
 
 export const fulfillmentLabels: Record<FulfillmentType, { short: string; long: string }> = {
   acm: { short: "Vendido por ACM", long: "Stock propio. Lo preparamos y enviamos nosotros." },
-  pod: { short: "Bajo demanda", long: "Se fabrica para ti tras confirmar el pago (producción vía socio de impresión)." },
+  pod: { short: "Bajo demanda", long: "Se imprime para ti cuando haces el pedido." },
   affiliate: { short: "Afiliación", long: "Producto de un tercero. Si compras desde nuestro enlace podemos recibir una comisión, sin coste extra para ti." },
 };
 
@@ -138,14 +138,19 @@ export function queryProducts(products: Product[], query: ShopQuery) {
   return list;
 }
 
-export function relatedProducts(products: Product[], product: Product, limit = 4) {
-  return products
-    .filter((p) => p.id !== product.id)
+/**
+ * Recomendaciones de la ficha. `pinned`: slugs que van siempre los primeros (si no son el producto actual),
+ * p. ej. la camiseta destacada de la portada.
+ */
+export function relatedProducts(products: Product[], product: Product, limit = 4, pinned: string[] = []) {
+  const first = pinned.map((slug) => products.find((p) => p.slug === slug && p.id !== product.id)).filter((p): p is Product => Boolean(p));
+  const rest = products
+    .filter((p) => p.id !== product.id && !first.includes(p) && p.fulfillment !== "affiliate")
     .map((p) => ({
       p,
       score: (p.category === product.category ? 2 : 0) + (p.collection && p.collection === product.collection ? 3 : 0) + p.tags.filter((t) => product.tags.includes(t)).length,
     }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
     .map((x) => x.p);
+  return [...first, ...rest].slice(0, limit);
 }
